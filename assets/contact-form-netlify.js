@@ -36,7 +36,8 @@
     REQUIRED_FIELDS.forEach((fieldName) => {
       const field = form.querySelector(`[name="${fieldName}"]`);
       if (!field || !normalise(field.value)) {
-        errors.push(`${fieldName.charAt(0).toUpperCase() + fieldName.slice(1)} is required`);
+        const label = fieldName === 'message' ? 'Message' : fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
+        errors.push(`${label} is required`);
       }
     });
 
@@ -54,29 +55,8 @@
     messageEl.className = `sgc-form-status sgc-form-status--${type}`;
     messageEl.setAttribute('role', 'alert');
     messageEl.setAttribute('aria-live', 'polite');
+    messageEl.setAttribute('aria-atomic', 'true');
     messageEl.textContent = message;
-    messageEl.style.cssText = `
-      padding: 12px 16px;
-      margin-bottom: 16px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 500;
-      animation: slideIn 0.3s ease-out;
-    `;
-
-    if (type === 'error') {
-      messageEl.style.backgroundColor = '#fee';
-      messageEl.style.color = '#c33';
-      messageEl.style.border = '1px solid #fcc';
-    } else if (type === 'success') {
-      messageEl.style.backgroundColor = '#efe';
-      messageEl.style.color = '#3c3';
-      messageEl.style.border = '1px solid #cfc';
-    } else {
-      messageEl.style.backgroundColor = '#eef';
-      messageEl.style.color = '#33c';
-      messageEl.style.border = '1px solid #ccf';
-    }
 
     return messageEl;
   };
@@ -89,9 +69,16 @@
     const messageEl = createStatusMessage(message, type);
     form.insertBefore(messageEl, form.firstChild);
 
-    // Auto-remove success messages after 5 seconds
+    // Scroll into view
+    messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Auto-remove success messages after 6 seconds
     if (type === 'success') {
-      setTimeout(() => messageEl.remove(), 5000);
+      setTimeout(() => {
+        if (messageEl.parentNode) {
+          messageEl.remove();
+        }
+      }, 6000);
     }
   };
 
@@ -101,15 +88,15 @@
 
     if (loading) {
       submitButton.disabled = true;
-      submitButton.style.opacity = '0.6';
-      submitButton.style.cursor = 'not-allowed';
       submitButton.dataset.originalText = submitButton.textContent;
       submitButton.textContent = 'Sending...';
+      submitButton.setAttribute('aria-busy', 'true');
+      submitButton.setAttribute('aria-label', 'Sending your message, please wait');
     } else {
       submitButton.disabled = false;
-      submitButton.style.opacity = '1';
-      submitButton.style.cursor = 'pointer';
       submitButton.textContent = submitButton.dataset.originalText || 'Apply to Work Together';
+      submitButton.removeAttribute('aria-busy');
+      submitButton.removeAttribute('aria-label');
     }
   };
 
@@ -118,7 +105,11 @@
     return (
       forms.find((form) => {
         const text = normalise(form.textContent);
-        return text.includes('Your Information') && text.includes('Services Interested In') && text.includes('Apply to Work Together');
+        return (
+          text.includes('Your Information') &&
+          text.includes('Services Interested In') &&
+          text.includes('Apply to Work Together')
+        );
       }) || null
     );
   };
@@ -160,7 +151,9 @@
 
   const updateSelectedServices = (form) => {
     const buttons = getServiceButtons(form);
-    const selected = buttons.filter(buttonIsSelected).map((button) => normalise(button.textContent));
+    const selected = buttons
+      .filter(buttonIsSelected)
+      .map((button) => normalise(button.textContent));
     ensureHiddenInput(form, 'services_interested_in', selected.join(', '));
   };
 
@@ -190,6 +183,9 @@
     ensureHiddenInput(form, 'form-name', FORM_NAME);
     ensureHiddenInput(form, 'bot-field', '');
 
+    const startTime = Date.now();
+    const minDuration = 800; // Minimum animation duration for better UX
+
     window
       .fetch('/', {
         method: 'POST',
@@ -198,22 +194,43 @@
       })
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Netlify Forms submission failed with status ${response.status}`);
+          throw new Error(`Form submission failed with status ${response.status}`);
         }
         form.dataset.sgcNetlifySubmitted = 'true';
-        showStatusMessage(form, '✓ Message sent successfully! We'll be in touch soon.', 'success');
 
-        // Reset form after successful submission
+        // Ensure minimum animation duration for better perceived performance
+        const elapsed = Date.now() - startTime;
+        const delay = Math.max(0, minDuration - elapsed);
+
         setTimeout(() => {
-          form.reset();
-          setSubmitButtonState(form, false);
-        }, 500);
+          showStatusMessage(
+            form,
+            '✓ Message sent successfully! We\'ll be in touch soon.',
+            'success'
+          );
+
+          // Reset form after successful submission
+          setTimeout(() => {
+            form.reset();
+            setSubmitButtonState(form, false);
+          }, 300);
+        }, delay);
       })
       .catch((error) => {
-        form.dataset.sgcNetlifyError = error.message || 'Netlify Forms submission failed';
-        console.error('[Sharp Growth Co.] Contact form could not be sent to Netlify Forms.', error);
-        showStatusMessage(form, 'Sorry, something went wrong. Please try again.', 'error');
-        setSubmitButtonState(form, false);
+        form.dataset.sgcNetlifyError = error.message || 'Form submission failed';
+        console.error('[Sharp Growth Co.] Contact form error:', error);
+
+        const elapsed = Date.now() - startTime;
+        const delay = Math.max(0, minDuration - elapsed);
+
+        setTimeout(() => {
+          showStatusMessage(
+            form,
+            'Sorry, something went wrong. Please try again or contact us directly.',
+            'error'
+          );
+          setSubmitButtonState(form, false);
+        }, delay);
       })
       .finally(() => {
         form.dataset.sgcNetlifySubmitting = 'false';
@@ -256,11 +273,25 @@
     );
   };
 
+  // Load stylesheet
+  const ensureStylesheet = () => {
+    if (document.querySelector('link[href*="contact-form-styles"]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = '/assets/contact-form-styles.css';
+    document.head.appendChild(link);
+  };
+
   const observer = new MutationObserver(enhanceForm);
   observer.observe(document.documentElement, { childList: true, subtree: true });
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', enhanceForm);
+    document.addEventListener('DOMContentLoaded', () => {
+      ensureStylesheet();
+      enhanceForm();
+    });
   } else {
+    ensureStylesheet();
     enhanceForm();
   }
 })();
