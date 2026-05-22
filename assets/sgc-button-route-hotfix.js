@@ -1,6 +1,6 @@
 (() => {
   const CALENDLY = 'https://calendly.com/sharpgrowthco';
-  const CONTACT = '/contact';
+  const CONTACT = '/contact/';
   const normalize = (text) => (text || '').replace(/\s+/g, ' ').trim().toLowerCase().replace(/\s*→\s*$/, '');
   const consultationLabels = new Set([
     'book a consultation',
