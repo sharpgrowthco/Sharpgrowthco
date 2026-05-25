@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.sharpgrowthco.com/sitemap.xml
+Disallow: /admin/
+Disallow: /private/
