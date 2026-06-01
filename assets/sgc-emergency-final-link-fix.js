@@ -22,7 +22,7 @@
     'book a custom growth plan',
     'book a custom growth plan',
     'get a website quote',
-    'work with jenna',
+    'work with me',
     'start your growth journey',
     'schedule a consultation',
     'start your project today'

@@ -253,3 +253,340 @@ footer a .btn-outline {
   text-transform: none !important;
   overflow: visible !important;
 }
+
+/* 2026-06-01 hard fix: remove the double-rectangle CTA treatment everywhere.
+   Cause: many links are the actual CTA and wrap a child span/button with .btn-primary,
+   .btn-gold, or .btn-outline. The outer link and inner child were both styled as gold
+   blocks, creating the visible inset rectangle. Only the outer clickable CTA may draw
+   the rectangle; direct children must render as text/icons only. */
+.sgc-luxury-cta > .btn-primary,
+.sgc-luxury-cta > .btn-gold,
+.sgc-luxury-cta > .btn-outline,
+.sgc-luxury-cta > span[class*="btn-"],
+.sgc-luxury-cta > button[class*="btn-"],
+.sgc-luxury-cta > a[class*="btn-"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  outline-offset: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+  text-decoration: inherit !important;
+  text-shadow: inherit !important;
+  transform: none !important;
+  transition: none !important;
+  overflow: visible !important;
+}
+
+.sgc-luxury-cta > .btn-primary::before,
+.sgc-luxury-cta > .btn-primary::after,
+.sgc-luxury-cta > .btn-gold::before,
+.sgc-luxury-cta > .btn-gold::after,
+.sgc-luxury-cta > .btn-outline::before,
+.sgc-luxury-cta > .btn-outline::after,
+.sgc-luxury-cta > span[class*="btn-"]::before,
+.sgc-luxury-cta > span[class*="btn-"]::after,
+.sgc-luxury-cta > button[class*="btn-"]::before,
+.sgc-luxury-cta > button[class*="btn-"]::after,
+.sgc-luxury-cta > a[class*="btn-"]::before,
+.sgc-luxury-cta > a[class*="btn-"]::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.sgc-luxury-cta:hover > .btn-primary,
+.sgc-luxury-cta:focus-visible > .btn-primary,
+.sgc-luxury-cta:hover > .btn-gold,
+.sgc-luxury-cta:focus-visible > .btn-gold,
+.sgc-luxury-cta:hover > .btn-outline,
+.sgc-luxury-cta:focus-visible > .btn-outline,
+.sgc-luxury-cta:hover > span[class*="btn-"],
+.sgc-luxury-cta:focus-visible > span[class*="btn-"] {
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  transform: none !important;
+}
+
+/* 2026-06-01 refined navigation: understated luxury, no bulky active underline.
+   The header page titles should read as premium text links, not buttons or labels. */
+header nav a,
+header [role="navigation"] a,
+header .nav a,
+header a[href="/"],
+header a[href="/services"],
+header a[href="/services/"],
+header a[href="/about"],
+header a[href="/about/"],
+header a[href="/packages"],
+header a[href="/packages/"],
+header a[href="/contact"],
+header a[href="/contact/"] {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.18rem 0.04rem 0.26rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: rgba(253, 250, 244, 0.9) !important;
+  font-family: Outfit, sans-serif !important;
+  font-size: clamp(0.95rem, 1vw, 1.08rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.075em !important;
+  line-height: 1.15 !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 8px rgba(27, 16, 8, 0.28) !important;
+  transform: translateY(0) scale(1) !important;
+  transition: color 190ms ease, opacity 190ms ease, transform 190ms ease, text-shadow 190ms ease !important;
+}
+
+header nav a::before,
+header nav a::after,
+header [role="navigation"] a::before,
+header [role="navigation"] a::after,
+header .nav a::before,
+header .nav a::after,
+header a[href="/"]::before,
+header a[href="/"]::after,
+header a[href="/services"]::before,
+header a[href="/services"]::after,
+header a[href="/services/"]::before,
+header a[href="/services/"]::after,
+header a[href="/about"]::before,
+header a[href="/about"]::after,
+header a[href="/about/"]::before,
+header a[href="/about/"]::after,
+header a[href="/packages"]::before,
+header a[href="/packages"]::after,
+header a[href="/packages/"]::before,
+header a[href="/packages/"]::after,
+header a[href="/contact"]::before,
+header a[href="/contact"]::after,
+header a[href="/contact/"]::before,
+header a[href="/contact/"]::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+header nav a:hover,
+header nav a:focus-visible,
+header [role="navigation"] a:hover,
+header [role="navigation"] a:focus-visible,
+header .nav a:hover,
+header .nav a:focus-visible,
+header a[href="/"]:hover,
+header a[href="/"]:focus-visible,
+header a[href="/services"]:hover,
+header a[href="/services"]:focus-visible,
+header a[href="/services/"]:hover,
+header a[href="/services/"]:focus-visible,
+header a[href="/about"]:hover,
+header a[href="/about"]:focus-visible,
+header a[href="/about/"]:hover,
+header a[href="/about/"]:focus-visible,
+header a[href="/packages"]:hover,
+header a[href="/packages"]:focus-visible,
+header a[href="/packages/"]:hover,
+header a[href="/packages/"]:focus-visible,
+header a[href="/contact"]:hover,
+header a[href="/contact"]:focus-visible,
+header a[href="/contact/"]:hover,
+header a[href="/contact/"]:focus-visible {
+  color: #e6c083 !important;
+  text-shadow: 0 0 12px rgba(230, 192, 131, 0.24), 0 2px 10px rgba(27, 16, 8, 0.32) !important;
+  transform: translateY(-2px) scale(1.018) !important;
+}
+
+header nav a:active,
+header [role="navigation"] a:active,
+header .nav a:active,
+header a[href="/"]:active,
+header a[href="/services"]:active,
+header a[href="/services/"]:active,
+header a[href="/about"]:active,
+header a[href="/about/"]:active,
+header a[href="/packages"]:active,
+header a[href="/packages/"]:active,
+header a[href="/contact"]:active,
+header a[href="/contact/"]:active {
+  color: #d3a45f !important;
+  transform: translateY(0) scale(0.99) !important;
+}
+
+header nav a[aria-current="page"],
+header [role="navigation"] a[aria-current="page"],
+header .nav a[aria-current="page"] {
+  color: #d8af72 !important;
+  font-weight: 600 !important;
+  text-shadow: 0 0 10px rgba(216, 175, 114, 0.2), 0 1px 8px rgba(27, 16, 8, 0.28) !important;
+}
+
+@media (max-width: 767px) {
+  header nav a,
+  header [role="navigation"] a,
+  header .nav a {
+    font-size: 1rem !important;
+    letter-spacing: 0.045em !important;
+    transform: none !important;
+  }
+}
+
+/* 2026-06-01 definitive cleanup after visual review.
+   Exact DOM fix: nav text lives inside header nav a > span, and the underline is a nested absolute span.
+   CTA fix: #root .btn-primary was beating the earlier child-span override. */
+#root .sgc-luxury-cta > .btn-primary,
+#root .sgc-luxury-cta > .btn-gold,
+#root .sgc-luxury-cta > .btn-outline,
+#root .sgc-luxury-cta > span[class*="btn-"],
+#root .sgc-luxury-cta > button[class*="btn-"],
+#root .sgc-luxury-cta > a[class*="btn-"] {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  min-width: 0 !important;
+  width: auto !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  outline: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  font-family: inherit !important;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+  text-shadow: inherit !important;
+  transform: none !important;
+  transition: none !important;
+  overflow: visible !important;
+}
+
+#root .sgc-luxury-cta > .btn-primary::before,
+#root .sgc-luxury-cta > .btn-primary::after,
+#root .sgc-luxury-cta > .btn-gold::before,
+#root .sgc-luxury-cta > .btn-gold::after,
+#root .sgc-luxury-cta > .btn-outline::before,
+#root .sgc-luxury-cta > .btn-outline::after,
+#root .sgc-luxury-cta > span[class*="btn-"]::before,
+#root .sgc-luxury-cta > span[class*="btn-"]::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+#root header nav a,
+#root header nav a > span {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.12rem 0.02rem !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: rgba(253, 250, 244, 0.9) !important;
+  font-family: Outfit, sans-serif !important;
+  font-size: 0.98rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.055em !important;
+  line-height: 1.2 !important;
+  text-transform: none !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 8px rgba(27, 16, 8, 0.28) !important;
+  transform: translateY(0) scale(1) !important;
+  transition: color 180ms ease, transform 180ms ease, text-shadow 180ms ease !important;
+}
+
+#root header nav a > span > span,
+#root header nav a span.absolute,
+#root header nav a span[class*="absolute"],
+#root header nav a span[class*="bg-current"] {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  content: none !important;
+}
+
+#root header nav a:hover,
+#root header nav a:focus-visible,
+#root header nav a:hover > span,
+#root header nav a:focus-visible > span {
+  color: #e4bd7e !important;
+  text-shadow: 0 0 10px rgba(228, 189, 126, 0.22), 0 2px 10px rgba(27, 16, 8, 0.32) !important;
+  transform: translateY(-2px) scale(1.015) !important;
+}
+
+#root header nav a:active,
+#root header nav a:active > span {
+  color: #d2a35f !important;
+  transform: translateY(0) scale(0.99) !important;
+}
+
+#root header nav a:first-child:not(nav a) {
+  display: inline-flex !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+}
