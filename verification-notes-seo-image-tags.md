@@ -18,3 +18,17 @@ The locally served homepage at `http://127.0.0.1:4180/?v=seo-image-tags-urgent-2
 | Twitter description | Matches the corrected homepage description |
 
 The rendered homepage image DOM also showed descriptive `alt`, `title`, and `aria-label` attributes on the loaded images, including the homepage hero, services imagery, web design image, social media strategy phone image, content creation image, and boardroom strategy image. The hero image remained eager-loaded and the lower images were lazy-loaded.
+
+## Live production verification
+
+The live production homepage was checked at `https://www.sharpgrowthco.com/?v=seo-image-tags-urgent-20260601-7de2c23` after deployment. The browser-rendered DOM confirmed the corrected homepage title, descriptive meta description, separate robots directive, canonical URL, Open Graph description, Twitter description, and enhanced image attributes.
+
+| Field | Live verified value |
+|---|---|
+| Title | `Sharp Growth Co. | Alberta Marketing Agency for Local Business Growth` |
+| Meta description | `Sharp Growth Co. helps Alberta businesses grow with strategic marketing, custom website design, social media management, content creation, branding, and local visibility campaigns.` |
+| Robots | `index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1` |
+| Canonical | `https://www.sharpgrowthco.com/` |
+| Rendered image attributes | Loaded images include descriptive `alt`, `title`, and `aria-label` values. |
+
+A live static audit also passed for Home, Services, About, Packages, Contact, Work, Thank You, and 404. The broken meta description issue reported by Claude is no longer present in the production HTML.
