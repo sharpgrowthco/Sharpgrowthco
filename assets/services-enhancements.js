@@ -58,8 +58,8 @@
     },
     {
       title: 'Marketing Strategy',
-      image: '/assets/images/alberta-marketing-agency-strategy-chart-business-growth.webp',
-      alt: 'Marketing strategy and business growth planning for Alberta entrepreneurs.'
+      image: '/assets/images/calgary-marketing-consultant-boardroom-strategy-meeting.webp',
+      alt: 'Marketing strategy and boardroom planning session for Alberta entrepreneurs and local business growth.'
     },
     {
       title: 'Events & Promotions',
