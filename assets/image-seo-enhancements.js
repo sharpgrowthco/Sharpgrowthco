@@ -293,6 +293,8 @@
       img.src = item.src;
     }
     img.alt = item.alt;
+    img.title = item.alt;
+    img.setAttribute('aria-label', item.alt);
     img.width = item.width;
     img.height = item.height;
     img.decoding = 'async';
@@ -317,6 +319,7 @@
           }
           el.setAttribute('role', 'img');
           el.setAttribute('aria-label', item.alt);
+          el.setAttribute('title', item.alt);
           if (!el.style.backgroundSize) el.style.backgroundSize = 'cover';
           if (!el.style.backgroundPosition) el.style.backgroundPosition = 'center center';
           break;

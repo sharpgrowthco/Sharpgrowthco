@@ -210,6 +210,8 @@
     const image = document.createElement('img');
     image.src = config.image;
     image.alt = config.alt;
+    image.title = config.alt;
+    image.setAttribute('aria-label', config.alt);
     image.loading = 'lazy';
     image.decoding = 'async';
     image.className = 'sgc-main-service-card-image';
