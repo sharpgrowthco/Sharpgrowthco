@@ -383,11 +383,16 @@ form .sgc-contact-service-option[aria-pressed="true"] {
 }
 
 .sgc-contact-service-feedback {
-  margin: -0.45rem 0 1.1rem;
+  display: block !important;
+  width: 100% !important;
+  clear: both !important;
+  margin: 1.85rem 0 2rem !important;
+  padding-top: 0.2rem !important;
   color: #8b6428;
   font-family: 'Outfit', system-ui, sans-serif;
-  font-size: 0.88rem;
-  font-weight: 500;
+  font-size: clamp(1.16rem, 1.65vw, 1.35rem) !important;
+  line-height: 1.55 !important;
+  font-weight: 700;
   letter-spacing: 0.01em;
 }
 
