@@ -1,5 +1,5 @@
 /* Sharp Growth Co. luxury CTA button polish
-   Restores the premium gold/professional button treatment on the production Cloudflare source. */
+   Production-safe single-layer treatment: clean gold, no overlay rectangles. */
 :root {
   --sgc-luxury-gold: #b98a3b;
   --sgc-luxury-gold-light: #d6b06a;
@@ -12,9 +12,14 @@
 a.sgc-luxury-cta,
 button.sgc-luxury-cta,
 .btn-primary,
-.btn-gold {
+.btn-gold,
+.btn-outline.sgc-luxury-cta,
+a.btn-outline.sgc-luxury-cta,
+button.btn-outline.sgc-luxury-cta {
+  -webkit-appearance: none !important;
+  appearance: none !important;
   position: relative !important;
-  isolation: isolate;
+  isolation: auto !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -23,8 +28,9 @@ button.sgc-luxury-cta,
   padding: 0.95rem 1.65rem !important;
   border: 1px solid rgba(214, 176, 106, 0.72) !important;
   border-radius: 0 !important;
-  background:
-    linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 42%, var(--sgc-luxury-gold-dark) 100%) !important;
+  background-color: var(--sgc-luxury-gold) !important;
+  background-image: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 42%, var(--sgc-luxury-gold-dark) 100%) !important;
+  background-clip: padding-box !important;
   color: var(--sgc-luxury-cream) !important;
   font-family: 'Outfit', system-ui, sans-serif !important;
   font-size: 0.82rem !important;
@@ -33,40 +39,35 @@ button.sgc-luxury-cta,
   line-height: 1.1 !important;
   text-transform: uppercase !important;
   text-decoration: none !important;
-  text-shadow: 0 1px 1px rgba(35, 20, 13, 0.28);
+  text-shadow: 0 1px 1px rgba(35, 20, 13, 0.28) !important;
   box-shadow:
-    0 14px 28px rgba(35, 20, 13, 0.16),
-    0 7px 18px rgba(185, 138, 59, 0.23),
-    inset 0 1px 0 rgba(255, 250, 241, 0.35) !important;
-  transition: transform 220ms ease, box-shadow 220ms ease, filter 220ms ease, border-color 220ms ease !important;
-  overflow: hidden;
+    0 12px 24px rgba(35, 20, 13, 0.15),
+    0 6px 14px rgba(185, 138, 59, 0.21),
+    inset 0 1px 0 rgba(255, 250, 241, 0.34) !important;
+  filter: none !important;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease !important;
+  overflow: hidden !important;
 }
 
+/* Disable decorative pseudo-elements from both this layer and the compiled bundle.
+   These overlays were rendering as a second/oversized rectangle on production buttons. */
 .sgc-luxury-cta::before,
-.btn-primary::before,
-.btn-gold::before {
-  content: '';
-  position: absolute;
-  inset: 1px;
-  z-index: -1;
-  background: linear-gradient(180deg, rgba(255, 250, 241, 0.23), rgba(255, 250, 241, 0));
-  pointer-events: none;
-}
-
 .sgc-luxury-cta::after,
+.btn-primary::before,
 .btn-primary::after,
-.btn-gold::after {
-  content: '';
-  position: absolute;
-  top: -60%;
-  bottom: -60%;
-  left: -38%;
-  width: 34%;
-  z-index: -1;
-  background: linear-gradient(90deg, transparent, rgba(255, 250, 241, 0.42), transparent);
-  transform: rotate(18deg) translateX(-120%);
-  transition: transform 520ms ease;
-  pointer-events: none;
+.btn-gold::before,
+.btn-gold::after,
+.btn-outline.sgc-luxury-cta::before,
+.btn-outline.sgc-luxury-cta::after {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  transform: none !important;
+  pointer-events: none !important;
 }
 
 .sgc-luxury-cta:hover,
@@ -74,39 +75,38 @@ button.sgc-luxury-cta,
 .btn-primary:hover,
 .btn-primary:focus-visible,
 .btn-gold:hover,
-.btn-gold:focus-visible {
-  transform: translateY(-3px) !important;
-  filter: saturate(1.08) brightness(1.03);
-  border-color: rgba(255, 231, 184, 0.92) !important;
-  box-shadow:
-    0 18px 36px rgba(35, 20, 13, 0.22),
-    0 10px 24px rgba(185, 138, 59, 0.32),
-    inset 0 1px 0 rgba(255, 250, 241, 0.46) !important;
-}
-
-.sgc-luxury-cta:hover::after,
-.sgc-luxury-cta:focus-visible::after,
-.btn-primary:hover::after,
-.btn-primary:focus-visible::after,
-.btn-gold:hover::after,
-.btn-gold:focus-visible::after {
-  transform: rotate(18deg) translateX(430%);
-}
-
-.btn-outline.sgc-luxury-cta,
-a.btn-outline.sgc-luxury-cta,
-button.btn-outline.sgc-luxury-cta {
-  background: transparent !important;
-  color: var(--sgc-luxury-gold-dark) !important;
-  border: 1px solid rgba(185, 138, 59, 0.78) !important;
-  text-shadow: none;
-  box-shadow: inset 0 0 0 1px rgba(255, 250, 241, 0.28), 0 10px 22px rgba(35, 20, 13, 0.08) !important;
-}
-
+.btn-gold:focus-visible,
 .btn-outline.sgc-luxury-cta:hover,
 .btn-outline.sgc-luxury-cta:focus-visible {
-  background: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 48%, var(--sgc-luxury-gold-dark) 100%) !important;
+  transform: translateY(-2px) !important;
+  filter: saturate(1.05) brightness(1.02) !important;
+  border-color: rgba(255, 231, 184, 0.9) !important;
   color: var(--sgc-luxury-cream) !important;
+  background-color: var(--sgc-luxury-gold) !important;
+  background-image: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 44%, var(--sgc-luxury-gold-dark) 100%) !important;
+  box-shadow:
+    0 15px 28px rgba(35, 20, 13, 0.2),
+    0 8px 18px rgba(185, 138, 59, 0.28),
+    inset 0 1px 0 rgba(255, 250, 241, 0.42) !important;
+}
+
+.sgc-luxury-cta:active,
+.btn-primary:active,
+.btn-gold:active,
+.btn-outline.sgc-luxury-cta:active {
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 10px 20px rgba(35, 20, 13, 0.17),
+    0 5px 12px rgba(185, 138, 59, 0.23),
+    inset 0 1px 0 rgba(255, 250, 241, 0.32) !important;
+}
+
+.sgc-luxury-cta:focus-visible,
+.btn-primary:focus-visible,
+.btn-gold:focus-visible,
+.btn-outline.sgc-luxury-cta:focus-visible {
+  outline: 2px solid rgba(214, 176, 106, 0.55) !important;
+  outline-offset: 3px !important;
 }
 
 @media (max-width: 640px) {
@@ -114,7 +114,10 @@ button.btn-outline.sgc-luxury-cta {
   a.sgc-luxury-cta,
   button.sgc-luxury-cta,
   .btn-primary,
-  .btn-gold {
+  .btn-gold,
+  .btn-outline.sgc-luxury-cta,
+  a.btn-outline.sgc-luxury-cta,
+  button.btn-outline.sgc-luxury-cta {
     width: min(100%, 22rem);
     min-height: 3.15rem;
     padding-inline: 1.2rem !important;
