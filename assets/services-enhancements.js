@@ -222,7 +222,7 @@
   }
 
   function enhanceMainServiceBoxes() {
-    mainServiceCards.forEach((config) => {
+    mainServiceCards.forEach((config, index) => {
       const heading = findHeading(config.title, 'h2');
       if (!heading) return;
       let card = heading;
@@ -231,6 +231,8 @@
       }
       if (!card || card === document.body) return;
       card.classList.add('sgc-main-service-box', 'sgc-main-service-image-card');
+      card.classList.remove('sgc-service-tone-cream', 'sgc-service-tone-sand');
+      card.classList.add(index % 2 === 0 ? 'sgc-service-tone-cream' : 'sgc-service-tone-sand');
       card.style.setProperty('--sgc-main-service-image', `url("${config.image}")`);
       ensureMainServiceImagePanel(card, config);
       setupActiveToggle(card);

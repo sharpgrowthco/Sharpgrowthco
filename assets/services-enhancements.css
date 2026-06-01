@@ -854,3 +854,52 @@ button.sgc-contact-service-option[aria-pressed='true'] {
     z-index: 3 !important;
   }
 }
+
+/* === 2026-06-01 Services card alternating tones + feathered image transition === */
+.sgc-main-service-image-card.sgc-service-tone-cream {
+  --sgc-service-panel-bg: #fffaf3;
+  --sgc-service-panel-rgb: 255, 250, 243;
+  background: var(--sgc-service-panel-bg) !important;
+}
+
+.sgc-main-service-image-card.sgc-service-tone-sand {
+  --sgc-service-panel-bg: #efe6d8;
+  --sgc-service-panel-rgb: 239, 230, 216;
+  background: var(--sgc-service-panel-bg) !important;
+}
+
+.sgc-main-service-image-card .sgc-main-service-image-panel {
+  border-left: 0 !important;
+  background-color: var(--sgc-service-panel-bg, #fffaf3) !important;
+}
+
+.sgc-main-service-image-card .sgc-main-service-image-panel::before {
+  z-index: 2 !important;
+  background:
+    linear-gradient(90deg,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 1) 0%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.94) 8%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.76) 18%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.38) 32%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.08) 48%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0) 66%
+    ) !important;
+}
+
+.sgc-main-service-image-card .sgc-main-service-image-panel::after {
+  z-index: 1 !important;
+  background:
+    linear-gradient(90deg, rgba(255, 250, 241, 0.34) 0%, rgba(255, 250, 241, 0.18) 48%, rgba(255, 250, 241, 0.42) 100%),
+    linear-gradient(180deg, rgba(255, 250, 241, 0.2), rgba(35, 20, 13, 0.08)) !important;
+}
+
+@media (max-width: 1023px) {
+  .sgc-main-service-image-card .sgc-main-service-image-panel::before {
+    background: linear-gradient(180deg,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.92) 0%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.54) 38%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0.08) 72%,
+      rgba(var(--sgc-service-panel-rgb, 255, 250, 243), 0) 100%
+    ) !important;
+  }
+}
