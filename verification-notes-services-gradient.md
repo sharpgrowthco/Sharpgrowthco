@@ -14,3 +14,14 @@ Implementation notes:
 
 - The enhancement script assigns alternating classes: `sgc-service-tone-cream` for even-index service cards and `sgc-service-tone-sand` for odd-index service cards.
 - The CSS removes the hard image-panel border and uses a gradient pseudo-element over the image panel so the text-panel colour feathers into each image.
+
+## Live production verification
+
+Live page checked: `https://www.sharpgrowthco.com/services/?v=services-cards-gradient-tones-20260601`
+
+Observed production rendering:
+
+- The top Services cards show the requested soft gradient transition from the left text panel into the right image area, with the hard center line removed.
+- The first visible service card uses the light cream tone, and the following card uses the warmer sand tone, matching the requested alternating neutral treatment.
+- The lower Services section was also checked after scrolling, and the service-card treatment remains present through the final **Branding & Creative Direction** card before the separate Website Design & Development section.
+- The production page is loading the cache-busted Services enhancement assets for this update.
