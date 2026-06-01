@@ -45,13 +45,35 @@
     }
   ];
 
-  const mainServiceTitles = [
-    'Social Media Management',
-    'Content Creation',
-    'Marketing Strategy',
-    'Events & Promotions',
-    'Branding & Creative Direction'
+  const mainServiceCards = [
+    {
+      title: 'Social Media Management',
+      image: '/assets/images/social-media-management-alberta-content-strategy-phone.webp',
+      alt: 'Social media management content strategy for local Alberta businesses.'
+    },
+    {
+      title: 'Content Creation',
+      image: '/assets/images/content-creation-alberta-social-media-photo-video-planning.webp',
+      alt: 'Content creation planning with professional photo and video direction for Alberta businesses.'
+    },
+    {
+      title: 'Marketing Strategy',
+      image: '/assets/images/alberta-marketing-agency-strategy-chart-business-growth.webp',
+      alt: 'Marketing strategy and business growth planning for Alberta entrepreneurs.'
+    },
+    {
+      title: 'Events & Promotions',
+      image: '/assets/images/local-business-marketing-alberta-event-promotion-content.webp',
+      alt: 'Event promotion and local business marketing content for Alberta communities.'
+    },
+    {
+      title: 'Branding & Creative Direction',
+      image: '/assets/images/branding-agency-alberta-creative-visual-identity-design.webp',
+      alt: 'Branding and creative direction visual identity design for Alberta businesses.'
+    }
   ];
+
+  const mainServiceTitles = mainServiceCards.map((card) => card.title);
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
@@ -177,16 +199,40 @@
     });
   }
 
+  function ensureMainServiceImagePanel(card, config) {
+    card.querySelectorAll(':scope > .sgc-main-service-image-panel').forEach((el) => el.remove());
+
+    const panel = document.createElement('div');
+    panel.className = 'sgc-main-service-image-panel';
+    panel.setAttribute('aria-hidden', 'true');
+    panel.style.setProperty('--sgc-main-service-image', `url("${config.image}")`);
+
+    const image = document.createElement('img');
+    image.src = config.image;
+    image.alt = config.alt;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    image.className = 'sgc-main-service-card-image';
+
+    panel.appendChild(image);
+    card.prepend(panel);
+    card.dataset.sgcSeoImage = config.image;
+    card.dataset.sgcSeoAlt = config.alt;
+    card.setAttribute('aria-label', `${config.title}: ${config.alt}`);
+  }
+
   function enhanceMainServiceBoxes() {
-    mainServiceTitles.forEach((title) => {
-      const heading = findHeading(title, 'h2');
+    mainServiceCards.forEach((config) => {
+      const heading = findHeading(config.title, 'h2');
       if (!heading) return;
       let card = heading;
       while (card && card.parentElement && !card.className.toString().includes('grid-cols-1 lg:grid-cols-12')) {
         card = card.parentElement;
       }
       if (!card || card === document.body) return;
-      card.classList.add('sgc-main-service-box');
+      card.classList.add('sgc-main-service-box', 'sgc-main-service-image-card');
+      card.style.setProperty('--sgc-main-service-image', `url("${config.image}")`);
+      ensureMainServiceImagePanel(card, config);
       setupActiveToggle(card);
     });
   }
