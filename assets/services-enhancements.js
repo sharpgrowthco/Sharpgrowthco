@@ -278,9 +278,148 @@
     keepPreferredReadyToBeginSection();
   }
 
+  function routeIsAbout() {
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    return path === '/about' || window.location.hash.includes('/about');
+  }
+
+  function routeIsContact() {
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    return path === '/contact' || window.location.hash.includes('/contact');
+  }
+
+  const aboutImageRestorations = [
+    {
+      key: 'headshot',
+      src: '/assets/images/alberta-marketing-strategist-jenna-founder-headshot.webp',
+      alt: 'Jenna, Alberta marketing strategist and founder of Sharp Growth Co., in a professional blazer portrait.',
+      width: 1080,
+      height: 1456,
+      matchAlt: /jenna|founder|headshot|portrait|strategist/i
+    },
+    {
+      key: 'values',
+      src: '/assets/images/branding-agency-alberta-values-results-creative-partnership.webp',
+      alt: 'Branding agency Alberta values graphic highlighting results, creative excellence, partnership, and community focus.',
+      width: 1536,
+      height: 1024,
+      matchAlt: /values|results|creative|partnership|community/i
+    }
+  ];
+
+  function repairAboutImages() {
+    if (!routeIsAbout()) return;
+
+    document.querySelectorAll('img').forEach((img) => {
+      const raw = [img.getAttribute('src'), img.currentSrc, img.src, img.getAttribute('alt')].filter(Boolean).join(' ');
+      const config = aboutImageRestorations.find((item) => item.matchAlt.test(raw));
+      if (!config) return;
+
+      img.src = config.src;
+      img.alt = config.alt;
+      img.width = config.width;
+      img.height = config.height;
+      img.loading = 'eager';
+      img.decoding = 'async';
+      img.style.maxWidth = img.style.maxWidth || '100%';
+      if (!img.closest('[style*="height"]')) img.style.height = img.style.height || 'auto';
+      img.dataset.sgcAboutImageRestored = config.key;
+    });
+  }
+
+  const contactServiceLabels = [
+    'Website Design & Development',
+    'Social Media Management',
+    'Content Creation',
+    'Marketing Strategy',
+    'Events & Promotions',
+    'Branding & Creative Direction',
+    'Custom Growth Plan'
+  ];
+
+  function findContactForm() {
+    return Array.from(document.querySelectorAll('form')).find((form) => {
+      const text = normalize(form.textContent);
+      return text.includes('Services Interested In') && text.includes('Apply to Work Together');
+    }) || null;
+  }
+
+  function getContactServiceButtons(form) {
+    if (!form) return [];
+    return Array.from(form.querySelectorAll('button[type="button"]')).filter((button) => contactServiceLabels.includes(normalize(button.textContent)));
+  }
+
+  function ensureContactHiddenInput(form) {
+    let input = form.querySelector('input[type="hidden"][name="services_interested_in"]');
+    if (!input) {
+      input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'services_interested_in';
+      form.prepend(input);
+    }
+    return input;
+  }
+
+  function ensureServiceFeedback(form, buttons) {
+    let feedback = form.querySelector('.sgc-contact-service-feedback');
+    if (feedback) return feedback;
+    feedback = document.createElement('p');
+    feedback.className = 'sgc-contact-service-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+    feedback.textContent = 'Select one or more services so I can tailor your next-step recommendation.';
+    const buttonWrap = buttons[0]?.parentElement;
+    if (buttonWrap && buttonWrap.parentElement) buttonWrap.insertAdjacentElement('afterend', feedback);
+    return feedback;
+  }
+
+  function updateContactServiceState(form) {
+    const buttons = getContactServiceButtons(form);
+    if (!buttons.length) return;
+    const selected = buttons.filter((button) => button.classList.contains('sgc-contact-service-selected') || button.classList.contains('selected') || button.getAttribute('aria-pressed') === 'true');
+    const labels = selected.map((button) => normalize(button.textContent));
+    ensureContactHiddenInput(form).value = labels.join(', ');
+    const feedback = ensureServiceFeedback(form, buttons);
+    if (feedback) {
+      feedback.textContent = labels.length
+        ? `Selected: ${labels.join(', ')}.`
+        : 'Select one or more services so I can tailor your next-step recommendation.';
+    }
+  }
+
+  function setContactButtonSelected(button, selected) {
+    button.classList.toggle('sgc-contact-service-selected', selected);
+    button.classList.toggle('selected', selected);
+    button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+  }
+
+  function enhanceContactServiceButtons() {
+    if (!routeIsContact()) return;
+    const form = findContactForm();
+    const buttons = getContactServiceButtons(form);
+    if (!form || !buttons.length) return;
+
+    form.classList.add('sgc-contact-form-restored');
+    buttons.forEach((button) => {
+      button.classList.add('sgc-contact-service-option');
+      if (!button.hasAttribute('aria-pressed')) button.setAttribute('aria-pressed', 'false');
+      if (button.dataset.sgcContactServiceReady === 'true') return;
+      button.dataset.sgcContactServiceReady = 'true';
+      button.addEventListener('click', () => {
+        const shouldSelect = !button.classList.contains('sgc-contact-service-selected');
+        window.requestAnimationFrame(() => {
+          setContactButtonSelected(button, shouldSelect);
+          updateContactServiceState(form);
+        });
+      });
+    });
+    updateContactServiceState(form);
+  }
+
   function enhanceAllPages() {
+    repairAboutImages();
     enhanceHomeServiceCards();
     enhanceServicesPage();
+    enhanceContactServiceButtons();
   }
 
   let queued = false;

@@ -164,6 +164,11 @@
     return new URLSearchParams(data).toString();
   };
 
+  const formDataToJson = (form) => {
+    const data = new FormData(form);
+    return Object.fromEntries(data.entries());
+  };
+
   const submitToNetlify = (form) => {
     if (form.dataset.sgcNetlifySubmitting === 'true') return;
 
@@ -187,14 +192,15 @@
     const minDuration = 800; // Minimum animation duration for better UX
 
     window
-      .fetch('/', {
+      .fetch('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeFormData(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formDataToJson(form)),
       })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Form submission failed with status ${response.status}`);
+      .then(async (response) => {
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success === false) {
+          throw new Error(result.error || `Form submission failed with status ${response.status}`);
         }
         form.dataset.sgcNetlifySubmitted = 'true';
 
@@ -204,9 +210,10 @@
 
         setTimeout(() => {
           showStatusMessage(
-            form,
-            '✓ Message sent successfully! We\'ll be in touch soon.',
-            'success'
+                          form,
+              'Message sent successfully. I\'ll be in touch soon.',
+              'success'
+
           );
 
           // Reset form after successful submission
@@ -225,9 +232,10 @@
 
         setTimeout(() => {
           showStatusMessage(
-            form,
-            'Sorry, something went wrong. Please try again or contact us directly.',
-            'error'
+                          form,
+              'Sorry, something went wrong. Please try again or email SharpGrowthCo@gmail.com directly.',
+              'error'
+
           );
           setSubmitButtonState(form, false);
         }, delay);
