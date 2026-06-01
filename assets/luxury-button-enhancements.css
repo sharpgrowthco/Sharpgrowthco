@@ -42,8 +42,7 @@ button.btn-outline.sgc-luxury-cta {
   text-shadow: 0 1px 1px rgba(35, 20, 13, 0.28) !important;
   box-shadow:
     0 12px 24px rgba(35, 20, 13, 0.15),
-    0 6px 14px rgba(185, 138, 59, 0.21),
-    inset 0 1px 0 rgba(255, 250, 241, 0.34) !important;
+    0 6px 14px rgba(185, 138, 59, 0.21) !important;
   filter: none !important;
   transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease !important;
   overflow: hidden !important;
@@ -86,8 +85,7 @@ button.btn-outline.sgc-luxury-cta {
   background-image: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 44%, var(--sgc-luxury-gold-dark) 100%) !important;
   box-shadow:
     0 15px 28px rgba(35, 20, 13, 0.2),
-    0 8px 18px rgba(185, 138, 59, 0.28),
-    inset 0 1px 0 rgba(255, 250, 241, 0.42) !important;
+    0 8px 18px rgba(185, 138, 59, 0.28) !important;
 }
 
 .sgc-luxury-cta:active,
@@ -97,8 +95,7 @@ button.btn-outline.sgc-luxury-cta {
   transform: translateY(-1px) !important;
   box-shadow:
     0 10px 20px rgba(35, 20, 13, 0.17),
-    0 5px 12px rgba(185, 138, 59, 0.23),
-    inset 0 1px 0 rgba(255, 250, 241, 0.32) !important;
+    0 5px 12px rgba(185, 138, 59, 0.23) !important;
 }
 
 .sgc-luxury-cta:focus-visible,
@@ -107,6 +104,44 @@ button.btn-outline.sgc-luxury-cta {
 .btn-outline.sgc-luxury-cta:focus-visible {
   outline: 2px solid rgba(214, 176, 106, 0.55) !important;
   outline-offset: 3px !important;
+}
+
+/* Footer navigation must remain a plain linked list, never gold CTA blocks. */
+footer a.sgc-luxury-cta[href$="/services/"],
+footer a.sgc-luxury-cta[href$="/services"],
+footer a.sgc-luxury-cta[href$="/packages/"],
+footer a.sgc-luxury-cta[href$="/packages"],
+footer a.sgc-luxury-cta[href$="/work/"],
+footer a.sgc-luxury-cta[href$="/work"],
+footer a.sgc-luxury-cta[href$="/about/"],
+footer a.sgc-luxury-cta[href$="/about"],
+footer a.sgc-luxury-cta[href="/"],
+footer a.sgc-luxury-cta[href$="../"],
+footer nav a.sgc-luxury-cta {
+  display: inline !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgba(246, 238, 225, 0.78) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  overflow: visible !important;
+}
+
+footer a.sgc-luxury-cta[href$="/services/"]:hover,
+footer a.sgc-luxury-cta[href$="/services"]:hover,
+footer a.sgc-luxury-cta[href$="/packages/"]:hover,
+footer a.sgc-luxury-cta[href$="/packages"]:hover,
+footer nav a.sgc-luxury-cta:hover {
+  color: rgba(214, 176, 106, 0.95) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 
 @media (max-width: 640px) {
@@ -124,4 +159,97 @@ button.btn-outline.sgc-luxury-cta {
     font-size: 0.78rem !important;
     letter-spacing: 0.11em !important;
   }
+}
+
+/* About-page CTA correction: all real CTA spans must be one clean gold rectangle. */
+main .btn-primary,
+main .btn-outline,
+main a .btn-primary,
+main a .btn-outline,
+#root .btn-primary,
+#root .btn-outline {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  min-height: 3.25rem !important;
+  padding: 0.95rem 1.65rem !important;
+  border: 1px solid rgba(214, 176, 106, 0.72) !important;
+  border-radius: 0 !important;
+  background-color: var(--sgc-luxury-gold) !important;
+  background-image: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 42%, var(--sgc-luxury-gold-dark) 100%) !important;
+  color: var(--sgc-luxury-cream) !important;
+  font-family: 'Outfit', system-ui, sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.13em !important;
+  line-height: 1.1 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 1px rgba(35, 20, 13, 0.28) !important;
+  outline: 0 !important;
+  box-shadow:
+    0 12px 24px rgba(35, 20, 13, 0.15),
+    0 6px 14px rgba(185, 138, 59, 0.21) !important;
+  filter: none !important;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease, border-color 180ms ease !important;
+  overflow: hidden !important;
+}
+
+main .btn-primary::before,
+main .btn-primary::after,
+main .btn-outline::before,
+main .btn-outline::after,
+#root .btn-primary::before,
+#root .btn-primary::after,
+#root .btn-outline::before,
+#root .btn-outline::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+main .btn-primary:hover,
+main .btn-primary:focus-visible,
+main .btn-outline:hover,
+main .btn-outline:focus-visible,
+#root .btn-primary:hover,
+#root .btn-primary:focus-visible,
+#root .btn-outline:hover,
+#root .btn-outline:focus-visible {
+  transform: translateY(-2px) !important;
+  filter: saturate(1.05) brightness(1.02) !important;
+  border-color: rgba(255, 231, 184, 0.9) !important;
+  color: var(--sgc-luxury-cream) !important;
+  background-color: var(--sgc-luxury-gold) !important;
+  background-image: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 44%, var(--sgc-luxury-gold-dark) 100%) !important;
+  box-shadow:
+    0 15px 28px rgba(35, 20, 13, 0.2),
+    0 8px 18px rgba(185, 138, 59, 0.28) !important;
+}
+
+footer .btn-primary,
+footer .btn-outline,
+footer a .btn-primary,
+footer a .btn-outline {
+  display: inline !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: rgba(246, 238, 225, 0.78) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  overflow: visible !important;
 }

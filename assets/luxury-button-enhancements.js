@@ -18,9 +18,17 @@
   const CTA_HREF_PARTS = [
     'calendly.com/sharpgrowthco',
     '/contact',
-    '/packages',
-    '/services',
     '/thank-you'
+  ];
+
+  const PLAIN_NAV_TEXT = [
+    'home',
+    'services',
+    'my work',
+    'work',
+    'about',
+    'packages',
+    'contact'
   ];
 
   function normalize(text) {
@@ -28,7 +36,10 @@
   }
 
   function isNavigationLink(el) {
-    return Boolean(el.closest('nav, header') && !normalize(el.textContent).includes('book'));
+    const text = normalize(el.textContent || el.value || el.getAttribute('aria-label'));
+    if (!text || text.includes('book') || text.includes('start your project')) return false;
+    if (!PLAIN_NAV_TEXT.includes(text)) return false;
+    return Boolean(el.closest('nav, header, footer, [role="navigation"], .footer, .site-footer'));
   }
 
   function shouldPolish(el) {

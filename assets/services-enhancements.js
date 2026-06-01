@@ -251,6 +251,34 @@
     return heading ? heading.closest('section') || heading.parentElement : null;
   }
 
+  function enhanceHomeBusinessTags() {
+    const heading = findHeading('Built for ambitious Alberta businesses', 'h2');
+    const section = heading ? heading.closest('section') || heading.parentElement : null;
+    if (!section) return;
+
+    const businessLabels = [
+      'Local Restaurants & Cafés',
+      'Boutique Retail Shops',
+      'Wellness & Beauty Studios',
+      'Real Estate Professionals',
+      'Service Providers',
+      'Lifestyle Brands',
+      'Entrepreneurs & Coaches',
+      'Schools',
+      'Health & Fitness Businesses'
+    ];
+
+    section.classList.add('sgc-business-tags-section');
+    businessLabels.forEach((label) => {
+      Array.from(section.querySelectorAll('a, button, span, div, li')).forEach((el) => {
+        if (normalize(el.textContent) !== normalize(label)) return;
+        if (el.children.length > 0) return;
+        el.classList.add('sgc-business-gold-tag');
+        el.setAttribute('tabindex', el.getAttribute('tabindex') || '0');
+      });
+    });
+  }
+
   function enhanceHomeServiceCards() {
     const section = findHomeServicesSection();
     if (!section) return;
@@ -463,6 +491,7 @@
 
   function enhanceAllPages() {
     repairAboutImages();
+    enhanceHomeBusinessTags();
     enhanceHomeServiceCards();
     enhanceServicesPage();
     enhanceContactServiceButtons();
