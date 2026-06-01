@@ -24,3 +24,15 @@ Local About page loaded at `http://localhost:4178/about/?v=final-clean-nav-cta-l
 
 
 Local Packages page loaded at `http://localhost:4178/packages/?v=final-clean-nav-cta-local`. Visual viewport shows the refined header navigation without the rejected underline treatment. DOM measurement of all `.sgc-luxury-cta` elements confirms package CTAs without nested children are unaffected, while nested footer/section CTAs now have child `.btn-primary` or `.btn-gold` elements computing to `background-image: none`, `border: 0px none`, `padding: 0px`, and `box-shadow: none`. This confirms the global nested-button reset applies beyond the homepage and About page.
+
+
+Production verification after commit `d495660`:
+
+- Live homepage loaded at `https://www.sharpgrowthco.com/?v=final-clean-nav-cta-202606012258` and is serving `assets/luxury-button-enhancements.css?v=prod-final-clean-nav-cta-202606012258`.
+- Live homepage first nested CTA child now computes to `background-image: none`, `border: 0px none`, `padding: 0px`, and `box-shadow: none`, while the outer CTA keeps the single bronze-gold gradient, one border, and shadow.
+- Live homepage header navigation links compute to subtle off-white text with hidden underline spans (`display: none`, `width: 0px`, `opacity: 0`), confirming the rejected heavy underline style is removed.
+- Live About page loaded at `https://www.sharpgrowthco.com/about/?v=final-clean-nav-cta-202606012258`; the visible CTA text is now `Work With Me`, not `Work With Jenna`.
+- Live About page CTA measurements confirm nested `.btn-primary`, `.btn-outline`, `.btn-gold`, and footer `.btn-gold text-xs mt-2 inline-flex` children compute to `background-image: none`, `border: 0px none`, `padding: 0px`, and `box-shadow: none`, so those child spans cannot draw the second rectangle.
+
+
+Live Packages page verification at `https://www.sharpgrowthco.com/packages/?v=final-clean-nav-cta-202606012258` confirmed the global fix on the page with the highest CTA density. Plain package card CTAs have no nested child button layer. The nested section/footer CTAs that do contain child spans now compute those children to `background-image: none`, `border: 0px none`, `padding: 0px`, and `box-shadow: none`, preventing the child span from drawing a second inner rectangle. The header navigation remains the refined understated style rather than the rejected heavy underline treatment.
