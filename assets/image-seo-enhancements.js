@@ -279,10 +279,17 @@
   }
 
   function enhanceImage(img) {
-    const filename = filenameFromUrl(img.currentSrc || img.src || img.getAttribute('src'));
+    const rawSrc = img.getAttribute('src') || '';
+    const filename = filenameFromUrl(img.currentSrc || img.src || rawSrc);
     const item = byFilename.get(filename);
     if (!item) return;
-    if (!filename.endsWith('.webp')) {
+    let currentPath = '';
+    try {
+      currentPath = new URL(img.currentSrc || img.src || rawSrc, window.location.origin).pathname;
+    } catch (_) {
+      currentPath = rawSrc;
+    }
+    if (!filename.endsWith('.webp') || rawSrc.startsWith('./assets/') || currentPath !== item.src) {
       img.src = item.src;
     }
     img.alt = item.alt;

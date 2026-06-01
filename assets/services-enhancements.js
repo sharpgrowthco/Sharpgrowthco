@@ -1,5 +1,8 @@
 (() => {
-  const routeIsServices = () => window.location.pathname === '/services' || window.location.hash.includes('/services');
+  const routeIsServices = () => {
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    return path === '/services' || window.location.hash.includes('/services');
+  };
 
   const websiteBannerImage = '/assets/banner-website-laptop.png';
 
