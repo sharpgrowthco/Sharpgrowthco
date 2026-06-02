@@ -216,11 +216,11 @@
           <p class="sgc-work-label">My Process</p>
           <div class="sgc-work-rule"></div>
           <h2 id="sgc-work-process-heading">How I work with you — directly</h2>
-          <div class="sgc-process-grid">
-            <article><span>01</span><h3>Discover</h3><p>I get clear on your goals, audience, offers, and what your business needs most right now.</p></article>
-            <article><span>02</span><h3>Strategize</h3><p>I map the creative direction, messaging, and execution plan so every piece has a purpose.</p></article>
-            <article><span>03</span><h3>Execute</h3><p>I build the assets, content, pages, and systems with direct communication from start to finish.</p></article>
-            <article><span>04</span><h3>Optimize</h3><p>I refine what we launch so your marketing keeps feeling aligned, polished, and measurable.</p></article>
+          <div class="sgc-process-grid" aria-label="Sharp Growth Co. four-step client process">
+            <article><span>01</span><h3>Discover</h3><p>I audit your current marketing, research your market, and identify the exact opportunities that will move the needle for your specific business.</p></article>
+            <article><span>02</span><h3>Strategize</h3><p>I build a clear, custom roadmap with priorities and timelines — no jargon, no fluff. Just a focused plan you can actually act on.</p></article>
+            <article><span>03</span><h3>Execute</h3><p>I personally handle execution — filming, editing, writing, posting, optimizing. You stay focused on your business while I handle the marketing.</p></article>
+            <article><span>04</span><h3>Optimize</h3><p>I track what's working, report back clearly, and continuously refine your strategy so results keep improving month after month.</p></article>
           </div>
         </div>
       </section>

@@ -1,8 +1,8 @@
 (() => {
   'use strict';
 
-  const VERSION = 'home-why-before-offer-20260602';
-  const HOME_PATHS = new Set(['/', '']);
+  const VERSION = 'home-exact-order-short-teasers-20260602';
+  const CALENDLY = 'https://calendly.com/sharpgrowthco';
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
@@ -14,37 +14,85 @@
 
   function isHomePage() {
     const path = window.location.pathname.replace(/\/+$/, '') || '/';
-    return HOME_PATHS.has(path);
+    return path === '/';
   }
 
-  function sectionContainingText(targetText) {
-    const target = normalizedLower(targetText);
-    const sections = Array.from(document.querySelectorAll('section'));
-    return sections.find((section) => normalizedLower(section.textContent).includes(target)) || null;
+  function allSections() {
+    return Array.from(document.querySelectorAll('#root section, main section, body > section, section'))
+      .filter((section, index, list) => list.indexOf(section) === index);
   }
 
-  function findHeroSection() {
-    return document.querySelector('main section, section') || null;
+  function sectionText(section) {
+    return normalizedLower(section ? section.textContent : '');
   }
 
-  function findWhySection() {
-    const sections = Array.from(document.querySelectorAll('section'));
-    return sections.find((section) => {
-      const text = normalizedLower(section.textContent);
-      return text.includes('why sharp growth co.') || text.includes('strategic marketing for business growth');
+  function sectionContainingAny(needles, options = {}) {
+    const loweredNeedles = needles.map((needle) => normalizedLower(needle));
+    return allSections().find((section) => {
+      if (!options.includeManaged && section.dataset.sgcHomeSection) return false;
+      if (!options.includePricing && section.dataset.sgcPricingTeaser) return false;
+      if (!options.includeReady && section.dataset.readyToBeginInjected) return false;
+      const text = sectionText(section);
+      return loweredNeedles.some((needle) => text.includes(needle));
     }) || null;
   }
 
+  function findHeroSection() {
+    return sectionContainingAny(['marketing that makes your business impossible to ignore'], { includeManaged: true }) ||
+      Array.from(document.querySelectorAll('#root section, main section, section')).find((section) => sectionText(section).length > 30) ||
+      null;
+  }
+
+  function findWhySection() {
+    return sectionContainingAny([
+      'why sharp growth co.',
+      'why sharp growth co',
+      'strategic marketing for business growth',
+      'most businesses don\'t have a marketing problem'
+    ]);
+  }
+
   function findServicesSection() {
-    return sectionContainingText('Everything your brand needs to grow') || sectionContainingText('My Services');
+    return sectionContainingAny([
+      'everything your brand needs to grow',
+      'website design & development',
+      'social media & content creation',
+      'see my services'
+    ]);
+  }
+
+  function findWhoSection() {
+    return sectionContainingAny([
+      'built for ambitious alberta businesses',
+      'local restaurants & cafés',
+      'local restaurants & cafes',
+      'who i work with'
+    ]);
+  }
+
+  function findFaqSection() {
+    return sectionContainingAny([
+      'questions i get asked all the time',
+      'what types of businesses do you work with?',
+      'what’s included in a free consultation?',
+      'what\'s included in a free consultation?'
+    ]);
   }
 
   function findPricingSection() {
-    return document.querySelector('[data-sgc-pricing-teaser]') || sectionContainingText('Packages built for every stage of growth') || sectionContainingText('Packages & Pricing');
+    return document.querySelector('[data-sgc-pricing-teaser]') || sectionContainingAny([
+      'packages built for every stage of growth',
+      'packages & pricing',
+      'view full packages & pricing',
+      'view all packages'
+    ], { includePricing: true });
   }
 
   function findReadySection() {
-    return document.querySelector('[data-ready-to-begin-injected="true"]') || sectionContainingText('Ready to grow with intention?') || sectionContainingText('Ready to Begin');
+    return document.querySelector('[data-ready-to-begin-injected="true"]') || sectionContainingAny([
+      'ready to grow with intention?',
+      'ready to begin'
+    ], { includeReady: true });
   }
 
   function buildWhatIOfferSection() {
@@ -59,99 +107,12 @@
         <div class="sgc-home-flow-copy">
           <p class="sgc-home-flow-label">What I Offer</p>
           <h2 class="sgc-home-flow-heading" id="sgc-home-what-offer-heading">Focused marketing support for businesses ready to grow</h2>
-          <p class="sgc-home-flow-intro">I bring strategy, content, websites, and creative direction together so your business has a clear message, a stronger online presence, and a marketing plan that is built around real goals — not guesswork.</p>
+          <p class="sgc-home-flow-intro">I bring strategy, websites, social media, content, and creative direction together so your business has a stronger online presence, clearer messaging, and marketing that moves with intention.</p>
+          <a class="sgc-home-flow-cta sgc-home-flow-cta-inline" href="/services/">Explore My Services</a>
         </div>
         <aside class="sgc-home-offer-callout" aria-label="Sharp Growth Co. offer summary">
-          <p>Sharp Growth Co. is for local Alberta businesses that want polished marketing, consistent visibility, and a partner who can turn scattered ideas into a clear growth plan.</p>
-          <a class="sgc-home-flow-cta" href="/services/">Explore My Services</a>
+          <p>Sharp Growth Co. is for local Alberta businesses that want polished marketing, consistent visibility, and a clear plan for turning attention into action.</p>
         </aside>
-      </div>
-    `;
-    return section;
-  }
-
-  function buildResultsSection() {
-    const section = document.createElement('section');
-    section.className = 'sgc-home-results-section';
-    section.id = 'results-you-can-measure';
-    section.dataset.sgcHomeSection = 'results-dashboard';
-    section.dataset.sgcHomeFlowVersion = VERSION;
-    section.setAttribute('aria-labelledby', 'sgc-home-results-heading');
-    section.innerHTML = `
-      <div class="sgc-home-flow-container">
-        <p class="sgc-home-flow-label">Results You Can Measure</p>
-        <h2 class="sgc-home-flow-heading sgc-home-results-heading" id="sgc-home-results-heading">Marketing you can actually track</h2>
-        <p class="sgc-home-flow-intro sgc-home-results-intro">The right strategy should make your next steps clearer and your results easier to see — from stronger traffic and reach to better leads and measurable business impact.</p>
-
-        <div class="results-dashboard" role="img" aria-label="Sample six-month growth dashboard showing website traffic, social reach, new leads, revenue impact, monthly growth, Google ranking, return on investment, and retention metrics.">
-          <div class="dash-header">
-            <span class="dash-title">Results You Can Measure</span>
-            <span class="dash-period">6-Month Growth Overview</span>
-          </div>
-
-          <div class="metrics-row">
-            <div class="metric-card">
-              <span class="metric-label">Website Traffic</span>
-              <span class="metric-value">3,240</span>
-              <span class="metric-change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>+182% vs. prior</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-label">Social Reach</span>
-              <span class="metric-value">28.4K</span>
-              <span class="metric-change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>+215% growth</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-label">New Leads</span>
-              <span class="metric-value">147</span>
-              <span class="metric-change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>+94% increase</span>
-            </div>
-            <div class="metric-card">
-              <span class="metric-label">Revenue Impact</span>
-              <span class="metric-value">$18.6K</span>
-              <span class="metric-change"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M12 19V5"></path><path d="m5 12 7-7 7 7"></path></svg>+67% attributed</span>
-            </div>
-          </div>
-
-          <div class="chart-area">
-            <div class="chart-main">
-              <span class="chart-label">Monthly Growth — Before &amp; After</span>
-              <div class="bar-chart">
-                <div class="bar-group"><div class="bar charcoal" style="height: 30px;"></div><span class="bar-month">Jan</span></div>
-                <div class="bar-group"><div class="bar charcoal" style="height: 35px;"></div><span class="bar-month">Feb</span></div>
-                <div class="bar-group"><div class="bar gold" style="height: 52px;"></div><span class="bar-month">Mar</span></div>
-                <div class="bar-group"><div class="bar gold" style="height: 72px;"></div><span class="bar-month">Apr</span></div>
-                <div class="bar-group"><div class="bar gold" style="height: 96px;"></div><span class="bar-month">May</span></div>
-                <div class="bar-group"><div class="bar gold" style="height: 130px;"></div><span class="bar-month">Jun</span></div>
-              </div>
-              <div class="chart-legend">
-                <span class="legend-item"><span class="legend-dot charcoal"></span> Before Sharp Growth Co.</span>
-                <span class="legend-item"><span class="legend-dot gold"></span> After Sharp Growth Co.</span>
-              </div>
-            </div>
-
-            <div class="chart-sidebar">
-              <div class="highlight-card">
-                <div class="highlight-icon gold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></div>
-                <div class="highlight-info"><span class="highlight-value">Page 1</span><span class="highlight-label">Google ranking for 3 target keywords</span></div>
-              </div>
-              <div class="highlight-card">
-                <div class="highlight-icon gold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
-                <div class="highlight-info"><span class="highlight-value">4.2x</span><span class="highlight-label">Return on marketing investment</span></div>
-              </div>
-              <div class="highlight-card">
-                <div class="highlight-icon gold-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><path d="M22 4 12 14.01l-3-3"></path></svg></div>
-                <div class="highlight-info"><span class="highlight-value">92%</span><span class="highlight-label">Client retention rate</span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="dash-footer">
-            <div class="dash-branding"><span class="dash-logo-text">Sharp Growth Co.</span></div>
-            <span class="dash-tagline">Strategic marketing. Measurable growth.</span>
-          </div>
-        </div>
-
-        <p class="sgc-results-disclaimer"><em>Sample client results. Individual outcomes vary.</em></p>
       </div>
     `;
     return section;
@@ -188,23 +149,61 @@
           </div>
         </div>
       </div>
+
+      <div class="testimonial-footer">
+        <a href="/work/" class="testimonial-link testimonial-link-button" aria-label="See the full Gather and Grow testimonial and case study on the My Work page">
+          See Full Testimonial
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+        </a>
+      </div>
     `;
     return section;
   }
 
-  function getOrCreateHomeSection(key, builder) {
-    const selector = `[data-sgc-home-section="${key}"]`;
-    const existing = document.querySelector(selector);
+  function getOrReplaceWhatIOfferSection() {
+    const existing = document.querySelector('[data-sgc-home-section="what-i-offer"]');
     if (existing) return existing;
-    return builder();
+
+    const legacy = sectionContainingAny(['what i offer'], { includeManaged: true });
+    const replacement = buildWhatIOfferSection();
+    if (legacy && legacy !== findServicesSection() && legacy !== findWhySection()) {
+      legacy.replaceWith(replacement);
+    }
+    return replacement;
   }
 
-  function removeLegacyClientStorySections() {
-    Array.from(document.querySelectorAll('section')).forEach((section) => {
-      if (section.dataset.sgcHomeSection) return;
-      const text = normalizedLower(section.textContent);
-      const isLegacyClientStory = text.includes('client success story') || (text.includes('results you can measure') && text.includes('marketing growth'));
-      if (isLegacyClientStory) section.remove();
+  function getOrReplaceTestimonialSection() {
+    const current = document.querySelector('[data-sgc-home-section="short-testimonial"]');
+    if (current && current.dataset.sgcHomeFlowVersion === VERSION) return current;
+
+    const replacement = buildTestimonialSection();
+    if (current) {
+      current.replaceWith(replacement);
+      return replacement;
+    }
+
+    const legacy = sectionContainingAny(['client success story', 'real results for real businesses', 'gather & grow', 'gather and grow'], { includeManaged: false });
+    if (legacy && legacy !== findWhoSection()) {
+      legacy.replaceWith(replacement);
+    }
+    return replacement;
+  }
+
+  function removeMovedOrLegacySections() {
+    const injectedReady = document.querySelector('[data-ready-to-begin-injected="true"]');
+    allSections().forEach((section) => {
+      if (section.dataset.sgcHomeSection || section.dataset.sgcPricingTeaser) return;
+      const text = sectionText(section);
+      const isDuplicateReady = injectedReady && section !== injectedReady && text.includes('ready to grow with intention?');
+      const shouldRemove =
+        text.includes('proudly alberta') ||
+        text.includes('my process') ||
+        text.includes('client success story') ||
+        text.includes('results you can measure') ||
+        isDuplicateReady;
+      if (!shouldRemove) return;
+      section.dataset.sgcHomeRemovedBy = VERSION;
+      section.remove();
     });
   }
 
@@ -214,68 +213,89 @@
     reference.insertAdjacentElement('afterend', element);
   }
 
-  function enforceHomeOrder() {
-    if (!isHomePage()) return;
+  function normalizeWhyCta(whySection) {
+    if (!whySection) return;
+    const links = Array.from(whySection.querySelectorAll('a, button'));
+    links.forEach((link) => {
+      const label = normalizedLower(link.textContent);
+      if (!label.includes('book') && !label.includes('consultation')) return;
+      if (link.tagName.toLowerCase() === 'a') {
+        link.href = CALENDLY;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+      }
+    });
+  }
 
-    removeLegacyClientStorySections();
+  function enforceHomeOrder() {
+    if (!isHomePage()) return true;
+
+    removeMovedOrLegacySections();
 
     const heroSection = findHeroSection();
     const whySection = findWhySection();
+    const whatSection = getOrReplaceWhatIOfferSection();
     const servicesSection = findServicesSection();
+    const testimonialSection = getOrReplaceTestimonialSection();
+    const whoSection = findWhoSection();
+    const pricingSection = findPricingSection();
+    const faqSection = findFaqSection();
+    const readySection = findReadySection();
     const footer = document.querySelector('footer');
 
-    if (!heroSection || !whySection || !servicesSection) return;
+    if (!heroSection || !whySection || !servicesSection) return false;
 
-    const whatSection = getOrCreateHomeSection('what-i-offer', buildWhatIOfferSection);
-    const resultsSection = getOrCreateHomeSection('results-dashboard', buildResultsSection);
-    const testimonialSection = getOrCreateHomeSection('short-testimonial', buildTestimonialSection);
+    normalizeWhyCta(whySection);
 
     insertAfter(heroSection, whySection);
     insertAfter(whySection, whatSection);
-    insertAfter(whatSection, resultsSection);
-    insertAfter(resultsSection, servicesSection);
+    insertAfter(whatSection, servicesSection);
     insertAfter(servicesSection, testimonialSection);
+    if (whoSection) insertAfter(testimonialSection, whoSection);
+    if (pricingSection) insertAfter(whoSection || testimonialSection, pricingSection);
+    if (faqSection) insertAfter(pricingSection || whoSection || testimonialSection, faqSection);
+    if (readySection) insertAfter(faqSection || pricingSection || whoSection || testimonialSection, readySection);
+    if (footer) insertAfter(readySection || faqSection || pricingSection || whoSection || testimonialSection, footer);
 
-    const pricingSection = findPricingSection();
-    if (pricingSection) insertAfter(testimonialSection, pricingSection);
-
-    const readySection = findReadySection();
-    if (readySection) insertAfter(pricingSection || testimonialSection, readySection);
-
-    if (footer && readySection) insertAfter(readySection, footer);
+    document.documentElement.dataset.sgcHomeOrderVersion = VERSION;
+    return Boolean(readySection || faqSection || pricingSection || whoSection);
   }
 
-  let orderScheduled = false;
-  let orderObserver = null;
+  let attempts = 0;
+  let intervalId = null;
+  const maxAttempts = 80;
 
-  function runHomeOrderPasses() {
-    orderScheduled = false;
-    if (orderObserver) orderObserver.disconnect();
+  function runBoundedOrderPass() {
+    attempts += 1;
     enforceHomeOrder();
-    window.setTimeout(enforceHomeOrder, 150);
-    window.setTimeout(enforceHomeOrder, 600);
+    if (attempts >= maxAttempts && intervalId) {
+      window.clearInterval(intervalId);
+      intervalId = null;
+    }
+  }
+
+  function start() {
+    if (!isHomePage()) return;
+    if (intervalId) return;
+    attempts = 0;
+    runBoundedOrderPass();
+    intervalId = window.setInterval(runBoundedOrderPass, 150);
     window.setTimeout(() => {
       enforceHomeOrder();
-      if (orderObserver) orderObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
-    }, 1400);
-  }
-
-  function scheduleOrder() {
-    if (orderScheduled) return;
-    orderScheduled = true;
-    window.requestAnimationFrame(runHomeOrderPasses);
+      if (intervalId) {
+        window.clearInterval(intervalId);
+        intervalId = null;
+      }
+    }, 14000);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scheduleOrder, { once: true });
+    document.addEventListener('DOMContentLoaded', start, { once: true });
   } else {
-    scheduleOrder();
+    start();
   }
 
-  window.addEventListener('load', scheduleOrder);
-  window.addEventListener('popstate', scheduleOrder);
-  window.addEventListener('hashchange', scheduleOrder);
-
-  orderObserver = new MutationObserver(scheduleOrder);
-  orderObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
+  window.addEventListener('load', () => window.setTimeout(start, 80), { once: true });
+  window.addEventListener('popstate', () => window.setTimeout(start, 80));
+  window.addEventListener('hashchange', () => window.setTimeout(start, 80));
 })();

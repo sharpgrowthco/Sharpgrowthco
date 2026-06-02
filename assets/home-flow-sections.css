@@ -653,3 +653,61 @@
     contain-intrinsic-size: auto 760px;
   }
 }
+
+.testimonial-footer {
+  text-align: center;
+  margin-top: 44px;
+}
+
+.testimonial-link {
+  font-family: 'Outfit', 'Jost', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--sgc-home-flow-charcoal);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--sgc-home-flow-charcoal);
+  transition: all 0.3s ease;
+}
+
+.testimonial-link:hover,
+.testimonial-link:focus-visible {
+  color: var(--sgc-home-flow-gold);
+  border-color: var(--sgc-home-flow-gold);
+  gap: 14px;
+}
+
+.testimonial-link svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-link:hover svg,
+.testimonial-link:focus-visible svg {
+  transform: translateX(3px);
+}
+
+.testimonial-link-button {
+  min-height: 50px;
+  padding: 15px 26px;
+  border: 1px solid var(--sgc-home-flow-charcoal);
+  border-radius: 2px;
+  background: var(--sgc-home-flow-charcoal);
+  color: var(--sgc-home-flow-white);
+  box-shadow: 0 8px 24px rgba(44, 38, 32, 0.12);
+}
+
+.testimonial-link-button:hover,
+.testimonial-link-button:focus-visible {
+  border-color: var(--sgc-home-flow-gold);
+  background: linear-gradient(135deg, var(--sgc-home-flow-gold-dark) 0%, var(--sgc-home-flow-gold) 100%);
+  color: var(--sgc-home-flow-white);
+  box-shadow: 0 10px 30px rgba(184, 146, 62, 0.25);
+}

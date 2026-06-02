@@ -305,3 +305,23 @@
     margin-bottom: 44px;
   }
 }
+
+/* Prominent homepage teaser link to the full Packages & Pricing page. */
+.sgc-pricing-teaser-view-all-button {
+  min-height: 50px;
+  padding: 15px 26px;
+  border: 1px solid var(--sgc-pricing-charcoal);
+  border-bottom-width: 1px;
+  border-radius: 2px;
+  background: var(--sgc-pricing-charcoal);
+  color: var(--sgc-pricing-white);
+  box-shadow: 0 8px 24px rgba(44, 38, 32, 0.12);
+}
+
+.sgc-pricing-teaser-view-all-button:hover,
+.sgc-pricing-teaser-view-all-button:focus-visible {
+  border-color: var(--sgc-pricing-gold);
+  background: linear-gradient(135deg, var(--sgc-pricing-gold-dark) 0%, var(--sgc-pricing-gold) 100%);
+  color: var(--sgc-pricing-white);
+  box-shadow: 0 10px 30px rgba(184, 146, 62, 0.25);
+}

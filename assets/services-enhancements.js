@@ -1,6 +1,10 @@
 (() => {
+  const currentPath = () => window.location.pathname.replace(/\/+$/, '') || '/';
+
+  const routeIsHome = () => currentPath() === '/';
+
   const routeIsServices = () => {
-    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    const path = currentPath();
     return path === '/services' || window.location.hash.includes('/services');
   };
 
@@ -258,22 +262,26 @@
   const homeServiceCards = [
     {
       title: 'Website Design & Development',
-      description: 'Custom websites, landing pages & conversion-focused design',
+      sourceTitle: 'Website Design & Development',
+      description: 'Modern websites built to convert and grow with you.',
       href: '/services/#website-design'
     },
     {
-      title: 'Social Media Management',
-      description: 'Content planning, posting, captions & community growth',
+      title: 'Social Media & Content Creation',
+      sourceTitle: 'Social Media Management',
+      description: 'Strategy, reels, posting, and community growth — done for you.',
       href: '/services/#social-media-management'
     },
     {
-      title: 'Content Creation',
-      description: 'Reels, UGC-style video, brand photography & product storytelling',
-      href: '/services/#content-creation'
+      title: 'Marketing Strategy',
+      sourceTitle: 'Marketing Strategy',
+      description: 'Clear positioning, campaign plans, and local growth direction.',
+      href: '/services/#marketing-strategy'
     },
     {
       title: 'Branding & Creative Direction',
-      description: 'Brand visuals, voice, Canva templates & social media kits',
+      sourceTitle: 'Branding & Creative Direction',
+      description: 'Visual direction, brand voice, and templates that stay consistent.',
       href: '/services/#branding-creative-direction'
     }
   ];
@@ -358,6 +366,10 @@
   }
 
   function findHomeServiceCard(section, title) {
+    const existingCard = Array.from(section.querySelectorAll('[data-sgc-source-service-title]'))
+      .find((el) => normalize(el.dataset.sgcSourceServiceTitle) === title);
+    if (existingCard) return existingCard;
+
     const heading = Array.from(section.querySelectorAll('h3')).find((el) => normalize(el.textContent) === title);
     if (!heading) return null;
 
@@ -396,7 +408,7 @@
     if (!section) return;
     section.classList.add('sgc-home-services-section');
 
-    const retainedTitles = new Set(homeServiceCards.map((card) => card.title));
+    const retainedTitles = new Set(homeServiceCards.map((card) => card.sourceTitle || card.title));
     const retainedCards = [];
 
     homeServiceTitles.forEach((title) => {
@@ -410,14 +422,18 @@
         return;
       }
 
-      const config = homeServiceCards.find((item) => item.title === title);
+      const config = homeServiceCards.find((item) => (item.sourceTitle || item.title) === title);
       const image = card.querySelector('img');
       if (!image || !config) return;
+
+      const cardHeading = card.querySelector('h3');
+      if (cardHeading) cardHeading.textContent = config.title;
 
       card.classList.remove('sgc-home-service-card-hidden');
       card.removeAttribute('aria-hidden');
       card.style.removeProperty('display');
       card.classList.add('sgc-home-service-card', 'sgc-home-service-card-clickable');
+      card.dataset.sgcSourceServiceTitle = config.sourceTitle || config.title;
       card.setAttribute('data-sgc-service-anchor', config.href.split('#')[1] || '');
       retainedCards.push(card);
       updateHomeServiceDescription(card, config.description);
@@ -438,8 +454,41 @@
     const grid = retainedCards[0] && retainedCards.every((card) => card.parentElement === retainedCards[0].parentElement)
       ? retainedCards[0].parentElement
       : null;
-    if (grid) grid.classList.add('sgc-home-services-grid');
+    if (grid) {
+      grid.classList.add('sgc-home-services-grid');
+      const orderBySourceTitle = new Map(homeServiceCards.map((card, index) => [card.sourceTitle || card.title, index]));
+      retainedCards
+        .sort((a, b) => {
+          const aOrder = orderBySourceTitle.get(a.dataset.sgcSourceServiceTitle || normalize(a.querySelector('h3')?.textContent)) ?? 99;
+          const bOrder = orderBySourceTitle.get(b.dataset.sgcSourceServiceTitle || normalize(b.querySelector('h3')?.textContent)) ?? 99;
+          return aOrder - bOrder;
+        })
+        .forEach((card) => grid.appendChild(card));
+    }
 
+    const servicesCtas = Array.from(section.querySelectorAll('a, button')).filter((el) => {
+      const text = normalize(el.textContent).toLowerCase();
+      return text === 'see all services' || text === 'see my services';
+    });
+    servicesCtas.forEach((cta) => {
+      cta.textContent = 'SEE MY SERVICES';
+      if (cta.tagName.toLowerCase() === 'a') cta.setAttribute('href', '/services/');
+      cta.classList.add('sgc-home-services-cta');
+    });
+
+  }
+
+  function removeMovedHomeSections() {
+    if (!routeIsHome()) return;
+
+    ['Proudly Alberta', 'My Process'].forEach((label) => {
+      const marker = Array.from(document.querySelectorAll('section p, section h2, section h3, section span, section div'))
+        .find((el) => normalize(el.textContent) === label);
+      const section = marker ? marker.closest('section') : null;
+      if (!section) return;
+      section.setAttribute('data-sgc-home-moved-section', label);
+      section.remove();
+    });
   }
 
   function keepPreferredReadyToBeginSection() {
@@ -632,30 +681,33 @@
     repairAboutImages();
     enhanceHomeBusinessTags();
     enhanceHomeServiceCards();
+    removeMovedHomeSections();
     enhanceServicesPage();
     enhanceContactServiceButtons();
   }
 
   let queued = false;
+  let runCount = 0;
+  const maxRuns = 8;
   function scheduleEnhance() {
-    if (queued) return;
+    if (queued || runCount >= maxRuns) return;
     queued = true;
     window.requestAnimationFrame(() => {
       queued = false;
+      runCount += 1;
       enhanceAllPages();
     });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scheduleEnhance);
+    document.addEventListener('DOMContentLoaded', scheduleEnhance, { once: true });
   } else {
     scheduleEnhance();
   }
 
-  window.addEventListener('popstate', scheduleEnhance);
-  window.addEventListener('hashchange', scheduleEnhance);
-  document.addEventListener('click', () => setTimeout(scheduleEnhance, 80), true);
-
-  const observer = new MutationObserver(scheduleEnhance);
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+  window.addEventListener('popstate', () => setTimeout(scheduleEnhance, 80));
+  window.addEventListener('hashchange', () => setTimeout(scheduleEnhance, 80));
+  window.setTimeout(scheduleEnhance, 250);
+  window.setTimeout(scheduleEnhance, 900);
+  window.setTimeout(scheduleEnhance, 1800);
 })();

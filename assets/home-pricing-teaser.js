@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'home-pricing-teaser-20260602';
+  const VERSION = 'home-pricing-teaser-buttons-20260602';
   const PACKAGES_URL = '/packages/';
 
   function normalize(text) {
@@ -32,7 +32,7 @@
           <div class="sgc-pricing-teaser-divider" aria-hidden="true"></div>
           <div class="sgc-pricing-teaser-price-row"><span class="sgc-pricing-teaser-price">$1,200</span></div>
           <p class="sgc-pricing-teaser-note">Starting investment</p>
-          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-outline" aria-label="See full Website Refresh package details">See Full Details</a>
+          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-outline" aria-label="See full Website Refresh package details on the Packages and Pricing page">See Full Details</a>
         </article>
 
         <article class="sgc-pricing-teaser-card">
@@ -42,7 +42,7 @@
           <div class="sgc-pricing-teaser-divider" aria-hidden="true"></div>
           <div class="sgc-pricing-teaser-price-row"><span class="sgc-pricing-teaser-price">$597</span></div>
           <p class="sgc-pricing-teaser-note">One-time investment</p>
-          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-outline" aria-label="See full The Spark package details">See Full Details</a>
+          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-outline" aria-label="See full The Spark package details on the Packages and Pricing page">See Full Details</a>
         </article>
 
         <article class="sgc-pricing-teaser-card sgc-pricing-teaser-featured">
@@ -52,7 +52,7 @@
           <div class="sgc-pricing-teaser-divider" aria-hidden="true"></div>
           <div class="sgc-pricing-teaser-price-row"><span class="sgc-pricing-teaser-price">$1,200</span><span class="sgc-pricing-teaser-period">/mo</span></div>
           <p class="sgc-pricing-teaser-note">3-month minimum</p>
-          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-filled" aria-label="See full The Content Queen package details">See Full Details</a>
+          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-filled" aria-label="See full The Content Queen package details on the Packages and Pricing page">See Full Details</a>
         </article>
 
         <article class="sgc-pricing-teaser-card">
@@ -62,13 +62,13 @@
           <div class="sgc-pricing-teaser-divider" aria-hidden="true"></div>
           <div class="sgc-pricing-teaser-price-row"><span class="sgc-pricing-teaser-price">$2,500</span><span class="sgc-pricing-teaser-period">/mo</span></div>
           <p class="sgc-pricing-teaser-note">3-month minimum</p>
-          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-outline" aria-label="See full The Full Sharp package details">See Full Details</a>
+          <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-card-cta sgc-pricing-teaser-outline" aria-label="See full The Full Sharp package details on the Packages and Pricing page">See Full Details</a>
         </article>
       </div>
 
       <div class="sgc-pricing-teaser-view-all-wrap">
-        <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-view-all" aria-label="View all Sharp Growth Co. packages and pricing">
-          View all packages
+        <a href="${PACKAGES_URL}" class="sgc-pricing-teaser-view-all sgc-pricing-teaser-view-all-button" aria-label="View the full Sharp Growth Co. Packages and Pricing page">
+          View Full Packages &amp; Pricing
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
         </a>
       </div>
@@ -87,7 +87,12 @@
 
   function replacePricingSection() {
     if (!isHomePage()) return true;
-    if (document.querySelector(`[data-sgc-pricing-teaser="${VERSION}"]`)) return true;
+    const current = document.querySelector('[data-sgc-pricing-teaser]');
+    if (current && current.dataset.sgcPricingTeaser === VERSION) return true;
+    if (current) {
+      current.replaceWith(buildPricingTeaser());
+      return true;
+    }
 
     const existing = findExistingPricingSection();
     if (!existing) return false;
@@ -98,21 +103,15 @@
 
   function init() {
     let attempts = 0;
-    const maxAttempts = 30;
+    const maxAttempts = 60;
     const interval = window.setInterval(() => {
       attempts += 1;
       if (replacePricingSection() || attempts >= maxAttempts) {
         window.clearInterval(interval);
       }
-    }, 100);
+    }, 150);
 
-    if (!replacePricingSection()) {
-      const observer = new MutationObserver(() => {
-        if (replacePricingSection()) observer.disconnect();
-      });
-      observer.observe(document.documentElement, { childList: true, subtree: true });
-      window.setTimeout(() => observer.disconnect(), 6000);
-    }
+    replacePricingSection();
   }
 
   if (document.readyState === 'loading') {

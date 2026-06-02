@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var BANNER_IMAGE = '/assets/images/cta-banner-bottom-background.webp';
+  var BANNER_IMAGE = '/assets/images/sharp-growth-co-ready-to-begin-laptop-growth-banner.png';
   var BANNER_LABEL = 'Ready to Begin';
-  var BACKGROUND_DESCRIPTION = 'Sharp Growth Co. slim Ready to Begin banner with laptop growth chart and warm brand background';
+  var BACKGROUND_DESCRIPTION = 'Sharp Growth Co. slim Ready to Begin banner with full laptop growth chart and warm brand background';
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
@@ -180,17 +180,6 @@
   document.addEventListener('click', function () {
     window.setTimeout(scheduleEnhancement, 150);
   }, true);
-
-  if ('MutationObserver' in window) {
-    var observer = new MutationObserver(function () {
-      scheduleEnhancement();
-    });
-
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    });
-  }
 
   scheduleEnhancement();
 })();
