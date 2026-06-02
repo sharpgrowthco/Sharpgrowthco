@@ -347,23 +347,6 @@
     card.appendChild(link);
   }
 
-  function ensureHomeServicesCta(section) {
-    const existing = section.querySelector('.sgc-home-services-view-all-wrap');
-    if (existing) return;
-
-    const wrap = document.createElement('div');
-    wrap.className = 'sgc-home-services-view-all-wrap';
-
-    const cta = document.createElement('a');
-    cta.className = 'sgc-home-services-view-all sgc-pricing-teaser-view-all';
-    cta.href = '/services/';
-    cta.setAttribute('aria-label', 'View all Sharp Growth Co. services');
-    cta.innerHTML = 'View All Services <span aria-hidden="true">→</span>';
-
-    wrap.appendChild(cta);
-    section.appendChild(wrap);
-  }
-
   function enhanceHomeServiceCards() {
     const section = findHomeServicesSection();
     if (!section) return;
@@ -413,7 +396,6 @@
       : null;
     if (grid) grid.classList.add('sgc-home-services-grid');
 
-    ensureHomeServicesCta(section);
   }
 
   function keepPreferredReadyToBeginSection() {
