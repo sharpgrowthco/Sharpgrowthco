@@ -758,3 +758,104 @@ header .nav a[aria-current="page"] > span {
   color: #6f430c !important;
   -webkit-text-fill-color: #6f430c !important;
 }
+
+/* 2026-06-02 About/Packages banner and header refinement.
+   Keeps the Alberta mountain hero banners visually aligned with the Services page
+   and reduces top navigation typography so labels no longer crowd the logo or CTA. */
+@media (min-width: 768px) {
+  #root .sg-alberta-page-banner {
+    max-height: 491px !important;
+    overflow: hidden !important;
+  }
+
+  #root header nav a,
+  #root header nav a > span,
+  header nav a,
+  header nav a > span,
+  header [role="navigation"] a,
+  header [role="navigation"] a > span,
+  header .nav a,
+  header .nav a > span {
+    font-size: clamp(0.88rem, 0.88vw, 1rem) !important;
+    letter-spacing: 0.045em !important;
+    line-height: 1.08 !important;
+  }
+
+  #root header nav a,
+  header nav a,
+  header [role="navigation"] a,
+  header .nav a {
+    padding: 0.38rem 0.62rem !important;
+  }
+
+  #root header button[aria-label*="consult" i],
+  header button[aria-label*="consult" i] {
+    font-size: 0.78rem !important;
+    letter-spacing: 0.14em !important;
+    padding-left: 1.35rem !important;
+    padding-right: 1.35rem !important;
+  }
+}
+
+/* 2026-06-02 About mission quote refinement.
+   The About page mission block was visually too tall; this keeps the quote elegant
+   while making the banner slimmer and less dominant. */
+#root section:has(blockquote) {
+  padding-top: clamp(3.5rem, 5vw, 5rem) !important;
+  padding-bottom: clamp(3.5rem, 5vw, 5rem) !important;
+}
+
+#root section:has(blockquote) .container,
+#root section:has(blockquote) .max-w-3xl {
+  max-width: 42rem !important;
+}
+
+#root section:has(blockquote) blockquote {
+  max-width: 38rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-size: clamp(1.85rem, 3vw, 2.35rem) !important;
+  line-height: 1.26 !important;
+}
+
+@media (max-width: 767px) {
+  #root section:has(blockquote) {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  #root section:has(blockquote) blockquote {
+    font-size: clamp(1.55rem, 7vw, 2rem) !important;
+    line-height: 1.28 !important;
+  }
+}
+
+/* 2026-06-02 final About mission slimming pass requested by client. */
+#root section:has(blockquote) {
+  padding-top: clamp(2.75rem, 4vw, 3.75rem) !important;
+  padding-bottom: clamp(2.75rem, 4vw, 3.75rem) !important;
+}
+
+#root section:has(blockquote) .container,
+#root section:has(blockquote) .max-w-3xl {
+  max-width: 56rem !important;
+}
+
+#root section:has(blockquote) blockquote {
+  max-width: 50rem !important;
+  font-size: clamp(1.65rem, 2.35vw, 2rem) !important;
+  line-height: 1.22 !important;
+}
+
+@media (max-width: 767px) {
+  #root section:has(blockquote) {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  #root section:has(blockquote) blockquote {
+    max-width: 100% !important;
+    font-size: clamp(1.35rem, 5.7vw, 1.7rem) !important;
+    line-height: 1.25 !important;
+  }
+}
