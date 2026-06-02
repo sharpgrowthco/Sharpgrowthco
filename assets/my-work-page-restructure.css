@@ -44,11 +44,11 @@
   position: relative !important;
   isolation: isolate;
   overflow: hidden;
-  min-height: clamp(420px, 48vw, 640px);
+  min-height: clamp(310px, 34vw, 390px);
   display: flex;
   align-items: flex-end;
-  padding-top: clamp(8rem, 12vw, 12rem) !important;
-  padding-bottom: clamp(4rem, 7vw, 7rem) !important;
+  padding-top: clamp(5.25rem, 8vw, 7rem) !important;
+  padding-bottom: clamp(2.7rem, 4.5vw, 3.6rem) !important;
   background-image:
     linear-gradient(90deg, rgba(31, 23, 18, 0.90) 0%, rgba(31, 23, 18, 0.56) 42%, rgba(31, 23, 18, 0.30) 100%),
     url('/assets/images/alberta-marketing-agency-mountain-my-work-banner.png') !important;
@@ -87,12 +87,12 @@
 }
 
 .sgc-work-testimonial {
-  padding: clamp(5rem, 8vw, 7rem) 0;
+  padding: clamp(2.25rem, 4vw, 3.2rem) 0 clamp(3.4rem, 5vw, 4.8rem);
   background: #f3eadf;
 }
 
 .sgc-testimonial-heading-wrap {
-  margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+  margin: 0 auto clamp(1.45rem, 3vw, 2.3rem);
 }
 
 .sgc-work-testimonial h2,
@@ -335,7 +335,8 @@
   background-image: url('/assets/images/okotoks-marketing-agency-local-alberta-business-community.webp');
   background-size: cover;
   background-position: center;
-  transform: scale(1.03);
+  transform: translate3d(0, var(--sgc-alberta-parallax-y, 0px), 0) scale(1.08);
+  will-change: transform;
 }
 
 .sgc-work-overlay {
@@ -409,9 +410,80 @@
   font-size: 0.72rem;
 }
 
+.sgc-alberta-stat-row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin-top: clamp(2rem, 4vw, 3.1rem);
+}
+
+.sgc-alberta-stat-row article {
+  min-height: 148px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.15rem, 2.2vw, 1.55rem);
+  border: 1px solid rgba(177, 127, 58, 0.34);
+  background: linear-gradient(145deg, rgba(32, 19, 13, 0.86), rgba(23, 14, 10, 0.76));
+  box-shadow: 0 22px 54px rgba(8, 5, 3, 0.24);
+  backdrop-filter: blur(2px);
+}
+
+.sgc-alberta-stat-row strong {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-size: clamp(2.1rem, 4vw, 3.15rem);
+  font-weight: 600;
+  line-height: 0.95;
+  color: var(--sgc-gold);
+  letter-spacing: -0.035em;
+}
+
+.sgc-alberta-stat-row span {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.82rem, 1.1vw, 0.94rem);
+  line-height: 1.45;
+  color: rgba(254, 252, 249, 0.78);
+}
+
 .sgc-work-process {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding: clamp(5rem, 8vw, 7rem) 0;
   background: var(--sgc-sand);
+}
+
+.sgc-work-process::before {
+  content: '';
+  position: absolute;
+  inset: -6%;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url('/assets/images/boardroom-meeting-my-process-background.webp');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.40;
+  transform: translate3d(0, var(--sgc-process-parallax-y, 0px), 0) scale(1.04);
+  will-change: transform;
+}
+
+.sgc-work-process::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(250, 246, 240, 0.78), rgba(248, 239, 226, 0.84));
+}
+
+.sgc-work-process > .sgc-work-container {
+  position: relative;
+  z-index: 1;
 }
 
 .sgc-process-grid {
@@ -475,6 +547,10 @@
   .sgc-process-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .sgc-alberta-stat-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 720px) {
@@ -483,13 +559,20 @@
   }
 
   .sgc-work-hero-banner {
-    min-height: 520px;
+    min-height: clamp(300px, 70vw, 380px);
+    padding-top: clamp(4.7rem, 14vw, 6rem) !important;
+    padding-bottom: clamp(2.2rem, 8vw, 3rem) !important;
     background-position: center !important;
   }
 
   .sgc-work-split,
-  .sgc-process-grid {
+  .sgc-process-grid,
+  .sgc-alberta-stat-row {
     grid-template-columns: 1fr;
+  }
+
+  .sgc-alberta-stat-row article {
+    min-height: 118px;
   }
 
   .sgc-work-alberta .sgc-work-rule {

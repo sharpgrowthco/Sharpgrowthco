@@ -590,3 +590,171 @@ header .nav a[aria-current="page"] {
   text-shadow: none !important;
   transform: none !important;
 }
+
+/* 2026-06-02 header navigation visibility boost.
+   Makes page titles larger and readable over pale hero areas while preserving the premium look. */
+#root header nav a,
+#root header nav a > span,
+header nav a,
+header [role="navigation"] a,
+header .nav a {
+  color: #2b1d13 !important;
+  font-size: clamp(1.08rem, 1.16vw, 1.22rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.07em !important;
+  line-height: 1.12 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.86),
+    0 2px 7px rgba(255, 255, 255, 0.74),
+    0 6px 18px rgba(35, 24, 15, 0.42) !important;
+  filter: drop-shadow(0 5px 9px rgba(35, 24, 15, 0.22)) !important;
+  transform: translateY(0) scale(1) !important;
+  transition: color 180ms ease, filter 180ms ease, transform 180ms ease, text-shadow 180ms ease !important;
+}
+
+#root header nav a[href="/work"],
+#root header nav a[href="/work/"],
+header nav a[href="/work"],
+header nav a[href="/work/"] {
+  color: #2b1d13 !important;
+}
+
+#root header nav a:hover,
+#root header nav a:focus-visible,
+#root header nav a:hover > span,
+#root header nav a:focus-visible > span,
+header nav a:hover,
+header nav a:focus-visible,
+header [role="navigation"] a:hover,
+header [role="navigation"] a:focus-visible,
+header .nav a:hover,
+header .nav a:focus-visible {
+  color: #8a6227 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92),
+    0 3px 9px rgba(255, 255, 255, 0.78),
+    0 8px 22px rgba(35, 24, 15, 0.48) !important;
+  filter: drop-shadow(0 7px 12px rgba(35, 24, 15, 0.28)) !important;
+  transform: translateY(-2px) scale(1.035) !important;
+}
+
+#root header nav a[aria-current="page"],
+#root header nav a[aria-current="page"] > span,
+header nav a[aria-current="page"],
+header [role="navigation"] a[aria-current="page"],
+header .nav a[aria-current="page"] {
+  color: #7b5521 !important;
+  font-weight: 800 !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.94),
+    0 3px 10px rgba(255, 255, 255, 0.80),
+    0 8px 22px rgba(35, 24, 15, 0.46) !important;
+}
+
+@media (max-width: 767px) {
+  #root header nav a,
+  #root header nav a > span,
+  header nav a,
+  header [role="navigation"] a,
+  header .nav a {
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.045em !important;
+  }
+}
+
+/* 2026-06-02 decisive navigation contrast fix.
+   The previous white glow was still washing out on pale hero imagery, so the top links now use a darker premium pill treatment. */
+#root header nav a,
+#root header nav a > span,
+header nav a,
+header nav a > span,
+header [role="navigation"] a,
+header [role="navigation"] a > span,
+header .nav a,
+header .nav a > span {
+  color: #2a180d !important;
+  -webkit-text-fill-color: #2a180d !important;
+  font-family: Outfit, sans-serif !important;
+  font-size: clamp(1.14rem, 1.2vw, 1.32rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.055em !important;
+  line-height: 1.05 !important;
+  text-decoration: none !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.96),
+    0 2px 4px rgba(255, 255, 255, 0.82),
+    0 5px 12px rgba(43, 24, 13, 0.38) !important;
+}
+
+#root header nav a,
+header nav a,
+header [role="navigation"] a,
+header .nav a {
+  position: relative !important;
+  padding: 0.46rem 0.78rem !important;
+  border-radius: 999px !important;
+  background: rgba(255, 250, 242, 0.78) !important;
+  border: 1px solid rgba(185, 133, 57, 0.30) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.82) inset,
+    0 10px 26px rgba(38, 24, 14, 0.16),
+    0 2px 8px rgba(38, 24, 14, 0.14) !important;
+  backdrop-filter: blur(10px) saturate(1.04) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(1.04) !important;
+  transform: translateY(0) scale(1) !important;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease !important;
+}
+
+#root header nav a:hover,
+#root header nav a:focus-visible,
+header nav a:hover,
+header nav a:focus-visible,
+header [role="navigation"] a:hover,
+header [role="navigation"] a:focus-visible,
+header .nav a:hover,
+header .nav a:focus-visible {
+  color: #7b4d12 !important;
+  -webkit-text-fill-color: #7b4d12 !important;
+  background: rgba(255, 247, 232, 0.94) !important;
+  border-color: rgba(190, 139, 60, 0.58) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 13px 30px rgba(38, 24, 14, 0.22),
+    0 0 0 2px rgba(190, 139, 60, 0.10) !important;
+  transform: translateY(-2px) scale(1.035) !important;
+}
+
+#root header nav a:hover > span,
+#root header nav a:focus-visible > span,
+header nav a:hover > span,
+header nav a:focus-visible > span,
+header [role="navigation"] a:hover > span,
+header [role="navigation"] a:focus-visible > span,
+header .nav a:hover > span,
+header .nav a:focus-visible > span {
+  color: #7b4d12 !important;
+  -webkit-text-fill-color: #7b4d12 !important;
+}
+
+#root header nav a[aria-current="page"],
+header nav a[aria-current="page"],
+header [role="navigation"] a[aria-current="page"],
+header .nav a[aria-current="page"] {
+  color: #6f430c !important;
+  -webkit-text-fill-color: #6f430c !important;
+  background: rgba(255, 244, 222, 0.96) !important;
+  border-color: rgba(190, 139, 60, 0.66) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.92) inset,
+    0 14px 32px rgba(38, 24, 14, 0.24),
+    0 0 0 2px rgba(190, 139, 60, 0.13) !important;
+}
+
+#root header nav a[aria-current="page"] > span,
+header nav a[aria-current="page"] > span,
+header [role="navigation"] a[aria-current="page"] > span,
+header .nav a[aria-current="page"] > span {
+  color: #6f430c !important;
+  -webkit-text-fill-color: #6f430c !important;
+}

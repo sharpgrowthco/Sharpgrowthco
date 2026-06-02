@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = 'my-work-full-story-banner-20260602';
+  const VERSION = 'my-work-stats-parallax-20260602';
   const TESTIMONIAL_VIDEO_SRC = '/assets/images/testimonial-video-edited_45aa1248.mp4';
   const STORY_IMAGE_SRC = '/assets/images/alberta-marketing-agency-mountain-banner-local-business-growth.webp';
 
@@ -189,6 +189,26 @@
             <li>Every strategy is built for real people in real communities</li>
           </ul>
         </div>
+        <div class="sgc-work-container">
+          <div class="sgc-alberta-stat-row" aria-label="Marketing growth statistics">
+            <article>
+              <strong>70%</strong>
+              <span>Of small business owners say lack of marketing expertise is their #1 barrier to growth</span>
+            </article>
+            <article>
+              <strong>67%</strong>
+              <span>More leads per month with an active content strategy</span>
+            </article>
+            <article>
+              <strong>$42</strong>
+              <span>Returned for every $1 spent on email marketing</span>
+            </article>
+            <article>
+              <strong>2×</strong>
+              <span>Faster growth when marketing is handled by an expert</span>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section class="sgc-work-process" aria-labelledby="sgc-work-process-heading">
@@ -206,12 +226,53 @@
       </section>
     `;
 
+    const hero = document.querySelector('.sgc-work-hero-banner');
     const readySection = sectionContainingText('Ready to Begin');
-    if (readySection) readySection.insertAdjacentElement('beforebegin', wrapper);
+    if (hero && hero.parentElement) hero.insertAdjacentElement('afterend', wrapper);
+    else if (readySection) readySection.insertAdjacentElement('beforebegin', wrapper);
     else if (footer) footer.insertAdjacentElement('beforebegin', wrapper);
     else mountParent.appendChild(wrapper);
 
     prepareStoryVideo();
+  };
+
+  let parallaxReady = false;
+  const enableSubtleBackgroundParallax = () => {
+    if (!isWork() || parallaxReady || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    parallaxReady = true;
+
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+    const update = () => {
+      const viewportCenter = window.innerHeight / 2;
+      const alberta = document.querySelector('.sgc-work-alberta');
+      const process = document.querySelector('.sgc-work-process');
+
+      if (alberta) {
+        const rect = alberta.getBoundingClientRect();
+        const offset = clamp((rect.top + rect.height / 2 - viewportCenter) * -0.035, -26, 26);
+        alberta.style.setProperty('--sgc-alberta-parallax-y', `${offset.toFixed(2)}px`);
+      }
+
+      if (process) {
+        const rect = process.getBoundingClientRect();
+        const offset = clamp((rect.top + rect.height / 2 - viewportCenter) * -0.032, -24, 24);
+        process.style.setProperty('--sgc-process-parallax-y', `${offset.toFixed(2)}px`);
+      }
+    };
+
+    let ticking = false;
+    const requestUpdate = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
+    update();
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
   };
 
   const run = () => {
@@ -221,6 +282,7 @@
     hideOriginalWorkPortfolioSections();
     buildMyWorkSections();
     prepareStoryVideo();
+    enableSubtleBackgroundParallax();
   };
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
