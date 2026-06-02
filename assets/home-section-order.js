@@ -245,13 +245,25 @@
     if (footer && readySection) insertAfter(readySection, footer);
   }
 
-  function scheduleOrder() {
-    window.requestAnimationFrame(() => {
+  let orderScheduled = false;
+  let orderObserver = null;
+
+  function runHomeOrderPasses() {
+    orderScheduled = false;
+    if (orderObserver) orderObserver.disconnect();
+    enforceHomeOrder();
+    window.setTimeout(enforceHomeOrder, 150);
+    window.setTimeout(enforceHomeOrder, 600);
+    window.setTimeout(() => {
       enforceHomeOrder();
-      window.setTimeout(enforceHomeOrder, 150);
-      window.setTimeout(enforceHomeOrder, 600);
-      window.setTimeout(enforceHomeOrder, 1400);
-    });
+      if (orderObserver) orderObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    }, 1400);
+  }
+
+  function scheduleOrder() {
+    if (orderScheduled) return;
+    orderScheduled = true;
+    window.requestAnimationFrame(runHomeOrderPasses);
   }
 
   if (document.readyState === 'loading') {
@@ -264,6 +276,6 @@
   window.addEventListener('popstate', scheduleOrder);
   window.addEventListener('hashchange', scheduleOrder);
 
-  const observer = new MutationObserver(scheduleOrder);
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+  orderObserver = new MutationObserver(scheduleOrder);
+  orderObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
 })();

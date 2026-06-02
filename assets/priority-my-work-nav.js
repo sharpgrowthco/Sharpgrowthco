@@ -58,9 +58,23 @@
     });
   }
 
-  function scheduleRestore() {
+  let restoreScheduled = false;
+  let restoreObserver = null;
+
+  function runRestore() {
+    restoreScheduled = false;
+    if (restoreObserver) restoreObserver.disconnect();
     restoreMyWorkNav();
-    window.requestAnimationFrame(restoreMyWorkNav);
+    window.requestAnimationFrame(() => {
+      restoreMyWorkNav();
+      if (restoreObserver) restoreObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    });
+  }
+
+  function scheduleRestore() {
+    if (restoreScheduled) return;
+    restoreScheduled = true;
+    window.requestAnimationFrame(runRestore);
   }
 
   if (document.readyState === 'loading') {
@@ -72,6 +86,6 @@
   window.addEventListener('load', restoreMyWorkNav, { once: true });
   [100, 300, 800, 1600].forEach((delay) => window.setTimeout(restoreMyWorkNav, delay));
 
-  const observer = new MutationObserver(restoreMyWorkNav);
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+  restoreObserver = new MutationObserver(scheduleRestore);
+  restoreObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
 })();
