@@ -65,7 +65,7 @@
     panel.className = 'sgc-contact-trust-preview';
     panel.innerHTML = `
       <div class="sgc-contact-trust-preview__statement">Helping Alberta businesses elevate their online presence through intentional strategy, refined design, and content that supports meaningful growth.</div>
-      <div class="sgc-contact-trust-preview__note">Boutique strategy, personally led by Jenna</div>
+      <div class="sgc-contact-trust-preview__note">Boutique strategy, personally tailored for your business</div>
     `;
     heroParagraph.insertAdjacentElement('afterend', panel);
   }

@@ -8,8 +8,8 @@ body:has([data-loc*="Contact.tsx"]) {
 [data-loc="client/src/pages/Contact.tsx:52"] {
   position: relative;
   overflow: hidden;
-  padding-top: clamp(7.5rem, 11vw, 10rem) !important;
-  padding-bottom: clamp(4rem, 8vw, 6rem) !important;
+  padding-top: clamp(7rem, 10vw, 9.25rem) !important;
+  padding-bottom: clamp(5.15rem, 8.75vw, 7.1rem) !important;
   background:
     linear-gradient(90deg, rgba(21, 16, 12, 0.78) 0%, rgba(34, 25, 17, 0.62) 46%, rgba(58, 43, 25, 0.44) 100%),
     linear-gradient(180deg, rgba(20, 15, 11, 0.42), rgba(20, 15, 11, 0.52)),
@@ -35,12 +35,13 @@ body:has([data-loc*="Contact.tsx"]) {
 }
 
 .sgc-contact-trust-preview {
-  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  margin-top: clamp(0.78rem, 1.35vw, 1.08rem);
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(180px, 0.65fr);
-  gap: 1.25rem;
+  grid-template-columns: minmax(0, 1.58fr) minmax(255px, 0.72fr);
+  gap: 0.95rem;
   align-items: stretch;
-  max-width: 860px;
+  max-width: 805px;
+  transform: translateY(-1.35rem);
 }
 
 .sgc-contact-trust-preview__statement,
@@ -48,7 +49,7 @@ body:has([data-loc*="Contact.tsx"]) {
   border: 1px solid rgba(184, 137, 52, 0.28);
   background: rgba(255, 252, 244, 0.075);
   backdrop-filter: blur(10px);
-  padding: 1.15rem 1.35rem;
+  padding: 1rem 1.12rem;
   color: oklch(0.91 0.018 84);
   font-family: 'Outfit', sans-serif;
   line-height: 1.65;
@@ -58,9 +59,9 @@ body:has([data-loc*="Contact.tsx"]) {
   display: flex;
   align-items: center;
   color: oklch(0.82 0.07 78);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.13em;
 }
 
 [data-loc="client/src/pages/Contact.tsx:71"] {
