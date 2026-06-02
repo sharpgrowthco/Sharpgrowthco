@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'home-exact-order-short-teasers-20260602';
+  const VERSION = 'home-what-offer-visual-20260602';
   const CALENDLY = 'https://calendly.com/sharpgrowthco';
 
   function normalize(text) {
@@ -104,15 +104,31 @@
     section.setAttribute('aria-labelledby', 'sgc-home-what-offer-heading');
     section.innerHTML = `
       <div class="sgc-home-flow-container sgc-home-what-offer-grid">
-        <div class="sgc-home-flow-copy">
+        <div class="sgc-home-flow-copy sgc-home-offer-copy-stack">
           <p class="sgc-home-flow-label">What I Offer</p>
           <h2 class="sgc-home-flow-heading" id="sgc-home-what-offer-heading">Focused marketing support for businesses ready to grow</h2>
           <p class="sgc-home-flow-intro">I bring strategy, websites, social media, content, and creative direction together so your business has a stronger online presence, clearer messaging, and marketing that moves with intention.</p>
+          <aside class="sgc-home-offer-callout" aria-label="Sharp Growth Co. offer summary">
+            <p>Sharp Growth Co. is for local Alberta businesses that want polished marketing, consistent visibility, and a clear plan for turning attention into action.</p>
+          </aside>
           <a class="sgc-home-flow-cta sgc-home-flow-cta-inline" href="/services/">Explore My Services</a>
         </div>
-        <aside class="sgc-home-offer-callout" aria-label="Sharp Growth Co. offer summary">
-          <p>Sharp Growth Co. is for local Alberta businesses that want polished marketing, consistent visibility, and a clear plan for turning attention into action.</p>
-        </aside>
+        <div class="sgc-offer-orbit-visual" aria-label="Visual summary of website, social media, brand direction, and growth planning services">
+          <div class="sgc-offer-deco-ring sgc-offer-outer"><span class="sgc-offer-ring-dot"></span><span class="sgc-offer-ring-dot"></span><span class="sgc-offer-ring-dot"></span><span class="sgc-offer-ring-dot"></span></div>
+          <div class="sgc-offer-deco-ring sgc-offer-mid"></div>
+          <div class="sgc-offer-deco-ring sgc-offer-glow"></div>
+          <div class="sgc-offer-center-logo">
+            <div class="sgc-offer-logo-name">Sharp Growth Co<span class="sgc-offer-logo-dot">.</span></div>
+            <div class="sgc-offer-logo-divider"></div>
+            <div class="sgc-offer-logo-tagline">Local Alberta Marketing</div>
+          </div>
+          <div class="sgc-offer-orbit-track">
+            <div class="sgc-offer-orbit-card sgc-offer-card-website"><div class="sgc-offer-card-inner"><div class="sgc-offer-website-bar"><span class="sgc-offer-wdot sgc-offer-r"></span><span class="sgc-offer-wdot sgc-offer-y"></span><span class="sgc-offer-wdot sgc-offer-g"></span><span class="sgc-offer-wurl">yourbusiness.com</span></div><div class="sgc-offer-website-body"><div class="sgc-offer-web-hero"><span>Elevate Your Brand</span></div><div class="sgc-offer-web-lines"><div class="sgc-offer-web-line"></div><div class="sgc-offer-web-line"></div><div class="sgc-offer-web-line"></div></div><div class="sgc-offer-web-btn"><span>Get Started</span></div></div></div></div>
+            <div class="sgc-offer-orbit-card sgc-offer-card-social"><div class="sgc-offer-card-inner"><div class="sgc-offer-social-inner"><div class="sgc-offer-social-top"><span class="sgc-offer-social-lbl">Social Growth</span><span class="sgc-offer-social-up">↑ 215%</span></div><div class="sgc-offer-social-big">28.4K</div><div class="sgc-offer-social-sub">Monthly Reach</div><div class="sgc-offer-s-chart"><div class="sgc-offer-s-bar sgc-offer-mut" style="height: 28%;"></div><div class="sgc-offer-s-bar sgc-offer-mut" style="height: 32%;"></div><div class="sgc-offer-s-bar sgc-offer-gld" style="height: 45%;"></div><div class="sgc-offer-s-bar sgc-offer-gld" style="height: 58%;"></div><div class="sgc-offer-s-bar sgc-offer-gld" style="height: 72%;"></div><div class="sgc-offer-s-bar sgc-offer-gld" style="height: 88%;"></div><div class="sgc-offer-s-bar sgc-offer-gld" style="height: 100%;"></div></div></div></div></div>
+            <div class="sgc-offer-orbit-card sgc-offer-card-brand"><div class="sgc-offer-card-inner"><div class="sgc-offer-brand-inner"><span class="sgc-offer-brand-lbl">Brand Direction</span><div class="sgc-offer-swatches"><div class="sgc-offer-sw sgc-offer-a"></div><div class="sgc-offer-sw sgc-offer-b"></div><div class="sgc-offer-sw sgc-offer-c"></div><div class="sgc-offer-sw sgc-offer-d"></div></div><div class="sgc-offer-font-section"><div class="sgc-offer-font-row"><span class="sgc-offer-font-lbl">Heading</span><span class="sgc-offer-font-aa-serif">Aa</span></div><div class="sgc-offer-font-row"><span class="sgc-offer-font-lbl">Body</span><span class="sgc-offer-font-aa-sans">Aa</span></div></div></div></div></div>
+            <div class="sgc-offer-orbit-card sgc-offer-card-strategy"><div class="sgc-offer-card-inner"><div class="sgc-offer-strategy-inner"><span class="sgc-offer-strat-lbl">Growth Plan</span><div class="sgc-offer-strat-list"><div class="sgc-offer-strat-item"><div class="sgc-offer-chk sgc-offer-done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></div><span class="sgc-offer-strat-txt sgc-offer-done">Brand Audit</span></div><div class="sgc-offer-strat-item"><div class="sgc-offer-chk sgc-offer-done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></div><span class="sgc-offer-strat-txt sgc-offer-done">Content Strategy</span></div><div class="sgc-offer-strat-item"><div class="sgc-offer-chk sgc-offer-done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></div><span class="sgc-offer-strat-txt sgc-offer-done">Website Launch</span></div><div class="sgc-offer-strat-item"><div class="sgc-offer-chk sgc-offer-pending"></div><span class="sgc-offer-strat-txt">SEO Optimization</span></div><div class="sgc-offer-strat-item"><div class="sgc-offer-chk sgc-offer-pending"></div><span class="sgc-offer-strat-txt">Social Campaign</span></div></div></div></div></div>
+          </div>
+        </div>
       </div>
     `;
     return section;
