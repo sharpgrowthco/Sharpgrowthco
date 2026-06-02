@@ -292,10 +292,13 @@
 
     const businessLabels = [
       'Local Restaurants & Cafés',
-      'Boutique Retail Shops',
       'Wellness & Beauty Studios',
       'Real Estate Professionals',
-      'Service Providers',
+      'Boutique Retail Shops',
+      'Service Providers'
+    ];
+    const previousLabels = [
+      ...businessLabels,
       'Lifestyle Brands',
       'Entrepreneurs & Coaches',
       'Schools',
@@ -303,14 +306,55 @@
     ];
 
     section.classList.add('sgc-business-tags-section');
+    section.querySelectorAll('.sgc-business-tags-row, .sgc-business-tags-followup').forEach((el) => el.remove());
+
+    const oldTagEls = Array.from(section.querySelectorAll('a, button, span, div, li'))
+      .filter((el) => previousLabels.some((label) => normalize(el.textContent) === normalize(label)) && el.children.length === 0);
+
+    let oldTagContainer = null;
+    if (oldTagEls.length > 0) {
+      oldTagContainer = oldTagEls[0].parentElement;
+      while (oldTagContainer && oldTagContainer !== section && oldTagContainer.contains(heading)) {
+        oldTagContainer = oldTagContainer.parentElement;
+      }
+      while (oldTagContainer && oldTagContainer !== section && !oldTagEls.every((el) => oldTagContainer.contains(el))) {
+        oldTagContainer = oldTagContainer.parentElement;
+      }
+      if (oldTagContainer && oldTagContainer !== section && !oldTagContainer.contains(heading)) {
+        oldTagContainer.remove();
+        oldTagContainer = null;
+      } else {
+        oldTagEls.forEach((el) => {
+          const tag = el.closest('a, button, li') || el;
+          tag.remove();
+        });
+      }
+    }
+
+    const row = document.createElement('div');
+    row.className = 'sgc-business-tags-row';
     businessLabels.forEach((label) => {
-      Array.from(section.querySelectorAll('a, button, span, div, li')).forEach((el) => {
-        if (normalize(el.textContent) !== normalize(label)) return;
-        if (el.children.length > 0) return;
-        el.classList.add('sgc-business-gold-tag');
-        el.setAttribute('tabindex', el.getAttribute('tabindex') || '0');
-      });
+      const tag = document.createElement('span');
+      tag.className = 'sgc-business-gold-tag';
+      tag.setAttribute('tabindex', '0');
+      tag.textContent = label;
+      row.appendChild(tag);
     });
+
+    const followup = document.createElement('div');
+    followup.className = 'sgc-business-tags-followup';
+    followup.innerHTML = `
+      <p>Don't see your industry? I work with ambitious local businesses of all kinds.</p>
+      <a class="sgc-business-contact-button" href="/contact" aria-label="Contact Sharp Growth Co.">Contact Me</a>
+    `;
+
+    const insertionTarget = heading;
+    if (insertionTarget && insertionTarget.parentElement) {
+      insertionTarget.insertAdjacentElement('afterend', row);
+      row.insertAdjacentElement('afterend', followup);
+    } else {
+      section.append(row, followup);
+    }
   }
 
   function findHomeServiceCard(section, title) {
