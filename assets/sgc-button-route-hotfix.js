@@ -7,7 +7,6 @@
     'book a free consultation',
     'book a custom growth plan',
     'get a website quote',
-    'work with me',
     'start your growth journey'
   ]);
   const contactLabels = new Set([

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'home-client-success-logo-packages-order-20260602';
+  const VERSION = 'home-centre-logo-alignment-20260602';
   const CALENDLY = 'https://calendly.com/sharpgrowthco';
 
   function normalize(text) {
@@ -139,7 +139,7 @@
           <div class="sgc-offer-center-logo">
             <div class="sgc-offer-logo-name">Sharp Growth Co<span class="sgc-offer-logo-dot">.</span></div>
             <div class="sgc-offer-logo-divider"></div>
-            <div class="sgc-offer-logo-tagline">Local Alberta Marketing</div>
+            <div class="sgc-offer-logo-tagline"><span>Local Alberta</span><span>Marketing</span></div>
           </div>
           <div class="sgc-offer-orbit-track">
             <div class="sgc-offer-orbit-card sgc-offer-card-website"><div class="sgc-offer-card-inner"><div class="sgc-offer-website-bar"><span class="sgc-offer-wdot sgc-offer-r"></span><span class="sgc-offer-wdot sgc-offer-y"></span><span class="sgc-offer-wdot sgc-offer-g"></span><span class="sgc-offer-wurl">yourbusiness.com</span></div><div class="sgc-offer-website-body"><div class="sgc-offer-web-hero"><span>Elevate Your Brand</span></div><div class="sgc-offer-web-lines"><div class="sgc-offer-web-line"></div><div class="sgc-offer-web-line"></div><div class="sgc-offer-web-line"></div></div><div class="sgc-offer-web-btn"><span>Get Started</span></div></div></div></div>

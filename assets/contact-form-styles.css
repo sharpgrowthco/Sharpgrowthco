@@ -268,3 +268,42 @@ form button:focus-visible {
     display: none;
   }
 }
+
+/* Luxury Contact Success Experience */
+.sgc-contact-success-card {
+  isolation: isolate;
+  min-height: 420px;
+}
+
+.sgc-contact-success-card::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(177, 134, 79, 0.28);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sgc-contact-success-card::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  top: -90px;
+  right: -70px;
+  background: radial-gradient(circle, rgba(177, 134, 79, 0.18), rgba(177, 134, 79, 0));
+  pointer-events: none;
+  z-index: -1;
+}
+
+@media (max-width: 640px) {
+  .sgc-contact-success-card {
+    min-height: 390px;
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
+  }
+
+  .sgc-contact-success-card::before {
+    inset: 12px;
+  }
+}

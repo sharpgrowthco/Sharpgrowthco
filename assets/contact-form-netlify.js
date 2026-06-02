@@ -211,7 +211,7 @@
         setTimeout(() => {
           showStatusMessage(
                           form,
-              'Message sent successfully. I\'ll be in touch soon.',
+              'Thank you for reaching out. I’ve received your inquiry and look forward to learning more about your business, goals, and vision.',
               'success'
 
           );

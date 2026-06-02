@@ -828,6 +828,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  padding: 0 14px;
+  overflow: hidden;
   box-shadow: 0 16px 48px rgba(17, 17, 17, 0.25), 0 0 0 1px rgba(199, 157, 91, 0.15);
   animation: sgcOfferLogoReveal 1s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
 }
@@ -842,6 +845,8 @@
 }
 
 .sgc-offer-logo-name {
+  display: block;
+  width: 100%;
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
   font-size: clamp(13px, 2.5vw, 16px);
@@ -849,6 +854,7 @@
   letter-spacing: 0.5px;
   line-height: 1.1;
   text-align: center;
+  white-space: nowrap;
 }
 
 .sgc-offer-logo-dot {
@@ -864,12 +870,28 @@
 }
 
 .sgc-offer-logo-tagline {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
   font-family: 'Outfit', 'Jost', sans-serif;
   font-weight: 600;
   font-size: clamp(4.6px, 0.9vw, 5.5px);
   letter-spacing: 3px;
+  line-height: 1.22;
+  text-align: center;
   text-transform: uppercase;
   color: var(--sgc-offer-gold);
+}
+
+.sgc-offer-logo-tagline span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-indent: 3px;
+  white-space: nowrap;
 }
 
 .sgc-offer-orbit-track {
@@ -1199,6 +1221,10 @@
   .sgc-offer-logo-tagline {
     letter-spacing: 2px;
   }
+
+  .sgc-offer-logo-tagline span {
+    text-indent: 2px;
+  }
 }
 
 /* === 2026-06-02 Home mobile, spacing, and visual polish optimization === */
@@ -1308,4 +1334,45 @@ body:has(.sgc-home-what-offer) .sgc-home-services-section [class*="section-heade
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Home ticker overflow guard: keep decorative off-canvas animation from widening the document. */
+html:has(.sgc-home-results-section),
+body:has(.sgc-home-results-section) {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+@supports not (overflow: clip) {
+  html:has(.sgc-home-results-section),
+  body:has(.sgc-home-results-section) {
+    overflow-x: hidden;
+  }
+}
+
+/* Home hero containment: prevent transformed hero media and ticker repeats from contributing to document scroll width. */
+body:has(.sgc-home-hero-ticker-strip) section.relative.min-h-screen.flex.items-end.overflow-hidden,
+.sgc-home-hero-ticker-strip {
+  contain: paint;
+  max-width: 100vw;
+  overflow-x: clip !important;
+}
+
+@supports not (overflow: clip) {
+  body:has(.sgc-home-hero-ticker-strip) section.relative.min-h-screen.flex.items-end.overflow-hidden,
+  .sgc-home-hero-ticker-strip {
+    overflow-x: hidden !important;
+  }
+}
+
+/* Clip the moving ticker track itself; parent clipping alone does not prevent child inline spans from affecting scrollWidth. */
+.sgc-home-hero-ticker-strip > .flex.whitespace-nowrap {
+  overflow: hidden !important;
+  max-width: 100%;
+}
+
+/* Stronger containment for animated ticker measurement in Chromium headless verification. */
+.sgc-home-hero-ticker-strip,
+.sgc-home-hero-ticker-strip > .flex.whitespace-nowrap {
+  contain: layout paint style;
 }

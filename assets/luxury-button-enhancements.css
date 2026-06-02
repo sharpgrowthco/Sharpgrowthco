@@ -1111,3 +1111,31 @@ header .nav a[aria-current="page"] > span {
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+/* 2026-06-02 mobile hero header correction.
+   User-confirmed mobile design should show the brand mark and hamburger only;
+   the desktop navigation title buttons must not overlay the hero image on phones. */
+@media (max-width: 767px) {
+  #root header nav[class*="hidden"][class*="md:flex"],
+  header nav[class*="hidden"][class*="md:flex"],
+  #root header.fixed .container > div[class*="items-center"][class*="justify-between"] > nav[class*="hidden"][class*="md:flex"],
+  header.fixed .container > div[class*="items-center"][class*="justify-between"] > nav[class*="hidden"][class*="md:flex"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    max-width: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #root header button[class*="md:hidden"],
+  header button[class*="md:hidden"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+}
