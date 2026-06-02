@@ -162,3 +162,98 @@ section.sgc-ready-to-begin-duplicate-hidden {
   margin: 0 !important;
   overflow: hidden !important;
 }
+
+/* === 2026-06-02 Services page slim Ready to Begin CTA override === */
+.sgc-services-page .ready-to-begin-image-banner {
+  min-height: clamp(175px, 15vw, 220px) !important;
+}
+
+.sgc-services-page .ready-to-begin-injected-section,
+.sgc-services-page .ready-to-begin-image-banner {
+  padding-top: clamp(1.2rem, 2.2vw, 1.75rem) !important;
+  padding-bottom: clamp(1.2rem, 2.2vw, 1.75rem) !important;
+}
+
+.sgc-services-page .ready-to-begin-injected-section .ready-to-begin-banner-content,
+.sgc-services-page .ready-to-begin-banner-content {
+  max-width: min(620px, 50vw) !important;
+}
+
+.sgc-services-page .ready-to-begin-injected-section h2 {
+  font-size: clamp(1.35rem, 2.25vw, 1.88rem) !important;
+  margin-bottom: 0.48rem !important;
+}
+
+.sgc-services-page .ready-to-begin-injected-section p {
+  font-size: clamp(0.82rem, 0.98vw, 0.92rem) !important;
+  line-height: 1.48 !important;
+}
+
+.sgc-services-page .ready-to-begin-actions {
+  margin-top: 0.82rem !important;
+  gap: 0.65rem !important;
+}
+
+.sgc-services-page .ready-to-begin-actions .btn-primary,
+.sgc-services-page .ready-to-begin-actions .btn-gold {
+  min-height: 2.75rem !important;
+  padding: 0.78rem 1.15rem !important;
+  font-size: 0.78rem !important;
+}
+
+@media (max-width: 767px) {
+  .sgc-services-page .ready-to-begin-image-banner {
+    min-height: 210px !important;
+  }
+
+  .sgc-services-page .ready-to-begin-injected-section,
+  .sgc-services-page .ready-to-begin-image-banner {
+    padding-top: 1.35rem !important;
+    padding-bottom: 1.35rem !important;
+  }
+
+  .sgc-services-page .ready-to-begin-injected-section .ready-to-begin-banner-content,
+  .sgc-services-page .ready-to-begin-banner-content {
+    max-width: min(100% - 2rem, 560px) !important;
+  }
+}
+
+/* === 2026-06-02 Services native CTA tightening correction === */
+.sgc-services-page .ready-to-begin-image-banner .ready-to-begin-banner-content {
+  max-width: min(560px, 48vw) !important;
+}
+
+.sgc-services-page .ready-to-begin-image-banner .section-label {
+  margin-bottom: 0.5rem !important;
+  font-size: 0.66rem !important;
+  line-height: 1.1 !important;
+}
+
+.sgc-services-page .ready-to-begin-image-banner h2 {
+  font-size: clamp(1.45rem, 2.55vw, 2.08rem) !important;
+  line-height: 1.08 !important;
+  margin-bottom: 0.62rem !important;
+}
+
+.sgc-services-page .ready-to-begin-image-banner p {
+  max-width: 520px !important;
+  margin-bottom: 1rem !important;
+  font-size: clamp(0.82rem, 0.98vw, 0.92rem) !important;
+  line-height: 1.48 !important;
+}
+
+.sgc-services-page .ready-to-begin-image-banner .sgc-luxury-cta .btn-primary {
+  min-height: 2.7rem !important;
+  padding: 0.78rem 1.18rem !important;
+  font-size: 0.78rem !important;
+}
+
+@media (max-width: 767px) {
+  .sgc-services-page .ready-to-begin-image-banner .ready-to-begin-banner-content {
+    max-width: min(100% - 2rem, 540px) !important;
+  }
+
+  .sgc-services-page .ready-to-begin-image-banner h2 {
+    font-size: clamp(1.55rem, 7vw, 2.05rem) !important;
+  }
+}

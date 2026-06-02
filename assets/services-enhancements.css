@@ -1241,3 +1241,605 @@ button.sgc-contact-service-option[aria-pressed='true'] {
     font-size: 0.86rem !important;
   }
 }
+
+/* Ordered Services page restructure: gold laptop hero, focused visual service sections, CTA, and FAQ. */
+.sgc-services-ordered-shell {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.sgc-services-kicker {
+  margin: 0 0 0.85rem !important;
+  color: #b98a3b !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.22em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
+.sgc-services-gold-laptop-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  width: 100%;
+  padding: clamp(3.5rem, 7vw, 7rem) 0 clamp(3rem, 6vw, 6rem);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 225, 168, 0.22), transparent 34%),
+    linear-gradient(180deg, #170d07 0%, #25150c 48%, #f6efe4 100%);
+}
+
+.sgc-services-gold-laptop-hero::before,
+.sgc-services-gold-laptop-hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sgc-services-gold-laptop-hero::before {
+  inset: 0;
+  background:
+    linear-gradient(115deg, transparent 9%, rgba(214, 169, 91, 0.12) 28%, rgba(255, 235, 189, 0.22) 31%, transparent 47%),
+    radial-gradient(circle at 78% 20%, rgba(185, 138, 59, 0.18), transparent 28%);
+  opacity: 0.78;
+}
+
+.sgc-services-gold-laptop-hero::after {
+  width: min(820px, 86vw);
+  height: min(820px, 86vw);
+  left: 50%;
+  top: 43%;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(214, 176, 106, 0.22), transparent 64%);
+  filter: blur(18px);
+}
+
+.sgc-services-laptop-copy {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff7e8;
+  margin-bottom: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.sgc-services-laptop-copy h2 {
+  margin: 0 auto 1rem !important;
+  max-width: 900px;
+  color: #fff7e8 !important;
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(2.35rem, 6vw, 5.5rem) !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.sgc-services-laptop-copy p:not(.sgc-services-kicker) {
+  max-width: 720px;
+  margin: 0 auto !important;
+  color: rgba(255, 247, 232, 0.82) !important;
+  font-size: clamp(1rem, 1.45vw, 1.18rem) !important;
+  line-height: 1.75 !important;
+}
+
+.sgc-gold-laptop-scene {
+  position: relative;
+  z-index: 2;
+  width: min(1260px, calc(100% - 24px));
+  margin: 0 auto;
+  perspective: 1600px;
+}
+
+.sgc-gold-laptop {
+  position: relative;
+  transform: rotateX(3deg);
+  transform-style: preserve-3d;
+}
+
+.sgc-gold-laptop-lid {
+  position: relative;
+  width: min(1140px, 100%);
+  margin: 0 auto;
+  padding: clamp(0.8rem, 1.4vw, 1.25rem);
+  border-radius: clamp(1.25rem, 2vw, 2rem);
+  background:
+    linear-gradient(135deg, rgba(255, 234, 181, 0.98), rgba(178, 120, 45, 0.98) 38%, rgba(96, 54, 18, 0.98) 100%);
+  box-shadow:
+    0 50px 95px rgba(17, 9, 4, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42),
+    inset 0 -18px 38px rgba(83, 45, 17, 0.34);
+}
+
+.sgc-gold-laptop-shine {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.sgc-gold-laptop-shine::before {
+  content: "";
+  position: absolute;
+  inset: -40% -25%;
+  background: linear-gradient(108deg, transparent 35%, rgba(255, 255, 255, 0.36) 45%, rgba(255, 238, 191, 0.18) 51%, transparent 62%);
+  transform: translateX(-30%);
+  animation: sgcGoldLaptopSweep 12s ease-in-out infinite;
+}
+
+.sgc-gold-laptop-screen {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(560px, 58vw, 720px);
+  padding: clamp(1rem, 2vw, 1.65rem);
+  border-radius: clamp(0.8rem, 1.4vw, 1.25rem);
+  background:
+    radial-gradient(circle at 24% 10%, rgba(214, 176, 106, 0.17), transparent 28%),
+    linear-gradient(135deg, rgba(27, 15, 8, 0.98), rgba(12, 8, 6, 0.98));
+  box-shadow: inset 0 0 0 1px rgba(255, 232, 182, 0.16), inset 0 0 52px rgba(0, 0, 0, 0.55);
+}
+
+.sgc-gold-laptop-topbar {
+  display: flex;
+  align-items: center;
+  gap: 0.48rem;
+  margin-bottom: clamp(1rem, 2vw, 1.6rem);
+  color: rgba(255, 247, 232, 0.48);
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.62rem, 1vw, 0.78rem);
+  letter-spacing: 0.08em;
+}
+
+.sgc-gold-laptop-topbar span {
+  width: 0.58rem;
+  height: 0.58rem;
+  border-radius: 999px;
+  background: rgba(214, 176, 106, 0.72);
+  box-shadow: 0 0 18px rgba(214, 176, 106, 0.35);
+}
+
+.sgc-gold-laptop-topbar em {
+  margin-left: 0.5rem;
+  font-style: normal;
+}
+
+.sgc-gold-laptop-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1.25rem;
+  margin-bottom: clamp(1rem, 2vw, 1.6rem);
+}
+
+.sgc-gold-laptop-heading h3 {
+  margin: 0 !important;
+  color: #fff7e8 !important;
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(1.55rem, 3.1vw, 3rem) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.sgc-gold-laptop-heading p {
+  margin: 0 !important;
+  color: rgba(214, 176, 106, 0.92) !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 0.78rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+}
+
+.sgc-gold-laptop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 1.35vw, 1.15rem);
+}
+
+.sgc-gold-laptop-card {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(170px, 16vw, 220px);
+  border-radius: clamp(0.78rem, 1.25vw, 1.1rem);
+  border: 1px solid rgba(255, 232, 182, 0.18);
+  background: #211208;
+  isolation: isolate;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+  cursor: pointer;
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.sgc-gold-laptop-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.58;
+  transform: scale(1.01);
+  transition: transform 420ms ease, opacity 240ms ease;
+}
+
+.sgc-gold-laptop-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 10, 5, 0.24), rgba(14, 8, 5, 0.9));
+  z-index: 1;
+}
+
+.sgc-gold-laptop-card div {
+  position: absolute;
+  left: clamp(0.9rem, 1.4vw, 1.25rem);
+  right: clamp(0.9rem, 1.4vw, 1.25rem);
+  bottom: clamp(0.9rem, 1.4vw, 1.25rem);
+  z-index: 2;
+}
+
+.sgc-gold-laptop-card h4 {
+  margin: 0 0 0.45rem !important;
+  color: #fff7e8 !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem) !important;
+  line-height: 1.1 !important;
+}
+
+.sgc-gold-laptop-card p {
+  margin: 0 !important;
+  color: rgba(255, 247, 232, 0.74) !important;
+  font-size: clamp(0.76rem, 0.95vw, 0.9rem) !important;
+  line-height: 1.45 !important;
+}
+
+.sgc-gold-laptop-card:hover,
+.sgc-gold-laptop-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(255, 232, 182, 0.48);
+  box-shadow: 0 26px 52px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(214, 176, 106, 0.13);
+  outline: none;
+}
+
+.sgc-gold-laptop-card:hover img,
+.sgc-gold-laptop-card:focus-visible img {
+  opacity: 0.68;
+  transform: scale(1.075);
+}
+
+.sgc-gold-laptop-hinge {
+  width: min(980px, 82%);
+  height: clamp(10px, 1.25vw, 16px);
+  margin: -2px auto 0;
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(90deg, rgba(102, 59, 22, 0.72), rgba(255, 228, 172, 0.92), rgba(102, 59, 22, 0.72));
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.22);
+}
+
+.sgc-gold-laptop-base {
+  position: relative;
+  width: min(1220px, 96%);
+  height: clamp(42px, 5vw, 74px);
+  margin: 0 auto;
+  border-radius: 0 0 44% 44% / 0 0 78% 78%;
+  background: linear-gradient(180deg, #f5d796 0%, #b87a2a 42%, #5c3211 100%);
+  box-shadow: 0 34px 48px rgba(21, 12, 6, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.sgc-gold-laptop-base span {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: min(220px, 25%);
+  height: 12px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(74, 41, 15, 0.34);
+  box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.38);
+}
+
+.sgc-gold-laptop-shadow {
+  width: min(980px, 72vw);
+  height: 48px;
+  margin: -18px auto 0;
+  border-radius: 999px;
+  background: rgba(31, 17, 8, 0.28);
+  filter: blur(18px);
+}
+
+.sgc-services-visual-section {
+  padding: clamp(3.5rem, 7vw, 7rem) 0;
+  background: #f6efe4;
+}
+
+.sgc-services-visual-section:nth-of-type(even) {
+  background: #fffaf1;
+}
+
+.sgc-services-visual-inner {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.sgc-services-visual-reverse .sgc-services-visual-media {
+  order: 2;
+}
+
+.sgc-services-visual-media {
+  position: relative;
+}
+
+.sgc-services-device-frame {
+  position: relative;
+  overflow: hidden;
+  min-height: clamp(360px, 44vw, 520px);
+  border-radius: clamp(1.2rem, 2vw, 2rem);
+  background: #211208;
+  box-shadow: 0 28px 70px rgba(35, 20, 13, 0.18), inset 0 0 0 1px rgba(185, 138, 59, 0.18);
+  isolation: isolate;
+}
+
+.sgc-services-device-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(20, 10, 5, 0.08), rgba(20, 10, 5, 0.56)),
+    radial-gradient(circle at 18% 12%, rgba(255, 238, 191, 0.2), transparent 26%);
+  z-index: 1;
+}
+
+.sgc-services-device-frame img {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.015);
+}
+
+.sgc-services-device-frame span {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 2;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid rgba(255, 238, 191, 0.28);
+  border-radius: 999px;
+  background: rgba(26, 15, 9, 0.72);
+  color: #fff7e8;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.sgc-services-visual-copy h2 {
+  max-width: 720px;
+  margin: 0 0 1rem !important;
+  color: #23140d !important;
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(2rem, 4.2vw, 4.25rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.sgc-services-visual-copy > p:not(.sgc-services-kicker) {
+  max-width: 660px;
+  margin: 0 0 1.35rem !important;
+  color: rgba(35, 20, 13, 0.72) !important;
+  font-size: clamp(0.98rem, 1.35vw, 1.12rem) !important;
+  line-height: 1.75 !important;
+}
+
+.sgc-services-visual-copy ul {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0 !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+.sgc-services-visual-copy li {
+  position: relative;
+  padding: 0.95rem 1rem 0.95rem 2.75rem;
+  border: 1px solid rgba(185, 138, 59, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 250, 241, 0.72);
+  color: rgba(35, 20, 13, 0.78) !important;
+  box-shadow: 0 12px 28px rgba(35, 20, 13, 0.055);
+}
+
+.sgc-services-visual-copy li::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.18rem;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #d6b06a, #8a5c1e);
+  box-shadow: 0 0 0 4px rgba(214, 176, 106, 0.13);
+}
+
+.sgc-services-ordered-ready {
+  margin-top: 0 !important;
+}
+
+.sgc-services-ordered-faq {
+  padding: clamp(3.5rem, 7vw, 6.5rem) 0 clamp(4rem, 8vw, 7rem);
+  background: linear-gradient(180deg, #fffaf1 0%, #f6efe4 100%);
+}
+
+.sgc-services-ordered-faq h2 {
+  margin: 0 0 clamp(1.5rem, 3vw, 2.25rem) !important;
+  color: #23140d !important;
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: clamp(2rem, 4.5vw, 4.35rem) !important;
+  line-height: 0.98 !important;
+  letter-spacing: -0.055em !important;
+}
+
+.sgc-services-faq-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.sgc-services-faq-item {
+  border: 1px solid rgba(185, 138, 59, 0.16);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.62);
+  overflow: hidden;
+  box-shadow: 0 14px 34px rgba(35, 20, 13, 0.06);
+}
+
+.sgc-services-faq-question {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 0;
+  background: transparent;
+  color: #23140d;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.98rem, 1.4vw, 1.12rem);
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sgc-services-faq-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
+}
+
+.sgc-services-faq-icon::before,
+.sgc-services-faq-icon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: #b98a3b;
+  transform: translate(-50%, -50%);
+  transition: transform 200ms ease;
+}
+
+.sgc-services-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.sgc-services-faq-question[aria-expanded="true"] .sgc-services-faq-icon::after {
+  transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.sgc-services-faq-answer {
+  padding: 0 1.2rem 1.2rem;
+}
+
+.sgc-services-faq-answer p {
+  max-width: 850px;
+  margin: 0 !important;
+  color: rgba(35, 20, 13, 0.7) !important;
+  line-height: 1.7 !important;
+}
+
+@keyframes sgcGoldLaptopSweep {
+  0%, 72% { transform: translateX(-42%); opacity: 0; }
+  82% { opacity: 0.78; }
+  100% { transform: translateX(42%); opacity: 0; }
+}
+
+@media (max-width: 900px) {
+  .sgc-gold-laptop-screen {
+    min-height: auto;
+  }
+
+  .sgc-gold-laptop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sgc-services-visual-inner,
+  .sgc-services-visual-inner.sgc-services-visual-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .sgc-services-visual-reverse .sgc-services-visual-media {
+    order: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .sgc-services-ordered-shell,
+  .sgc-services-visual-inner {
+    width: min(100% - 28px, 1180px);
+  }
+
+  .sgc-services-gold-laptop-hero {
+    padding-top: 3rem;
+  }
+
+  .sgc-gold-laptop-scene {
+    width: calc(100% - 10px);
+  }
+
+  .sgc-gold-laptop-lid {
+    padding: 0.58rem;
+    border-radius: 1.1rem;
+  }
+
+  .sgc-gold-laptop-screen {
+    padding: 0.85rem;
+    border-radius: 0.75rem;
+  }
+
+  .sgc-gold-laptop-heading {
+    display: block;
+  }
+
+  .sgc-gold-laptop-heading p {
+    margin-top: 0.45rem !important;
+  }
+
+  .sgc-gold-laptop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sgc-gold-laptop-card {
+    min-height: 168px;
+  }
+
+  .sgc-gold-laptop-topbar em {
+    display: none;
+  }
+
+  .sgc-services-device-frame {
+    min-height: 320px;
+  }
+
+  .sgc-services-visual-section,
+  .sgc-services-ordered-faq {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgc-gold-laptop-shine::before {
+    animation: none !important;
+  }
+
+  .sgc-gold-laptop-card,
+  .sgc-gold-laptop-card img {
+    transition: none !important;
+  }
+}

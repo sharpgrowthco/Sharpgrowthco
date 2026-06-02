@@ -531,11 +531,246 @@
     setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
   }
 
+  const orderedServicesFaqs = [
+    {
+      question: 'What types of businesses do you work with?',
+      answer: 'I work with local Alberta businesses that are ready to show up more strategically online, including restaurants, cafés, wellness and beauty studios, real estate professionals, boutique retail shops, service providers, schools, and growing local brands.'
+    },
+    {
+      question: 'What’s included in a free consultation?',
+      answer: 'We will talk through where your marketing stands now, what is feeling scattered or under-supported, and which next steps would help your business grow with more clarity and confidence.'
+    },
+    {
+      question: 'How long does a website build typically take?',
+      answer: 'Most website projects depend on scope, content readiness, and feedback timelines. Smaller refreshes can move quickly, while custom builds need more time for strategy, design, development, refinement, and launch preparation.'
+    },
+    {
+      question: 'Do you offer ongoing monthly marketing support?',
+      answer: 'Yes. Ongoing support can include social media management, content creation, campaign planning, brand direction, reporting, and continuous optimization so your marketing keeps improving month after month.'
+    },
+    {
+      question: 'What areas of Alberta do you serve?',
+      answer: 'Sharp Growth Co. supports businesses across Alberta, including Calgary, Okotoks, Edmonton, surrounding communities, and remote clients who want local insight paired with polished strategy.'
+    },
+    {
+      question: 'How is Sharp Growth Co. different from a marketing agency?',
+      answer: 'You work directly with Jenna instead of being passed between departments. The process is hands-on, strategic, personal, and built for businesses that want agency-level polish without unnecessary complexity.'
+    }
+  ];
+
+  const orderedServiceSections = [
+    {
+      key: 'social-content',
+      eyebrow: 'Social Media & Content Creation',
+      title: 'Content that builds community and moves people to act.',
+      intro: 'A combined strategy, content, and publishing system for businesses that need to look consistent, stay visible, and turn attention into real demand.',
+      image: '/assets/images/social-media-management-alberta-content-strategy-phone.webp',
+      alt: 'Phone mockup showing social media management and content creation strategy for Alberta local businesses.',
+      visualLabel: 'Phone-first content system',
+      points: [
+        'Social media planning, captions, posting, and community engagement',
+        'Short-form video, Reels, TikTok, UGC-style content, and launch assets',
+        'Monthly content direction that keeps your visuals, message, and offers aligned'
+      ]
+    },
+    {
+      key: 'marketing-strategy',
+      eyebrow: 'Marketing Strategy',
+      title: 'A clear roadmap for sustainable local growth.',
+      intro: 'Strategy turns scattered marketing into focused action. I map your positioning, offers, campaigns, and customer journey so every effort has a purpose.',
+      image: '/assets/images/calgary-marketing-consultant-boardroom-strategy-meeting.webp',
+      alt: 'Marketing strategy boardroom planning session for Alberta entrepreneurs and local business growth.',
+      visualLabel: 'Strategic growth planning',
+      points: [
+        'Brand positioning, messaging, campaign planning, and launch strategy',
+        'Customer journey mapping, offer refinement, and growth audits',
+        'Clear priorities and timelines so you know exactly what to do next'
+      ]
+    },
+    {
+      key: 'branding-creative-direction',
+      eyebrow: 'Branding & Creative Direction',
+      title: 'A cohesive brand presence people remember.',
+      intro: 'Your brand should feel intentional everywhere it appears. I shape the visuals, voice, templates, and creative direction that make your business feel polished and recognizable.',
+      image: '/assets/images/branding-agency-alberta-creative-visual-identity-design.webp',
+      alt: 'Brand board style creative direction and visual identity design for Alberta businesses.',
+      visualLabel: 'Brand board direction',
+      points: [
+        'Visual direction, brand identity support, voice, and messaging refinement',
+        'Content themes, Canva templates, brand kits, and promotional graphics',
+        'Creative direction that keeps every touchpoint consistent and elevated'
+      ]
+    }
+  ];
+
+  function createOrderedServicesFaq() {
+    const section = document.createElement('section');
+    section.className = 'sgc-services-ordered-faq';
+    section.id = 'services-faq';
+    section.innerHTML = `
+      <div class="sgc-services-ordered-shell">
+        <p class="sgc-services-kicker">FAQ</p>
+        <h2>Questions before we grow?</h2>
+        <div class="sgc-services-faq-list">
+          ${orderedServicesFaqs.map((item, index) => `
+            <article class="sgc-services-faq-item">
+              <button class="sgc-services-faq-question" type="button" aria-expanded="${index === 0 ? 'true' : 'false'}">
+                <span>${item.question}</span>
+                <span class="sgc-services-faq-icon" aria-hidden="true"></span>
+              </button>
+              <div class="sgc-services-faq-answer" ${index === 0 ? '' : 'hidden'}>
+                <p>${item.answer}</p>
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    section.querySelectorAll('.sgc-services-faq-question').forEach((button) => {
+      button.addEventListener('click', () => {
+        const item = button.closest('.sgc-services-faq-item');
+        const answer = item?.querySelector('.sgc-services-faq-answer');
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        if (answer) answer.hidden = expanded;
+      });
+    });
+    return section;
+  }
+
+  function createGoldLaptopHero() {
+    const section = document.createElement('section');
+    section.className = 'sgc-services-gold-laptop-hero';
+    section.id = serviceAnchorsByTitle['Website Design & Development'];
+    section.setAttribute('data-sgc-service-anchor', serviceAnchorsByTitle['Website Design & Development']);
+    section.innerHTML = `
+      <div class="sgc-services-ordered-shell sgc-services-laptop-copy">
+        <p class="sgc-services-kicker">Flagship Website Service</p>
+        <h2>Website Design &amp; Development</h2>
+        <p>Custom, conversion-focused websites built to make your business look polished, feel trustworthy, and turn visitors into customers.</p>
+      </div>
+      <div class="sgc-gold-laptop-scene" aria-label="Interactive laptop mockup listing Website Design and Development services">
+        <div class="sgc-gold-laptop">
+          <div class="sgc-gold-laptop-lid">
+            <span class="sgc-gold-laptop-shine" aria-hidden="true"></span>
+            <div class="sgc-gold-laptop-screen">
+              <div class="sgc-gold-laptop-topbar"><span></span><span></span><span></span><em>sharpgrowthco.com/web-design</em></div>
+              <div class="sgc-gold-laptop-heading"><h3>Website Design &amp; Development</h3><p>What's Included</p></div>
+              <div class="sgc-gold-laptop-grid">
+                ${webCards.map((card) => `
+                  <article class="sgc-gold-laptop-card" tabindex="0">
+                    <img src="${card.image}" alt="${card.alt}" loading="lazy" decoding="async">
+                    <span class="sgc-gold-laptop-card-overlay" aria-hidden="true"></span>
+                    <div><h4>${card.title}</h4><p>${card.description}</p></div>
+                  </article>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="sgc-gold-laptop-hinge" aria-hidden="true"></div>
+          <div class="sgc-gold-laptop-base" aria-hidden="true"><span></span></div>
+        </div>
+        <div class="sgc-gold-laptop-shadow" aria-hidden="true"></div>
+      </div>
+    `;
+    return section;
+  }
+
+  function createVisualServiceSection(config, index) {
+    const section = document.createElement('section');
+    section.className = `sgc-services-visual-section sgc-services-visual-${config.key}`;
+    section.id = config.key;
+    section.setAttribute('data-sgc-service-anchor', config.key);
+    const reverseClass = index % 2 ? ' sgc-services-visual-reverse' : '';
+    section.innerHTML = `
+      <div class="sgc-services-visual-inner${reverseClass}">
+        <div class="sgc-services-visual-media">
+          <div class="sgc-services-device-frame">
+            <img src="${config.image}" alt="${config.alt}" loading="lazy" decoding="async">
+            <span>${config.visualLabel}</span>
+          </div>
+        </div>
+        <div class="sgc-services-visual-copy">
+          <p class="sgc-services-kicker">${config.eyebrow}</p>
+          <h2>${config.title}</h2>
+          <p>${config.intro}</p>
+          <ul>
+            ${config.points.map((point) => `<li>${point}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    `;
+    return section;
+  }
+
+  function getServicesHeroSection() {
+    const heading = Array.from(document.querySelectorAll('h1')).find((el) => normalize(el.textContent).includes('Full-service marketing'));
+    return heading ? heading.closest('section') || heading.parentElement : null;
+  }
+
+  function getReadyToBeginSection() {
+    return Array.from(document.querySelectorAll('section')).find((section) => {
+      const text = normalize(section.textContent);
+      const headings = Array.from(section.querySelectorAll('h1,h2,h3')).map((heading) => normalize(heading.textContent)).join(' ');
+      return text.includes('Ready to Begin') || headings.includes('Ready to grow with intention?');
+    }) || null;
+  }
+
+  function removeServicesFaqFromHomeIfNeeded() {
+    if (!routeIsHome()) return;
+    const faqHeading = Array.from(document.querySelectorAll('section h2, section h3')).find((el) => /questions|faq/i.test(normalize(el.textContent)));
+    const faqSection = faqHeading ? faqHeading.closest('section') : null;
+    if (faqSection) {
+      faqSection.dataset.sgcMovedToServices = 'true';
+      faqSection.remove();
+    }
+  }
+
+  function buildOrderedServicesPage() {
+    if (!routeIsServices()) return;
+    const hero = getServicesHeroSection();
+    if (!hero || hero.dataset.sgcOrderedServicesBuilt === 'true') return;
+
+    keepPreferredReadyToBeginSection();
+    const ready = getReadyToBeginSection();
+    const footer = document.querySelector('footer');
+    const parent = hero.parentElement;
+    if (!parent) return;
+
+    Array.from(parent.children).forEach((child) => {
+      if (child === hero || child === ready || child === footer) return;
+      if (child.tagName && child.tagName.toLowerCase() === 'section') child.remove();
+    });
+
+    document.querySelectorAll('.sgc-services-gold-laptop-hero, .sgc-services-visual-section, .sgc-services-ordered-faq').forEach((el) => el.remove());
+
+    const laptopHero = createGoldLaptopHero();
+    const visualSections = orderedServiceSections.map((config, index) => createVisualServiceSection(config, index));
+    const faq = createOrderedServicesFaq();
+
+    hero.insertAdjacentElement('afterend', laptopHero);
+    let cursor = laptopHero;
+    visualSections.forEach((section) => {
+      cursor.insertAdjacentElement('afterend', section);
+      cursor = section;
+    });
+
+    if (ready) {
+      ready.classList.add('sgc-services-ordered-ready');
+      cursor.insertAdjacentElement('afterend', ready);
+      ready.insertAdjacentElement('afterend', faq);
+    } else if (footer) {
+      footer.insertAdjacentElement('beforebegin', faq);
+    } else {
+      cursor.insertAdjacentElement('afterend', faq);
+    }
+
+    hero.dataset.sgcOrderedServicesBuilt = 'true';
+  }
+
   function enhanceServicesPage() {
     if (!routeIsServices()) return;
-    enhanceMainServiceBoxes();
-    enhanceWebsiteCards();
-    enhanceWebsiteHeroBanner();
+    buildOrderedServicesPage();
     keepPreferredReadyToBeginSection();
     scrollToServiceHash();
   }
@@ -679,6 +914,7 @@
 
   function enhanceAllPages() {
     repairAboutImages();
+    removeServicesFaqFromHomeIfNeeded();
     enhanceHomeBusinessTags();
     enhanceHomeServiceCards();
     removeMovedHomeSections();
