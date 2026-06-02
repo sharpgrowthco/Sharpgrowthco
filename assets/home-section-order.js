@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'home-what-offer-visual-20260602';
+  const VERSION = 'home-client-success-logo-packages-order-20260602';
   const CALENDLY = 'https://calendly.com/sharpgrowthco';
 
   function normalize(text) {
@@ -175,6 +175,7 @@
         <div class="attribution">
           <div class="attribution-info">
             <span class="attribution-name">Laine Mackay</span>
+            <img class="gather-grow-testimonial-logo" src="/assets/images/gather-grow-logo-small-rectangle.svg" alt="Gather and Grow logo" width="180" height="58" loading="lazy" decoding="async">
             <span class="attribution-role">Founder, Gather and Grow</span>
           </div>
           <div class="project-tags" aria-label="Project services">
@@ -288,11 +289,11 @@
     insertAfter(whySection, whatSection);
     insertAfter(whatSection, servicesSection);
     insertAfter(servicesSection, testimonialSection);
-    if (whoSection) insertAfter(testimonialSection, whoSection);
-    if (pricingSection) insertAfter(whoSection || testimonialSection, pricingSection);
-    if (faqSection) insertAfter(pricingSection || whoSection || testimonialSection, faqSection);
-    if (readySection) insertAfter(faqSection || pricingSection || whoSection || testimonialSection, readySection);
-    if (footer) insertAfter(readySection || faqSection || pricingSection || whoSection || testimonialSection, footer);
+    if (pricingSection) insertAfter(testimonialSection, pricingSection);
+    if (whoSection) insertAfter(pricingSection || testimonialSection, whoSection);
+    if (faqSection) insertAfter(whoSection || pricingSection || testimonialSection, faqSection);
+    if (readySection) insertAfter(faqSection || whoSection || pricingSection || testimonialSection, readySection);
+    if (footer) insertAfter(readySection || faqSection || whoSection || pricingSection || testimonialSection, footer);
 
     document.documentElement.dataset.sgcHomeOrderVersion = VERSION;
     return Boolean(readySection || faqSection || pricingSection || whoSection);

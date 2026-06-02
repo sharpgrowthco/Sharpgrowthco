@@ -520,6 +520,17 @@
   gap: 4px;
 }
 
+.gather-grow-testimonial-logo {
+  display: block;
+  width: min(180px, 52vw);
+  height: auto;
+  max-height: 58px;
+  object-fit: contain;
+  margin: 9px 0 6px;
+  border-radius: 10px;
+  filter: drop-shadow(0 8px 18px rgba(44, 38, 32, 0.08));
+}
+
 .attribution-name {
   font-family: 'Outfit', 'Jost', sans-serif;
   font-size: 15px;
@@ -620,6 +631,11 @@
   .attribution {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .gather-grow-testimonial-logo {
+    width: min(168px, 58vw);
+    max-height: 54px;
   }
 }
 

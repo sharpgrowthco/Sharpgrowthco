@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 116" role="img" aria-labelledby="title desc">
+  <title id="title">Gather and Grow logo</title>
+  <desc id="desc">A small rectangular Gather and Grow wordmark with botanical accents.</desc>
+  <rect width="360" height="116" rx="18" fill="#FBF7EF"/>
+  <rect x="8" y="8" width="344" height="100" rx="14" fill="none" stroke="#B8923E" stroke-width="2" opacity="0.45"/>
+  <path d="M74 74C50 66 42 45 47 29c18 4 33 18 33 39" fill="none" stroke="#6F7D56" stroke-width="5" stroke-linecap="round"/>
+  <path d="M76 74c22-9 31-27 27-44-17 2-33 15-34 39" fill="none" stroke="#8A9A67" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="76" cy="77" r="5" fill="#B8923E"/>
+  <text x="126" y="51" fill="#2C2620" font-family="Cormorant Garamond, Georgia, serif" font-size="34" font-weight="600" letter-spacing="1.2">Gather &amp; Grow</text>
+  <text x="129" y="78" fill="#6B5E50" font-family="Outfit, Arial, sans-serif" font-size="13" font-weight="500" letter-spacing="3.2">WELLNESS STUDIO</text>
+</svg>
