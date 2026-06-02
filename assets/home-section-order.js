@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const VERSION = 'home-new-flow-dashboard-testimonial-20260602';
+  const VERSION = 'home-why-before-offer-20260602';
   const HOME_PATHS = new Set(['/', '']);
 
   function normalize(text) {
@@ -23,8 +23,16 @@
     return sections.find((section) => normalizedLower(section.textContent).includes(target)) || null;
   }
 
+  function findHeroSection() {
+    return document.querySelector('main section, section') || null;
+  }
+
   function findWhySection() {
-    return sectionContainingText('Strategic Marketing for Business Growth') || sectionContainingText('Why Sharp Growth Co.');
+    const sections = Array.from(document.querySelectorAll('section'));
+    return sections.find((section) => {
+      const text = normalizedLower(section.textContent);
+      return text.includes('why sharp growth co.') || text.includes('strategic marketing for business growth');
+    }) || null;
   }
 
   function findServicesSection() {
@@ -211,16 +219,18 @@
 
     removeLegacyClientStorySections();
 
+    const heroSection = findHeroSection();
     const whySection = findWhySection();
     const servicesSection = findServicesSection();
     const footer = document.querySelector('footer');
 
-    if (!whySection || !servicesSection) return;
+    if (!heroSection || !whySection || !servicesSection) return;
 
     const whatSection = getOrCreateHomeSection('what-i-offer', buildWhatIOfferSection);
     const resultsSection = getOrCreateHomeSection('results-dashboard', buildResultsSection);
     const testimonialSection = getOrCreateHomeSection('short-testimonial', buildTestimonialSection);
 
+    insertAfter(heroSection, whySection);
     insertAfter(whySection, whatSection);
     insertAfter(whatSection, resultsSection);
     insertAfter(resultsSection, servicesSection);
