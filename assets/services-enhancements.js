@@ -157,6 +157,8 @@
   function ensureWebsiteBannerLayers(section) {
     if (!section) return;
     section.classList.add('sgc-website-design-hero');
+    if (!section.id) section.id = serviceAnchorsByTitle['Website Design & Development'];
+    section.setAttribute('data-sgc-service-anchor', serviceAnchorsByTitle['Website Design & Development']);
     section.dataset.sgcHeroBannerImage = websiteBannerImage;
     section.style.setProperty('--sgc-website-hero-image', `url("${websiteBannerImage}")`);
 
@@ -233,6 +235,9 @@
       }
       if (!card || card === document.body) return;
       card.classList.add('sgc-main-service-box', 'sgc-main-service-image-card');
+      const anchorId = serviceAnchorsByTitle[config.title];
+      if (anchorId && !card.id) card.id = anchorId;
+      if (anchorId) card.setAttribute('data-sgc-service-anchor', anchorId);
       card.classList.remove('sgc-service-tone-cream', 'sgc-service-tone-sand');
       card.classList.add(index % 2 === 0 ? 'sgc-service-tone-cream' : 'sgc-service-tone-sand');
       card.style.setProperty('--sgc-main-service-image', `url("${config.image}")`);
@@ -241,14 +246,39 @@
     });
   }
 
-  const homeServiceTitles = [
-    'Website Design & Development',
-    'Social Media Management',
-    'Content Creation',
-    'Marketing Strategy',
-    'Events & Promotions',
-    'Branding & Creative Direction'
+  const serviceAnchorsByTitle = {
+    'Website Design & Development': 'website-design',
+    'Social Media Management': 'social-media-management',
+    'Content Creation': 'content-creation',
+    'Marketing Strategy': 'marketing-strategy',
+    'Events & Promotions': 'events-promotions',
+    'Branding & Creative Direction': 'branding-creative-direction'
+  };
+
+  const homeServiceCards = [
+    {
+      title: 'Website Design & Development',
+      description: 'Custom websites, landing pages & conversion-focused design',
+      href: '/services/#website-design'
+    },
+    {
+      title: 'Social Media Management',
+      description: 'Content planning, posting, captions & community growth',
+      href: '/services/#social-media-management'
+    },
+    {
+      title: 'Content Creation',
+      description: 'Reels, UGC-style video, brand photography & product storytelling',
+      href: '/services/#content-creation'
+    },
+    {
+      title: 'Branding & Creative Direction',
+      description: 'Brand visuals, voice, Canva templates & social media kits',
+      href: '/services/#branding-creative-direction'
+    }
   ];
+
+  const homeServiceTitles = Object.keys(serviceAnchorsByTitle);
 
   function findHomeServicesSection() {
     const heading = findHeading('Everything your brand needs to grow', 'h2');
@@ -283,28 +313,89 @@
     });
   }
 
+  function findHomeServiceCard(section, title) {
+    const heading = Array.from(section.querySelectorAll('h3')).find((el) => normalize(el.textContent) === title);
+    if (!heading) return null;
+
+    let card = heading.parentElement;
+    while (card && card !== section && !card.querySelector('img')) {
+      card = card.parentElement;
+    }
+    while (card && card.parentElement && card.parentElement !== section && card.querySelectorAll('h3').length !== 1) {
+      card = card.parentElement;
+    }
+    return card && card !== section ? card : null;
+  }
+
+  function updateHomeServiceDescription(card, description) {
+    const paragraphs = Array.from(card.querySelectorAll('p')).filter((p) => normalize(p.textContent).length > 0);
+    const descriptionEl = paragraphs[0];
+    if (descriptionEl) {
+      descriptionEl.textContent = description;
+      descriptionEl.classList.add('sgc-home-service-card-description');
+    }
+  }
+
+  function ensureHomeServiceLink(card, config) {
+    card.querySelectorAll(':scope > .sgc-home-service-card-link').forEach((link) => link.remove());
+
+    const link = document.createElement('a');
+    link.className = 'sgc-home-service-card-link';
+    link.href = config.href;
+    link.setAttribute('aria-label', `View ${config.title} service details`);
+    link.innerHTML = '<span class="sgc-sr-only">View service details</span>';
+    card.appendChild(link);
+  }
+
+  function ensureHomeServicesCta(section) {
+    const existing = section.querySelector('.sgc-home-services-view-all-wrap');
+    if (existing) return;
+
+    const wrap = document.createElement('div');
+    wrap.className = 'sgc-home-services-view-all-wrap';
+
+    const cta = document.createElement('a');
+    cta.className = 'sgc-home-services-view-all sgc-pricing-teaser-view-all';
+    cta.href = '/services/';
+    cta.setAttribute('aria-label', 'View all Sharp Growth Co. services');
+    cta.innerHTML = 'View All Services <span aria-hidden="true">→</span>';
+
+    wrap.appendChild(cta);
+    section.appendChild(wrap);
+  }
+
   function enhanceHomeServiceCards() {
     const section = findHomeServicesSection();
     if (!section) return;
     section.classList.add('sgc-home-services-section');
 
+    const retainedTitles = new Set(homeServiceCards.map((card) => card.title));
+    const retainedCards = [];
+
     homeServiceTitles.forEach((title) => {
-      const heading = Array.from(section.querySelectorAll('h3')).find((el) => normalize(el.textContent) === title);
-      if (!heading) return;
+      const card = findHomeServiceCard(section, title);
+      if (!card) return;
 
-      let card = heading.parentElement;
-      while (card && card !== section && !card.querySelector('img')) {
-        card = card.parentElement;
+      if (!retainedTitles.has(title)) {
+        card.classList.add('sgc-home-service-card-hidden');
+        card.setAttribute('aria-hidden', 'true');
+        card.style.setProperty('display', 'none', 'important');
+        return;
       }
-      while (card && card.parentElement && card.parentElement !== section && card.querySelectorAll('h3').length !== 1) {
-        card = card.parentElement;
-      }
-      if (!card || card === section) return;
 
+      const config = homeServiceCards.find((item) => item.title === title);
       const image = card.querySelector('img');
-      if (!image) return;
+      if (!image || !config) return;
 
-      card.classList.add('sgc-home-service-card');
+      card.classList.remove('sgc-home-service-card-hidden');
+      card.removeAttribute('aria-hidden');
+      card.style.removeProperty('display');
+      card.classList.add('sgc-home-service-card', 'sgc-home-service-card-clickable');
+      card.setAttribute('data-sgc-service-anchor', config.href.split('#')[1] || '');
+      retainedCards.push(card);
+      updateHomeServiceDescription(card, config.description);
+      ensureHomeServiceLink(card, config);
+
       image.classList.add('sgc-home-service-card-image');
       image.removeAttribute('width');
       image.removeAttribute('height');
@@ -316,6 +407,13 @@
       image.style.objectFit = 'cover';
       image.style.objectPosition = 'center center';
     });
+
+    const grid = retainedCards[0] && retainedCards.every((card) => card.parentElement === retainedCards[0].parentElement)
+      ? retainedCards[0].parentElement
+      : null;
+    if (grid) grid.classList.add('sgc-home-services-grid');
+
+    ensureHomeServicesCta(section);
   }
 
   function keepPreferredReadyToBeginSection() {
@@ -348,12 +446,23 @@
     });
   }
 
+  function scrollToServiceHash() {
+    if (!routeIsServices()) return;
+    const anchorId = (window.location.hash || '').replace(/^#/, '');
+    if (!anchorId || !Object.values(serviceAnchorsByTitle).includes(anchorId)) return;
+    const target = document.getElementById(anchorId) || document.querySelector(`[data-sgc-service-anchor="${anchorId}"]`);
+    if (!target || target.dataset.sgcHashScrolled === 'true') return;
+    target.dataset.sgcHashScrolled = 'true';
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 120);
+  }
+
   function enhanceServicesPage() {
     if (!routeIsServices()) return;
     enhanceMainServiceBoxes();
     enhanceWebsiteCards();
     enhanceWebsiteHeroBanner();
     keepPreferredReadyToBeginSection();
+    scrollToServiceHash();
   }
 
   function routeIsAbout() {

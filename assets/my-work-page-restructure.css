@@ -1,0 +1,370 @@
+:root {
+  --sgc-espresso: oklch(0.185 0.025 55);
+  --sgc-gold: oklch(0.65 0.09 72);
+  --sgc-gold-legacy: #b17f3a;
+  --sgc-cream: oklch(0.985 0.008 85);
+  --sgc-sand: oklch(0.975 0.010 82);
+  --sgc-muted-sand: oklch(0.945 0.018 80);
+  --sgc-body: oklch(0.42 0.018 60);
+}
+
+.sgc-my-work-page-sections {
+  background: var(--sgc-cream);
+  color: var(--sgc-espresso);
+}
+
+.sgc-work-container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.sgc-work-centered {
+  text-align: center;
+  max-width: 860px;
+}
+
+.sgc-work-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--sgc-gold);
+  margin: 0 0 0.8rem;
+}
+
+.sgc-work-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--sgc-gold);
+  margin: 0 auto 1.35rem;
+}
+
+.sgc-work-intro {
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+  background: linear-gradient(180deg, var(--sgc-cream), var(--sgc-sand));
+}
+
+.sgc-work-intro h1,
+.sgc-work-process h2,
+.sgc-work-testimonial h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  color: var(--sgc-espresso);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.sgc-work-intro h1 {
+  font-size: clamp(2.6rem, 6vw, 5rem);
+}
+
+.sgc-work-lede {
+  max-width: 740px;
+  margin: 1.35rem auto 0;
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  line-height: 1.8;
+  color: var(--sgc-body);
+}
+
+.sgc-work-alberta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  color: var(--sgc-cream);
+}
+
+.sgc-work-bg,
+.sgc-work-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.sgc-work-bg {
+  background-image: url('../assets/images/okotoks-marketing-agency-local-alberta-business-community.webp');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.03);
+}
+
+.sgc-work-overlay {
+  z-index: -1;
+  background: linear-gradient(90deg, oklch(0.185 0.025 55 / 0.90), oklch(0.185 0.025 55 / 0.66));
+}
+
+.sgc-work-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.85fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.sgc-on-dark,
+.sgc-work-alberta .sgc-work-label {
+  color: var(--sgc-gold);
+}
+
+.sgc-work-alberta .sgc-work-rule {
+  margin-left: 0;
+}
+
+.sgc-work-alberta h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4.3rem);
+  font-weight: 600;
+  line-height: 1.05;
+  margin: 0 0 1.4rem;
+  color: var(--sgc-cream);
+}
+
+.sgc-work-alberta p,
+.sgc-work-list li {
+  font-family: 'Outfit', sans-serif;
+  color: oklch(0.82 0.015 70);
+  line-height: 1.75;
+  font-size: 1rem;
+}
+
+.sgc-work-alberta p {
+  margin: 0 0 1rem;
+  max-width: 680px;
+}
+
+.sgc-work-list {
+  list-style: none;
+  margin: 0;
+  padding: 1.75rem;
+  border: 1px solid oklch(0.65 0.09 72 / 0.35);
+  background: oklch(0.185 0.025 55 / 0.62);
+  box-shadow: 0 24px 60px rgba(18, 12, 8, 0.24);
+}
+
+.sgc-work-list li {
+  position: relative;
+  padding-left: 1.35rem;
+  margin-bottom: 1rem;
+}
+
+.sgc-work-list li:last-child {
+  margin-bottom: 0;
+}
+
+.sgc-work-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  color: var(--sgc-gold);
+  font-size: 0.72rem;
+}
+
+.sgc-work-process {
+  padding: clamp(5rem, 8vw, 7rem) 0;
+  background: var(--sgc-sand);
+}
+
+.sgc-work-process h2,
+.sgc-work-testimonial h2 {
+  font-size: clamp(2.15rem, 4.5vw, 3.65rem);
+}
+
+.sgc-process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.sgc-process-grid article {
+  background: var(--sgc-cream);
+  border: 1px solid oklch(0.65 0.09 72 / 0.24);
+  padding: 2rem 1.4rem;
+  min-height: 100%;
+  box-shadow: 0 14px 36px rgba(56, 39, 24, 0.08);
+}
+
+.sgc-process-grid span {
+  width: 76px;
+  height: 76px;
+  border: 1.5px solid var(--sgc-gold);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--sgc-gold);
+  margin-bottom: 1.35rem;
+}
+
+.sgc-process-grid h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+  color: var(--sgc-espresso);
+}
+
+.sgc-process-grid p {
+  font-family: 'Outfit', sans-serif;
+  color: var(--sgc-body);
+  line-height: 1.65;
+  margin: 0;
+  font-size: 0.97rem;
+}
+
+.sgc-work-testimonial {
+  padding: clamp(5rem, 8vw, 7rem) 0;
+  background: #f3eadf;
+}
+
+.sgc-testimonial-heading-wrap {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.sgc-testimonial-card {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 5vw, 4rem);
+  background: #fefcf9;
+  border: 1px solid rgba(177, 127, 58, 0.25);
+  border-radius: 10px;
+  box-shadow: 0 18px 42px rgba(56, 39, 24, 0.13);
+  overflow: hidden;
+}
+
+.sgc-testimonial-card::before {
+  content: '';
+  position: absolute;
+  top: 2rem;
+  bottom: 2rem;
+  left: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--sgc-gold-legacy), rgba(177, 127, 58, 0.15));
+}
+
+.sgc-quote-mark {
+  position: absolute;
+  top: 1.25rem;
+  left: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7rem;
+  line-height: 1;
+  color: rgba(177, 127, 58, 0.16);
+  pointer-events: none;
+}
+
+.sgc-quote-text {
+  position: relative;
+  z-index: 1;
+}
+
+.sgc-quote-text p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.18rem, 1.7vw, 1.4rem);
+  line-height: 1.62;
+  color: #1f1712;
+  margin: 0 0 1rem;
+}
+
+.sgc-quote-text p:last-child {
+  margin-bottom: 0;
+}
+
+.sgc-quote-divider {
+  width: 58px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--sgc-gold-legacy), transparent);
+  margin: 2rem 0 1.5rem;
+}
+
+.sgc-attribution {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.sgc-attribution strong,
+.sgc-attribution span {
+  display: block;
+}
+
+.sgc-attribution strong {
+  font-family: 'Outfit', sans-serif;
+  color: var(--sgc-espresso);
+  letter-spacing: 0.03em;
+}
+
+.sgc-attribution > div > span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--sgc-body);
+  margin-top: 0.2rem;
+}
+
+.sgc-project-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sgc-project-tags span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #8c6b24;
+  background: rgba(177, 127, 58, 0.08);
+  border: 1px solid rgba(177, 127, 58, 0.16);
+  padding: 0.42rem 0.72rem;
+}
+
+@media (max-width: 980px) {
+  .sgc-work-split,
+  .sgc-process-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .sgc-work-container {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .sgc-work-split,
+  .sgc-process-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sgc-work-alberta .sgc-work-rule {
+    margin-left: auto;
+  }
+
+  .sgc-work-alberta,
+  .sgc-work-alberta .sgc-work-label,
+  .sgc-work-alberta h2,
+  .sgc-work-alberta p {
+    text-align: center;
+  }
+
+  .sgc-work-list {
+    text-align: left;
+  }
+
+  .sgc-testimonial-card {
+    padding: 2.6rem 1.6rem 2.2rem;
+  }
+
+  .sgc-quote-mark {
+    left: 1.1rem;
+    font-size: 5.5rem;
+  }
+}
