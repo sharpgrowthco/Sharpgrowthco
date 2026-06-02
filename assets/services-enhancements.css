@@ -376,6 +376,32 @@
 
 .sgc-home-services-section .sgc-home-services-cta {
   margin-top: 0.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 48px !important;
+  padding: 0.95rem 1.85rem !important;
+  border: 1px solid var(--sgc-home-service-gold) !important;
+  background: var(--sgc-home-service-gold) !important;
+  color: #fff8ea !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 3px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  box-shadow: 0 16px 34px rgba(198, 150, 77, 0.26) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease !important;
+}
+
+.sgc-home-services-section .sgc-home-services-cta:hover,
+.sgc-home-services-section .sgc-home-services-cta:focus-visible {
+  background: oklch(0.58 0.10 72) !important;
+  border-color: oklch(0.58 0.10 72) !important;
+  color: #fff8ea !important;
+  box-shadow: 0 20px 42px rgba(198, 150, 77, 0.34) !important;
+  transform: translateY(-3px) !important;
 }
 
 .sgc-sr-only {
@@ -1074,24 +1100,32 @@ button.sgc-contact-service-option[aria-pressed='true'] {
 
 .sgc-home-services-view-all {
   font-family: 'Outfit', 'Raleway', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 13px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--sgc-home-service-espresso);
+  color: #fff8ea;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  padding-bottom: 3px;
-  border-bottom: 1px solid var(--sgc-home-service-espresso);
-  transition: color 0.3s ease, border-color 0.3s ease, gap 0.3s ease;
+  min-height: 48px;
+  padding: 0.95rem 1.85rem;
+  border: 1px solid var(--sgc-home-service-gold);
+  border-radius: 0;
+  background: var(--sgc-home-service-gold);
+  box-shadow: 0 16px 34px rgba(198, 150, 77, 0.26);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, gap 0.3s ease;
 }
 
 .sgc-home-services-view-all:hover,
 .sgc-home-services-view-all:focus-visible {
-  color: var(--sgc-home-service-gold);
-  border-color: var(--sgc-home-service-gold);
+  color: #fff8ea;
+  background: oklch(0.58 0.10 72);
+  border-color: oklch(0.58 0.10 72);
+  box-shadow: 0 20px 42px rgba(198, 150, 77, 0.34);
+  transform: translateY(-3px);
   gap: 14px;
 }
 
