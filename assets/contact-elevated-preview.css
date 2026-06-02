@@ -16,25 +16,10 @@ body:has([data-loc*="Contact.tsx"]) {
     url('/assets/alberta-marketing-agency-mountain-hero-banner.webp') center center / cover no-repeat !important;
 }
 
-[data-loc="client/src/pages/Contact.tsx:52"]::before {
-  content: "";
-  position: absolute;
-  inset: 1.25rem;
-  border: 1px solid rgba(221, 188, 118, 0.30);
-  pointer-events: none;
-}
-
+[data-loc="client/src/pages/Contact.tsx:52"]::before,
 [data-loc="client/src/pages/Contact.tsx:52"]::after {
-  content: "";
-  position: absolute;
-  right: -8rem;
-  bottom: -12rem;
-  width: 30rem;
-  height: 30rem;
-  border-radius: 999px;
-  border: 1px solid rgba(221, 188, 118, 0.18);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
-  pointer-events: none;
+  content: none !important;
+  display: none !important;
 }
 
 [data-loc="client/src/pages/Contact.tsx:57"] {
@@ -215,9 +200,6 @@ body:has([data-loc*="Contact.tsx"]) {
 }
 
 @media (max-width: 640px) {
-  [data-loc="client/src/pages/Contact.tsx:52"]::before {
-    inset: 0.75rem;
-  }
   .sgc-contact-trust-preview__statement,
   .sgc-contact-trust-preview__note {
     padding: 1rem;
@@ -227,5 +209,25 @@ body:has([data-loc*="Contact.tsx"]) {
   }
   [data-loc="client/src/pages/Contact.tsx:71"] {
     padding-top: 3rem !important;
+  }
+}
+
+/* Refined service-selection helper text: elegant, italic, and compact enough for one line on laptop. */
+.sgc-service-helper-preview {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-style: italic !important;
+  font-size: clamp(0.92rem, 0.92vw, 1.02rem) !important;
+  line-height: 1.35 !important;
+  color: oklch(0.45 0.018 60) !important;
+  letter-spacing: 0.01em !important;
+  white-space: nowrap !important;
+  margin-top: 0.28rem !important;
+  margin-bottom: 0.72rem !important;
+}
+
+@media (max-width: 640px) {
+  .sgc-service-helper-preview {
+    white-space: normal !important;
+    font-size: 0.94rem !important;
   }
 }

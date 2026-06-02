@@ -81,7 +81,10 @@
     if (!section || section === document.body) return;
     const paragraphs = Array.from(section.querySelectorAll('p'));
     const helper = paragraphs.find((p) => p.textContent.includes('Select') || p.textContent.includes('services'));
-    if (helper) helper.textContent = 'Select one or more services so I can tailor your next-step recommendation.';
+    if (helper) {
+      helper.textContent = 'Select one or more services so I can tailor your next-step recommendation.';
+      helper.classList.add('sgc-service-helper-preview');
+    }
     section.querySelectorAll('button').forEach((button) => button.classList.add('sgc-service-button-preview'));
   }
 
