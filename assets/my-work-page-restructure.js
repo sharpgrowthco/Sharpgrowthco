@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = 'my-work-stats-parallax-20260602';
+  const VERSION = 'my-work-process-overlay-20260602';
   const TESTIMONIAL_VIDEO_SRC = '/assets/images/testimonial-video-edited_45aa1248.mp4';
   const STORY_IMAGE_SRC = '/assets/images/alberta-marketing-agency-mountain-banner-local-business-growth.webp';
 
@@ -212,15 +212,19 @@
       </section>
 
       <section class="sgc-work-process" aria-labelledby="sgc-work-process-heading">
-        <div class="sgc-work-container sgc-work-centered">
-          <p class="sgc-work-label">My Process</p>
-          <div class="sgc-work-rule"></div>
-          <h2 id="sgc-work-process-heading">How I work with you — directly</h2>
+        <div class="sgc-work-process-bg" aria-hidden="true"></div>
+        <div class="sgc-work-container sgc-work-process-shell">
+          <div class="sgc-work-process-heading-panel" data-sgc-process-reveal>
+            <p class="sgc-work-label sgc-on-dark">My Process</p>
+            <div class="sgc-work-rule"></div>
+            <h2 id="sgc-work-process-heading">How I work with you — directly</h2>
+            <p class="sgc-work-process-intro">A focused, hands-on process designed to move your marketing from scattered to strategic without adding another layer of agency complexity.</p>
+          </div>
           <div class="sgc-process-grid" aria-label="Sharp Growth Co. four-step client process">
-            <article><span>01</span><h3>Discover</h3><p>I audit your current marketing, research your market, and identify the exact opportunities that will move the needle for your specific business.</p></article>
-            <article><span>02</span><h3>Strategize</h3><p>I build a clear, custom roadmap with priorities and timelines — no jargon, no fluff. Just a focused plan you can actually act on.</p></article>
-            <article><span>03</span><h3>Execute</h3><p>I personally handle execution — filming, editing, writing, posting, optimizing. You stay focused on your business while I handle the marketing.</p></article>
-            <article><span>04</span><h3>Optimize</h3><p>I track what's working, report back clearly, and continuously refine your strategy so results keep improving month after month.</p></article>
+            <article data-sgc-process-reveal><span>01</span><div><h3>Discover</h3><p>I audit your current marketing, research your market, and identify the exact opportunities that will move the needle for your specific business.</p></div></article>
+            <article data-sgc-process-reveal><span>02</span><div><h3>Strategize</h3><p>I build a clear, custom roadmap with priorities and timelines — no jargon, no fluff. Just a focused plan you can actually act on.</p></div></article>
+            <article data-sgc-process-reveal><span>03</span><div><h3>Execute</h3><p>I personally handle execution — filming, editing, writing, posting, optimizing. You stay focused on your business while I handle the marketing.</p></div></article>
+            <article data-sgc-process-reveal><span>04</span><div><h3>Optimize</h3><p>I track what's working, report back clearly, and continuously refine your strategy so results keep improving month after month.</p></div></article>
           </div>
         </div>
       </section>
@@ -236,43 +240,31 @@
     prepareStoryVideo();
   };
 
-  let parallaxReady = false;
+  let processRevealReady = false;
   const enableSubtleBackgroundParallax = () => {
-    if (!isWork() || parallaxReady || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    parallaxReady = true;
+    if (!isWork() || processRevealReady) return;
+    processRevealReady = true;
 
-    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-    const update = () => {
-      const viewportCenter = window.innerHeight / 2;
-      const alberta = document.querySelector('.sgc-work-alberta');
-      const process = document.querySelector('.sgc-work-process');
+    const revealItems = Array.from(document.querySelectorAll('[data-sgc-process-reveal]'));
+    if (!revealItems.length) return;
 
-      if (alberta) {
-        const rect = alberta.getBoundingClientRect();
-        const offset = clamp((rect.top + rect.height / 2 - viewportCenter) * -0.035, -26, 26);
-        alberta.style.setProperty('--sgc-alberta-parallax-y', `${offset.toFixed(2)}px`);
-      }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+      revealItems.forEach((item) => item.classList.add('sgc-process-is-visible'));
+      return;
+    }
 
-      if (process) {
-        const rect = process.getBoundingClientRect();
-        const offset = clamp((rect.top + rect.height / 2 - viewportCenter) * -0.032, -24, 24);
-        process.style.setProperty('--sgc-process-parallax-y', `${offset.toFixed(2)}px`);
-      }
-    };
-
-    let ticking = false;
-    const requestUpdate = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        update();
-        ticking = false;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('sgc-process-is-visible');
+        observer.unobserve(entry.target);
       });
-    };
+    }, { threshold: 0.22, rootMargin: '0px 0px -8% 0px' });
 
-    update();
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
+    revealItems.forEach((item, index) => {
+      item.style.setProperty('--sgc-process-delay', `${Math.min(index * 90, 360)}ms`);
+      observer.observe(item);
+    });
   };
 
   const run = () => {

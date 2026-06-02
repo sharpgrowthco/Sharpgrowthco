@@ -1184,3 +1184,112 @@
     letter-spacing: 2px;
   }
 }
+
+/* === 2026-06-02 Home mobile, spacing, and visual polish optimization === */
+body:has(.sgc-home-what-offer) .sgc-home-what-offer {
+  padding-top: clamp(3.6rem, 6vw, 5.25rem) !important;
+  padding-bottom: clamp(2.4rem, 4.5vw, 3.7rem) !important;
+}
+
+body:has(.sgc-home-what-offer) .sgc-home-what-offer + .sgc-home-services-section,
+body:has(.sgc-home-what-offer) .sgc-home-services-section {
+  padding-top: clamp(2.35rem, 4vw, 3.75rem) !important;
+}
+
+body:has(.sgc-home-what-offer) .sgc-home-services-section .sgc-section-header,
+body:has(.sgc-home-what-offer) .sgc-home-services-section [class*="section-header"] {
+  margin-top: 0 !important;
+  margin-bottom: clamp(1.55rem, 2.8vw, 2.3rem) !important;
+}
+
+.sgc-home-what-offer-grid {
+  align-items: center !important;
+  gap: clamp(2rem, 4.5vw, 4.8rem) !important;
+}
+
+.sgc-home-offer-copy-stack {
+  gap: clamp(1rem, 2vw, 1.45rem) !important;
+}
+
+.sgc-home-offer-callout {
+  margin-top: clamp(0.2rem, 0.8vw, 0.65rem) !important;
+  margin-bottom: clamp(0.15rem, 0.7vw, 0.55rem) !important;
+}
+
+.sgc-home-flow-cta-inline {
+  width: fit-content;
+  margin-top: clamp(0.2rem, 0.9vw, 0.7rem) !important;
+}
+
+@media (max-width: 900px) {
+  body:has(.sgc-home-what-offer) .sgc-home-what-offer {
+    padding-top: clamp(2.8rem, 9vw, 4.1rem) !important;
+    padding-bottom: clamp(1.65rem, 6vw, 2.45rem) !important;
+  }
+
+  body:has(.sgc-home-what-offer) .sgc-home-services-section {
+    padding-top: clamp(1.85rem, 6.5vw, 2.75rem) !important;
+  }
+
+  .sgc-home-what-offer-grid {
+    grid-template-columns: 1fr !important;
+    gap: clamp(1.45rem, 5.5vw, 2.2rem) !important;
+  }
+
+  .sgc-offer-orbit-visual {
+    width: min(100%, 430px) !important;
+    margin: 0 auto !important;
+  }
+
+  .sgc-home-flow-cta-inline {
+    width: 100%;
+    max-width: 22rem;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 640px) {
+  body:has(.sgc-home-what-offer) .sgc-home-what-offer {
+    padding-top: 2.45rem !important;
+    padding-bottom: 1.35rem !important;
+  }
+
+  body:has(.sgc-home-what-offer) .sgc-home-services-section {
+    padding-top: 1.55rem !important;
+    padding-bottom: clamp(2.75rem, 10vw, 4rem) !important;
+  }
+
+  body:has(.sgc-home-what-offer) .sgc-home-services-section .sgc-home-services-grid {
+    gap: 1rem !important;
+  }
+
+  .sgc-home-offer-copy-stack {
+    gap: 0.9rem !important;
+  }
+
+  .sgc-home-offer-callout {
+    padding: 1.05rem 1rem !important;
+  }
+
+  .sgc-home-flow-heading {
+    text-wrap: balance;
+  }
+
+  .sgc-home-flow-intro,
+  .sgc-home-offer-callout p {
+    text-wrap: pretty;
+  }
+
+  .sgc-offer-orbit-visual {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgc-home-what-offer *,
+  .sgc-home-services-section * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

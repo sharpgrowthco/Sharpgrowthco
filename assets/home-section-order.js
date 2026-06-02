@@ -106,7 +106,7 @@
       <div class="sgc-home-flow-container sgc-home-what-offer-grid">
         <div class="sgc-home-flow-copy sgc-home-offer-copy-stack">
           <p class="sgc-home-flow-label">What I Offer</p>
-          <h2 class="sgc-home-flow-heading" id="sgc-home-what-offer-heading">Focused marketing support for businesses ready to grow</h2>
+          <h2 class="sgc-home-flow-heading" id="sgc-home-what-offer-heading">Focused marketing for businesses ready to grow</h2>
           <p class="sgc-home-flow-intro">I bring strategy, websites, social media, content, and creative direction together so your business has a stronger online presence, clearer messaging, and marketing that moves with intention.</p>
           <aside class="sgc-home-offer-callout" aria-label="Sharp Growth Co. offer summary">
             <p>Sharp Growth Co. is for local Alberta businesses that want polished marketing, consistent visibility, and a clear plan for turning attention into action.</p>

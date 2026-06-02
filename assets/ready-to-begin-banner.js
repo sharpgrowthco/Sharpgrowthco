@@ -9,6 +9,15 @@
     return (text || '').replace(/\s+/g, ' ').trim();
   }
 
+  function isServicesPage() {
+    return window.location.pathname.replace(/\/+$/, '') === '/services';
+  }
+
+  function markPageContext() {
+    document.documentElement.classList.toggle('sgc-services-page', isServicesPage());
+    document.body.classList.toggle('sgc-services-page', isServicesPage());
+  }
+
   function sectionLooksLikeReadyToBegin(section) {
     if (!section) {
       return false;
@@ -147,6 +156,7 @@
   }
 
   function enhanceReadyToBeginBanners() {
+    markPageContext();
     var found = false;
     document.querySelectorAll('section').forEach(function (section) {
       if (isReadyToBeginSection(section)) {
