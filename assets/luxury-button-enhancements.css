@@ -859,3 +859,15 @@ header .nav a[aria-current="page"] > span {
     line-height: 1.25 !important;
   }
 }
+
+/* 2026-06-01 Home ticker banner: match luxury gold button gradient and italicize moving text. */
+#root > .min-h-screen > section.sgc-mobile-home-hero + div.py-4.overflow-hidden {
+  background-color: var(--sgc-luxury-gold) !important;
+  background-image: linear-gradient(135deg, var(--sgc-luxury-gold-light) 0%, var(--sgc-luxury-gold) 42%, var(--sgc-luxury-gold-dark) 100%) !important;
+  color: var(--sgc-luxury-espresso) !important;
+}
+
+#root > .min-h-screen > section.sgc-mobile-home-hero + div.py-4.overflow-hidden,
+#root > .min-h-screen > section.sgc-mobile-home-hero + div.py-4.overflow-hidden * {
+  font-style: italic !important;
+}
