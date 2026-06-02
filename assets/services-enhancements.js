@@ -8,7 +8,7 @@
     return path === '/services' || window.location.hash.includes('/services');
   };
 
-  const websiteBannerImage = '/assets/banner-website-laptop.png';
+  const websiteBannerImage = '/assets/images/alberta-web-design-website-laptop-showcase.webp';
 
   const webCards = [
     {
@@ -72,8 +72,8 @@
     },
     {
       title: 'Branding & Creative Direction',
-      image: '/assets/images/branding-agency-alberta-creative-visual-identity-design.webp',
-      alt: 'Branding and creative direction visual identity design for Alberta businesses.'
+      image: '/assets/images/branding-creative-direction-brand-board-visual-identity.webp',
+      alt: 'Branding and creative direction brand board visual identity for Alberta businesses.'
     }
   ];
 
@@ -503,17 +503,21 @@
 
     if (readySections.length < 2) return;
 
-    readySections.forEach((section, index) => {
-      if (index === 0) {
+    const preferredSection = readySections.find((section) => section.dataset.readyToBeginInjected === 'true') || readySections[readySections.length - 1] || readySections[0];
+
+    readySections.forEach((section) => {
+      if (section === preferredSection) {
         section.classList.add('sgc-ready-to-begin-preferred');
         section.classList.remove('sgc-ready-to-begin-duplicate-hidden');
         section.hidden = false;
         section.style.removeProperty('display');
         section.removeAttribute('aria-hidden');
+        delete section.dataset.readyToBeginDuplicateRemoved;
         return;
       }
 
       section.classList.add('sgc-ready-to-begin-duplicate-hidden');
+      section.classList.remove('sgc-ready-to-begin-preferred');
       section.hidden = true;
       section.style.setProperty('display', 'none', 'important');
       section.setAttribute('aria-hidden', 'true');
@@ -592,8 +596,8 @@
       eyebrow: 'Branding & Creative Direction',
       title: 'A cohesive brand presence people remember.',
       intro: 'Your brand should feel intentional everywhere it appears. I shape the visuals, voice, templates, and creative direction that make your business feel polished and recognizable.',
-      image: '/assets/images/branding-agency-alberta-creative-visual-identity-design.webp',
-      alt: 'Brand board style creative direction and visual identity design for Alberta businesses.',
+      image: '/assets/images/branding-creative-direction-brand-board-visual-identity.webp',
+      alt: 'Brand board creative direction and visual identity system for Alberta businesses.',
       visualLabel: 'Brand board direction',
       points: [
         'Visual direction, brand identity support, voice, and messaging refinement',
@@ -709,11 +713,12 @@
   }
 
   function getReadyToBeginSection() {
-    return Array.from(document.querySelectorAll('section')).find((section) => {
+    const readySections = Array.from(document.querySelectorAll('section')).filter((section) => {
       const text = normalize(section.textContent);
       const headings = Array.from(section.querySelectorAll('h1,h2,h3')).map((heading) => normalize(heading.textContent)).join(' ');
       return text.includes('Ready to Begin') || headings.includes('Ready to grow with intention?');
-    }) || null;
+    });
+    return readySections.find((section) => section.dataset.readyToBeginInjected === 'true') || readySections[readySections.length - 1] || readySections[0] || null;
   }
 
   function removeServicesFaqFromHomeIfNeeded() {
@@ -729,7 +734,16 @@
   function buildOrderedServicesPage() {
     if (!routeIsServices()) return;
     const hero = getServicesHeroSection();
-    if (!hero || hero.dataset.sgcOrderedServicesBuilt === 'true') return;
+    const existingOrderedSections = document.querySelectorAll('.sgc-services-gold-laptop-hero, .sgc-services-visual-section, .sgc-services-ordered-faq');
+    if (!hero) return;
+    if (hero.dataset.sgcOrderedServicesBuilt === 'true' && existingOrderedSections.length >= 5) {
+      const readyCurrent = getReadyToBeginSection();
+      const footerCurrent = document.querySelector('footer');
+      if (readyCurrent && footerCurrent && readyCurrent.nextElementSibling !== footerCurrent && footerCurrent.parentNode) {
+        footerCurrent.parentNode.insertBefore(readyCurrent, footerCurrent);
+      }
+      return;
+    }
 
     keepPreferredReadyToBeginSection();
     const ready = getReadyToBeginSection();
@@ -755,14 +769,15 @@
       cursor = section;
     });
 
+    cursor.insertAdjacentElement('afterend', faq);
+
     if (ready) {
       ready.classList.add('sgc-services-ordered-ready');
-      cursor.insertAdjacentElement('afterend', ready);
-      ready.insertAdjacentElement('afterend', faq);
-    } else if (footer) {
-      footer.insertAdjacentElement('beforebegin', faq);
-    } else {
-      cursor.insertAdjacentElement('afterend', faq);
+      if (footer && footer.parentNode) {
+        footer.parentNode.insertBefore(ready, footer);
+      } else {
+        faq.insertAdjacentElement('afterend', ready);
+      }
     }
 
     hero.dataset.sgcOrderedServicesBuilt = 'true';
@@ -946,4 +961,20 @@
   window.setTimeout(scheduleEnhance, 250);
   window.setTimeout(scheduleEnhance, 900);
   window.setTimeout(scheduleEnhance, 1800);
+  window.setTimeout(scheduleEnhance, 3200);
+
+  const servicesRoot = document.getElementById('root') || document.body;
+  if (servicesRoot && 'MutationObserver' in window) {
+    let mutationRuns = 0;
+    const observer = new MutationObserver(() => {
+      if (mutationRuns >= 14) {
+        observer.disconnect();
+        return;
+      }
+      mutationRuns += 1;
+      window.setTimeout(scheduleEnhance, 80);
+    });
+    observer.observe(servicesRoot, { childList: true, subtree: true });
+    window.setTimeout(() => observer.disconnect(), 9000);
+  }
 })();

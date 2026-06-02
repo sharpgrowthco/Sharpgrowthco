@@ -1,5 +1,5 @@
 (() => {
-  const VIDEO_SRC = './assets/images/testimonial-video-edited_45aa1248.mp4';
+  const VIDEO_SRC = '/assets/videos/gather-grow-testimonial-website-screen-recording.mp4';
 
   function findTextNode(text) {
     const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
@@ -21,7 +21,7 @@
     const videos = Array.from(document.querySelectorAll('video'));
     const restoredVideo = videos.find((candidate) => {
       const src = candidate.getAttribute('src') || candidate.currentSrc || '';
-      return src.includes('testimonial-video-edited_45aa1248.mp4');
+      return src.includes('gather-grow-testimonial-website-screen-recording.mp4') || src.includes('gather-grow-testimonial-website-screen-recording.mp4');
     });
     if (restoredVideo) return { video: restoredVideo, mockup: restoredVideo.closest('div') || null };
 

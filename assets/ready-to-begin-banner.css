@@ -257,3 +257,111 @@ section.sgc-ready-to-begin-duplicate-hidden {
     font-size: clamp(1.55rem, 7vw, 2.05rem) !important;
   }
 }
+
+/* === 2026-06-02 Global bottom Ready to Begin CTA consistency === */
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+.ready-to-begin-injected-section.ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+.sgc-services-page .ready-to-begin-injected-section.ready-to-begin-image-banner.sgc-ready-to-begin-preferred {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: clamp(300px, 25vw, 345px) !important;
+  padding: clamp(3.2rem, 5.2vw, 4.6rem) 1.35rem !important;
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred::before,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred::before {
+  background-size: cover !important;
+  background-position: center right !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred::after,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred::after {
+  background: linear-gradient(
+    90deg,
+    rgba(33, 27, 22, 0.70) 0%,
+    rgba(55, 43, 33, 0.58) 38%,
+    rgba(55, 43, 33, 0.44) 65%,
+    rgba(33, 27, 22, 0.50) 100%
+  ) !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-banner-content,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-banner-content {
+  width: min(100%, 820px) !important;
+  max-width: min(100%, 820px) !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred .section-label,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred .section-label {
+  margin: 0 0 0.9rem !important;
+  font-size: 0.68rem !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.28em !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred h2,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred h2 {
+  max-width: 820px !important;
+  margin: 0 auto 0.9rem !important;
+  font-size: clamp(2rem, 4vw, 3.15rem) !important;
+  line-height: 1.04 !important;
+  text-align: center !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred p,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred p {
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  font-size: clamp(0.95rem, 1.35vw, 1.08rem) !important;
+  line-height: 1.55 !important;
+  text-align: center !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-actions,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-actions {
+  justify-content: center !important;
+  margin-top: 1.65rem !important;
+  gap: 0.85rem !important;
+}
+
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-actions .btn-primary,
+.ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-actions .btn-gold,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-actions .btn-primary,
+.sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred .ready-to-begin-actions .btn-gold {
+  min-height: 3.65rem !important;
+  padding: 1.05rem 2rem !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.16em !important;
+}
+
+@media (max-width: 767px) {
+  .ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+  .ready-to-begin-injected-section.ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+  .sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+  .sgc-services-page .ready-to-begin-injected-section.ready-to-begin-image-banner.sgc-ready-to-begin-preferred {
+    min-height: 330px !important;
+    padding: 3.15rem 1.1rem !important;
+  }
+
+  .ready-to-begin-image-banner.sgc-ready-to-begin-preferred::before,
+  .sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred::before {
+    background-position: 64% center !important;
+  }
+
+  .ready-to-begin-image-banner.sgc-ready-to-begin-preferred h2,
+  .sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred h2 {
+    font-size: clamp(1.85rem, 9vw, 2.55rem) !important;
+  }
+
+  .ready-to-begin-image-banner.sgc-ready-to-begin-preferred p,
+  .sgc-services-page .ready-to-begin-image-banner.sgc-ready-to-begin-preferred p {
+    font-size: 0.95rem !important;
+  }
+}

@@ -95,6 +95,25 @@
     ], { includeReady: true });
   }
 
+  function findHomeTickerStrip() {
+    const candidates = Array.from(document.querySelectorAll('div.py-4.overflow-hidden, div[class*="overflow-hidden"]'));
+    return candidates.find((element) => {
+      if (!element || element.tagName.toLowerCase() === 'section') return false;
+      if (element.querySelector('header, footer, section, main, h1, h2, h3')) return false;
+      const text = normalizedLower(element.textContent);
+      const isTicker = text.includes('strategy') &&
+        text.includes('content creation') &&
+        text.includes('web design') &&
+        text.includes('social media') &&
+        text.includes('brand growth');
+      if (isTicker) {
+        element.dataset.sgcHomeHeroTicker = 'true';
+        element.classList.add('sgc-home-hero-ticker-strip');
+      }
+      return isTicker;
+    }) || null;
+  }
+
   function buildWhatIOfferSection() {
     const section = document.createElement('section');
     section.className = 'sgc-home-what-offer';
@@ -258,12 +277,14 @@
     const faqSection = findFaqSection();
     const readySection = findReadySection();
     const footer = document.querySelector('footer');
+    const tickerStrip = findHomeTickerStrip();
 
     if (!heroSection || !whySection || !servicesSection) return false;
 
     normalizeWhyCta(whySection);
 
-    insertAfter(heroSection, whySection);
+    if (tickerStrip) insertAfter(heroSection, tickerStrip);
+    insertAfter(tickerStrip || heroSection, whySection);
     insertAfter(whySection, whatSection);
     insertAfter(whatSection, servicesSection);
     insertAfter(servicesSection, testimonialSection);

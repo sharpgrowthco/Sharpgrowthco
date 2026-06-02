@@ -1,6 +1,6 @@
 (() => {
   const VERSION = 'my-work-process-overlay-20260602';
-  const TESTIMONIAL_VIDEO_SRC = '/assets/images/testimonial-video-edited_45aa1248.mp4';
+  const TESTIMONIAL_VIDEO_SRC = '/assets/videos/gather-grow-testimonial-website-screen-recording.mp4';
   const STORY_IMAGE_SRC = '/assets/images/alberta-marketing-agency-mountain-banner-local-business-growth.webp';
 
   const isHome = () => ['/', '/index.html', ''].includes(window.location.pathname);

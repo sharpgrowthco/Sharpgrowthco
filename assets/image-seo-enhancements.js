@@ -100,12 +100,12 @@
     "critical": false
   },
   {
-    "src": "/assets/images/branding-agency-alberta-creative-visual-identity-design.webp",
-    "filename": "branding-agency-alberta-creative-visual-identity-design.webp",
-    "oldFilename": "branding_creative_28088b01.png",
-    "alt": "Branding agency Alberta creative visual identity design workspace for premium local business positioning.",
-    "width": 1536,
-    "height": 1024,
+    "src": "/assets/images/branding-creative-direction-brand-board-visual-identity.webp",
+    "filename": "branding-creative-direction-brand-board-visual-identity.webp",
+    "oldFilename": "branding-agency-alberta-creative-visual-identity-design.webp",
+    "alt": "Branding and creative direction brand board visual identity system for Alberta local businesses.",
+    "width": 776,
+    "height": 739,
     "critical": false
   },
   {

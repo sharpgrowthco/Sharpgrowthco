@@ -60,8 +60,16 @@
     var footer = document.querySelector('footer');
     var root = document.querySelector('#root');
 
-    if (!footer || !root || document.querySelector('[data-ready-to-begin-injected="true"]')) {
+    if (!footer || !root) {
       return null;
+    }
+
+    var existingInjected = document.querySelector('[data-ready-to-begin-injected="true"]');
+    if (existingInjected) {
+      if (existingInjected.nextElementSibling !== footer && footer.parentNode) {
+        footer.parentNode.insertBefore(existingInjected, footer);
+      }
+      return existingInjected;
     }
 
     var section = document.createElement('section');
@@ -85,13 +93,13 @@
 
   function keepOnlyFirstReadyToBeginSection() {
     var readySections = Array.prototype.slice.call(document.querySelectorAll('section')).filter(sectionLooksLikeReadyToBegin);
-    if (readySections.length < 2) {
+    if (readySections.length < 1) {
       return;
     }
 
     var preferredSection = readySections.filter(function (section) {
-      return section.dataset.readyToBeginInjected !== 'true';
-    })[0] || readySections[0];
+      return section.dataset.readyToBeginInjected === 'true';
+    })[0] || readySections[readySections.length - 1] || readySections[0];
 
     readySections.forEach(function (section) {
       if (section === preferredSection) {
@@ -157,19 +165,16 @@
 
   function enhanceReadyToBeginBanners() {
     markPageContext();
-    var found = false;
+    var created = createReadyToBeginBanner();
+
     document.querySelectorAll('section').forEach(function (section) {
       if (isReadyToBeginSection(section)) {
-        found = true;
         enhanceSection(section);
       }
     });
 
-    if (!found) {
-      var created = createReadyToBeginBanner();
-      if (created) {
-        enhanceSection(created);
-      }
+    if (created) {
+      enhanceSection(created);
     }
 
     keepOnlyFirstReadyToBeginSection();
