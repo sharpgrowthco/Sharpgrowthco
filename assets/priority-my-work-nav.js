@@ -1,6 +1,7 @@
 (() => {
-  const VERSION = 'priority-my-work-nav-20260602';
+  const VERSION = 'priority-my-work-nav-20260602-safe1';
   const WORK_HREF = '/work/';
+  const TARGET_LABEL = 'My Work';
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim().toLowerCase();
@@ -9,10 +10,16 @@
   function setLinkText(link, text) {
     const textElement = Array.from(link.querySelectorAll('*')).reverse().find((node) => normalize(node.textContent));
     if (textElement) {
-      textElement.textContent = text;
+      if (textElement.textContent !== text) textElement.textContent = text;
       return;
     }
-    link.textContent = text;
+    if (link.textContent !== text) link.textContent = text;
+  }
+
+  function isWorkLink(link) {
+    const label = normalize(link.textContent || link.getAttribute('aria-label'));
+    const href = (link.getAttribute('href') || '').toLowerCase();
+    return label === 'my work' || label === 'work' || href === '/work' || href === '/work/';
   }
 
   function restoreMyWorkNav() {
@@ -20,15 +27,12 @@
       const links = Array.from(nav.querySelectorAll('a'));
       if (!links.length) return;
 
-      const existing = links.find((link) => {
-        const label = normalize(link.textContent || link.getAttribute('aria-label'));
-        const href = (link.getAttribute('href') || '').toLowerCase();
-        return label === 'my work' || href === '/work' || href === '/work/';
-      });
+      const existing = links.find(isWorkLink);
 
       if (existing) {
-        existing.href = WORK_HREF;
-        existing.textContent = normalize(existing.textContent) === 'work' ? 'My Work' : existing.textContent;
+        if (existing.getAttribute('href') !== WORK_HREF) existing.setAttribute('href', WORK_HREF);
+        if (normalize(existing.textContent) === 'work') setLinkText(existing, TARGET_LABEL);
+        if (existing.getAttribute('aria-label') !== 'View My Work') existing.setAttribute('aria-label', 'View My Work');
         existing.dataset.sgcPriorityMyWorkNav = VERSION;
         return;
       }
@@ -40,14 +44,14 @@
       if (!reference || !reference.parentElement) return;
 
       const clone = reference.cloneNode(true);
-      clone.href = WORK_HREF;
+      clone.setAttribute('href', WORK_HREF);
       clone.removeAttribute('aria-current');
       clone.removeAttribute('data-state');
       clone.querySelectorAll('[aria-current], [data-state]').forEach((node) => {
         node.removeAttribute('aria-current');
         node.removeAttribute('data-state');
       });
-      setLinkText(clone, 'My Work');
+      setLinkText(clone, TARGET_LABEL);
       clone.setAttribute('aria-label', 'View My Work');
       clone.dataset.sgcPriorityMyWorkNav = VERSION;
 
@@ -58,34 +62,16 @@
     });
   }
 
-  let restoreScheduled = false;
-  let restoreObserver = null;
-
-  function runRestore() {
-    restoreScheduled = false;
-    if (restoreObserver) restoreObserver.disconnect();
-    restoreMyWorkNav();
-    window.requestAnimationFrame(() => {
-      restoreMyWorkNav();
-      if (restoreObserver) restoreObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
-    });
-  }
-
-  function scheduleRestore() {
-    if (restoreScheduled) return;
-    restoreScheduled = true;
-    window.requestAnimationFrame(runRestore);
+  function scheduleRestore(delay) {
+    window.setTimeout(() => window.requestAnimationFrame(restoreMyWorkNav), delay);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scheduleRestore, { once: true });
+    document.addEventListener('DOMContentLoaded', () => scheduleRestore(0), { once: true });
   } else {
-    scheduleRestore();
+    scheduleRestore(0);
   }
 
-  window.addEventListener('load', restoreMyWorkNav, { once: true });
-  [100, 300, 800, 1600].forEach((delay) => window.setTimeout(restoreMyWorkNav, delay));
-
-  restoreObserver = new MutationObserver(scheduleRestore);
-  restoreObserver.observe(document.body || document.documentElement, { childList: true, subtree: true });
+  window.addEventListener('load', () => scheduleRestore(0), { once: true });
+  [100, 300, 800, 1600, 3200].forEach(scheduleRestore);
 })();
