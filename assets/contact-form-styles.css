@@ -307,3 +307,106 @@ form button:focus-visible {
     inset: 12px;
   }
 }
+
+/* Contact success state: gold check mark and shimmering luxury border */
+.sgc-contact-success-card {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(177, 134, 79, 0.46) !important;
+  box-shadow:
+    0 30px 80px rgba(59, 45, 29, 0.10),
+    0 12px 34px rgba(177, 134, 79, 0.10),
+    inset 0 0 0 1px rgba(255, 247, 224, 0.56) !important;
+}
+
+.sgc-contact-success-card::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 14px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  border: 1px solid transparent !important;
+  background:
+    linear-gradient(115deg,
+      rgba(151, 105, 40, 0.34) 0%,
+      rgba(255, 246, 202, 0.94) 18%,
+      rgba(184, 134, 63, 0.58) 34%,
+      rgba(255, 255, 255, 0.86) 48%,
+      rgba(177, 134, 79, 0.42) 64%,
+      rgba(255, 236, 174, 0.82) 82%,
+      rgba(151, 105, 40, 0.34) 100%) border-box !important;
+  background-size: 260% 100% !important;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0) border-box !important;
+  -webkit-mask-composite: xor !important;
+  mask-composite: exclude !important;
+  animation: sgcLuxuryBorderShine 5.8s ease-in-out infinite !important;
+  filter: drop-shadow(0 0 12px rgba(177, 134, 79, 0.30)) !important;
+}
+
+.sgc-contact-success-card::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: -35% auto auto -45% !important;
+  width: 42% !important;
+  height: 170% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  background: linear-gradient(100deg,
+    transparent 0%,
+    rgba(255, 247, 218, 0.00) 32%,
+    rgba(255, 247, 218, 0.38) 48%,
+    rgba(177, 134, 79, 0.22) 54%,
+    rgba(255, 247, 218, 0.00) 70%,
+    transparent 100%) !important;
+  transform: rotate(12deg) translateX(-15%) !important;
+  animation: sgcLuxuryCardSweep 7.5s ease-in-out infinite !important;
+}
+
+.sgc-contact-success-card > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.sgc-contact-success-card svg {
+  width: 58px !important;
+  height: 58px !important;
+  padding: 12px !important;
+  color: rgb(177, 134, 79) !important;
+  stroke: rgb(177, 134, 79) !important;
+  stroke-width: 2.75 !important;
+  border: 1px solid rgba(177, 134, 79, 0.44) !important;
+  border-radius: 999px !important;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(255, 249, 224, 0.98), rgba(239, 224, 193, 0.72) 58%, rgba(177, 134, 79, 0.12) 100%) !important;
+  box-shadow:
+    0 12px 28px rgba(177, 134, 79, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.64) !important;
+}
+
+@keyframes sgcLuxuryBorderShine {
+  0%, 100% { background-position: 0% 50%; opacity: 0.76; }
+  45% { background-position: 100% 50%; opacity: 1; }
+  60% { background-position: 100% 50%; opacity: 0.92; }
+}
+
+@keyframes sgcLuxuryCardSweep {
+  0%, 42% { transform: rotate(12deg) translateX(-18%); opacity: 0; }
+  54% { opacity: 0.86; }
+  72% { transform: rotate(12deg) translateX(355%); opacity: 0; }
+  100% { transform: rotate(12deg) translateX(355%); opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  .sgc-contact-success-card::before {
+    inset: 10px !important;
+  }
+
+  .sgc-contact-success-card svg {
+    width: 52px !important;
+    height: 52px !important;
+    padding: 10px !important;
+  }
+}
