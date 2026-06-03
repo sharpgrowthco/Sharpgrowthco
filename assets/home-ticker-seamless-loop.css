@@ -15,7 +15,7 @@
   max-width: none !important;
   white-space: nowrap !important;
   will-change: transform !important;
-  transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0);
   animation: sgc-seamless-home-ticker 42s linear infinite !important;
 }
 
@@ -56,5 +56,24 @@
   .sgc-home-hero-ticker-strip .sgc-seamless-ticker-track {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* 2026-06-03 — final desktop/mobile ticker loop guard. The base transform must not be !important. */
+.sgc-home-hero-ticker-strip .sgc-seamless-ticker-track,
+[data-sgc-home-hero-ticker="true"] .sgc-seamless-ticker-track {
+  transform: translate3d(0, 0, 0);
+  animation: sgc-seamless-home-ticker 42s linear infinite !important;
+  will-change: transform !important;
+}
+@media (max-width: 767px) {
+  .sgc-home-hero-ticker-strip .sgc-seamless-ticker-track,
+  [data-sgc-home-hero-ticker="true"] .sgc-seamless-ticker-track {
+    animation: sgc-seamless-home-ticker 36s linear infinite !important;
+    transform: translate3d(0, 0, 0);
+  }
+  .sgc-home-hero-ticker-strip,
+  [data-sgc-home-hero-ticker="true"] {
+    overflow: hidden !important;
   }
 }

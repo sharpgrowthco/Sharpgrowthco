@@ -16,7 +16,7 @@
     link.dataset.sgcExactHref = href;
     link.href = href;
     link.setAttribute('aria-label', label);
-    link.textContent = label;
+    link.textContent = label.replace(' — Contact Page', '');
     if (newTab) {
       link.dataset.sgcExactTarget = '_blank';
       link.target = '_blank';
@@ -30,10 +30,17 @@
       var className = link.dataset.sgcExactClass;
       var label = link.dataset.sgcExactLabel;
       var href = link.dataset.sgcExactHref;
+      if (className === 'sgc-exact-laptop-work' || className === 'sgc-exact-hero-book') {
+        href = '/contact/';
+        label = 'Work with Me';
+        link.dataset.sgcExactHref = '/contact/';
+        link.dataset.sgcExactLabel = 'Work with Me';
+      }
       if (className) link.className = 'sgc-exact-reference-hotspot ' + className;
       if (label) {
+        var visibleLabel = label.replace(' — Contact Page', '');
         link.setAttribute('aria-label', label);
-        link.textContent = label;
+        link.textContent = visibleLabel;
       }
       if (href) link.href = href;
       if (link.dataset.sgcExactTarget === '_blank') {

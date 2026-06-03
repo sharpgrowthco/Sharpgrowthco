@@ -644,17 +644,19 @@
 
   function createGoldLaptopHero() {
     const section = document.createElement('section');
-    section.className = 'sgc-services-gold-laptop-hero';
+    section.className = 'sgc-services-gold-laptop-hero luxury-gradient-section';
     section.id = serviceAnchorsByTitle['Website Design & Development'];
     section.setAttribute('data-sgc-service-anchor', serviceAnchorsByTitle['Website Design & Development']);
     section.innerHTML = `
-      <div class="sgc-services-ordered-shell sgc-services-laptop-copy">
-        <p class="sgc-services-kicker">Flagship Website Service</p>
-        <h2>Website Design &amp; Development</h2>
-        <p>Custom, conversion-focused websites built to make your business look polished, feel trustworthy, and turn visitors into customers.</p>
-      </div>
-      <div class="sgc-gold-laptop-scene" aria-label="Interactive laptop mockup listing Website Design and Development services">
-        <div class="sgc-gold-laptop">
+      <div class="luxury-overlay" aria-hidden="true"></div>
+      <div class="content-wrapper">
+        <div class="sgc-services-ordered-shell sgc-services-laptop-copy">
+          <p class="sgc-services-kicker">Flagship Website Service</p>
+          <h2>Website Design &amp; Development</h2>
+          <p>Custom, conversion-focused websites built to make your business look polished, feel trustworthy, and turn visitors into customers.</p>
+        </div>
+        <div class="sgc-gold-laptop-scene" aria-label="Interactive laptop mockup listing Website Design and Development services">
+          <div class="sgc-gold-laptop">
           <div class="sgc-gold-laptop-lid">
             <span class="sgc-gold-laptop-shine" aria-hidden="true"></span>
             <div class="sgc-gold-laptop-screen">
@@ -671,10 +673,11 @@
               </div>
             </div>
           </div>
-          <div class="sgc-gold-laptop-hinge" aria-hidden="true"></div>
-          <div class="sgc-gold-laptop-base" aria-hidden="true"><span></span></div>
+            <div class="sgc-gold-laptop-hinge" aria-hidden="true"></div>
+            <div class="sgc-gold-laptop-base" aria-hidden="true"><span></span></div>
+          </div>
+          <div class="sgc-gold-laptop-shadow" aria-hidden="true"></div>
         </div>
-        <div class="sgc-gold-laptop-shadow" aria-hidden="true"></div>
       </div>
     `;
     return section;

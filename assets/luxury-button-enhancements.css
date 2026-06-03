@@ -1711,3 +1711,134 @@ header [role="navigation"] a[href="/work"] {
     max-width: none !important;
   }
 }
+
+/* 2026-06-03 — requested no-underline nav title interaction.
+   Titles now turn gold, pop up slightly, and gain a soft drop shadow on hover/focus/click instead of drawing a gold line. */
+#root header nav a:not(.sgc-luxury-cta),
+header nav a:not(.sgc-luxury-cta),
+header [role="navigation"] a:not(.sgc-luxury-cta),
+header .nav a:not(.sgc-luxury-cta) {
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+  text-decoration: none !important;
+  filter: drop-shadow(0 0 0 rgba(0, 0, 0, 0)) !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta):hover,
+#root header nav a:not(.sgc-luxury-cta):focus-visible,
+header nav a:not(.sgc-luxury-cta):hover,
+header nav a:not(.sgc-luxury-cta):focus-visible,
+header [role="navigation"] a:not(.sgc-luxury-cta):hover,
+header [role="navigation"] a:not(.sgc-luxury-cta):focus-visible,
+header .nav a:not(.sgc-luxury-cta):hover,
+header .nav a:not(.sgc-luxury-cta):focus-visible {
+  color: var(--sgc-luxury-gold) !important;
+  -webkit-text-fill-color: var(--sgc-luxury-gold) !important;
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.96), 0 8px 18px rgba(123, 77, 18, 0.28) !important;
+  filter: drop-shadow(0 8px 10px rgba(70, 39, 15, 0.18)) !important;
+  transform: translateY(-3px) scale(1.045) !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta):active,
+header nav a:not(.sgc-luxury-cta):active,
+header [role="navigation"] a:not(.sgc-luxury-cta):active,
+header .nav a:not(.sgc-luxury-cta):active {
+  color: var(--sgc-luxury-gold-dark) !important;
+  -webkit-text-fill-color: var(--sgc-luxury-gold-dark) !important;
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.95), 0 7px 16px rgba(123, 77, 18, 0.24) !important;
+  filter: drop-shadow(0 6px 8px rgba(70, 39, 15, 0.16)) !important;
+  transform: translateY(-2px) scale(1.03) !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta)[aria-current="page"],
+header nav a:not(.sgc-luxury-cta)[aria-current="page"],
+header [role="navigation"] a:not(.sgc-luxury-cta)[aria-current="page"],
+header .nav a:not(.sgc-luxury-cta)[aria-current="page"] {
+  box-shadow: none !important;
+  border-bottom: 0 !important;
+  text-decoration: none !important;
+}
+
+/* 2026-06-03 — final desktop/mobile title interaction: no underline, gold pop, soft shadow. */
+.nav a,
+header a,
+footer a,
+.sgc-site-header a,
+.sgc-header-nav a,
+.sgc-footer-nav a {
+  text-decoration: none !important;
+}
+.nav a::before,
+.nav a::after,
+header nav a::before,
+header nav a::after,
+.sgc-site-header a::before,
+.sgc-site-header a::after,
+.sgc-header-nav a::before,
+.sgc-header-nav a::after {
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  transform: none !important;
+}
+header nav a,
+.sgc-site-header a,
+.sgc-header-nav a,
+footer nav a,
+.sgc-footer-nav a {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  transition: color 180ms ease, transform 180ms ease, text-shadow 180ms ease, filter 180ms ease !important;
+}
+header nav a:hover,
+header nav a:focus-visible,
+header nav a:active,
+.sgc-site-header a:hover,
+.sgc-site-header a:focus-visible,
+.sgc-site-header a:active,
+.sgc-header-nav a:hover,
+.sgc-header-nav a:focus-visible,
+.sgc-header-nav a:active,
+footer nav a:hover,
+footer nav a:focus-visible,
+footer nav a:active,
+.sgc-footer-nav a:hover,
+.sgc-footer-nav a:focus-visible,
+.sgc-footer-nav a:active {
+  color: #b98a3b !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.98), 0 10px 20px rgba(146, 107, 50, 0.26) !important;
+  filter: drop-shadow(0 8px 10px rgba(73, 42, 16, 0.18)) !important;
+  transform: translate3d(0, -3px, 0) scale(1.035) !important;
+}
+@media (max-width: 767px) {
+  header nav a:hover,
+  header nav a:focus-visible,
+  header nav a:active,
+  .sgc-site-header a:hover,
+  .sgc-site-header a:focus-visible,
+  .sgc-site-header a:active,
+  .sgc-header-nav a:hover,
+  .sgc-header-nav a:focus-visible,
+  .sgc-header-nav a:active,
+  footer nav a:hover,
+  footer nav a:focus-visible,
+  footer nav a:active,
+  .sgc-footer-nav a:hover,
+  .sgc-footer-nav a:focus-visible,
+  .sgc-footer-nav a:active {
+    color: #b98a3b !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.98), 0 8px 16px rgba(146, 107, 50, 0.24) !important;
+    filter: drop-shadow(0 6px 8px rgba(73, 42, 16, 0.16)) !important;
+    transform: translate3d(0, -2px, 0) scale(1.025) !important;
+  }
+}

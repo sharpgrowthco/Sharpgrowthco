@@ -65,6 +65,9 @@
       a.href = ROUTES.contact;
       a.removeAttribute('target');
       a.removeAttribute('rel');
+      if (contactLabels.has(label)) {
+        a.setAttribute('aria-label', 'Open the Sharp Growth Co. contact page');
+      }
       return;
     }
 

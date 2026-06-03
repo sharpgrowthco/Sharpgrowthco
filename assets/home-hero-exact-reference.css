@@ -172,3 +172,125 @@ body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:a
 body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:active {
   transform: translateY(-1px) scale(1.002) !important;
 }
+
+/* 2026-06-03 — requested no-underline title interaction for the exact-reference Home hero nav hotspots. */
+body.sgc-home-exact-reference .sgc-exact-home,
+body.sgc-home-exact-reference .sgc-exact-services,
+body.sgc-home-exact-reference .sgc-exact-work,
+body.sgc-home-exact-reference .sgc-exact-about,
+body.sgc-home-exact-reference .sgc-exact-packages,
+body.sgc-home-exact-reference .sgc-exact-contact {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  transition: color 180ms ease, transform 180ms ease, text-shadow 180ms ease, filter 180ms ease !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-home:hover,
+body.sgc-home-exact-reference .sgc-exact-services:hover,
+body.sgc-home-exact-reference .sgc-exact-work:hover,
+body.sgc-home-exact-reference .sgc-exact-about:hover,
+body.sgc-home-exact-reference .sgc-exact-packages:hover,
+body.sgc-home-exact-reference .sgc-exact-contact:hover,
+body.sgc-home-exact-reference .sgc-exact-home:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-services:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-work:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-about:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-packages:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-contact:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-home:active,
+body.sgc-home-exact-reference .sgc-exact-services:active,
+body.sgc-home-exact-reference .sgc-exact-work:active,
+body.sgc-home-exact-reference .sgc-exact-about:active,
+body.sgc-home-exact-reference .sgc-exact-packages:active,
+body.sgc-home-exact-reference .sgc-exact-contact:active {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  color: var(--sgc-luxury-gold, #b98a3b) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.96), 0 8px 18px rgba(123, 77, 18, 0.28) !important;
+  filter: drop-shadow(0 8px 10px rgba(70, 39, 15, 0.18)) !important;
+  transform: translateY(-3px) scale(1.045) !important;
+}
+
+/* 2026-06-03 — final exact-reference mobile/desktop title interaction: remove gold line; use gold pop/shadow. */
+body.sgc-home-exact-reference .sgc-exact-home,
+body.sgc-home-exact-reference .sgc-exact-services,
+body.sgc-home-exact-reference .sgc-exact-work,
+body.sgc-home-exact-reference .sgc-exact-about,
+body.sgc-home-exact-reference .sgc-exact-packages,
+body.sgc-home-exact-reference .sgc-exact-contact {
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  transition: color 180ms ease, transform 180ms ease, text-shadow 180ms ease, filter 180ms ease !important;
+}
+body.sgc-home-exact-reference .sgc-exact-home::before,
+body.sgc-home-exact-reference .sgc-exact-home::after,
+body.sgc-home-exact-reference .sgc-exact-services::before,
+body.sgc-home-exact-reference .sgc-exact-services::after,
+body.sgc-home-exact-reference .sgc-exact-work::before,
+body.sgc-home-exact-reference .sgc-exact-work::after,
+body.sgc-home-exact-reference .sgc-exact-about::before,
+body.sgc-home-exact-reference .sgc-exact-about::after,
+body.sgc-home-exact-reference .sgc-exact-packages::before,
+body.sgc-home-exact-reference .sgc-exact-packages::after,
+body.sgc-home-exact-reference .sgc-exact-contact::before,
+body.sgc-home-exact-reference .sgc-exact-contact::after {
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  height: 0 !important;
+  opacity: 0 !important;
+  transform: none !important;
+}
+body.sgc-home-exact-reference .sgc-exact-home:hover,
+body.sgc-home-exact-reference .sgc-exact-services:hover,
+body.sgc-home-exact-reference .sgc-exact-work:hover,
+body.sgc-home-exact-reference .sgc-exact-about:hover,
+body.sgc-home-exact-reference .sgc-exact-packages:hover,
+body.sgc-home-exact-reference .sgc-exact-contact:hover,
+body.sgc-home-exact-reference .sgc-exact-home:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-services:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-work:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-about:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-packages:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-contact:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-home:active,
+body.sgc-home-exact-reference .sgc-exact-services:active,
+body.sgc-home-exact-reference .sgc-exact-work:active,
+body.sgc-home-exact-reference .sgc-exact-about:active,
+body.sgc-home-exact-reference .sgc-exact-packages:active,
+body.sgc-home-exact-reference .sgc-exact-contact:active {
+  color: #b98a3b !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.98), 0 10px 20px rgba(146, 107, 50, 0.26) !important;
+  filter: drop-shadow(0 8px 10px rgba(73, 42, 16, 0.18)) !important;
+  transform: translate3d(0, -3px, 0) scale(1.035) !important;
+}
+@media (max-width: 767px) {
+  body.sgc-home-exact-reference .sgc-exact-home:hover,
+  body.sgc-home-exact-reference .sgc-exact-services:hover,
+  body.sgc-home-exact-reference .sgc-exact-work:hover,
+  body.sgc-home-exact-reference .sgc-exact-about:hover,
+  body.sgc-home-exact-reference .sgc-exact-packages:hover,
+  body.sgc-home-exact-reference .sgc-exact-contact:hover,
+  body.sgc-home-exact-reference .sgc-exact-home:focus-visible,
+  body.sgc-home-exact-reference .sgc-exact-services:focus-visible,
+  body.sgc-home-exact-reference .sgc-exact-work:focus-visible,
+  body.sgc-home-exact-reference .sgc-exact-about:focus-visible,
+  body.sgc-home-exact-reference .sgc-exact-packages:focus-visible,
+  body.sgc-home-exact-reference .sgc-exact-contact:focus-visible,
+  body.sgc-home-exact-reference .sgc-exact-home:active,
+  body.sgc-home-exact-reference .sgc-exact-services:active,
+  body.sgc-home-exact-reference .sgc-exact-work:active,
+  body.sgc-home-exact-reference .sgc-exact-about:active,
+  body.sgc-home-exact-reference .sgc-exact-packages:active,
+  body.sgc-home-exact-reference .sgc-exact-contact:active {
+    transform: translate3d(0, -2px, 0) scale(1.025) !important;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.98), 0 8px 16px rgba(146, 107, 50, 0.24) !important;
+    filter: drop-shadow(0 6px 8px rgba(73, 42, 16, 0.16)) !important;
+  }
+}
