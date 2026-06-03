@@ -305,3 +305,23 @@ body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero .max-w-3xl::before {
     color: #F0E6DA !important;
   }
 }
+
+/* Home hero luxury refinement pass 3: contain desktop ticker animation overflow */
+html:has(body.sgc-home-luxury-hero),
+html:has(body:has(.sgc-mobile-home-hero)) {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+body.sgc-home-luxury-hero .sgc-home-hero-ticker-strip > div,
+body:has(.sgc-mobile-home-hero) .sgc-home-hero-ticker-strip > div {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+}
+
+/* Home hero luxury refinement pass 4: clamp the document element on the Home page asset */
+html {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
