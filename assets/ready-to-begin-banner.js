@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var BANNER_IMAGE = '/assets/images/sharp-growth-co-ready-to-begin-laptop-growth-banner.png';
+  var BANNER_IMAGE = '/assets/images/sharp-growth-co-ready-to-begin-laptop-growth-banner.webp';
   var BANNER_LABEL = 'Ready to Begin';
   var BACKGROUND_DESCRIPTION = 'Sharp Growth Co. slim Ready to Begin banner with full laptop growth chart and warm brand background';
 

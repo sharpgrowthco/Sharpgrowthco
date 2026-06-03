@@ -28,6 +28,24 @@
     "critical": true
   },
   {
+    "src": "/assets/images/alberta-marketing-agency-mountain-my-work-banner.webp",
+    "filename": "alberta-marketing-agency-mountain-my-work-banner.webp",
+    "oldFilename": "alberta-marketing-agency-mountain-my-work-banner.png",
+    "alt": "Alberta mountain banner for Sharp Growth Co. client work and local business marketing results.",
+    "width": 1983,
+    "height": 793,
+    "critical": true
+  },
+  {
+    "src": "/assets/images/sharp-growth-co-ready-to-begin-laptop-growth-banner.webp",
+    "filename": "sharp-growth-co-ready-to-begin-laptop-growth-banner.webp",
+    "oldFilename": "sharp-growth-co-ready-to-begin-laptop-growth-banner.png",
+    "alt": "Sharp Growth Co. ready to begin banner with a laptop and growth-focused marketing workspace.",
+    "width": 1923,
+    "height": 818,
+    "critical": false
+  },
+  {
     "src": "/assets/images/alberta-marketing-strategist-jenna-founder-headshot.webp",
     "filename": "alberta-marketing-strategist-jenna-founder-headshot.webp",
     "oldFilename": "Headshotblazer1_8f7fde5c.png",
@@ -70,6 +88,15 @@
     "alt": "Alberta marketing agency strategy chart illustrating business growth planning and digital campaign performance.",
     "width": 1536,
     "height": 1024,
+    "critical": false
+  },
+  {
+    "src": "/assets/images/marketing-growth-over-time-results-chart.webp",
+    "filename": "marketing-growth-over-time-results-chart.webp",
+    "oldFilename": "marketing-growth-over-time-results-chart.png",
+    "alt": "Marketing growth over time results chart showing improved visibility and lead generation for Alberta businesses.",
+    "width": 1200,
+    "height": 800,
     "critical": false
   },
   {
