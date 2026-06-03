@@ -1,74 +1,83 @@
-(() => {
-  const VERSION = 'compact-footer-20260602';
+(function () {
+  'use strict';
 
-  const footerMarkup = `
-    <footer class="site-footer sgc-compact-footer" data-sgc-footer-update="${VERSION}">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="/" class="footer-logo" aria-label="Sharp Growth Co. home">Sharp Growth Co.</a>
-          <span class="footer-tagline">Local Alberta Marketing</span>
-        </div>
+  var VERSION = 'sitewide-footer-20260603';
+  var footerMarkup = [
+    '<footer class="site-footer sgc-compact-footer" data-sgc-footer-update="' + VERSION + '">',
+    '  <div class="footer-top">',
+    '    <div class="footer-brand">',
+    '      <a href="/" class="footer-logo" aria-label="Sharp Growth Co. home">Sharp Growth Co.</a>',
+    '      <span class="footer-tagline">Local Alberta Marketing</span>',
+    '    </div>',
+    '    <nav aria-label="Footer navigation">',
+    '      <ul class="footer-nav">',
+    '        <li><a href="/">Home</a></li>',
+    '        <li><a href="/services/">Services</a></li>',
+    '        <li><a href="/work/">My Work</a></li>',
+    '        <li><a href="/about/">About</a></li>',
+    '        <li><a href="/packages/">Packages</a></li>',
+    '      </ul>',
+    '    </nav>',
+    '    <a href="/contact/" class="footer-cta sgc-arrow-fixed">Start Your Project<span class="sgc-arrow-symbol" aria-hidden="true">→</span></a>',
+    '  </div>',
+    '  <div class="footer-bottom">',
+    '    <span class="footer-copy">&copy; 2026 Sharp Growth Co. All rights reserved.</span>',
+    '    <span class="footer-motto">Marketing that makes your business impossible to ignore.</span>',
+    '  </div>',
+    '</footer>'
+  ].join('');
 
-        <nav aria-label="Footer navigation">
-          <ul class="footer-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/work/">My Work</a></li>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/packages/">Packages</a></li>
-          </ul>
-        </nav>
-
-        <a href="/contact/" class="footer-cta sgc-luxury-cta">Start Your Project</a>
-      </div>
-
-      <div class="footer-bottom">
-        <span class="footer-copy">&copy; 2026 Sharp Growth Co. All rights reserved.</span>
-        <span class="footer-motto">Marketing that makes your business impossible to ignore.</span>
-      </div>
-    </footer>
-  `;
-
-  const buildFooter = () => {
-    const template = document.createElement('template');
-    template.innerHTML = footerMarkup.trim();
+  function buildFooter() {
+    var template = document.createElement('template');
+    template.innerHTML = footerMarkup;
     return template.content.firstElementChild;
-  };
+  }
 
-  const replaceFooter = () => {
-    const compactFooter = document.querySelector('footer.sgc-compact-footer');
-    if (compactFooter) {
-      compactFooter.dataset.sgcFooterUpdate = VERSION;
-      document.querySelectorAll('footer:not(.sgc-compact-footer)').forEach((footer) => footer.remove());
+  function replaceFooter() {
+    if (!document.body) return;
+    var existing = document.querySelector('footer.sgc-compact-footer');
+    if (existing) {
+      if (existing.dataset.sgcFooterUpdate !== VERSION) existing.replaceWith(buildFooter());
+      Array.prototype.slice.call(document.querySelectorAll('footer:not(.sgc-compact-footer)')).forEach(function (footer) {
+        footer.remove();
+      });
       return;
     }
 
-    const existingFooter = Array.from(document.querySelectorAll('footer')).find((footer) => !footer.classList.contains('sgc-compact-footer'));
-    const newFooter = buildFooter();
-
-    if (existingFooter) {
-      existingFooter.replaceWith(newFooter);
+    var firstFooter = document.querySelector('footer');
+    var newFooter = buildFooter();
+    if (firstFooter && firstFooter.parentNode) {
+      firstFooter.replaceWith(newFooter);
+      Array.prototype.slice.call(document.querySelectorAll('footer:not(.sgc-compact-footer)')).forEach(function (footer) {
+        footer.remove();
+      });
       return;
     }
 
-    const appRoot = document.getElementById('root');
-    if (appRoot && appRoot.children.length) {
-      appRoot.insertAdjacentElement('afterend', newFooter);
-    } else {
-      document.body.appendChild(newFooter);
+    var cta = document.querySelector('[data-sgc-bottom-cta]');
+    if (cta && cta.parentNode) {
+      cta.insertAdjacentElement('afterend', newFooter);
+      return;
     }
-  };
 
-  const run = () => replaceFooter();
+    var root = document.getElementById('root');
+    if (root && root.parentNode) {
+      root.parentNode.insertBefore(newFooter, root.nextSibling);
+      return;
+    }
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
-  else run();
+    document.body.appendChild(newFooter);
+  }
 
-  window.addEventListener('load', run);
-  let attempts = 0;
-  const interval = window.setInterval(() => {
-    run();
-    attempts += 1;
-    if (attempts > 30) window.clearInterval(interval);
-  }, 250);
+  function schedule() {
+    replaceFooter();
+    window.setTimeout(replaceFooter, 250);
+    window.setTimeout(replaceFooter, 900);
+    window.setTimeout(replaceFooter, 1800);
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, { once: true });
+  else schedule();
+  window.addEventListener('load', schedule, { once: true });
+  window.addEventListener('popstate', schedule);
 })();

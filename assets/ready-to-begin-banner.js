@@ -1,153 +1,97 @@
 (function () {
   'use strict';
 
-  var BANNER_IMAGE = '/assets/banner-bottom-with-text-ready-to-begin.png';
-  var BANNER_LABEL = 'Ready to Begin';
-  var BACKGROUND_DESCRIPTION = 'Sharp Growth Co. Ready to Begin banner with laptop growth chart and warm brand background';
+  var VERSION = 'sitewide-cta-footer-20260603';
+
+  function buildBanner() {
+    var section = document.createElement('section');
+    section.className = 'ready-to-begin-image-banner ready-to-begin-injected-section sgc-bottom-cta-banner';
+    section.dataset.readyToBeginInjected = 'true';
+    section.dataset.sgcBottomCta = VERSION;
+    section.setAttribute('aria-label', 'Ready to Begin consultation banner for Sharp Growth Co.');
+    section.innerHTML = [
+      '<div class="ready-to-begin-banner-content">',
+      '  <div class="section-label">Ready to Begin</div>',
+      '  <h2>Ready to grow with intention?</h2>',
+      '  <p>Book a free consultation and let\'s talk about how strategic marketing can help your Alberta business show up, stand out, and scale.</p>',
+      '  <div class="ready-to-begin-actions">',
+      '    <a class="ready-to-begin-primary sgc-arrow-fixed" href="/contact/">Book a Custom Growth Plan<span class="sgc-arrow-symbol" aria-hidden="true">→</span></a>',
+      '    <a class="ready-to-begin-secondary sgc-arrow-fixed" href="/packages/">View Packages<span class="sgc-arrow-symbol" aria-hidden="true">→</span></a>',
+      '  </div>',
+      '</div>'
+    ].join('');
+    return section;
+  }
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
   }
 
-  function sectionLooksLikeReadyToBegin(section) {
-    if (!section) {
-      return false;
-    }
-
-    var label = section.querySelector('.section-label');
-    var labelText = label ? normalize(label.textContent) : '';
-    var headingText = Array.prototype.slice.call(section.querySelectorAll('h1,h2,h3')).map(function (heading) {
-      return normalize(heading.textContent);
-    }).join(' ');
-    var fullText = normalize(section.textContent);
-
-    return labelText === BANNER_LABEL ||
-      headingText.indexOf('Ready to grow with intention?') !== -1 ||
-      fullText.indexOf(BANNER_LABEL) !== -1;
+  function looksLikeReadyToBegin(node) {
+    if (!node || node.nodeType !== 1) return false;
+    var text = normalize(node.textContent);
+    return /Ready to Begin/i.test(text) || /Ready to grow with intention\?/i.test(text);
   }
 
-  function isReadyToBeginSection(section) {
-    if (!section || section.dataset.readyToBeginBannerChecked === 'true') {
-      return false;
-    }
-
-    return sectionLooksLikeReadyToBegin(section);
+  function findExistingBanner() {
+    var preferred = document.querySelector('[data-sgc-bottom-cta]');
+    if (preferred) return preferred;
+    return Array.prototype.slice.call(document.querySelectorAll('section, div')).find(function (node) {
+      if (node.matches && node.matches('footer, footer *')) return false;
+      return looksLikeReadyToBegin(node) && normalize(node.textContent).length < 1200;
+    }) || null;
   }
 
-  function enhanceSection(section) {
-    section.classList.add('ready-to-begin-image-banner');
-    section.dataset.readyToBeginBannerChecked = 'true';
-    section.dataset.backgroundImage = BANNER_IMAGE;
-    section.dataset.backgroundImageAlt = BACKGROUND_DESCRIPTION;
-    section.setAttribute('aria-label', 'Ready to Begin consultation banner for Sharp Growth Co. Alberta marketing agency');
-
-    var content = section.querySelector('.container');
-    if (content) {
-      content.classList.add('ready-to-begin-banner-content');
-    }
-  }
-
-  function createReadyToBeginBanner() {
+  function placeBanner(banner) {
     var footer = document.querySelector('footer');
-    var root = document.querySelector('#root');
-
-    if (!footer || !root || document.querySelector('[data-ready-to-begin-injected="true"]')) {
-      return null;
-    }
-
-    var section = document.createElement('section');
-    section.className = 'ready-to-begin-injected-section';
-    section.dataset.readyToBeginInjected = 'true';
-    section.innerHTML = [
-      '<div class="container ready-to-begin-banner-content">',
-      '  <div class="section-label">Ready to Begin</div>',
-      '  <h2>Ready to grow with intention?</h2>',
-      '  <p>Book a free consultation and let\'s talk about how Sharp Growth Co. can help your Alberta business show up, stand out, and scale with strategic marketing, web design, branding, and content creation.</p>',
-      '  <div class="ready-to-begin-actions">',
-      '    <a class="ready-to-begin-primary" href="https://calendly.com/sharpgrowthco">Book a Custom Growth Plan</a>',
-      '    <a class="ready-to-begin-secondary" href="/packages">View Packages</a>',
-      '  </div>',
-      '</div>'
-    ].join('');
-
-    footer.parentNode.insertBefore(section, footer);
-    return section;
-  }
-
-  function keepOnlyFirstReadyToBeginSection() {
-    var readySections = Array.prototype.slice.call(document.querySelectorAll('section')).filter(sectionLooksLikeReadyToBegin);
-    if (readySections.length < 2) {
+    var root = document.getElementById('root');
+    if (footer && footer.parentNode) {
+      if (banner.nextElementSibling !== footer) footer.parentNode.insertBefore(banner, footer);
       return;
     }
-
-    var preferredSection = readySections.filter(function (section) {
-      return section.dataset.readyToBeginInjected !== 'true';
-    })[0] || readySections[0];
-
-    readySections.forEach(function (section) {
-      if (section === preferredSection) {
-        section.classList.add('sgc-ready-to-begin-preferred');
-        section.classList.remove('sgc-ready-to-begin-duplicate-hidden');
-        section.hidden = false;
-        section.style.removeProperty('display');
-        section.removeAttribute('aria-hidden');
-        delete section.dataset.readyToBeginDuplicateRemoved;
-        return;
-      }
-
-      section.classList.add('sgc-ready-to-begin-duplicate-hidden');
-      section.classList.remove('sgc-ready-to-begin-preferred');
-      section.hidden = true;
-      section.style.setProperty('display', 'none', 'important');
-      section.setAttribute('aria-hidden', 'true');
-      section.dataset.readyToBeginDuplicateRemoved = 'true';
-    });
+    if (root && root.parentNode) {
+      root.parentNode.insertBefore(banner, root.nextSibling);
+      return;
+    }
+    document.body.appendChild(banner);
   }
 
-  function enhanceReadyToBeginBanners() {
-    var found = false;
-    document.querySelectorAll('section').forEach(function (section) {
-      if (isReadyToBeginSection(section)) {
-        found = true;
-        enhanceSection(section);
+  function updateBanner() {
+    if (!document.body) return;
+    var existing = findExistingBanner();
+    var banner = buildBanner();
+    if (existing) {
+      if (existing.dataset && existing.dataset.sgcBottomCta === VERSION) {
+        placeBanner(existing);
+      } else {
+        existing.replaceWith(banner);
+        placeBanner(banner);
       }
-    });
-
-    if (!found) {
-      var created = createReadyToBeginBanner();
-      if (created) {
-        enhanceSection(created);
-      }
+    } else {
+      placeBanner(banner);
     }
 
-    keepOnlyFirstReadyToBeginSection();
-  }
-
-  function scheduleEnhancement() {
-    window.requestAnimationFrame(function () {
-      enhanceReadyToBeginBanners();
-      window.setTimeout(enhanceReadyToBeginBanners, 250);
-      window.setTimeout(enhanceReadyToBeginBanners, 900);
+    Array.prototype.slice.call(document.querySelectorAll('section, div')).forEach(function (node) {
+      if (node.dataset && node.dataset.sgcBottomCta === VERSION) return;
+      if (node.closest && node.closest('[data-sgc-bottom-cta="' + VERSION + '"]')) return;
+      if (node.matches && node.matches('footer, footer *')) return;
+      if (looksLikeReadyToBegin(node) && normalize(node.textContent).length < 1200) {
+        node.classList.add('sgc-ready-to-begin-duplicate-hidden');
+        node.hidden = true;
+        node.setAttribute('aria-hidden', 'true');
+      }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', scheduleEnhancement);
-  window.addEventListener('load', scheduleEnhancement);
-  window.addEventListener('popstate', scheduleEnhancement);
-  document.addEventListener('click', function () {
-    window.setTimeout(scheduleEnhancement, 150);
-  }, true);
-
-  if ('MutationObserver' in window) {
-    var observer = new MutationObserver(function () {
-      scheduleEnhancement();
-    });
-
-    observer.observe(document.documentElement, {
-      childList: true,
-      subtree: true
-    });
+  function schedule() {
+    updateBanner();
+    window.setTimeout(updateBanner, 250);
+    window.setTimeout(updateBanner, 900);
+    window.setTimeout(updateBanner, 1800);
   }
 
-  scheduleEnhancement();
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, { once: true });
+  else schedule();
+  window.addEventListener('load', schedule, { once: true });
+  window.addEventListener('popstate', schedule);
 })();
