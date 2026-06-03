@@ -149,9 +149,8 @@
     var hero = document.querySelector('.sgc-exact-reference-hero');
     if (hero) {
       observer.observe(hero, {
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['class', 'aria-label', 'href', 'target', 'rel']
+        childList: true,
+        subtree: true
       });
     }
   }

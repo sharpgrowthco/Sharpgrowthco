@@ -83,7 +83,7 @@
   document.addEventListener('click', () => setTimeout(schedulePolish, 80), true);
 
   const observer = new MutationObserver(schedulePolish);
-  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'href', 'value'] });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
 
 
@@ -175,7 +175,7 @@
   document.addEventListener('click', () => setTimeout(unifyTitleBar, 80), true);
 
   const observer = new MutationObserver(unifyTitleBar);
-  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'href', 'aria-label'] });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
 })();
 
 
@@ -267,14 +267,12 @@
   window.addEventListener('load', scheduleNormalize);
   window.addEventListener('popstate', scheduleNormalize);
   window.addEventListener('hashchange', scheduleNormalize);
-  new MutationObserver(scheduleNormalize).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'href', 'aria-label'] });
+  new MutationObserver(scheduleNormalize).observe(document.documentElement, { childList: true, subtree: true });
 })();
 
 
 /* 2026-06-03 restore crisp transparent client-provided logo in the top-left white header banner. */
 (() => {
-  const LOGO_SRC = '/assets/images/sharp-growth-co-header-logo-transparent.png';
-  const LOGO_SRCSET = '/assets/images/sharp-growth-co-header-logo-transparent.webp 1x, /assets/images/sharp-growth-co-header-logo-transparent.png 2x';
   const LOGO_ALT = 'Sharp Growth Co. Local Alberta Marketing';
 
   function normalize(text) {
@@ -319,33 +317,13 @@
     setImportant(link, 'margin', '0');
     setImportant(link, 'overflow', 'visible');
 
-    const currentImg = link.querySelector('img.sgc-header-logo-img');
-    if (!currentImg) {
-      link.innerHTML = '';
-      const picture = document.createElement('picture');
-      picture.className = 'sgc-header-logo-picture';
-
-      const webp = document.createElement('source');
-      webp.type = 'image/webp';
-      webp.srcset = '/assets/images/sharp-growth-co-header-logo-transparent.webp';
-      picture.appendChild(webp);
-
-      const img = document.createElement('img');
-      img.className = 'sgc-header-logo-img';
-      img.src = LOGO_SRC;
-      img.srcset = LOGO_SRCSET;
-      img.alt = LOGO_ALT;
-      img.width = 2757;
-      img.height = 606;
-      img.decoding = 'async';
-      img.loading = 'eager';
-      img.fetchPriority = 'high';
-      picture.appendChild(img);
-      link.appendChild(picture);
-    } else {
-      currentImg.src = LOGO_SRC;
-      currentImg.srcset = LOGO_SRCSET;
-      currentImg.alt = LOGO_ALT;
+    if (!link.querySelector('.sgc-header-logo-text')) {
+      link.textContent = '';
+      const wrap = document.createElement('span');
+      wrap.className = 'sgc-header-logo-text';
+      wrap.setAttribute('aria-hidden', 'true');
+      wrap.innerHTML = '<strong>Sharp Growth Co.</strong><small>Local Alberta Marketing</small>';
+      link.appendChild(wrap);
     }
   }
 
@@ -368,7 +346,9 @@
   window.addEventListener('popstate', scheduleLogoRestore);
   window.addEventListener('hashchange', scheduleLogoRestore);
   document.addEventListener('click', () => setTimeout(scheduleLogoRestore, 80), true);
-  new MutationObserver(scheduleLogoRestore).observe(document.documentElement, { childList: true, subtree: true });
+  setTimeout(scheduleLogoRestore, 100);
+  setTimeout(scheduleLogoRestore, 500);
+  setTimeout(scheduleLogoRestore, 1500);
 })();
 
 
@@ -544,7 +524,7 @@
   window.addEventListener('resize', scheduleHomeHeaderLock);
   window.addEventListener('popstate', scheduleHomeHeaderLock);
   window.addEventListener('hashchange', scheduleHomeHeaderLock);
-  new MutationObserver(scheduleHomeHeaderLock).observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'src'] });
+  new MutationObserver(scheduleHomeHeaderLock).observe(document.documentElement, { childList: true, subtree: true });
 })();
 
 

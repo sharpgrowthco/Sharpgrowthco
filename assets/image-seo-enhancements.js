@@ -337,5 +337,5 @@
   }
   window.addEventListener('load', applyImageSeo);
   const observer = new MutationObserver(() => window.requestAnimationFrame(applyImageSeo));
-  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['src', 'style', 'class'] });
+  observer.observe(document.documentElement, { childList: true, subtree: true });
 })();

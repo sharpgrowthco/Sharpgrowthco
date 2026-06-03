@@ -241,7 +241,10 @@
   window.addEventListener('popstate', () => window.requestAnimationFrame(refresh));
   document.addEventListener('DOMContentLoaded', refresh, { once: true });
   window.addEventListener('load', refresh);
-  const observer = new MutationObserver(() => window.requestAnimationFrame(refresh));
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+
+  // Run the SEO repair pass only at bounded lifecycle checkpoints. The previous
+  // document-wide MutationObserver reran this script during scroll-triggered DOM
+  // work, which could keep the event loop busy and make the page feel frozen.
+  [250, 1000, 2500].forEach((delay) => window.setTimeout(refresh, delay));
   refresh();
 })();
