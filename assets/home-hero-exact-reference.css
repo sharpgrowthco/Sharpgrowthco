@@ -1,0 +1,80 @@
+/* 2026-06-03 exact uploaded hero reference implementation.
+   The user supplied sharp-growth-hero-exact.html, whose visible body is a single full-viewport background image.
+   This stylesheet applies that image as the Home above-the-fold source of truth and exposes real link regions via JS. */
+
+body.sgc-home-exact-reference {
+  background: #120c08 !important;
+  overflow-x: hidden !important;
+}
+
+body.sgc-home-exact-reference header.fixed,
+body.sgc-home-exact-reference header[class*="fixed"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero {
+  position: relative !important;
+  width: 100vw !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 1672 / 941 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background-color: #120c08 !important;
+  background-image: url("images/sharp-growth-hero-exact-reference-20260603.png") !important;
+  background-size: 100% 100% !important;
+  background-position: center top !important;
+  background-repeat: no-repeat !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero + .sgc-mobile-home-hero,
+body.sgc-home-exact-reference .sgc-exact-reference-hero ~ section.sgc-mobile-home-hero,
+body.sgc-home-exact-reference .sgc-exact-reference-hero ~ section:first-of-type {
+  display: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot {
+  position: absolute !important;
+  z-index: 5 !important;
+  display: block !important;
+  border: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  color: transparent !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot:focus-visible {
+  outline: 2px solid rgba(220, 177, 92, 0.95) !important;
+  outline-offset: 3px !important;
+  border-radius: 4px !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-home { left: 23.5%; top: 7.1%; width: 5.5%; height: 4.2%; }
+body.sgc-home-exact-reference .sgc-exact-services { left: 31.0%; top: 7.1%; width: 7.2%; height: 4.2%; }
+body.sgc-home-exact-reference .sgc-exact-work { left: 40.7%; top: 7.1%; width: 7.5%; height: 4.2%; }
+body.sgc-home-exact-reference .sgc-exact-about { left: 50.0%; top: 7.1%; width: 6.8%; height: 4.2%; }
+body.sgc-home-exact-reference .sgc-exact-packages { left: 59.4%; top: 7.1%; width: 8.8%; height: 4.2%; }
+body.sgc-home-exact-reference .sgc-exact-contact { left: 68.0%; top: 7.1%; width: 7.5%; height: 4.2%; }
+body.sgc-home-exact-reference .sgc-exact-header-book { left: 75.2%; top: 5.1%; width: 19.8%; height: 7.8%; }
+body.sgc-home-exact-reference .sgc-exact-laptop-work { left: 49.6%; top: 38.1%; width: 8.7%; height: 4.7%; }
+body.sgc-home-exact-reference .sgc-exact-hero-book { left: 6.5%; top: 77.5%; width: 18.7%; height: 7.4%; }
+body.sgc-home-exact-reference .sgc-exact-hero-services { left: 26.3%; top: 77.5%; width: 16.8%; height: 7.4%; }
+
+@media (max-width: 900px) {
+  body.sgc-home-exact-reference .sgc-exact-reference-hero {
+    width: 100vw !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: 1672 / 941 !important;
+    background-size: 100% 100% !important;
+    background-position: center top !important;
+  }
+}
