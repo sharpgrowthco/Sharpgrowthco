@@ -1577,3 +1577,137 @@ header button:has(> .btn-primary) > .btn-primary::after {
     padding: 0 2rem !important;
   }
 }
+
+/* 2026-06-03 — consistent white top banner and gold nav title interaction polish.
+   Shared across Services, Work, About, Packages, and Contact; the exact-reference Home hero still hides the React header. */
+#root header.fixed,
+header.fixed,
+#root header[class*="fixed"],
+header[class*="fixed"] {
+  background: linear-gradient(180deg, rgba(255, 252, 246, 0.98) 0%, rgba(255, 249, 239, 0.94) 100%) !important;
+  border-bottom: 1px solid rgba(185, 138, 59, 0.18) !important;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88) inset,
+    0 14px 32px rgba(41, 27, 15, 0.08) !important;
+  backdrop-filter: blur(14px) saturate(1.08) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.08) !important;
+}
+
+#root header.fixed > .container,
+header.fixed > .container,
+#root header[class*="fixed"] > .container,
+header[class*="fixed"] > .container {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#root header nav,
+header nav,
+header [role="navigation"],
+header .nav {
+  align-items: center !important;
+  gap: clamp(0.82rem, 1.45vw, 1.28rem) !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta),
+header nav a:not(.sgc-luxury-cta),
+header [role="navigation"] a:not(.sgc-luxury-cta),
+header .nav a:not(.sgc-luxury-cta) {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: max-content !important;
+  padding: 0.28rem 0.08rem 0.42rem !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: inset 0 -2px 0 rgba(185, 138, 59, 0) !important;
+  color: #2a180d !important;
+  -webkit-text-fill-color: #2a180d !important;
+  font-family: 'Outfit', system-ui, sans-serif !important;
+  font-size: clamp(0.9rem, 0.88vw, 1rem) !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.045em !important;
+  line-height: 1.05 !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9), 0 5px 13px rgba(43, 24, 13, 0.18) !important;
+  transform: translateY(0) scale(1) !important;
+  transition: color 180ms ease, box-shadow 180ms ease, transform 180ms ease, text-shadow 180ms ease !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta) > span,
+header nav a:not(.sgc-luxury-cta) > span,
+header [role="navigation"] a:not(.sgc-luxury-cta) > span,
+header .nav a:not(.sgc-luxury-cta) > span {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  white-space: nowrap !important;
+  transform: none !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta):hover,
+#root header nav a:not(.sgc-luxury-cta):focus-visible,
+header nav a:not(.sgc-luxury-cta):hover,
+header nav a:not(.sgc-luxury-cta):focus-visible,
+header [role="navigation"] a:not(.sgc-luxury-cta):hover,
+header [role="navigation"] a:not(.sgc-luxury-cta):focus-visible,
+header .nav a:not(.sgc-luxury-cta):hover,
+header .nav a:not(.sgc-luxury-cta):focus-visible {
+  color: #7b4d12 !important;
+  -webkit-text-fill-color: #7b4d12 !important;
+  box-shadow: inset 0 -3px 0 var(--sgc-luxury-gold) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.96), 0 8px 18px rgba(123, 77, 18, 0.22) !important;
+  transform: translateY(-3px) scale(1.045) !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta):active,
+header nav a:not(.sgc-luxury-cta):active,
+header [role="navigation"] a:not(.sgc-luxury-cta):active,
+header .nav a:not(.sgc-luxury-cta):active {
+  color: #8b6428 !important;
+  -webkit-text-fill-color: #8b6428 !important;
+  box-shadow: inset 0 -3px 0 var(--sgc-luxury-gold-dark) !important;
+  transform: translateY(-1px) scale(1.018) !important;
+}
+
+#root header nav a:not(.sgc-luxury-cta)[aria-current="page"],
+header nav a:not(.sgc-luxury-cta)[aria-current="page"],
+header [role="navigation"] a:not(.sgc-luxury-cta)[aria-current="page"],
+header .nav a:not(.sgc-luxury-cta)[aria-current="page"] {
+  color: #6f430c !important;
+  -webkit-text-fill-color: #6f430c !important;
+  box-shadow: inset 0 -3px 0 var(--sgc-luxury-gold) !important;
+}
+
+#root header nav a[href="/work/"],
+#root header nav a[href="/work"],
+header nav a[href="/work/"],
+header nav a[href="/work"],
+header [role="navigation"] a[href="/work/"],
+header [role="navigation"] a[href="/work"] {
+  white-space: nowrap !important;
+  min-width: max-content !important;
+}
+
+@media (max-width: 767px) {
+  #root header.fixed,
+  header.fixed,
+  #root header[class*="fixed"],
+  header[class*="fixed"] {
+    background: rgba(255, 252, 246, 0.98) !important;
+  }
+
+  #root header nav a:not(.sgc-luxury-cta),
+  header nav a:not(.sgc-luxury-cta),
+  header [role="navigation"] a:not(.sgc-luxury-cta),
+  header .nav a:not(.sgc-luxury-cta) {
+    font-size: clamp(0.72rem, 3.2vw, 0.86rem) !important;
+    letter-spacing: 0.025em !important;
+    padding: 0.25rem 0.05rem 0.34rem !important;
+    max-width: none !important;
+  }
+}

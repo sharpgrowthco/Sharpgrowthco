@@ -61,7 +61,7 @@
       ['sgc-exact-contact', '/contact/', 'Contact', false],
       ['sgc-exact-header-book', CALENDLY_URL, 'Book a Consultation', true],
       ['sgc-exact-laptop-work', '/contact/', 'Work with Me', false],
-      ['sgc-exact-hero-book', CALENDLY_URL, 'Book a Consultation', true],
+      ['sgc-exact-hero-book', '/contact/', 'Work with Me', false],
       ['sgc-exact-hero-services', '/services/', 'View Services', false]
     ];
 
