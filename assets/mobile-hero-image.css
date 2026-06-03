@@ -325,3 +325,121 @@ html {
   overflow-x: hidden !important;
   max-width: 100% !important;
 }
+
+/* Home hero luxury refinement pass 5: darker warm cinematic reference treatment */
+body.sgc-home-luxury-hero .sgc-mobile-home-hero,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero {
+  background: linear-gradient(
+    180deg,
+    #3a281c 0%,
+    #2f231a 42%,
+    #241a14 100%
+  ) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero::before,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero::before {
+  height: clamp(8.25rem, 14vw, 13.25rem) !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 248, 240, 0.94) 0%,
+    rgba(255, 248, 240, 0.72) 34%,
+    rgba(121, 87, 55, 0.30) 68%,
+    rgba(55, 36, 24, 0) 100%
+  ) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero img[data-sgc-home-hero="true"],
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero img[data-sgc-home-hero="true"],
+body.sgc-home-luxury-hero .sgc-mobile-home-hero img[src*="homepage-hero-laptop"],
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero img[src*="homepage-hero-laptop"] {
+  opacity: 0.99 !important;
+  filter: saturate(0.92) contrast(1.08) brightness(0.72) sepia(0.12) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero img[data-sgc-home-hero="true"] + .absolute.inset-0,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero img[data-sgc-home-hero="true"] + .absolute.inset-0,
+body.sgc-home-luxury-hero .sgc-mobile-home-hero img[src*="homepage-hero-laptop"] + .absolute.inset-0,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero img[src*="homepage-hero-laptop"] + .absolute.inset-0 {
+  background: linear-gradient(
+    90deg,
+    rgba(34, 24, 17, 0.68) 0%,
+    rgba(56, 38, 25, 0.52) 34%,
+    rgba(78, 54, 35, 0.34) 58%,
+    rgba(34, 24, 17, 0.30) 100%
+  ), linear-gradient(
+    180deg,
+    rgba(36, 25, 17, 0.28) 0%,
+    rgba(36, 25, 17, 0.18) 28%,
+    rgba(30, 22, 16, 0.48) 100%
+  ), radial-gradient(
+    circle at 14% 47%,
+    rgba(214, 176, 106, 0.16) 0%,
+    rgba(102, 70, 43, 0.20) 30%,
+    rgba(28, 20, 15, 0.38) 74%,
+    rgba(22, 16, 12, 0.50) 100%
+  ) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero .max-w-3xl::before,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero .max-w-3xl::before {
+  inset: -3.8rem -2.25rem -2.8rem -3.15rem !important;
+  background: radial-gradient(
+    circle at left center,
+    rgba(255, 248, 240, 0.11),
+    rgba(214, 176, 106, 0.08) 34%,
+    rgba(0, 0, 0, 0) 66%
+  ) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero h1,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero h1 {
+  text-shadow: 0 3px 22px rgba(24, 15, 10, 0.34) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero h1 em,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero h1 em {
+  color: #E0BB75 !important;
+  text-shadow: 0 2px 16px rgba(30, 18, 10, 0.30) !important;
+}
+
+body.sgc-home-luxury-hero .sgc-mobile-home-hero p,
+body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero p {
+  color: #F0E6DA !important;
+  text-shadow: 0 2px 16px rgba(24, 15, 10, 0.28) !important;
+}
+
+@media (max-width: 767px) {
+  body.sgc-home-luxury-hero .sgc-mobile-home-hero::before,
+  body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero::before {
+    height: 9.5rem !important;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 248, 240, 0.96) 0%,
+      rgba(255, 248, 240, 0.75) 56%,
+      rgba(73, 50, 32, 0.24) 82%,
+      rgba(42, 29, 20, 0) 100%
+    ) !important;
+  }
+
+  body.sgc-home-luxury-hero .sgc-mobile-home-hero img[data-sgc-home-hero="true"],
+  body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero img[data-sgc-home-hero="true"] {
+    opacity: 0.99 !important;
+    filter: saturate(0.94) contrast(1.07) brightness(0.70) sepia(0.12) !important;
+  }
+
+  body.sgc-home-luxury-hero .sgc-mobile-home-hero img[data-sgc-home-hero="true"] + .absolute.inset-0,
+  body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero img[data-sgc-home-hero="true"] + .absolute.inset-0 {
+    background: linear-gradient(
+      180deg,
+      rgba(40, 27, 18, 0.18) 0%,
+      rgba(39, 27, 19, 0.42) 46%,
+      rgba(27, 19, 14, 0.66) 100%
+    ), linear-gradient(
+      90deg,
+      rgba(34, 24, 17, 0.62) 0%,
+      rgba(56, 38, 25, 0.42) 58%,
+      rgba(34, 24, 17, 0.28) 100%
+    ) !important;
+  }
+}
