@@ -16,6 +16,7 @@
     heroImage.style.objectPosition = window.innerWidth <= 767 ? 'left center' : '';
 
     const section = heroImage.closest('section') || heroImage.parentElement;
+    document.body.classList.add('sgc-home-luxury-hero');
     if (section) section.classList.add('sgc-mobile-home-hero');
   }
 
