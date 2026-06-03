@@ -145,9 +145,6 @@
                   <p>I cannot recommend Jenna and Sharp Growth Co. enough.</p>
                 </div>
                 <p class="sgc-full-story-author">— Laine Mackay, Founder, Gather and Grow</p>
-                <div class="sgc-full-story-bottom-visual">
-                  <img src="${STORY_IMAGE_SRC}" alt="Alberta marketing agency portfolio banner showing a local brand and community growth project." loading="lazy">
-                </div>
               </div>
 
               <div class="sgc-full-story-visual" aria-label="Gather and Grow website video preview">

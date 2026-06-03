@@ -20,98 +20,14 @@
     'Custom Growth Plan',
   ];
 
-  const REQUIRED_FIELDS = ['name', 'email', 'message'];
-
   const normalise = (value) => (value || '').replace(/\s+/g, ' ').trim();
-
-  // Validation Functions
-  const isValidEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validateForm = (form) => {
-    const errors = [];
-
-    REQUIRED_FIELDS.forEach((fieldName) => {
-      const field = form.querySelector(`[name="${fieldName}"]`);
-      if (!field || !normalise(field.value)) {
-        const label = fieldName === 'message' ? 'Message' : fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
-        errors.push(`${label} is required`);
-      }
-    });
-
-    const emailField = form.querySelector('[name="email"]');
-    if (emailField && emailField.value && !isValidEmail(emailField.value)) {
-      errors.push('Please enter a valid email address');
-    }
-
-    return errors;
-  };
-
-  // UI Feedback Functions
-  const createStatusMessage = (message, type = 'info') => {
-    const messageEl = document.createElement('div');
-    messageEl.className = `sgc-form-status sgc-form-status--${type}`;
-    messageEl.setAttribute('role', 'alert');
-    messageEl.setAttribute('aria-live', 'polite');
-    messageEl.setAttribute('aria-atomic', 'true');
-    messageEl.textContent = message;
-
-    return messageEl;
-  };
-
-  const showStatusMessage = (form, message, type = 'info') => {
-    // Remove existing status messages
-    const existingMessages = form.querySelectorAll('.sgc-form-status');
-    existingMessages.forEach((msg) => msg.remove());
-
-    const messageEl = createStatusMessage(message, type);
-    form.insertBefore(messageEl, form.firstChild);
-
-    // Scroll into view
-    messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-    // Auto-remove success messages after 6 seconds
-    if (type === 'success') {
-      setTimeout(() => {
-        if (messageEl.parentNode) {
-          messageEl.remove();
-        }
-      }, 6000);
-    }
-  };
-
-  const setSubmitButtonState = (form, loading = false) => {
-    const submitButton = form.querySelector('button[type="submit"]');
-    if (!submitButton) return;
-
-    if (loading) {
-      submitButton.disabled = true;
-      submitButton.dataset.originalText = submitButton.textContent;
-      submitButton.textContent = 'Sending...';
-      submitButton.setAttribute('aria-busy', 'true');
-      submitButton.setAttribute('aria-label', 'Sending your message, please wait');
-    } else {
-      submitButton.disabled = false;
-      submitButton.textContent = submitButton.dataset.originalText || 'Apply to Work Together';
-      submitButton.removeAttribute('aria-busy');
-      submitButton.removeAttribute('aria-label');
-    }
-  };
 
   const findContactForm = () => {
     const forms = Array.from(document.querySelectorAll('form'));
-    return (
-      forms.find((form) => {
-        const text = normalise(form.textContent);
-        return (
-          text.includes('Your Information') &&
-          text.includes('Services Interested In') &&
-          text.includes('Apply to Work Together')
-        );
-      }) || null
-    );
+    return forms.find((form) => {
+      const text = normalise(form.textContent);
+      return text.includes('Your Information') && text.includes('Services Interested In') && text.includes('Apply to Work Together');
+    }) || null;
   };
 
   const ensureHiddenInput = (form, name, value = '') => {
@@ -133,11 +49,10 @@
     });
   };
 
-  const getServiceButtons = (form) =>
-    Array.from(form.querySelectorAll('button[type="button"]')).filter((button) => {
-      const label = normalise(button.textContent);
-      return SERVICE_LABELS.includes(label);
-    });
+  const getServiceButtons = (form) => Array.from(form.querySelectorAll('button[type="button"]')).filter((button) => {
+    const label = normalise(button.textContent);
+    return SERVICE_LABELS.includes(label);
+  });
 
   const buttonIsSelected = (button) => {
     const ariaPressed = button.getAttribute('aria-pressed');
@@ -164,85 +79,32 @@
     return new URLSearchParams(data).toString();
   };
 
-  const formDataToJson = (form) => {
-    const data = new FormData(form);
-    return Object.fromEntries(data.entries());
-  };
-
   const submitToNetlify = (form) => {
     if (form.dataset.sgcNetlifySubmitting === 'true') return;
-
-    // Validate form
-    const errors = validateForm(form);
-    if (errors.length > 0) {
-      showStatusMessage(form, errors[0], 'error');
-      return;
-    }
-
     form.dataset.sgcNetlifySubmitting = 'true';
-    setSubmitButtonState(form, true);
-    showStatusMessage(form, 'Sending your message...', 'info');
 
     applyFieldNames(form);
     updateSelectedServices(form);
     ensureHiddenInput(form, 'form-name', FORM_NAME);
     ensureHiddenInput(form, 'bot-field', '');
 
-    const startTime = Date.now();
-    const minDuration = 800; // Minimum animation duration for better UX
-
-    window
-      .fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formDataToJson(form)),
-      })
-      .then(async (response) => {
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || result.success === false) {
-          throw new Error(result.error || `Form submission failed with status ${response.status}`);
-        }
-        form.dataset.sgcNetlifySubmitted = 'true';
-
-        // Ensure minimum animation duration for better perceived performance
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, minDuration - elapsed);
-
-        setTimeout(() => {
-          showStatusMessage(
-                          form,
-              'Thank you for reaching out. I’ve received your inquiry and look forward to learning more about your business, goals, and vision.',
-              'success'
-
-          );
-
-          // Reset form after successful submission
-          setTimeout(() => {
-            form.reset();
-            setSubmitButtonState(form, false);
-          }, 300);
-        }, delay);
-      })
-      .catch((error) => {
-        form.dataset.sgcNetlifyError = error.message || 'Form submission failed';
-        console.error('[Sharp Growth Co.] Contact form error:', error);
-
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, minDuration - elapsed);
-
-        setTimeout(() => {
-          showStatusMessage(
-                          form,
-              'Sorry, something went wrong. Please try again or email SharpGrowthCo@gmail.com directly.',
-              'error'
-
-          );
-          setSubmitButtonState(form, false);
-        }, delay);
-      })
-      .finally(() => {
+    window.fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encodeFormData(form),
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error(`Netlify Forms submission failed with status ${response.status}`);
+      }
+      form.dataset.sgcNetlifySubmitted = 'true';
+    }).catch((error) => {
+      form.dataset.sgcNetlifyError = error.message || 'Netlify Forms submission failed';
+      console.error('[Sharp Growth Co.] Contact form could not be sent to Netlify Forms.', error);
+    }).finally(() => {
+      window.setTimeout(() => {
         form.dataset.sgcNetlifySubmitting = 'false';
-      });
+      }, 1000);
+    });
   };
 
   const enhanceForm = () => {
@@ -256,7 +118,6 @@
     form.setAttribute('data-netlify', 'true');
     form.setAttribute('netlify', 'true');
     form.setAttribute('data-netlify-honeypot', 'bot-field');
-    form.setAttribute('novalidate', 'true');
 
     ensureHiddenInput(form, 'form-name', FORM_NAME);
     ensureHiddenInput(form, 'bot-field', '');
@@ -271,35 +132,16 @@
       });
     });
 
-    form.addEventListener(
-      'submit',
-      (e) => {
-        e.preventDefault();
-        submitToNetlify(form);
-      },
-      false
-    );
-  };
-
-  // Load stylesheet
-  const ensureStylesheet = () => {
-    if (document.querySelector('link[href*="contact-form-styles"]')) return;
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = '/assets/contact-form-styles.css';
-    document.head.appendChild(link);
+    form.addEventListener('submit', () => {
+      submitToNetlify(form);
+    }, true);
   };
 
   const observer = new MutationObserver(enhanceForm);
   observer.observe(document.documentElement, { childList: true, subtree: true });
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      ensureStylesheet();
-      enhanceForm();
-    });
+    document.addEventListener('DOMContentLoaded', enhanceForm);
   } else {
-    ensureStylesheet();
     enhanceForm();
   }
 })();

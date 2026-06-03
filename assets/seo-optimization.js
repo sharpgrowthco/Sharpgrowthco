@@ -1,5 +1,5 @@
 (() => {
-  const SITE_URL = 'https://www.sharpgrowthco.com';
+  const SITE_URL = 'https://sharpgrowthco.com';
   const BRAND = 'Sharp Growth Co.';
   const DEFAULT_IMAGE = `${SITE_URL}/assets/images/alberta-marketing-agency-homepage-hero-laptop-website-design.webp`;
 
@@ -33,13 +33,6 @@
       description: 'Contact Sharp Growth Co. to book a marketing consultation for website design, social media, content creation, branding, and growth strategy across Alberta.',
       keywords: 'book marketing consultation Alberta, contact marketing agency Okotoks, Calgary marketing consultation, Alberta website design consultation',
       image: DEFAULT_IMAGE
-    },
-    '/thank-you': {
-      title: 'Application Received | Sharp Growth Co.',
-      description: 'Thank you for contacting Sharp Growth Co. I received your inquiry and will follow up within 1–2 business days.',
-      keywords: 'Sharp Growth Co contact confirmation, Alberta marketing consultation follow up',
-      image: DEFAULT_IMAGE,
-      robots: 'noindex, follow'
     },
     '/work': {
       title: 'Marketing Portfolio | Alberta Web Design, Branding & Content Work',
@@ -106,7 +99,7 @@
     document.title = route.title;
     upsertMeta('meta[name="description"]', { name: 'description', content: route.description });
     upsertMeta('meta[name="keywords"]', { name: 'keywords', content: route.keywords });
-    upsertMeta('meta[name="robots"]', { name: 'robots', content: route.robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' });
+    upsertMeta('meta[name="robots"]', { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' });
     upsertMeta('meta[name="author"]', { name: 'author', content: BRAND });
     upsertLink('canonical', canonical);
 

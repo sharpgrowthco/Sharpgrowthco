@@ -1,21 +1,12 @@
 (function () {
   'use strict';
 
-  var BANNER_IMAGE = '/assets/images/sharp-growth-co-ready-to-begin-laptop-growth-banner.webp';
+  var BANNER_IMAGE = '/assets/banner-bottom-with-text-ready-to-begin.png';
   var BANNER_LABEL = 'Ready to Begin';
-  var BACKGROUND_DESCRIPTION = 'Sharp Growth Co. slim Ready to Begin banner with full laptop growth chart and warm brand background';
+  var BACKGROUND_DESCRIPTION = 'Sharp Growth Co. Ready to Begin banner with laptop growth chart and warm brand background';
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
-  }
-
-  function isServicesPage() {
-    return window.location.pathname.replace(/\/+$/, '') === '/services';
-  }
-
-  function markPageContext() {
-    document.documentElement.classList.toggle('sgc-services-page', isServicesPage());
-    document.body.classList.toggle('sgc-services-page', isServicesPage());
   }
 
   function sectionLooksLikeReadyToBegin(section) {
@@ -60,16 +51,8 @@
     var footer = document.querySelector('footer');
     var root = document.querySelector('#root');
 
-    if (!footer || !root) {
+    if (!footer || !root || document.querySelector('[data-ready-to-begin-injected="true"]')) {
       return null;
-    }
-
-    var existingInjected = document.querySelector('[data-ready-to-begin-injected="true"]');
-    if (existingInjected) {
-      if (existingInjected.nextElementSibling !== footer && footer.parentNode) {
-        footer.parentNode.insertBefore(existingInjected, footer);
-      }
-      return existingInjected;
     }
 
     var section = document.createElement('section');
@@ -79,10 +62,10 @@
       '<div class="container ready-to-begin-banner-content">',
       '  <div class="section-label">Ready to Begin</div>',
       '  <h2>Ready to grow with intention?</h2>',
-      '  <p>Book a free consultation and let\'s talk about how strategic marketing can help your Alberta business show up, stand out, and scale.</p>',
+      '  <p>Book a free consultation and let\'s talk about how Sharp Growth Co. can help your Alberta business show up, stand out, and scale with strategic marketing, web design, branding, and content creation.</p>',
       '  <div class="ready-to-begin-actions">',
-      '    <a class="btn-primary" href="https://calendly.com/sharpgrowthco">Book a Custom Growth Plan</a>',
-      '    <a class="btn-gold" href="/packages">View Packages</a>',
+      '    <a class="ready-to-begin-primary" href="https://calendly.com/sharpgrowthco">Book a Custom Growth Plan</a>',
+      '    <a class="ready-to-begin-secondary" href="/packages">View Packages</a>',
       '  </div>',
       '</div>'
     ].join('');
@@ -93,13 +76,13 @@
 
   function keepOnlyFirstReadyToBeginSection() {
     var readySections = Array.prototype.slice.call(document.querySelectorAll('section')).filter(sectionLooksLikeReadyToBegin);
-    if (readySections.length < 1) {
+    if (readySections.length < 2) {
       return;
     }
 
     var preferredSection = readySections.filter(function (section) {
-      return section.dataset.readyToBeginInjected === 'true';
-    })[0] || readySections[readySections.length - 1] || readySections[0];
+      return section.dataset.readyToBeginInjected !== 'true';
+    })[0] || readySections[0];
 
     readySections.forEach(function (section) {
       if (section === preferredSection) {
@@ -121,64 +104,23 @@
     });
   }
 
-  var ctaParallaxReady = false;
-
-  function enableReadyToBeginParallax() {
-    if (ctaParallaxReady || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-
-    ctaParallaxReady = true;
-
-    function clamp(value, min, max) {
-      return Math.min(max, Math.max(min, value));
-    }
-
-    function update() {
-      var viewportCenter = window.innerHeight / 2;
-      document.querySelectorAll('.ready-to-begin-image-banner').forEach(function (section) {
-        if (section.classList.contains('sgc-ready-to-begin-duplicate-hidden')) {
-          return;
-        }
-        var rect = section.getBoundingClientRect();
-        var offset = clamp((rect.top + rect.height / 2 - viewportCenter) * -0.028, -18, 18);
-        section.style.setProperty('--ready-cta-parallax-y', offset.toFixed(2) + 'px');
-      });
-    }
-
-    var ticking = false;
-    function requestUpdate() {
-      if (ticking) {
-        return;
-      }
-      ticking = true;
-      window.requestAnimationFrame(function () {
-        update();
-        ticking = false;
-      });
-    }
-
-    update();
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
-  }
-
   function enhanceReadyToBeginBanners() {
-    markPageContext();
-    var created = createReadyToBeginBanner();
-
+    var found = false;
     document.querySelectorAll('section').forEach(function (section) {
       if (isReadyToBeginSection(section)) {
+        found = true;
         enhanceSection(section);
       }
     });
 
-    if (created) {
-      enhanceSection(created);
+    if (!found) {
+      var created = createReadyToBeginBanner();
+      if (created) {
+        enhanceSection(created);
+      }
     }
 
     keepOnlyFirstReadyToBeginSection();
-    enableReadyToBeginParallax();
   }
 
   function scheduleEnhancement() {
@@ -195,6 +137,17 @@
   document.addEventListener('click', function () {
     window.setTimeout(scheduleEnhancement, 150);
   }, true);
+
+  if ('MutationObserver' in window) {
+    var observer = new MutationObserver(function () {
+      scheduleEnhancement();
+    });
+
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true
+    });
+  }
 
   scheduleEnhancement();
 })();

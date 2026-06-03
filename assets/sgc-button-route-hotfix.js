@@ -30,7 +30,10 @@
     document.querySelectorAll('a').forEach((a) => {
       const label = normalize(a.textContent);
       if (consultationLabels.has(label)) ensureAnchorTarget(a, CALENDLY, true);
-      if (contactLabels.has(label)) ensureAnchorTarget(a, CONTACT, false);
+      if (contactLabels.has(label)) {
+        ensureAnchorTarget(a, CONTACT, false);
+        a.setAttribute('aria-label', 'Work with Me — Contact');
+      }
     });
 
     document.querySelectorAll('button').forEach((button) => {
@@ -54,7 +57,7 @@
         if (button.dataset.sgcContactFixed !== 'true') {
           button.dataset.sgcContactFixed = 'true';
           button.setAttribute('type', 'button');
-          button.setAttribute('aria-label', 'Open the Sharp Growth Co. contact form');
+          button.setAttribute('aria-label', 'Work with Me — Contact');
           button.style.cursor = 'pointer';
           button.addEventListener('click', (event) => {
             event.preventDefault();
