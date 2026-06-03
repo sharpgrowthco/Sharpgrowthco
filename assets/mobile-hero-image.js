@@ -110,3 +110,193 @@
   new MutationObserver(applyReferenceHeader).observe(document.documentElement, { childList: true, subtree: true });
   applyReferenceHeader();
 })();
+
+;(() => {
+  const setImportant = (el, prop, value) => el && el.style.setProperty(prop, value, 'important');
+
+  function applyHeaderLogoButtonMyWorkFix() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    const logo = header.querySelector('a[href="/"]');
+    if (logo) {
+      setImportant(logo, 'flex', '0 0 auto');
+      setImportant(logo, 'width', 'auto');
+      setImportant(logo, 'max-width', '13rem');
+      setImportant(logo, 'padding', '0');
+      setImportant(logo, 'margin', '0');
+      setImportant(logo, 'gap', '0.12rem');
+      setImportant(logo, 'line-height', '1');
+      setImportant(logo, 'transform', 'none');
+      const logoTitle = logo.querySelector('span:first-child');
+      const logoSub = logo.querySelector('span:last-child');
+      setImportant(logoTitle, 'font-size', 'clamp(1.05rem, 1.28vw, 1.32rem)');
+      setImportant(logoTitle, 'line-height', '0.92');
+      setImportant(logoTitle, 'letter-spacing', '-0.035em');
+      setImportant(logoTitle, 'max-width', '10.8rem');
+      setImportant(logoSub, 'font-size', 'clamp(0.42rem, 0.55vw, 0.54rem)');
+      setImportant(logoSub, 'line-height', '1.05');
+      setImportant(logoSub, 'letter-spacing', '0.18em');
+      setImportant(logoSub, 'white-space', 'nowrap');
+    }
+
+    header.querySelectorAll('nav a, [role="navigation"] a').forEach((link) => {
+      setImportant(link, 'white-space', 'nowrap');
+      setImportant(link, 'word-break', 'keep-all');
+      setImportant(link, 'overflow-wrap', 'normal');
+      setImportant(link, 'flex', '0 0 auto');
+      setImportant(link, 'min-width', 'max-content');
+      setImportant(link, 'line-height', '1');
+    });
+
+    header.querySelectorAll('nav a[href="/work/"], nav a[href="/work"], [role="navigation"] a[href="/work/"], [role="navigation"] a[href="/work"]').forEach((link) => {
+      setImportant(link, 'white-space', 'nowrap');
+      setImportant(link, 'min-width', '4.5rem');
+    });
+
+    header.querySelectorAll('button').forEach((button) => {
+      const inner = button.querySelector('.btn-primary, .btn-gold, [class*="btn-"]');
+      const text = (button.textContent || '').toLowerCase();
+      if (!inner || !text.includes('consultation')) return;
+
+      setImportant(button, 'background', 'transparent');
+      setImportant(button, 'background-image', 'none');
+      setImportant(button, 'border', '0');
+      setImportant(button, 'box-shadow', 'none');
+      setImportant(button, 'padding', '0');
+      setImportant(button, 'width', 'auto');
+      setImportant(button, 'min-width', '0');
+      setImportant(button, 'height', 'auto');
+      setImportant(button, 'min-height', '0');
+      setImportant(button, 'display', 'inline-flex');
+      setImportant(button, 'align-items', 'center');
+      setImportant(button, 'justify-content', 'center');
+
+      setImportant(inner, 'width', 'auto');
+      setImportant(inner, 'min-width', innerWidth <= 1024 ? '13.5rem' : '16.2rem');
+      setImportant(inner, 'height', innerWidth <= 1024 ? '3.75rem' : '4.25rem');
+      setImportant(inner, 'min-height', innerWidth <= 1024 ? '3.75rem' : '4.25rem');
+      setImportant(inner, 'padding', innerWidth <= 1024 ? '0 1.8rem' : '0 2.9rem');
+      setImportant(inner, 'display', 'inline-flex');
+      setImportant(inner, 'align-items', 'center');
+      setImportant(inner, 'justify-content', 'center');
+      setImportant(inner, 'border-radius', '0');
+      setImportant(inner, 'border', '1px solid rgba(222,177,91,0.46)');
+      setImportant(inner, 'background', 'linear-gradient(135deg, #dfb556 0%, #c9953a 46%, #a87524 100%)');
+      setImportant(inner, 'box-shadow', '0 16px 30px rgba(92,54,20,0.18), inset 0 1px 0 rgba(255,239,196,0.24)');
+      setImportant(inner, 'color', '#fffaf2');
+      setImportant(inner, 'font-family', "'Outfit', 'Raleway', sans-serif");
+      setImportant(inner, 'font-size', '0.82rem');
+      setImportant(inner, 'font-weight', '700');
+      setImportant(inner, 'letter-spacing', '0.17em');
+      setImportant(inner, 'line-height', '1');
+      setImportant(inner, 'text-transform', 'uppercase');
+      setImportant(inner, 'white-space', 'nowrap');
+      setImportant(inner, 'transform', 'none');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', applyHeaderLogoButtonMyWorkFix, { once: true });
+  window.addEventListener('load', applyHeaderLogoButtonMyWorkFix);
+  window.addEventListener('resize', applyHeaderLogoButtonMyWorkFix);
+  new MutationObserver(applyHeaderLogoButtonMyWorkFix).observe(document.documentElement, { childList: true, subtree: true });
+  applyHeaderLogoButtonMyWorkFix();
+})();
+
+;(() => {
+  const setImportant = (el, prop, value) => el && el.style.setProperty(prop, value, 'important');
+
+  function applyFinalHeaderLogoAndCtaPolish() {
+    const header = document.querySelector('header');
+    if (!header) return;
+
+    const logo = header.querySelector('a[href="/"]');
+    if (logo) {
+      setImportant(logo, 'flex', '0 0 auto');
+      setImportant(logo, 'width', 'auto');
+      setImportant(logo, 'min-width', innerWidth <= 1100 ? '9.2rem' : '10.5rem');
+      setImportant(logo, 'max-width', innerWidth <= 1100 ? '11rem' : '14rem');
+      setImportant(logo, 'padding', '0');
+      setImportant(logo, 'margin', '0');
+      setImportant(logo, 'line-height', '1');
+      setImportant(logo, 'transform', 'none');
+
+      const logoStack = logo.querySelector('div');
+      setImportant(logoStack, 'gap', '0.22rem');
+      setImportant(logoStack, 'align-items', 'flex-start');
+
+      const logoTitle = logo.querySelector('span:first-child');
+      const logoSub = logo.querySelector('span:last-child');
+      setImportant(logoTitle, 'display', 'block');
+      setImportant(logoTitle, 'white-space', 'nowrap');
+      setImportant(logoTitle, 'max-width', 'none');
+      setImportant(logoTitle, 'font-size', innerWidth <= 1100 ? 'clamp(1.08rem, 2vw, 1.32rem)' : 'clamp(1.38rem, 1.72vw, 1.62rem)');
+      setImportant(logoTitle, 'line-height', '0.9');
+      setImportant(logoTitle, 'letter-spacing', '-0.045em');
+      setImportant(logoTitle, 'color', '#21140e');
+      setImportant(logoSub, 'display', 'block');
+      setImportant(logoSub, 'white-space', 'nowrap');
+      setImportant(logoSub, 'max-width', 'none');
+      setImportant(logoSub, 'font-size', innerWidth <= 1100 ? 'clamp(0.42rem, 0.78vw, 0.52rem)' : 'clamp(0.48rem, 0.64vw, 0.62rem)');
+      setImportant(logoSub, 'line-height', '1');
+      setImportant(logoSub, 'letter-spacing', '0.18em');
+      setImportant(logoSub, 'color', 'rgba(104, 73, 50, 0.7)');
+    }
+
+    header.querySelectorAll('nav a, [role="navigation"] a').forEach((link) => {
+      setImportant(link, 'white-space', 'nowrap');
+      setImportant(link, 'word-break', 'keep-all');
+      setImportant(link, 'overflow-wrap', 'normal');
+      setImportant(link, 'min-width', 'max-content');
+    });
+
+    header.querySelectorAll('button').forEach((button) => {
+      const inner = button.querySelector('.btn-primary, .btn-gold, [class*="btn-"]');
+      const text = (button.textContent || '').toLowerCase();
+      if (!inner || !text.includes('consultation')) return;
+
+      setImportant(button, 'width', 'auto');
+      setImportant(button, 'min-width', innerWidth <= 1100 ? '14.6rem' : '17.25rem');
+      setImportant(button, 'height', innerWidth <= 1100 ? '3.75rem' : '4.25rem');
+      setImportant(button, 'min-height', innerWidth <= 1100 ? '3.75rem' : '4.25rem');
+      setImportant(button, 'padding', innerWidth <= 1100 ? '0 2rem' : '0 3rem');
+      setImportant(button, 'display', 'inline-flex');
+      setImportant(button, 'align-items', 'center');
+      setImportant(button, 'justify-content', 'center');
+      setImportant(button, 'border-radius', '0');
+      setImportant(button, 'border', '1px solid rgba(218, 171, 76, 0.38)');
+      setImportant(button, 'background', 'linear-gradient(135deg, #ddb24f 0%, #c89539 48%, #a87524 100%)');
+      setImportant(button, 'background-image', 'linear-gradient(135deg, #ddb24f 0%, #c89539 48%, #a87524 100%)');
+      setImportant(button, 'box-shadow', '0 14px 26px rgba(86, 52, 21, 0.18)');
+      setImportant(button, 'color', '#fffaf2');
+      setImportant(button, 'cursor', 'pointer');
+
+      setImportant(inner, 'width', 'auto');
+      setImportant(inner, 'min-width', '0');
+      setImportant(inner, 'height', 'auto');
+      setImportant(inner, 'min-height', '0');
+      setImportant(inner, 'padding', '0');
+      setImportant(inner, 'display', 'inline');
+      setImportant(inner, 'border', '0');
+      setImportant(inner, 'border-radius', '0');
+      setImportant(inner, 'background', 'transparent');
+      setImportant(inner, 'background-image', 'none');
+      setImportant(inner, 'box-shadow', 'none');
+      setImportant(inner, 'color', '#fffaf2');
+      setImportant(inner, 'font-family', "'Outfit', 'Raleway', sans-serif");
+      setImportant(inner, 'font-size', '0.84rem');
+      setImportant(inner, 'font-weight', '700');
+      setImportant(inner, 'letter-spacing', '0.18em');
+      setImportant(inner, 'line-height', '1');
+      setImportant(inner, 'text-transform', 'uppercase');
+      setImportant(inner, 'white-space', 'nowrap');
+      setImportant(inner, 'transform', 'none');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', applyFinalHeaderLogoAndCtaPolish, { once: true });
+  window.addEventListener('load', applyFinalHeaderLogoAndCtaPolish);
+  window.addEventListener('resize', applyFinalHeaderLogoAndCtaPolish);
+  new MutationObserver(applyFinalHeaderLogoAndCtaPolish).observe(document.documentElement, { childList: true, subtree: true });
+  applyFinalHeaderLogoAndCtaPolish();
+})();

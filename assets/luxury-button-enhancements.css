@@ -1242,3 +1242,338 @@ header .nav a[aria-current="page"] > span {
     padding: 10px !important;
   }
 }
+
+/* === 2026-06-03 header CTA single-rectangle correction ===
+   Prevents Book a Consultation from rendering as a nested/double rectangle. */
+header .sgc-luxury-cta,
+.site-header .sgc-luxury-cta,
+.sgc-header .sgc-luxury-cta,
+nav .sgc-luxury-cta,
+header a[href*="contact"].sgc-luxury-cta,
+header a[href*="book"].sgc-luxury-cta,
+header a[href*="consultation"].sgc-luxury-cta,
+header a[href*="calendly"].sgc-luxury-cta {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 64px !important;
+  padding: 0 2.45rem !important;
+  border: 1px solid rgba(211, 162, 72, 0.64) !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  outline-offset: 0 !important;
+  background: linear-gradient(135deg, #d7aa4c 0%, #c7963f 52%, #a8752a 100%) !important;
+  box-shadow: 0 14px 28px rgba(62, 36, 14, 0.18) !important;
+  overflow: hidden !important;
+  color: #fff8ee !important;
+  text-decoration: none !important;
+  isolation: isolate !important;
+}
+
+header .sgc-luxury-cta::before,
+header .sgc-luxury-cta::after,
+.site-header .sgc-luxury-cta::before,
+.site-header .sgc-luxury-cta::after,
+.sgc-header .sgc-luxury-cta::before,
+.sgc-header .sgc-luxury-cta::after,
+nav .sgc-luxury-cta::before,
+nav .sgc-luxury-cta::after {
+  content: none !important;
+  display: none !important;
+}
+
+header .sgc-luxury-cta > *,
+.site-header .sgc-luxury-cta > *,
+.sgc-header .sgc-luxury-cta > *,
+nav .sgc-luxury-cta > * {
+  display: inline !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  outline-offset: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  transform: none !important;
+}
+
+header .sgc-luxury-cta > *::before,
+header .sgc-luxury-cta > *::after,
+.site-header .sgc-luxury-cta > *::before,
+.site-header .sgc-luxury-cta > *::after,
+.sgc-header .sgc-luxury-cta > *::before,
+.sgc-header .sgc-luxury-cta > *::after,
+nav .sgc-luxury-cta > *::before,
+nav .sgc-luxury-cta > *::after {
+  content: none !important;
+  display: none !important;
+}
+
+header .sgc-luxury-cta:focus-visible,
+.site-header .sgc-luxury-cta:focus-visible,
+.sgc-header .sgc-luxury-cta:focus-visible,
+nav .sgc-luxury-cta:focus-visible {
+  outline: 0 !important;
+  box-shadow: 0 14px 28px rgba(62, 36, 14, 0.18), 0 0 0 2px rgba(255, 248, 238, 0.72) !important;
+}
+
+/* Keep non-CTA header navigation links plain after the CTA-specific correction above. */
+header nav a:not(.sgc-luxury-cta),
+header [role="navigation"] a:not(.sgc-luxury-cta) {
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* 2026-06-03 — Header logo, My Work nowrap, and single-rectangle CTA correction */
+header a[href="/"] {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: 13rem !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  gap: 0.12rem !important;
+  white-space: normal !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+header a[href="/"] span:first-child {
+  font-size: clamp(1.05rem, 1.28vw, 1.32rem) !important;
+  line-height: 0.92 !important;
+  letter-spacing: -0.035em !important;
+  max-width: 10.8rem !important;
+}
+
+header a[href="/"] span:last-child {
+  font-size: clamp(0.42rem, 0.55vw, 0.54rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: 0.18em !important;
+  white-space: nowrap !important;
+}
+
+header nav a,
+header [role="navigation"] a {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  flex: 0 0 auto !important;
+  min-width: max-content !important;
+  line-height: 1 !important;
+}
+
+header nav a[href="/work/"],
+header nav a[href="/work"],
+header [role="navigation"] a[href="/work/"],
+header [role="navigation"] a[href="/work"] {
+  white-space: nowrap !important;
+  min-width: 4.5rem !important;
+}
+
+header button.hidden.md\:block,
+header button[aria-label*="consultation"],
+header button:has(.btn-primary) {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+header button.hidden.md\:block > .btn-primary,
+header button[aria-label*="consultation"] > .btn-primary,
+header button:has(.btn-primary) > .btn-primary {
+  width: auto !important;
+  min-width: 16.2rem !important;
+  height: 4.25rem !important;
+  min-height: 4.25rem !important;
+  padding: 0 2.9rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(222,177,91,0.46) !important;
+  background: linear-gradient(135deg, #dfb556 0%, #c9953a 46%, #a87524 100%) !important;
+  box-shadow: 0 16px 30px rgba(92, 54, 20, 0.18), inset 0 1px 0 rgba(255, 239, 196, 0.24) !important;
+  color: #fffaf2 !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.17em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  transform: none !important;
+}
+
+header button.hidden.md\:block > .btn-primary::before,
+header button.hidden.md\:block > .btn-primary::after,
+header button[aria-label*="consultation"] > .btn-primary::before,
+header button[aria-label*="consultation"] > .btn-primary::after,
+header button:has(.btn-primary) > .btn-primary::before,
+header button:has(.btn-primary) > .btn-primary::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 1024px) {
+  header a[href="/"] span:first-child {
+    font-size: clamp(0.98rem, 2.2vw, 1.18rem) !important;
+  }
+
+  header nav,
+  header [role="navigation"] {
+    gap: clamp(1rem, 2.4vw, 2rem) !important;
+  }
+}
+
+/* 2026-06-03 — Final header logo scale and true single-rectangle consultation CTA */
+header a[href="/"] {
+  flex: 0 0 auto !important;
+  width: auto !important;
+  max-width: 14rem !important;
+  min-width: 10.5rem !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  line-height: 1 !important;
+  transform: none !important;
+}
+
+header a[href="/"] > div,
+header a[href="/"] .flex.flex-col {
+  gap: 0.22rem !important;
+  align-items: flex-start !important;
+}
+
+header a[href="/"] span:first-child {
+  display: block !important;
+  white-space: nowrap !important;
+  max-width: none !important;
+  font-size: clamp(1.38rem, 1.72vw, 1.62rem) !important;
+  line-height: 0.9 !important;
+  letter-spacing: -0.045em !important;
+  color: #21140e !important;
+}
+
+header a[href="/"] span:last-child {
+  display: block !important;
+  white-space: nowrap !important;
+  max-width: none !important;
+  font-size: clamp(0.48rem, 0.64vw, 0.62rem) !important;
+  line-height: 1 !important;
+  letter-spacing: 0.18em !important;
+  color: rgba(104, 73, 50, 0.7) !important;
+}
+
+header nav a,
+header [role="navigation"] a,
+header nav a[href="/work/"],
+header nav a[href="/work"],
+header [role="navigation"] a[href="/work/"],
+header [role="navigation"] a[href="/work"] {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  min-width: max-content !important;
+}
+
+header button[aria-label*="consultation"],
+header button.hidden.md\:block:has(.btn-primary),
+header button:has(> .btn-primary) {
+  width: auto !important;
+  min-width: 17.25rem !important;
+  height: 4.25rem !important;
+  min-height: 4.25rem !important;
+  padding: 0 3rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 0 !important;
+  border: 1px solid rgba(218, 171, 76, 0.38) !important;
+  background: linear-gradient(135deg, #ddb24f 0%, #c89539 48%, #a87524 100%) !important;
+  background-image: linear-gradient(135deg, #ddb24f 0%, #c89539 48%, #a87524 100%) !important;
+  box-shadow: 0 14px 26px rgba(86, 52, 21, 0.18) !important;
+  color: #fffaf2 !important;
+  cursor: pointer !important;
+}
+
+header button[aria-label*="consultation"] > .btn-primary,
+header button.hidden.md\:block > .btn-primary,
+header button:has(> .btn-primary) > .btn-primary {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  display: inline !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: #fffaf2 !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-size: 0.84rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+  transform: none !important;
+}
+
+header button[aria-label*="consultation"]::before,
+header button[aria-label*="consultation"]::after,
+header button[aria-label*="consultation"] > .btn-primary::before,
+header button[aria-label*="consultation"] > .btn-primary::after,
+header button.hidden.md\:block > .btn-primary::before,
+header button.hidden.md\:block > .btn-primary::after,
+header button:has(> .btn-primary)::before,
+header button:has(> .btn-primary)::after,
+header button:has(> .btn-primary) > .btn-primary::before,
+header button:has(> .btn-primary) > .btn-primary::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 1100px) {
+  header a[href="/"] {
+    min-width: 9.2rem !important;
+    max-width: 11rem !important;
+  }
+
+  header a[href="/"] span:first-child {
+    font-size: clamp(1.08rem, 2vw, 1.32rem) !important;
+  }
+
+  header a[href="/"] span:last-child {
+    font-size: clamp(0.42rem, 0.78vw, 0.52rem) !important;
+  }
+
+  header button[aria-label*="consultation"],
+  header button.hidden.md\:block:has(.btn-primary),
+  header button:has(> .btn-primary) {
+    min-width: 14.6rem !important;
+    height: 3.75rem !important;
+    min-height: 3.75rem !important;
+    padding: 0 2rem !important;
+  }
+}
