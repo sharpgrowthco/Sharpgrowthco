@@ -1,0 +1,60 @@
+/* 2026-06-03 Home hero ticker: seamless constant loop with no blank gap after Strategy. */
+.sgc-home-hero-ticker-strip.sgc-seamless-ticker-strip {
+  overflow: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+}
+
+.sgc-home-hero-ticker-strip .sgc-seamless-ticker-track {
+  display: inline-flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  gap: 0 !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+  will-change: transform !important;
+  transform: translate3d(0, 0, 0) !important;
+  animation: sgc-seamless-home-ticker 42s linear infinite !important;
+}
+
+.sgc-home-hero-ticker-strip .sgc-seamless-ticker-half {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  gap: 3rem !important;
+  padding-right: 3rem !important;
+  white-space: nowrap !important;
+}
+
+.sgc-home-hero-ticker-strip .sgc-seamless-ticker-word {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  white-space: nowrap !important;
+  font-style: italic !important;
+  letter-spacing: 0.18em !important;
+}
+
+.sgc-home-hero-ticker-strip .sgc-seamless-ticker-dot {
+  display: inline-block !important;
+  margin-left: 0.75rem !important;
+  margin-right: 0 !important;
+}
+
+@keyframes sgc-seamless-home-ticker {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgc-home-hero-ticker-strip .sgc-seamless-ticker-track {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
