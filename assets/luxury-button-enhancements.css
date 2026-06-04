@@ -2266,3 +2266,91 @@ button.sgc-content-queen-shine > * {
     padding-bottom: clamp(1.65rem, 7vw, 2.75rem) !important;
   }
 }
+
+/* 2026-06-03 — Mobile menu row separation for Services and My Work */
+@media (max-width: 767px) {
+  header nav a[href="/services/"],
+  header nav a[href="/services"],
+  header [role="navigation"] a[href="/services/"],
+  header [role="navigation"] a[href="/services"],
+  header nav a[href="/work/"],
+  header nav a[href="/work"],
+  header [role="navigation"] a[href="/work/"],
+  header [role="navigation"] a[href="/work"],
+  header a.sgc-priority-my-work-nav,
+  .sgc-priority-my-work-nav {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    clear: both !important;
+    white-space: nowrap !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  header nav a[href="/services/"] + a[href="/work/"],
+  header nav a[href="/services"] + a[href="/work/"],
+  header nav a[href="/services/"] + a[href="/work"],
+  header nav a[href="/services"] + a[href="/work"],
+  header [role="navigation"] a[href="/services/"] + a[href="/work/"],
+  header [role="navigation"] a[href="/services"] + a[href="/work/"],
+  header [role="navigation"] a[href="/services/"] + a[href="/work"],
+  header [role="navigation"] a[href="/services"] + a[href="/work"],
+  header a[href="/services/"] + .sgc-priority-my-work-nav,
+  header a[href="/services"] + .sgc-priority-my-work-nav {
+    margin-top: 1.35rem !important;
+  }
+}
+
+@media (max-width: 767px) {
+  header .sgc-mobile-menu-row,
+  header .sgc-mobile-services-nav {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 100% !important;
+    clear: both !important;
+  }
+
+  header .sgc-mobile-services-nav + .sgc-priority-my-work-nav,
+  header .sgc-mobile-services-nav + .sgc-mobile-menu-row[href="/work/"],
+  header .sgc-mobile-services-nav + .sgc-mobile-menu-row[href="/work"] {
+    margin-top: 1.35rem !important;
+  }
+}
+
+/* 2026-06-03 — Hard stop for merged Services/My Work mobile menu labels */
+@media (max-width: 767px) {
+  header .sgc-mobile-menu-list,
+  nav.sgc-mobile-menu-list,
+  .sgc-mobile-menu-list {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+  }
+
+  .sgc-mobile-menu-list > a.sgc-mobile-menu-row,
+  .sgc-mobile-menu-list > a.sgc-mobile-services-nav,
+  .sgc-mobile-menu-list > a.sgc-priority-my-work-nav {
+    display: block !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    clear: both !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .sgc-mobile-menu-list > a.sgc-mobile-services-nav + a.sgc-priority-my-work-nav,
+  .sgc-mobile-menu-list > a.sgc-mobile-services-nav + a[href="/work/"],
+  .sgc-mobile-menu-list > a.sgc-mobile-services-nav + a[href="/work"] {
+    margin-top: 1.35rem !important;
+  }
+}
