@@ -33,7 +33,6 @@
   const applyReferenceHeader = () => {
     const header = document.querySelector('header');
     if (!header) return;
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
     set(header, 'background', 'linear-gradient(180deg, rgba(255,248,240,.98) 0%, rgba(250,240,225,.94) 100%)');
     set(header, 'border', '0');
     set(header, 'border-radius', '0');
@@ -48,28 +47,13 @@
       set(el, 'box-shadow', 'none');
     });
     const nav = header.querySelector('nav, [role="navigation"]');
-    if (nav && !isMobile) {
+    if (nav) {
       set(nav, 'display', 'flex');
       set(nav, 'align-items', 'center');
-      set(nav, 'gap', 'clamp(2rem, 4vw, 4.1rem)');
+      set(nav, 'gap', innerWidth <= 767 ? '1.2rem' : 'clamp(2rem, 4vw, 4.1rem)');
       set(nav, 'background', 'transparent');
       set(nav, 'border', '0');
       set(nav, 'box-shadow', 'none');
-    }
-    if (isMobile) {
-      header.querySelectorAll('nav[class*="hidden"][class*="md:flex"], [role="navigation"][class*="hidden"][class*="md:flex"]').forEach((desktopNav) => {
-        set(desktopNav, 'display', 'none');
-        set(desktopNav, 'visibility', 'hidden');
-        set(desktopNav, 'pointer-events', 'none');
-      });
-      header.querySelectorAll('button[class*="md:hidden"], button[aria-label*="Toggle menu"]').forEach((menuButton) => {
-        set(menuButton, 'display', 'inline-flex');
-        set(menuButton, 'align-items', 'center');
-        set(menuButton, 'justify-content', 'center');
-        set(menuButton, 'visibility', 'visible');
-        set(menuButton, 'pointer-events', 'auto');
-      });
-      return;
     }
     const order = {'/':'1','/services/':'2','/services':'2','/work/':'3','/work':'3','/about/':'4','/about':'4','/packages/':'5','/packages':'5','/contact/':'6','/contact':'6'};
     header.querySelectorAll('nav a, [role="navigation"] a').forEach((a) => {

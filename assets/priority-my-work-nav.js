@@ -20,36 +20,8 @@
     link.textContent = WORK_LABEL;
     link.setAttribute('aria-label', WORK_LABEL);
     link.className = reference && reference.className ? reference.className : 'sgc-priority-my-work-nav';
-    link.classList.add('sgc-priority-my-work-nav', 'sgc-mobile-menu-row');
     link.dataset.sgcPriorityWorkNav = 'true';
     return link;
-  }
-
-  function findServicesLink(links) {
-    return links.find(function (link) {
-      var label = normalize(link.textContent || link.getAttribute('aria-label'));
-      var href = (link.getAttribute('href') || '').replace(window.location.origin, '');
-      return label === 'my services' || label === 'services' || href === '/services' || href === '/services/';
-    });
-  }
-
-  function markSeparateMobileRows(services, work) {
-    var parent = (work && work.parentElement) || (services && services.parentElement);
-    if (parent) parent.classList.add('sgc-mobile-menu-list');
-    if (services) {
-      services.classList.add('sgc-mobile-menu-row', 'sgc-mobile-services-nav');
-      services.style.setProperty('display', 'block', 'important');
-      services.style.setProperty('width', '100%', 'important');
-      services.style.setProperty('flex-basis', '100%', 'important');
-    }
-    if (work) {
-      work.classList.add('sgc-mobile-menu-row', 'sgc-priority-my-work-nav');
-      work.style.setProperty('display', 'block', 'important');
-      work.style.setProperty('width', '100%', 'important');
-      work.style.setProperty('flex-basis', '100%', 'important');
-      work.style.setProperty('margin-left', '0', 'important');
-      work.style.setProperty('clear', 'both', 'important');
-    }
   }
 
   function ensureWorkInContainer(container) {
@@ -67,17 +39,19 @@
       existing.style.removeProperty('opacity');
       existing.style.removeProperty('width');
       existing.style.removeProperty('height');
-      existing.classList.add('sgc-priority-my-work-nav', 'sgc-mobile-menu-row');
-      markSeparateMobileRows(findServicesLink(links), existing);
+      existing.classList.add('sgc-priority-my-work-nav');
       return;
     }
 
-    var services = findServicesLink(links);
+    var services = links.find(function (link) {
+      var label = normalize(link.textContent || link.getAttribute('aria-label'));
+      var href = (link.getAttribute('href') || '').replace(window.location.origin, '');
+      return label === 'my services' || label === 'services' || href === '/services' || href === '/services/';
+    });
 
     if (!services || !services.parentNode) return;
     var work = makeWorkLink(services);
     services.insertAdjacentElement('afterend', work);
-    markSeparateMobileRows(services, work);
   }
 
   function repairExactHero() {
@@ -99,7 +73,7 @@
 
   function repairNavigation() {
     repairExactHero();
-    document.querySelectorAll('header nav, header [role="navigation"], header div, .sgc-site-header nav, .sgc-header-nav, nav').forEach(ensureWorkInContainer);
+    document.querySelectorAll('header nav, header [role="navigation"], .sgc-site-header nav, .sgc-header-nav, nav').forEach(ensureWorkInContainer);
   }
 
   if (document.readyState === 'loading') {

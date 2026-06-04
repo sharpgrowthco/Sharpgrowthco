@@ -79,20 +79,11 @@
     return hero;
   }
 
-  function isMobileHomeWidth() {
-    return window.matchMedia('(max-width: 767px)').matches;
-  }
-
   function shouldUseExactHero() {
-    return isHomePath();
-  }
-
-  function removeExactHeroForMobile() {
-    return;
+    return isHomePath() && !window.matchMedia('(max-width: 767px)').matches;
   }
 
   function applyExactHero() {
-    removeExactHeroForMobile();
     if (!shouldUseExactHero() || document.querySelector('.sgc-exact-reference-hero')) return;
 
     document.body.classList.add('sgc-home-exact-reference');
@@ -170,15 +161,4 @@
     observeExactHero();
   }
   window.setTimeout(observeExactHero, 500);
-
-  window.addEventListener('resize', function () {
-    removeExactHeroForMobile();
-    applyExactHero();
-  });
-  window.addEventListener('orientationchange', function () {
-    window.setTimeout(function () {
-      removeExactHeroForMobile();
-      applyExactHero();
-    }, 120);
-  });
 })();
