@@ -235,3 +235,38 @@
     background: currentColor !important;
   }
 }
+
+/* Final safety override: keep the corrected mobile toggle inside the phone viewport on all React-rendered subpages. */
+@media (max-width: 767px) {
+  header button[aria-controls="sgc-mobile-menu-panel"],
+  header button[aria-label="Toggle menu"][data-sgc-mobile-nav-fixed="true"] {
+    position: fixed !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 2147483646 !important;
+  }
+
+  .sgc-mobile-fallback-header button[aria-controls="sgc-mobile-menu-panel"],
+  .sgc-mobile-fallback-header button[aria-label="Toggle menu"][data-sgc-mobile-nav-fixed="true"] {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+  }
+}
+
+/* Higher-specificity override for the React navigation button on subpages. */
+@media (max-width: 767px) {
+  #root header button[aria-controls="sgc-mobile-menu-panel"][data-sgc-mobile-nav-fixed="true"],
+  header[data-loc*="Navigation"] button[aria-controls="sgc-mobile-menu-panel"][data-sgc-mobile-nav-fixed="true"] {
+    position: fixed !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    left: auto !important;
+    margin-left: 0 !important;
+    transform: none !important;
+    z-index: 2147483646 !important;
+  }
+}
