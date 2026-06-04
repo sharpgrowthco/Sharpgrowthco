@@ -53,33 +53,6 @@
     'Branding & Creative Direction'
   ];
 
-  const floatingMainServiceImages = [
-    {
-      key: 'social-content',
-      titles: ['Social Media & Content Creation', 'Social Media Management'],
-      image: '/assets/images/social-media-content-creation-phone-alberta-marketing.webp',
-      alt: 'Social media and content creation phone visual for Alberta marketing services.',
-      position: 'center center',
-      delay: '0s'
-    },
-    {
-      key: 'marketing-strategy',
-      titles: ['Marketing Strategy'],
-      image: '/assets/images/marketing-strategy-tablet-alberta-business.webp',
-      alt: 'Marketing strategy tablet visual for Alberta business growth planning.',
-      position: 'center center',
-      delay: '-1.35s'
-    },
-    {
-      key: 'branding-creative-direction',
-      titles: ['Branding & Creative Direction'],
-      image: '/assets/images/branding-creative-direction-brand-board-alberta.webp',
-      alt: 'Branding and creative direction brand board visual for Alberta business identity.',
-      position: 'center center',
-      delay: '-2.7s'
-    }
-  ];
-
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
   }
@@ -102,57 +75,6 @@
         event.preventDefault();
         card.click();
       }
-    });
-  }
-
-  function findMainServiceCard(heading) {
-    let card = heading;
-    while (card && card.parentElement && card !== document.body) {
-      const className = card.className ? card.className.toString() : '';
-      if (className.includes('grid-cols-1 lg:grid-cols-12')) return card;
-      card = card.parentElement;
-    }
-    return null;
-  }
-
-  function findMainServiceImagePanel(card) {
-    if (!card) return null;
-    const panels = Array.from(card.children).filter((child) => {
-      const className = child.className ? child.className.toString() : '';
-      return className.includes('absolute') && className.includes('right-0') && className.includes('w-1/2');
-    });
-    return panels[0] || null;
-  }
-
-  function applyFloatingMainServiceImage(card, config, title) {
-    const panel = findMainServiceImagePanel(card);
-    if (!panel) return;
-
-    card.classList.add('sgc-floating-service-box', `sgc-floating-service-${config.key}`);
-    card.dataset.sgcFloatingService = config.key;
-    card.dataset.sgcSeoImage = config.image;
-    card.dataset.sgcSeoAlt = config.alt;
-    card.style.setProperty('--sgc-floating-service-image', `url("${config.image}")`);
-    card.style.setProperty('--sgc-floating-service-delay', config.delay || '0s');
-
-    panel.classList.add('sgc-floating-service-image-panel');
-    panel.style.backgroundImage = `url("${config.image}")`;
-    panel.style.backgroundPosition = config.position || 'center center';
-    panel.style.backgroundSize = 'cover';
-    panel.style.backgroundRepeat = 'no-repeat';
-    panel.setAttribute('role', 'img');
-    panel.setAttribute('aria-label', config.alt);
-    panel.dataset.sgcServiceHeading = title;
-  }
-
-  function enhanceFloatingMainServiceImages() {
-    floatingMainServiceImages.forEach((config) => {
-      const heading = config.titles.map((title) => findHeading(title, 'h2')).find(Boolean);
-      if (!heading) return;
-      const title = normalize(heading.textContent);
-      const card = findMainServiceCard(heading);
-      if (!card) return;
-      applyFloatingMainServiceImage(card, config, title);
     });
   }
 
@@ -259,12 +181,14 @@
     mainServiceTitles.forEach((title) => {
       const heading = findHeading(title, 'h2');
       if (!heading) return;
-      const card = findMainServiceCard(heading);
+      let card = heading;
+      while (card && card.parentElement && !card.className.toString().includes('grid-cols-1 lg:grid-cols-12')) {
+        card = card.parentElement;
+      }
       if (!card || card === document.body) return;
       card.classList.add('sgc-main-service-box');
       setupActiveToggle(card);
     });
-    enhanceFloatingMainServiceImages();
   }
 
   const homeServiceTitles = [
