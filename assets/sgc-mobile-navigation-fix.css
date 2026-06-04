@@ -1,0 +1,237 @@
+/* Sharp Growth Co. mobile navigation fix
+   Purpose: prevent desktop navigation and booking CTA from overflowing on phone widths,
+   while keeping the logo visible and presenting a clean tap target for the mobile menu. */
+@media (max-width: 767px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+  }
+
+  body.sgc-mobile-menu-open {
+    overflow: hidden !important;
+  }
+
+  #root header,
+  header[data-loc*="Navigation"] {
+    min-height: 4.5rem !important;
+  }
+
+  #root header > div,
+  header[data-loc*="Navigation"] > div,
+  #root header .container {
+    min-height: 4.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: clamp(1rem, 4vw, 1.25rem) !important;
+    padding-right: clamp(1rem, 4vw, 1.25rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  #root header .flex.items-center.justify-between,
+  header[data-loc*="Navigation"] .flex.items-center.justify-between {
+    height: 4.5rem !important;
+    min-height: 4.5rem !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  #root header a[href="/"]:first-child,
+  header[data-loc*="Navigation"] a[href="/"]:first-child {
+    max-width: calc(100vw - 6rem) !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+  }
+
+  #root header a[href="/"]:first-child span:first-child,
+  header[data-loc*="Navigation"] a[href="/"]:first-child span:first-child {
+    font-size: clamp(1.05rem, 5.2vw, 1.28rem) !important;
+    white-space: nowrap !important;
+  }
+
+  #root header a[href="/"]:first-child span:last-child,
+  header[data-loc*="Navigation"] a[href="/"]:first-child span:last-child {
+    font-size: clamp(0.40rem, 2.15vw, 0.50rem) !important;
+    letter-spacing: 0.15em !important;
+    white-space: nowrap !important;
+  }
+
+  #root header nav,
+  header[data-loc*="Navigation"] nav,
+  #root header [role="navigation"],
+  header[data-loc*="Navigation"] [role="navigation"] {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #root header button[aria-label="Book a consultation with Sharp Growth Co."],
+  header[data-loc*="Navigation"] button[aria-label="Book a consultation with Sharp Growth Co."] {
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #root header button[aria-label="Toggle menu"],
+  header[data-loc*="Navigation"] button[aria-label="Toggle menu"] {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 2.75rem !important;
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+    min-width: 2.75rem !important;
+    min-height: 2.75rem !important;
+    margin-left: auto !important;
+    padding: 0 !important;
+    border: 1px solid rgba(65, 43, 28, 0.16) !important;
+    border-radius: 999px !important;
+    background: rgba(255, 250, 242, 0.78) !important;
+    color: oklch(0.185 0.025 55) !important;
+    box-shadow: 0 10px 24px rgba(64, 42, 26, 0.10) !important;
+    position: relative !important;
+    z-index: 10002 !important;
+    cursor: pointer !important;
+  }
+
+  .sgc-mobile-menu-panel {
+    position: fixed !important;
+    top: 4.5rem !important;
+    left: clamp(0.75rem, 3.5vw, 1rem) !important;
+    right: clamp(0.75rem, 3.5vw, 1rem) !important;
+    z-index: 10001 !important;
+    display: none !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding: 0.85rem !important;
+    border: 1px solid rgba(171, 126, 50, 0.22) !important;
+    border-radius: 1.15rem !important;
+    background: linear-gradient(180deg, rgba(255, 250, 242, 0.98), rgba(250, 240, 225, 0.98)) !important;
+    box-shadow: 0 22px 50px rgba(64, 42, 26, 0.18) !important;
+    backdrop-filter: blur(16px) saturate(1.04) !important;
+  }
+
+  .sgc-mobile-menu-panel.is-open {
+    display: flex !important;
+  }
+
+  .sgc-mobile-menu-panel a,
+  .sgc-mobile-menu-panel button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    min-height: 3.1rem !important;
+    padding: 0.85rem 1rem !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(64, 42, 26, 0.08) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: rgb(45, 33, 24) !important;
+    font-family: Outfit, Raleway, sans-serif !important;
+    font-size: 0.98rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.03em !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    box-shadow: none !important;
+  }
+
+  .sgc-mobile-menu-panel a:last-child,
+  .sgc-mobile-menu-panel button:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .sgc-mobile-menu-panel .sgc-mobile-booking-link {
+    margin-top: 0.65rem !important;
+    justify-content: center !important;
+    min-height: 3.25rem !important;
+    border: 1px solid rgba(218, 171, 76, 0.38) !important;
+    border-radius: 999px !important;
+    background: linear-gradient(135deg, rgb(221, 178, 79), rgb(168, 117, 36)) !important;
+    color: rgb(255, 250, 242) !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .sgc-mobile-fallback-header {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10003 !important;
+    width: 100% !important;
+    min-height: 4.5rem !important;
+    background: rgba(255, 250, 242, 0.94) !important;
+    border-bottom: 1px solid rgba(64, 42, 26, 0.08) !important;
+    box-shadow: 0 8px 26px rgba(64, 42, 26, 0.08) !important;
+    backdrop-filter: blur(18px) saturate(1.08) !important;
+  }
+
+  .sgc-mobile-fallback-inner {
+    min-height: 4.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.75rem !important;
+    padding: 0 clamp(1rem, 4vw, 1.25rem) !important;
+    box-sizing: border-box !important;
+  }
+
+  .sgc-mobile-fallback-brand {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    color: rgb(39, 28, 20) !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+  }
+
+  .sgc-mobile-fallback-brand span {
+    font-family: Cormorant Garamond, Georgia, serif !important;
+    font-size: clamp(1.15rem, 5.5vw, 1.35rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.035em !important;
+    white-space: nowrap !important;
+  }
+
+  .sgc-mobile-fallback-brand small {
+    margin-top: 0.22rem !important;
+    font-family: Outfit, Raleway, sans-serif !important;
+    font-size: clamp(0.44rem, 2.2vw, 0.52rem) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: rgba(103, 75, 45, 0.72) !important;
+    white-space: nowrap !important;
+  }
+
+  .sgc-mobile-fallback-toggle span,
+  #root header button[aria-label="Toggle menu"] span,
+  header[data-loc*="Navigation"] button[aria-label="Toggle menu"] span {
+    display: block !important;
+    width: 1.15rem !important;
+    height: 1.5px !important;
+    margin: 0.18rem auto !important;
+    border-radius: 999px !important;
+    background: currentColor !important;
+  }
+}
