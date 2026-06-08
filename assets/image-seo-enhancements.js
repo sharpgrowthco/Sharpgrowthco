@@ -28,6 +28,24 @@
     "critical": true
   },
   {
+    "src": "/assets/images/alberta-marketing-agency-mountain-my-work-banner.webp",
+    "filename": "alberta-marketing-agency-mountain-my-work-banner.webp",
+    "oldFilename": "alberta-marketing-agency-mountain-my-work-banner.png",
+    "alt": "Alberta mountain banner for Sharp Growth Co. client work and local business marketing results.",
+    "width": 1983,
+    "height": 793,
+    "critical": true
+  },
+  {
+    "src": "/assets/images/sharp-growth-co-ready-to-begin-laptop-growth-banner.webp",
+    "filename": "sharp-growth-co-ready-to-begin-laptop-growth-banner.webp",
+    "oldFilename": "sharp-growth-co-ready-to-begin-laptop-growth-banner.png",
+    "alt": "Sharp Growth Co. ready to begin banner with a laptop and growth-focused marketing workspace.",
+    "width": 1923,
+    "height": 818,
+    "critical": false
+  },
+  {
     "src": "/assets/images/alberta-marketing-strategist-jenna-founder-headshot.webp",
     "filename": "alberta-marketing-strategist-jenna-founder-headshot.webp",
     "oldFilename": "Headshotblazer1_8f7fde5c.png",
@@ -73,6 +91,15 @@
     "critical": false
   },
   {
+    "src": "/assets/images/marketing-growth-over-time-results-chart.webp",
+    "filename": "marketing-growth-over-time-results-chart.webp",
+    "oldFilename": "marketing-growth-over-time-results-chart.png",
+    "alt": "Marketing growth over time results chart showing improved visibility and lead generation for Alberta businesses.",
+    "width": 1200,
+    "height": 800,
+    "critical": false
+  },
+  {
     "src": "/assets/images/alberta-local-business-marketing-mountain-landscape.webp",
     "filename": "alberta-local-business-marketing-mountain-landscape.webp",
     "oldFilename": "Moutainspic_82989b3a.png",
@@ -100,12 +127,12 @@
     "critical": false
   },
   {
-    "src": "/assets/images/branding-agency-alberta-creative-visual-identity-design.webp",
-    "filename": "branding-agency-alberta-creative-visual-identity-design.webp",
-    "oldFilename": "branding_creative_28088b01.png",
-    "alt": "Branding agency Alberta creative visual identity design workspace for premium local business positioning.",
-    "width": 1536,
-    "height": 1024,
+    "src": "/assets/images/branding-creative-direction-brand-board-visual-identity.webp",
+    "filename": "branding-creative-direction-brand-board-visual-identity.webp",
+    "oldFilename": "branding-agency-alberta-creative-visual-identity-design.webp",
+    "alt": "Branding and creative direction brand board visual identity system for Alberta local businesses.",
+    "width": 776,
+    "height": 739,
     "critical": false
   },
   {
@@ -293,6 +320,8 @@
       img.src = item.src;
     }
     img.alt = item.alt;
+    img.title = item.alt;
+    img.setAttribute('aria-label', item.alt);
     img.width = item.width;
     img.height = item.height;
     img.decoding = 'async';
@@ -317,6 +346,7 @@
           }
           el.setAttribute('role', 'img');
           el.setAttribute('aria-label', item.alt);
+          el.setAttribute('title', item.alt);
           if (!el.style.backgroundSize) el.style.backgroundSize = 'cover';
           if (!el.style.backgroundPosition) el.style.backgroundPosition = 'center center';
           break;
@@ -337,5 +367,5 @@
   }
   window.addEventListener('load', applyImageSeo);
   const observer = new MutationObserver(() => window.requestAnimationFrame(applyImageSeo));
-  observer.observe(document.documentElement, { childList: true, subtree: true });
+  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['src', 'style', 'class'] });
 })();

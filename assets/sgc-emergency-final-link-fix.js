@@ -66,7 +66,7 @@
       a.removeAttribute('target');
       a.removeAttribute('rel');
       if (contactLabels.has(label)) {
-        a.setAttribute('aria-label', 'Work with Me — Contact');
+        a.setAttribute('aria-label', 'Open the Sharp Growth Co. contact page');
       }
       return;
     }
@@ -125,7 +125,7 @@
     if (contactLabels.has(label)) {
       button.type = 'button';
       button.style.cursor = 'pointer';
-      button.setAttribute('aria-label', 'Work with Me — Contact');
+      button.setAttribute('aria-label', 'Open the Sharp Growth Co. contact page');
       if (button.dataset.sgcContactFinal !== 'true') {
         button.dataset.sgcContactFinal = 'true';
         button.addEventListener('click', (event) => {

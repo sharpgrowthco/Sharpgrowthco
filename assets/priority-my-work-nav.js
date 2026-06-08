@@ -1,107 +1,77 @@
-(function () {
-  'use strict';
-
-  var WORK_HREF = '/work/';
-  var WORK_LABEL = 'My Work';
+(() => {
+  const VERSION = 'priority-my-work-nav-20260602-safe1';
+  const WORK_HREF = '/work/';
+  const TARGET_LABEL = 'My Work';
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim().toLowerCase();
   }
 
-  function isWorkLink(link) {
-    var label = normalize(link.textContent || link.getAttribute('aria-label'));
-    var href = (link.getAttribute('href') || '').replace(window.location.origin, '');
-    return label === 'my work' || href === '/work' || href === '/work/';
-  }
-
-  function makeWorkLink(reference) {
-    var link = document.createElement('a');
-    link.href = WORK_HREF;
-    link.textContent = WORK_LABEL;
-    link.setAttribute('aria-label', WORK_LABEL);
-    link.className = reference && reference.className ? reference.className : 'sgc-priority-my-work-nav';
-    link.dataset.sgcPriorityWorkNav = 'true';
-    return link;
-  }
-
-  function ensureWorkInContainer(container) {
-    if (!container || container.dataset.sgcSkipWorkNav === 'true') return;
-    var links = Array.prototype.slice.call(container.querySelectorAll('a'));
-    if (!links.length) return;
-
-    var existing = links.find(isWorkLink);
-    if (existing) {
-      existing.href = WORK_HREF;
-      existing.textContent = WORK_LABEL;
-      existing.setAttribute('aria-label', WORK_LABEL);
-      existing.style.removeProperty('display');
-      existing.style.removeProperty('visibility');
-      existing.style.removeProperty('opacity');
-      existing.style.removeProperty('width');
-      existing.style.removeProperty('height');
-      existing.classList.add('sgc-priority-my-work-nav');
+  function setLinkText(link, text) {
+    const textElement = Array.from(link.querySelectorAll('*')).reverse().find((node) => normalize(node.textContent));
+    if (textElement) {
+      if (textElement.textContent !== text) textElement.textContent = text;
       return;
     }
+    if (link.textContent !== text) link.textContent = text;
+  }
 
-    var services = links.find(function (link) {
-      var label = normalize(link.textContent || link.getAttribute('aria-label'));
-      var href = (link.getAttribute('href') || '').replace(window.location.origin, '');
-      return label === 'my services' || label === 'services' || href === '/services' || href === '/services/';
+  function isWorkLink(link) {
+    const label = normalize(link.textContent || link.getAttribute('aria-label'));
+    const href = (link.getAttribute('href') || '').toLowerCase();
+    return label === 'my work' || label === 'work' || href === '/work' || href === '/work/';
+  }
+
+  function restoreMyWorkNav() {
+    document.querySelectorAll('header nav, header, nav').forEach((nav) => {
+      const links = Array.from(nav.querySelectorAll('a'));
+      if (!links.length) return;
+
+      const existing = links.find(isWorkLink);
+
+      if (existing) {
+        if (existing.getAttribute('href') !== WORK_HREF) existing.setAttribute('href', WORK_HREF);
+        if (normalize(existing.textContent) === 'work') setLinkText(existing, TARGET_LABEL);
+        if (existing.getAttribute('aria-label') !== 'View My Work') existing.setAttribute('aria-label', 'View My Work');
+        existing.dataset.sgcPriorityMyWorkNav = VERSION;
+        return;
+      }
+
+      const aboutLink = links.find((link) => normalize(link.textContent || link.getAttribute('aria-label')) === 'about');
+      const packagesLink = links.find((link) => normalize(link.textContent || link.getAttribute('aria-label')) === 'packages');
+      const servicesLink = links.find((link) => normalize(link.textContent || link.getAttribute('aria-label')) === 'services');
+      const reference = aboutLink || servicesLink || packagesLink || links[0];
+      if (!reference || !reference.parentElement) return;
+
+      const clone = reference.cloneNode(true);
+      clone.setAttribute('href', WORK_HREF);
+      clone.removeAttribute('aria-current');
+      clone.removeAttribute('data-state');
+      clone.querySelectorAll('[aria-current], [data-state]').forEach((node) => {
+        node.removeAttribute('aria-current');
+        node.removeAttribute('data-state');
+      });
+      setLinkText(clone, TARGET_LABEL);
+      clone.setAttribute('aria-label', 'View My Work');
+      clone.dataset.sgcPriorityMyWorkNav = VERSION;
+
+      if (aboutLink) aboutLink.insertAdjacentElement('afterend', clone);
+      else if (servicesLink) servicesLink.insertAdjacentElement('afterend', clone);
+      else if (packagesLink) packagesLink.insertAdjacentElement('beforebegin', clone);
+      else reference.insertAdjacentElement('afterend', clone);
     });
-
-    if (!services || !services.parentNode) return;
-    var work = makeWorkLink(services);
-    services.insertAdjacentElement('afterend', work);
   }
 
-  function repairExactHero() {
-    var hero = document.querySelector('.sgc-exact-reference-hero');
-    if (!hero) return;
-    var work = hero.querySelector('.sgc-exact-work');
-    if (!work) {
-      work = document.createElement('a');
-      work.className = 'sgc-exact-reference-hotspot sgc-exact-work';
-      work.dataset.sgcExactClass = 'sgc-exact-work';
-      hero.appendChild(work);
-    }
-    work.href = WORK_HREF;
-    work.textContent = WORK_LABEL;
-    work.setAttribute('aria-label', WORK_LABEL);
-    work.dataset.sgcExactHref = WORK_HREF;
-    work.dataset.sgcExactLabel = WORK_LABEL;
-  }
-
-  function repairNavigation() {
-    repairExactHero();
-    document.querySelectorAll('header nav, header [role="navigation"], .sgc-site-header nav, .sgc-header-nav, nav').forEach(ensureWorkInContainer);
+  function scheduleRestore(delay) {
+    window.setTimeout(() => window.requestAnimationFrame(restoreMyWorkNav), delay);
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', repairNavigation);
+    document.addEventListener('DOMContentLoaded', () => scheduleRestore(0), { once: true });
   } else {
-    repairNavigation();
+    scheduleRestore(0);
   }
 
-  [100, 300, 750, 1500, 3000, 6000].forEach(function (delay) {
-    window.setTimeout(repairNavigation, delay);
-  });
-
-  var scheduled = false;
-  var observer = new MutationObserver(function () {
-    if (scheduled) return;
-    scheduled = true;
-    window.requestAnimationFrame(function () {
-      scheduled = false;
-      repairNavigation();
-    });
-  });
-
-  function startObserver() {
-    if (document.body) {
-      observer.observe(document.body, { childList: true, subtree: true });
-    }
-  }
-
-  if (document.body) startObserver();
-  else document.addEventListener('DOMContentLoaded', startObserver);
+  window.addEventListener('load', () => scheduleRestore(0), { once: true });
+  [100, 300, 800, 1600, 3200].forEach(scheduleRestore);
 })();

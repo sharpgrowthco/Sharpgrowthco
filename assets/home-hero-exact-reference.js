@@ -79,12 +79,8 @@
     return hero;
   }
 
-  function shouldUseExactHero() {
-    return isHomePath() && !window.matchMedia('(max-width: 767px)').matches;
-  }
-
   function applyExactHero() {
-    if (!shouldUseExactHero() || document.querySelector('.sgc-exact-reference-hero')) return;
+    if (!isHomePath() || document.querySelector('.sgc-exact-reference-hero')) return;
 
     document.body.classList.add('sgc-home-exact-reference');
 
@@ -115,7 +111,7 @@
     tries += 1;
     applyExactHero();
     normalizeHotspots();
-    if ((!shouldUseExactHero() || document.querySelector('.sgc-exact-reference-hero')) && tries > 8) {
+    if (document.querySelector('.sgc-exact-reference-hero') && tries > 8) {
       window.clearInterval(timer);
     }
     if (tries > 60) window.clearInterval(timer);
@@ -149,8 +145,9 @@
     var hero = document.querySelector('.sgc-exact-reference-hero');
     if (hero) {
       observer.observe(hero, {
-        childList: true,
-        subtree: true
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class', 'aria-label', 'href', 'target', 'rel']
       });
     }
   }
