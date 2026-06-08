@@ -43,9 +43,12 @@ export async function onRequestPost(context) {
       );
     }
 
-    if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) {
+    const contactToEmail = env.CONTACT_TO_EMAIL || 'sharpgrowthco@gmail.com';
+    const contactFromEmail = env.CONTACT_FROM_EMAIL || 'Sharp Growth Co. <contact@sharpgrowthco.com>';
+
+    if (!env.RESEND_API_KEY) {
       return new Response(
-        JSON.stringify({ success: false, error: 'Contact email service is not configured.' }),
+        JSON.stringify({ success: false, error: 'Contact email service is missing RESEND_API_KEY.' }),
         { status: 500, headers: jsonHeaders }
       );
     }
@@ -74,8 +77,8 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: env.CONTACT_FROM_EMAIL,
-        to: env.CONTACT_TO_EMAIL,
+        from: contactFromEmail,
+        to: contactToEmail,
         reply_to: email,
         subject: `New contact from ${name}${subjectBusiness}`,
         html,

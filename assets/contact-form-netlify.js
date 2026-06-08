@@ -1,5 +1,6 @@
 (() => {
   const FORM_NAME = 'contact';
+  const RESEND_ENDPOINT = '/api/contact';
   const FIELD_MAP = [
     { selector: 'input[placeholder="Jane Smith"]', name: 'name' },
     { selector: 'input[placeholder="Your Business Name"]', name: 'business_name' },
@@ -72,57 +73,93 @@
     ensureHiddenInput(form, 'services_interested_in', selected.join(', '));
   };
 
-  const encodeFormData = (form) => {
+  const collectFormData = (form) => {
     const data = new FormData(form);
-    data.set('form-name', FORM_NAME);
-    data.set('bot-field', '');
-    return new URLSearchParams(data).toString();
+    data.delete('form-name');
+    data.delete('bot-field');
+    return Object.fromEntries(data.entries());
   };
 
-  const submitToNetlify = (form) => {
-    if (form.dataset.sgcNetlifySubmitting === 'true') return;
-    form.dataset.sgcNetlifySubmitting = 'true';
+  const showStatus = (form, message, isError = false) => {
+    let status = form.querySelector('[data-sgc-contact-status="true"]');
+    if (!status) {
+      status = document.createElement('p');
+      status.dataset.sgcContactStatus = 'true';
+      status.setAttribute('role', 'status');
+      status.style.marginTop = '1rem';
+      status.style.fontWeight = '600';
+      const submitButton = Array.from(form.querySelectorAll('button')).find((button) => normalise(button.textContent).includes('APPLY'));
+      if (submitButton && submitButton.parentElement) {
+        submitButton.insertAdjacentElement('afterend', status);
+      } else {
+        form.appendChild(status);
+      }
+    }
+    status.textContent = message;
+    status.style.color = isError ? '#8f2f1f' : '#4f3d28';
+  };
 
+  const submitToResend = async (form, event) => {
+    if (event) event.preventDefault();
+    if (form.dataset.sgcResendSubmitting === 'true') return;
+
+    form.dataset.sgcResendSubmitting = 'true';
     applyFieldNames(form);
     updateSelectedServices(form);
-    ensureHiddenInput(form, 'form-name', FORM_NAME);
-    ensureHiddenInput(form, 'bot-field', '');
+    ensureHiddenInput(form, 'services_interested_in', form.querySelector('input[name="services_interested_in"]')?.value || '');
 
-    window.fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encodeFormData(form),
-    }).then((response) => {
-      if (!response.ok) {
-        throw new Error(`Netlify Forms submission failed with status ${response.status}`);
+    const submitButton = Array.from(form.querySelectorAll('button')).find((button) => normalise(button.textContent).includes('APPLY'));
+    const originalButtonText = submitButton ? submitButton.textContent : '';
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'SENDING...';
+    }
+
+    try {
+      const response = await window.fetch(RESEND_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(collectFormData(form)),
+      });
+
+      let result = {};
+      try {
+        result = await response.json();
+      } catch (_) {
+        result = {};
       }
-      form.dataset.sgcNetlifySubmitted = 'true';
-    }).catch((error) => {
-      form.dataset.sgcNetlifyError = error.message || 'Netlify Forms submission failed';
-      console.error('[Sharp Growth Co.] Contact form could not be sent to Netlify Forms.', error);
-    }).finally(() => {
+
+      if (!response.ok || result.success === false) {
+        throw new Error(result.error || `Contact form submission failed with status ${response.status}`);
+      }
+
+      form.dataset.sgcResendSubmitted = 'true';
+      showStatus(form, 'Thank you — your message has been sent to Sharp Growth Co.');
+    } catch (error) {
+      form.dataset.sgcResendError = error.message || 'Contact form submission failed';
+      console.error('[Sharp Growth Co.] Contact form could not be sent through Resend.', error);
+      showStatus(form, 'Your message could not be sent. Please email SharpGrowthCo@gmail.com directly.', true);
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText || 'APPLY TO WORK TOGETHER';
+      }
       window.setTimeout(() => {
-        form.dataset.sgcNetlifySubmitting = 'false';
+        form.dataset.sgcResendSubmitting = 'false';
       }, 1000);
-    });
+    }
   };
 
   const enhanceForm = () => {
     const form = findContactForm();
-    if (!form || form.dataset.sgcNetlifyEnhanced === 'true') return;
+    if (!form || form.dataset.sgcResendEnhanced === 'true') return;
 
-    form.dataset.sgcNetlifyEnhanced = 'true';
+    form.dataset.sgcResendEnhanced = 'true';
     form.setAttribute('name', FORM_NAME);
     form.setAttribute('method', 'POST');
-    form.setAttribute('action', '/thank-you/');
-    form.setAttribute('data-netlify', 'true');
-    form.setAttribute('netlify', 'true');
-    form.setAttribute('data-netlify-honeypot', 'bot-field');
+    form.setAttribute('action', RESEND_ENDPOINT);
 
-    ensureHiddenInput(form, 'form-name', FORM_NAME);
-    ensureHiddenInput(form, 'bot-field', '');
     ensureHiddenInput(form, 'services_interested_in', '');
-
     applyFieldNames(form);
     updateSelectedServices(form);
 
@@ -132,8 +169,8 @@
       });
     });
 
-    form.addEventListener('submit', () => {
-      submitToNetlify(form);
+    form.addEventListener('submit', (event) => {
+      submitToResend(form, event);
     }, true);
   };
 
