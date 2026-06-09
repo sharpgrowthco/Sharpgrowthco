@@ -252,7 +252,7 @@
     form.dataset.sgcNetlifyEnhanced = 'true';
     form.setAttribute('name', FORM_NAME);
     form.setAttribute('method', 'POST');
-    form.setAttribute('action', '/thank-you/');
+    form.setAttribute('action', '/api/contact');
     form.setAttribute('data-netlify', 'true');
     form.setAttribute('netlify', 'true');
     form.setAttribute('data-netlify-honeypot', 'bot-field');

@@ -2,6 +2,30 @@ const jsonHeaders = {
   'Content-Type': 'application/json; charset=utf-8',
 };
 
+function wantsHtmlResponse(request) {
+  const contentType = request.headers.get('content-type') || '';
+  const accept = request.headers.get('accept') || '';
+  return !contentType.includes('application/json') && accept.includes('text/html');
+}
+
+function jsonResponse(body, status = 200) {
+  return new Response(JSON.stringify(body), { status, headers: jsonHeaders });
+}
+
+function htmlResponse(body, status = 200) {
+  return new Response(body, {
+    status,
+    headers: { 'Content-Type': 'text/html; charset=utf-8' },
+  });
+}
+
+function redirectResponse(path) {
+  return new Response(null, {
+    status: 303,
+    headers: { Location: path },
+  });
+}
+
 function escapeHtml(value = '') {
   return String(value)
     .replace(/&/g, '&amp;')
@@ -37,17 +61,17 @@ export async function onRequestPost(context) {
     const message = String(data.message || '').trim();
 
     if (!name || !email || !message) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'Name, email, and message are required.' }),
-        { status: 400, headers: jsonHeaders }
-      );
+      if (wantsHtmlResponse(request)) {
+        return htmlResponse('Name, email, and message are required. Please go back and complete the contact form.', 400);
+      }
+      return jsonResponse({ success: false, error: 'Name, email, and message are required.' }, 400);
     }
 
     if (!env.RESEND_API_KEY || !env.CONTACT_FROM_EMAIL || !env.CONTACT_TO_EMAIL) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'Contact email service is not configured.' }),
-        { status: 500, headers: jsonHeaders }
-      );
+      if (wantsHtmlResponse(request)) {
+        return htmlResponse('The contact email service is not configured. Please email SharpGrowthCo@gmail.com directly.', 500);
+      }
+      return jsonResponse({ success: false, error: 'Contact email service is not configured.' }, 500);
     }
 
     const subjectBusiness = data.business_name ? ` — ${String(data.business_name).trim()}` : '';
@@ -84,14 +108,21 @@ export async function onRequestPost(context) {
 
     if (!response.ok) {
       const err = await response.text();
-      return new Response(JSON.stringify({ success: false, error: err }), { status: 502, headers: jsonHeaders });
+      if (wantsHtmlResponse(request)) {
+        return htmlResponse('Sorry, something went wrong sending your message. Please email SharpGrowthCo@gmail.com directly.', 502);
+      }
+      return jsonResponse({ success: false, error: err }, 502);
     }
 
-    return new Response(JSON.stringify({ success: true, message: 'Message sent successfully.' }), {
-      status: 200,
-      headers: jsonHeaders,
-    });
+    if (wantsHtmlResponse(request)) {
+      return redirectResponse('/thank-you/');
+    }
+
+    return jsonResponse({ success: true, message: 'Message sent successfully.' });
   } catch (e) {
-    return new Response(JSON.stringify({ success: false, error: e.message }), { status: 500, headers: jsonHeaders });
+    if (wantsHtmlResponse(request)) {
+      return htmlResponse('Sorry, something went wrong sending your message. Please email SharpGrowthCo@gmail.com directly.', 500);
+    }
+    return jsonResponse({ success: false, error: e.message }, 500);
   }
 }
