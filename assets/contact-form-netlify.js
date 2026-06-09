@@ -169,80 +169,36 @@
     return Object.fromEntries(data.entries());
   };
 
-  const submitToNetlify = (form) => {
-    if (form.dataset.sgcNetlifySubmitting === 'true') return;
+  const submitToEmailApiNatively = (form) => {
+    if (form.dataset.sgcNativeSubmitting === 'true') return;
 
-    // Validate form
+    applyFieldNames(form);
+    updateSelectedServices(form);
+    ensureHiddenInput(form, 'form-name', FORM_NAME);
+    ensureHiddenInput(form, 'bot-field', '');
+    ensureHiddenInput(form, 'submitted_via', 'native-email-api-post');
+
     const errors = validateForm(form);
     if (errors.length > 0) {
       showStatusMessage(form, errors[0], 'error');
       return;
     }
 
-    form.dataset.sgcNetlifySubmitting = 'true';
+    form.dataset.sgcNativeSubmitting = 'true';
+    form.setAttribute('name', FORM_NAME);
+    form.setAttribute('method', 'POST');
+    form.setAttribute('action', '/api/contact');
+    form.setAttribute('enctype', 'application/x-www-form-urlencoded');
+
     setSubmitButtonState(form, true);
-    showStatusMessage(form, 'Sending your message...', 'info');
+    showStatusMessage(form, 'Sending your message securely...', 'info');
 
-    applyFieldNames(form);
-    updateSelectedServices(form);
-    ensureHiddenInput(form, 'form-name', FORM_NAME);
-    ensureHiddenInput(form, 'bot-field', '');
-
-    const startTime = Date.now();
-    const minDuration = 800; // Minimum animation duration for better UX
-
-    window
-      .fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formDataToJson(form)),
-      })
-      .then(async (response) => {
-        const result = await response.json().catch(() => ({}));
-        if (!response.ok || result.success === false) {
-          throw new Error(result.error || `Form submission failed with status ${response.status}`);
-        }
-        form.dataset.sgcNetlifySubmitted = 'true';
-
-        // Ensure minimum animation duration for better perceived performance
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, minDuration - elapsed);
-
-        setTimeout(() => {
-          showStatusMessage(
-                          form,
-              'Thank you for reaching out. I’ve received your inquiry and look forward to learning more about your business, goals, and vision.',
-              'success'
-
-          );
-
-          // Reset form after successful submission
-          setTimeout(() => {
-            form.reset();
-            setSubmitButtonState(form, false);
-          }, 300);
-        }, delay);
-      })
-      .catch((error) => {
-        form.dataset.sgcNetlifyError = error.message || 'Form submission failed';
-        console.error('[Sharp Growth Co.] Contact form error:', error);
-
-        const elapsed = Date.now() - startTime;
-        const delay = Math.max(0, minDuration - elapsed);
-
-        setTimeout(() => {
-          showStatusMessage(
-                          form,
-              'Sorry, something went wrong. Please try again or email SharpGrowthCo@gmail.com directly.',
-              'error'
-
-          );
-          setSubmitButtonState(form, false);
-        }, delay);
-      })
-      .finally(() => {
-        form.dataset.sgcNetlifySubmitting = 'false';
-      });
+    // Use the browser's native form submission instead of fetch. This is the
+    // most reliable path for iPhone/Safari and still reaches /api/contact,
+    // which redirects to /thank-you/ only after Resend accepts the email.
+    window.setTimeout(() => {
+      HTMLFormElement.prototype.submit.call(form);
+    }, 30);
   };
 
   const enhanceForm = () => {
@@ -275,9 +231,13 @@
       'submit',
       (e) => {
         e.preventDefault();
-        submitToNetlify(form);
+        e.stopPropagation();
+        if (typeof e.stopImmediatePropagation === 'function') {
+          e.stopImmediatePropagation();
+        }
+        submitToEmailApiNatively(form);
       },
-      false
+      true
     );
   };
 
