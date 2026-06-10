@@ -18,38 +18,29 @@
 
   const isMobile = () => window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
 
+  const isHomePath = () => {
+    const path = window.location.pathname.replace(/\/+$/, '') || '/';
+    return path === '/';
+  };
+
   const findHeader = () => document.querySelector('#root header') || document.querySelector('header');
 
-  const ensureDesktopLogo = (header) => {
+  const hidePrimaryHeaderLogo = (header) => {
     if (!header) return;
     const rootHref = new URL('/', window.location.origin).href;
     const logoLink = Array.from(header.querySelectorAll('a[href]')).find((link) => {
       const href = link.getAttribute('href') || link.href;
       return link.id !== MOBILE_LOGO_ID && !link.closest('nav') && (href === '/' || href === rootHref);
     });
-    if (!logoLink || logoLink.dataset.sgcPrimaryLogoReady === 'true') return;
+    if (!logoLink || logoLink.dataset.sgcPrimaryLogoHidden === 'true') return;
 
-    logoLink.textContent = '';
-    logoLink.setAttribute('aria-label', 'Sharp Growth Co. home');
-    logoLink.dataset.sgcPrimaryLogoReady = 'true';
-    logoLink.style.display = 'flex';
-    logoLink.style.alignItems = 'center';
-    logoLink.style.textDecoration = 'none';
-
-    const logoImage = document.createElement('img');
-    logoImage.src = PRIMARY_LOGO_SRC;
-    logoImage.alt = 'Sharp Growth Co. Local Alberta Marketing';
-    logoImage.className = 'sgc-primary-header-logo';
-    logoImage.decoding = 'async';
-    logoImage.loading = 'eager';
-    logoImage.style.display = 'block';
-    logoImage.style.width = 'clamp(210px, 20vw, 292px)';
-    logoImage.style.height = 'auto';
-    logoImage.style.maxHeight = '56px';
-    logoImage.style.objectFit = 'contain';
-    logoImage.style.objectPosition = 'left center';
-
-    logoLink.appendChild(logoImage);
+    logoLink.dataset.sgcPrimaryLogoHidden = 'true';
+    logoLink.setAttribute('aria-hidden', 'true');
+    logoLink.tabIndex = -1;
+    logoLink.style.setProperty('display', 'none', 'important');
+    logoLink.style.setProperty('visibility', 'hidden', 'important');
+    logoLink.style.setProperty('opacity', '0', 'important');
+    logoLink.style.setProperty('pointer-events', 'none', 'important');
   };
 
   const findExistingNavHref = (header, label) => {
@@ -191,7 +182,9 @@
     navLinks.forEach((link) => panel.appendChild(buildLink(link, header)));
     panel.appendChild(buildBookControl(bookSource, header));
 
-    header.appendChild(buildMobileLogo());
+    if (isHomePath()) {
+      header.appendChild(buildMobileLogo());
+    }
     header.appendChild(toggle);
     header.appendChild(panel);
     header.classList.add('sgc-mobile-menu-ready');
@@ -209,7 +202,7 @@
 
   const scheduleSetup = () => requestAnimationFrame(() => {
     const header = findHeader();
-    ensureDesktopLogo(header);
+    hidePrimaryHeaderLogo(header);
     setupMobileMenu();
   });
   if (document.readyState === 'loading') {

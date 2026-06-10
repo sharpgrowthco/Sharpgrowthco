@@ -352,3 +352,37 @@ body > section[aria-label^="Notifications"] {
   overflow: hidden !important;
   pointer-events: none !important;
 }
+
+/* 2026-06-10 logo scope fix: hide the original top-left site logo everywhere.
+   The only allowed top logo is the injected mobile Home logo from mobile-header-hamburger.js. */
+#root header > div > div > a[href="/"]:not(#sgc-mobile-header-logo),
+header > div > div > a[href="/"]:not(#sgc-mobile-header-logo) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 2026-06-10 desktop logo removal: cover only the former top-left logo area while preserving nav and CTA. */
+@media (min-width: 769px) {
+  #root header.sgc-mobile-menu-ready::after,
+  header.sgc-mobile-menu-ready::after {
+    content: "" !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: clamp(14rem, 18vw, 18rem) !important;
+    height: 100% !important;
+    background: inherit !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+
+  #root header.sgc-mobile-menu-ready nav,
+  header.sgc-mobile-menu-ready nav,
+  #root header.sgc-mobile-menu-ready [data-sgc-header-book-cta="true"],
+  header.sgc-mobile-menu-ready [data-sgc-header-book-cta="true"] {
+    position: relative !important;
+    z-index: 2 !important;
+  }
+}
