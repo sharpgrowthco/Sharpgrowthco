@@ -1,6 +1,7 @@
 /* Sharp Growth Co. mobile-only hamburger navigation
    Applies strictly below 768px. Desktop header/navigation remains controlled by existing styles. */
 
+.sgc-mobile-brand-logo,
 .sgc-mobile-menu-toggle,
 .sgc-mobile-menu-panel,
 .sgc-mobile-menu-backdrop {
@@ -26,6 +27,41 @@
     visibility: hidden !important;
     opacity: 0 !important;
     pointer-events: none !important;
+  }
+
+  #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  header.sgc-mobile-menu-ready .sgc-mobile-brand-logo {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: min(52vw, 210px) !important;
+    height: 48px !important;
+    position: fixed !important;
+    top: 0.82rem !important;
+    left: 1rem !important;
+    z-index: 10002 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo img,
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo img,
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready .sgc-mobile-brand-logo img,
+  header.sgc-mobile-menu-ready .sgc-mobile-brand-logo img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 48px !important;
+    object-fit: contain !important;
+    object-position: left center !important;
   }
 
   #root header.sgc-mobile-menu-ready .sgc-mobile-menu-toggle,
@@ -201,6 +237,7 @@
 }
 
 @media (min-width: 769px) {
+  .sgc-mobile-brand-logo,
   .sgc-mobile-menu-toggle,
   .sgc-mobile-menu-panel,
   .sgc-mobile-menu-backdrop {
@@ -244,10 +281,10 @@
     pointer-events: none !important;
   }
 
-  #root header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
-  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
-  body.sgc-home-exact-reference header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
-  header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel) {
+  #root header.sgc-mobile-menu-ready > *:not(.sgc-mobile-brand-logo):not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready > *:not(.sgc-mobile-brand-logo):not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready > *:not(.sgc-mobile-brand-logo):not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
+  header.sgc-mobile-menu-ready > *:not(.sgc-mobile-brand-logo):not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel) {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -264,6 +301,16 @@
     box-shadow: none !important;
     overflow: hidden !important;
     pointer-events: none !important;
+  }
+
+  #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  header.sgc-mobile-menu-ready .sgc-mobile-brand-logo {
+    position: fixed !important;
+    top: 0.82rem !important;
+    left: 1rem !important;
+    pointer-events: auto !important;
   }
 
   #root header.sgc-mobile-menu-ready .sgc-mobile-menu-toggle,

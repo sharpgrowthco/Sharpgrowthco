@@ -2,6 +2,8 @@
   const MOBILE_MAX_WIDTH = 768;
   const MENU_ID = 'sgc-mobile-header-menu';
   const TOGGLE_ID = 'sgc-mobile-header-toggle';
+  const MOBILE_LOGO_ID = 'sgc-mobile-header-logo';
+  const MOBILE_LOGO_SRC = '/assets/sharp-growth-co-local-alberta-marketing-logo-mobile.png';
   const BACKDROP_CLASS = 'sgc-mobile-menu-backdrop';
   const EXPECTED_LINKS = [
     { label: 'Home', fallbackHref: '/' },
@@ -67,6 +69,23 @@
     link.textContent = label;
     link.addEventListener('click', () => closeMenu(header));
     return link;
+  };
+
+  const buildMobileLogo = () => {
+    const logoLink = document.createElement('a');
+    logoLink.id = MOBILE_LOGO_ID;
+    logoLink.className = 'sgc-mobile-brand-logo';
+    logoLink.href = '/';
+    logoLink.setAttribute('aria-label', 'Sharp Growth Co. home');
+
+    const logoImage = document.createElement('img');
+    logoImage.src = MOBILE_LOGO_SRC;
+    logoImage.alt = 'Sharp Growth Co. Local Alberta Marketing';
+    logoImage.decoding = 'async';
+    logoImage.loading = 'eager';
+
+    logoLink.appendChild(logoImage);
+    return logoLink;
   };
 
   const buildBookControl = (bookSource, header) => {
@@ -140,6 +159,7 @@
     navLinks.forEach((link) => panel.appendChild(buildLink(link, header)));
     panel.appendChild(buildBookControl(bookSource, header));
 
+    header.appendChild(buildMobileLogo());
     header.appendChild(toggle);
     header.appendChild(panel);
     header.classList.add('sgc-mobile-menu-ready');
