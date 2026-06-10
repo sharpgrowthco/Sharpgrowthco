@@ -1,5 +1,5 @@
 (() => {
-  const MOBILE_MAX_WIDTH = 767;
+  const MOBILE_MAX_WIDTH = 768;
   const MENU_ID = 'sgc-mobile-header-menu';
   const TOGGLE_ID = 'sgc-mobile-header-toggle';
   const BACKDROP_CLASS = 'sgc-mobile-menu-backdrop';

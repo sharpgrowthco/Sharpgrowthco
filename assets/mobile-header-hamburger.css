@@ -7,7 +7,7 @@
   display: none;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   #root header.sgc-mobile-menu-ready,
   body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready,
   body.sgc-home-exact-reference header.sgc-mobile-menu-ready {
@@ -200,10 +200,89 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
   .sgc-mobile-menu-toggle,
   .sgc-mobile-menu-panel,
   .sgc-mobile-menu-backdrop {
     display: none !important;
+  }
+}
+
+/* 2026-06-10 urgent mobile header strip fix:
+   At mobile widths, the original desktop header shell must not render as a
+   white or dark strip. Hide every original header child and make the header
+   itself transparent/heightless; only the injected hamburger toggle and its
+   dropdown panel remain interactive. */
+@media (max-width: 768px) {
+  html,
+  body {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  #root header.sgc-mobile-menu-ready,
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready,
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready,
+  header.sgc-mobile-menu-ready {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+    pointer-events: none !important;
+  }
+
+  #root header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel),
+  header.sgc-mobile-menu-ready > *:not(.sgc-mobile-menu-toggle):not(.sgc-mobile-menu-panel) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+
+  #root header.sgc-mobile-menu-ready .sgc-mobile-menu-toggle,
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready .sgc-mobile-menu-toggle,
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready .sgc-mobile-menu-toggle,
+  header.sgc-mobile-menu-ready .sgc-mobile-menu-toggle {
+    position: fixed !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
+
+  #root header.sgc-mobile-menu-ready .sgc-mobile-menu-panel,
+  body.sgc-home-exact-reference #root header.sgc-mobile-menu-ready .sgc-mobile-menu-panel,
+  body.sgc-home-exact-reference header.sgc-mobile-menu-ready .sgc-mobile-menu-panel,
+  header.sgc-mobile-menu-ready .sgc-mobile-menu-panel {
+    position: fixed !important;
+    top: 4.65rem !important;
+    right: 1rem !important;
   }
 }

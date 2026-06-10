@@ -367,3 +367,55 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-space {
     padding: 0.04em 0.38em 0.36em 0.02em !important;
   }
 }
+
+/* 2026-06-10 urgent mobile top-strip removal:
+   The exact-reference Home hero is a desktop screenshot and contains the white
+   desktop nav strip inside the image itself. At mobile widths, remove that
+   screenshot-based hero and the empty top spacer, then restore the original
+   mobile hero so only the hamburger menu appears above page content. */
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference #root > section:first-child:empty {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: transparent !important;
+  }
+
+  body.sgc-home-exact-reference #root .min-h-screen > .sgc-exact-reference-hero,
+  body.sgc-home-exact-reference .sgc-exact-reference-hero {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+    background: transparent !important;
+    background-image: none !important;
+  }
+
+  body.sgc-home-exact-reference #root .min-h-screen > section[data-sgc-replaced-by-exact-reference="true"],
+  body.sgc-home-exact-reference #root .min-h-screen > section[style][data-sgc-replaced-by-exact-reference="true"],
+  body.sgc-home-exact-reference .sgc-exact-reference-hero ~ section[data-sgc-replaced-by-exact-reference="true"] {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: min(88vh, 760px) !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+  }
+}
