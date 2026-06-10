@@ -62,7 +62,7 @@
 }
 
 .ready-to-begin-injected-section {
-  padding: clamp(1.6rem, 3vw, 2.4rem) 0 !important;
+  padding: 3rem 0 !important;
   text-align: left;
 }
 
@@ -208,8 +208,8 @@ section.sgc-ready-to-begin-duplicate-hidden {
 
   .sgc-services-page .ready-to-begin-injected-section,
   .sgc-services-page .ready-to-begin-image-banner {
-    padding-top: 1.35rem !important;
-    padding-bottom: 1.35rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
   }
 
   .sgc-services-page .ready-to-begin-injected-section .ready-to-begin-banner-content,
