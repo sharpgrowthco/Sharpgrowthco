@@ -295,13 +295,13 @@ body.sgc-home-exact-reference .sgc-exact-contact:active {
   }
 }
 
-/* 2026-06-10 — flyer-matched live shimmer for only the hero phrase “impossible to ignore.”
-   Important: use background-image rather than the background shorthand so keyframed
-   background-position is not locked at 0% by an !important shorthand declaration. */
+/* 2026-06-10 — flyer-gradient shimmer for only the hero phrase “impossible to ignore.”
+   Each character uses the flyer’s exact 2.4s linear shine sweep, staggered right-to-left,
+   with no background block behind the text. */
 body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
   position: absolute !important;
   left: 6.48% !important;
-  top: 53.35% !important;
+  top: 54.85% !important;
   z-index: 4 !important;
   display: inline-block !important;
   pointer-events: none !important;
@@ -313,40 +313,48 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
   font-style: italic !important;
   line-height: 1.08 !important;
   letter-spacing: -0.025em !important;
-  padding: 0 0.22em 0.16em 0.02em !important;
+  padding: 0 0.34em 0.22em 0.02em !important;
+  color: #b8820e !important;
+  background: transparent !important;
+  transform: translateZ(0) !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-hero-shimmer-letter {
+  display: inline-block !important;
   color: transparent !important;
   background-image: linear-gradient(90deg, #6b4a0e 0%, #b8820e 18%, #e8c040 32%, #fff8a0 44%, #ffe066 50%, #fff8a0 56%, #e8c040 68%, #b8820e 82%, #6b4a0e 100%) !important;
   background-size: 300% auto !important;
   background-repeat: repeat-x !important;
+  background-position: 200% center !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  animation-name: sgcExactHeroShine !important;
-  animation-duration: 2.4s !important;
-  animation-timing-function: linear !important;
-  animation-iteration-count: infinite !important;
+  animation: sgcExactHeroLetterShine 2.4s linear infinite !important;
+  animation-delay: calc(var(--sgc-shimmer-step) * 0.055s) !important;
   animation-play-state: running !important;
-  filter: drop-shadow(0 0 8px rgba(255, 234, 132, 0.18)) !important;
-  transform: translateZ(0) !important;
   will-change: background-position !important;
 }
 
-@keyframes sgcExactHeroShine {
-  0%   { background-position: 200% center; }
-  100% { background-position: -200% center; }
+body.sgc-home-exact-reference .sgc-exact-hero-shimmer-space {
+  display: inline-block !important;
+  width: 0.24em !important;
+}
+
+@keyframes sgcExactHeroLetterShine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
 }
 
 @media (max-width: 900px) {
   body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
     left: 6.48% !important;
-    top: 53.35% !important;
+    top: 55.15% !important;
     font-size: clamp(1.12rem, 5.05vw, 3.9rem) !important;
     line-height: 1.08 !important;
-    padding: 0 0.22em 0.16em 0.02em !important;
-    animation-name: sgcExactHeroShine !important;
-    animation-duration: 2.4s !important;
-    animation-timing-function: linear !important;
-    animation-iteration-count: infinite !important;
-    animation-play-state: running !important;
+    padding: 0 0.34em 0.22em 0.02em !important;
   }
 }

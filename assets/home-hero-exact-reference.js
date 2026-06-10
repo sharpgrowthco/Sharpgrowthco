@@ -79,7 +79,25 @@
     var shimmerPhrase = document.createElement('span');
     shimmerPhrase.className = 'sgc-exact-hero-shimmer-phrase';
     shimmerPhrase.setAttribute('aria-hidden', 'true');
-    shimmerPhrase.textContent = 'impossible to ignore.';
+
+    var shimmerText = 'impossible to ignore.';
+    var shimmerCharacters = shimmerText.split('');
+    var shimmerSteps = shimmerCharacters.filter(function (character) {
+      return character !== ' ';
+    }).length;
+    var shimmerStep = shimmerSteps - 1;
+
+    shimmerCharacters.forEach(function (character) {
+      var letter = document.createElement('span');
+      letter.className = character === ' ' ? 'sgc-exact-hero-shimmer-space' : 'sgc-exact-hero-shimmer-letter';
+      letter.textContent = character === ' ' ? '\u00a0' : character;
+      if (character !== ' ') {
+        letter.style.setProperty('--sgc-shimmer-step', shimmerStep);
+        shimmerStep -= 1;
+      }
+      shimmerPhrase.appendChild(letter);
+    });
+
     hero.appendChild(shimmerPhrase);
 
     return hero;
