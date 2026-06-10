@@ -1,0 +1,22 @@
+/* Sharp Growth Co. — Site-wide section rhythm
+   Applies one consistent vertical spacing value to page sections without changing horizontal padding or inner content spacing. */
+
+#root section,
+body section {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Higher-specificity pass for injected and utility-class sections that previously used larger vertical spacing. */
+html body #root section,
+html body #root section[class],
+html body section[class],
+body #root section.ready-to-begin-injected-section.ready-to-begin-image-banner.sgc-ready-to-begin-preferred,
+body #root section[class~="py-14"] {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}

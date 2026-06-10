@@ -1,6 +1,9 @@
 (() => {
+  const CONTACT_BANNER_COPY = "Tell me about your business, goals, and vision. I personally review every inquiry to ensure we're the right fit before scheduling your complimentary consultation. Helping Alberta businesses elevate their online presence through intentional strategy, refined design, and content that supports meaningful growth.";
+  const CONTACT_BANNER_TAGLINE = 'Boutique Strategy, Personally Tailored for Your Business';
+
   const TEXT_REPLACEMENTS = new Map([
-    ["Tell me about your business and goals. I'll review your inquiry and reach out within 1–2 business days to schedule your free consultation.", "Tell me about your business, goals, and vision. I personally review every inquiry to ensure we’re the right fit before scheduling your complimentary consultation."],
+    ["Tell me about your business and goals. I'll review your inquiry and reach out within 1–2 business days to schedule your free consultation.", CONTACT_BANNER_COPY],
     ["Submit Your Inquiry", "Share Your Vision"],
     ["Fill out the form with your business details and goals.", "Share the business you’re building, the goals you’re pursuing, and where you want your brand to go next."],
     ["I Review & Reach Out", "Personalized Review"],
@@ -57,17 +60,21 @@
     if (label.parentElement) label.parentElement.classList.add('sgc-hidden-preview-field');
   }
 
-  function addTrustPanel() {
-    if (document.querySelector('.sgc-contact-trust-preview')) return;
+  function updateContactBanner() {
+    const hero = document.querySelector('[data-loc="client/src/pages/Contact.tsx:52"]');
     const heroParagraph = document.querySelector('[data-loc="client/src/pages/Contact.tsx:61"]');
-    if (!heroParagraph) return;
-    const panel = document.createElement('div');
-    panel.className = 'sgc-contact-trust-preview';
-    panel.innerHTML = `
-      <div class="sgc-contact-trust-preview__statement">Helping Alberta businesses elevate their online presence through intentional strategy, refined design, and content that supports meaningful growth.</div>
-      <div class="sgc-contact-trust-preview__note">Boutique strategy, personally tailored for your business</div>
-    `;
-    heroParagraph.insertAdjacentElement('afterend', panel);
+
+    if (heroParagraph) {
+      heroParagraph.textContent = CONTACT_BANNER_COPY;
+    }
+
+    document.querySelectorAll('.sgc-contact-trust-preview').forEach((panel) => panel.remove());
+
+    if (!hero || hero.querySelector('.sgc-contact-banner-tagline')) return;
+    const tagline = document.createElement('div');
+    tagline.className = 'sgc-contact-banner-tagline';
+    tagline.textContent = CONTACT_BANNER_TAGLINE;
+    hero.appendChild(tagline);
   }
 
   function tuneServicesSection() {
@@ -108,7 +115,7 @@
     replaceTextNodes();
     hideFieldByLabel('Phone Number');
     hideFieldByLabel('Instagram Handle');
-    addTrustPanel();
+    updateContactBanner();
     tuneServicesSection();
     addInvestmentNote();
   }
