@@ -25,22 +25,41 @@
 
   const findHeader = () => document.querySelector('#root header') || document.querySelector('header');
 
-  const hidePrimaryHeaderLogo = (header) => {
+  const ensureDesktopLogo = (header) => {
     if (!header) return;
     const rootHref = new URL('/', window.location.origin).href;
     const logoLink = Array.from(header.querySelectorAll('a[href]')).find((link) => {
       const href = link.getAttribute('href') || link.href;
       return link.id !== MOBILE_LOGO_ID && !link.closest('nav') && (href === '/' || href === rootHref);
     });
-    if (!logoLink || logoLink.dataset.sgcPrimaryLogoHidden === 'true') return;
+    if (!logoLink || logoLink.dataset.sgcPrimaryLogoReady === 'true') return;
 
-    logoLink.dataset.sgcPrimaryLogoHidden = 'true';
-    logoLink.setAttribute('aria-hidden', 'true');
-    logoLink.tabIndex = -1;
-    logoLink.style.setProperty('display', 'none', 'important');
-    logoLink.style.setProperty('visibility', 'hidden', 'important');
-    logoLink.style.setProperty('opacity', '0', 'important');
-    logoLink.style.setProperty('pointer-events', 'none', 'important');
+    logoLink.textContent = '';
+    logoLink.setAttribute('aria-label', 'Sharp Growth Co. home');
+    logoLink.removeAttribute('aria-hidden');
+    logoLink.removeAttribute('tabindex');
+    logoLink.dataset.sgcPrimaryLogoReady = 'true';
+    logoLink.style.display = 'flex';
+    logoLink.style.visibility = 'visible';
+    logoLink.style.opacity = '1';
+    logoLink.style.pointerEvents = 'auto';
+    logoLink.style.alignItems = 'center';
+    logoLink.style.textDecoration = 'none';
+
+    const logoImage = document.createElement('img');
+    logoImage.src = PRIMARY_LOGO_SRC;
+    logoImage.alt = 'Sharp Growth Co. Local Alberta Marketing';
+    logoImage.className = 'sgc-primary-header-logo';
+    logoImage.decoding = 'async';
+    logoImage.loading = 'eager';
+    logoImage.style.display = 'block';
+    logoImage.style.width = 'clamp(210px, 20vw, 292px)';
+    logoImage.style.height = 'auto';
+    logoImage.style.maxHeight = '56px';
+    logoImage.style.objectFit = 'contain';
+    logoImage.style.objectPosition = 'left center';
+
+    logoLink.appendChild(logoImage);
   };
 
   const findExistingNavHref = (header, label) => {
@@ -202,7 +221,7 @@
 
   const scheduleSetup = () => requestAnimationFrame(() => {
     const header = findHeader();
-    hidePrimaryHeaderLogo(header);
+    ensureDesktopLogo(header);
     setupMobileMenu();
   });
   if (document.readyState === 'loading') {
