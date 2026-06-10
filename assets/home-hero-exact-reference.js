@@ -76,6 +76,12 @@
       hero.appendChild(makeHotspot(item[0], item[1], item[2], item[3]));
     });
 
+    var shimmerPhrase = document.createElement('span');
+    shimmerPhrase.className = 'sgc-exact-hero-shimmer-phrase';
+    shimmerPhrase.setAttribute('aria-hidden', 'true');
+    shimmerPhrase.textContent = 'impossible to ignore.';
+    hero.appendChild(shimmerPhrase);
+
     return hero;
   }
 

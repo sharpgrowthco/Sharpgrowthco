@@ -294,3 +294,54 @@ body.sgc-home-exact-reference .sgc-exact-contact:active {
     filter: drop-shadow(0 6px 8px rgba(73, 42, 16, 0.16)) !important;
   }
 }
+
+/* 2026-06-10 — visible animated shimmer for the exact-reference static hero headline.
+   The React hero is hidden on the live homepage, so the shimmer must exist on this visible layer. */
+body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
+  position: absolute !important;
+  left: 6.48% !important;
+  top: 53.35% !important;
+  z-index: 4 !important;
+  display: inline-block !important;
+  pointer-events: none !important;
+  white-space: nowrap !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: clamp(2.05rem, 5.05vw, 4.95rem) !important;
+  font-weight: 700 !important;
+  font-style: italic !important;
+  line-height: 0.95 !important;
+  letter-spacing: -0.025em !important;
+  color: transparent !important;
+  background: linear-gradient(90deg, #6b4a0e 0%, #b8820e 18%, #e8c040 32%, #fff8a0 44%, #ffe066 50%, #fff8a0 56%, #e8c040 68%, #b8820e 82%, #6b4a0e 100%) !important;
+  background-size: 320% auto !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: sgcExactHeroShine 1.8s linear infinite !important;
+  filter: drop-shadow(0 0 8px rgba(255, 234, 132, 0.18)) !important;
+  transform: translateZ(0) !important;
+  will-change: background-position, filter !important;
+}
+
+@keyframes sgcExactHeroShine {
+  0% {
+    background-position: 220% center;
+    filter: drop-shadow(0 0 5px rgba(255, 224, 102, 0.12));
+  }
+  48% {
+    background-position: 0% center;
+    filter: drop-shadow(0 0 16px rgba(255, 248, 160, 0.34));
+  }
+  100% {
+    background-position: -220% center;
+    filter: drop-shadow(0 0 5px rgba(255, 224, 102, 0.12));
+  }
+}
+
+@media (max-width: 900px) {
+  body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
+    left: 6.48% !important;
+    top: 53.35% !important;
+    font-size: clamp(1.12rem, 5.05vw, 3.9rem) !important;
+  }
+}
