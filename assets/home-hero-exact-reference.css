@@ -295,9 +295,9 @@ body.sgc-home-exact-reference .sgc-exact-contact:active {
   }
 }
 
-/* 2026-06-10 — flyer-gradient shimmer for only the hero phrase “impossible to ignore.”
-   Each character uses the flyer’s exact 2.4s linear shine sweep, staggered right-to-left,
-   with no background block behind the text. */
+/* 2026-06-10 — luxury gold shimmer for only the hero phrase “impossible to ignore.”
+   Each character uses a polished champagne highlight sweep, staggered left-to-right,
+   with no background block behind the text and extra descender room for the final “g.” */
 body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
   position: absolute !important;
   left: 6.48% !important;
@@ -311,10 +311,10 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
   font-size: clamp(2.05rem, 5.05vw, 4.95rem) !important;
   font-weight: 700 !important;
   font-style: italic !important;
-  line-height: 1.08 !important;
+  line-height: 1.18 !important;
   letter-spacing: -0.025em !important;
-  padding: 0 0.34em 0.22em 0.02em !important;
-  color: #b8820e !important;
+  padding: 0.04em 0.38em 0.36em 0.02em !important;
+  color: #c79d5b !important;
   background: transparent !important;
   transform: translateZ(0) !important;
 }
@@ -322,16 +322,22 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
 body.sgc-home-exact-reference .sgc-exact-hero-shimmer-letter {
   display: inline-block !important;
   color: transparent !important;
-  background-image: linear-gradient(90deg, #6b4a0e 0%, #b8820e 18%, #e8c040 32%, #fff8a0 44%, #ffe066 50%, #fff8a0 56%, #e8c040 68%, #b8820e 82%, #6b4a0e 100%) !important;
-  background-size: 300% auto !important;
+  background-image: linear-gradient(100deg, #6f4611 0%, #9f6d1f 18%, #c79d5b 34%, #ead18a 43%, #fff6cf 49%, #ffffff 50%, #fff0b8 52%, #d8ad59 62%, #b4822d 78%, #6f4611 100%) !important;
+  background-size: 245% 100% !important;
   background-repeat: repeat-x !important;
-  background-position: 200% center !important;
+  background-position: -170% center;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  animation: sgcExactHeroLetterShine 2.4s linear infinite !important;
+  animation: sgcExactHeroLetterShine 2.65s cubic-bezier(0.42, 0, 0.18, 1) infinite !important;
   animation-delay: calc(var(--sgc-shimmer-step) * 0.055s) !important;
   animation-play-state: running !important;
+  line-height: 1.18 !important;
+  padding-bottom: 0.14em !important;
+  margin-bottom: -0.14em !important;
+  overflow: visible !important;
+  vertical-align: baseline !important;
+  filter: drop-shadow(0 1px 0 rgba(255, 246, 207, 0.18)) drop-shadow(0 7px 12px rgba(63, 37, 8, 0.22)) !important;
   will-change: background-position !important;
 }
 
@@ -342,10 +348,13 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-space {
 
 @keyframes sgcExactHeroLetterShine {
   0% {
-    background-position: 200% center;
+    background-position: -170% center;
+  }
+  42% {
+    background-position: 40% center;
   }
   100% {
-    background-position: -200% center;
+    background-position: 170% center;
   }
 }
 
@@ -354,7 +363,7 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-space {
     left: 6.48% !important;
     top: 55.15% !important;
     font-size: clamp(1.12rem, 5.05vw, 3.9rem) !important;
-    line-height: 1.08 !important;
-    padding: 0 0.34em 0.22em 0.02em !important;
+    line-height: 1.18 !important;
+    padding: 0.04em 0.38em 0.36em 0.02em !important;
   }
 }

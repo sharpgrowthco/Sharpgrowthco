@@ -82,10 +82,7 @@
 
     var shimmerText = 'impossible to ignore.';
     var shimmerCharacters = shimmerText.split('');
-    var shimmerSteps = shimmerCharacters.filter(function (character) {
-      return character !== ' ';
-    }).length;
-    var shimmerStep = shimmerSteps - 1;
+    var shimmerStep = 0;
 
     shimmerCharacters.forEach(function (character) {
       var letter = document.createElement('span');
@@ -93,7 +90,7 @@
       letter.textContent = character === ' ' ? '\u00a0' : character;
       if (character !== ' ') {
         letter.style.setProperty('--sgc-shimmer-step', shimmerStep);
-        shimmerStep -= 1;
+        shimmerStep += 1;
       }
       shimmerPhrase.appendChild(letter);
     });
