@@ -6,6 +6,7 @@
   const PRIMARY_LOGO_SRC = '/assets/images/sharp-growth-co-logo-website-header.png';
   const DESKTOP_HEADER_MIN_HEIGHT = '5.25rem';
   const BACKDROP_CLASS = 'sgc-mobile-menu-backdrop';
+  const NON_HOME_CLASS = 'sgc-non-home-header';
   const EXPECTED_LINKS = [
     { label: 'Home', fallbackHref: '/' },
     { label: 'Services', fallbackHref: '/services/' },
@@ -25,6 +26,10 @@
   };
 
   const findHeader = () => document.querySelector('#root header') || document.querySelector('header');
+
+  const syncPageScopeClass = () => {
+    document.body.classList.toggle(NON_HOME_CLASS, !isHomePath());
+  };
 
   const ensureDesktopHeaderBanner = (header) => {
     if (!header || isMobile()) return;
@@ -234,6 +239,7 @@
   });
 
   const scheduleSetup = () => requestAnimationFrame(() => {
+    syncPageScopeClass();
     const header = findHeader();
     ensureDesktopHeaderBanner(header);
     ensureDesktopLogo(header);
