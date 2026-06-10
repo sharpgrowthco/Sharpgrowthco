@@ -165,7 +165,7 @@
       <h2 class="testimonial-heading" id="sgc-home-testimonial-heading">Real results for real businesses</h2>
 
       <div class="testimonial-card">
-        <span class="quote-mark" aria-hidden="true">&quot;</span>
+        <span class="quote-mark" aria-hidden="true">“</span>
         <div class="quote-text">
           <p>Working with Jenna at Sharp Growth Co. was honestly one of the best business decisions I've made for Gather &amp; Grow. She completely understood my vision and brought it to life in a way that exceeded every expectation I had.</p>
           <p>She was responsive, creative, organized, and truly cared about making everything perfect. I've received so many compliments on my website and branding already, and I finally feel confident sending people to my business online.</p>
@@ -175,8 +175,8 @@
         <div class="attribution">
           <div class="attribution-info">
             <span class="attribution-name">Laine Mackay</span>
-            <img class="gather-grow-testimonial-logo" src="/assets/images/gather-grow-logo-small-rectangle.svg" alt="Gather and Grow logo" width="180" height="58" loading="lazy" decoding="async">
-            <span class="attribution-role">Founder, Gather and Grow</span>
+            <span class="attribution-role">Founder, Gather &amp; Grow</span>
+            <img class="gather-grow-testimonial-logo" src="/assets/images/gather-grow-homeschool-enrichment-program-wide-banner.png" alt="Gather and Grow homeschool enrichment program banner" width="320" height="72" loading="lazy" decoding="async">
           </div>
           <div class="project-tags" aria-label="Project services">
             <span class="project-tag">Website Design</span>
@@ -187,7 +187,7 @@
       </div>
 
       <div class="testimonial-footer">
-        <a href="/work/" class="testimonial-link testimonial-link-button" aria-label="See the full Gather and Grow testimonial and case study on the My Work page">
+        <a href="/my-work" class="testimonial-link testimonial-link-button" aria-label="See the full Gather and Grow testimonial and case study on the My Work page">
           See Full Testimonial
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
         </a>

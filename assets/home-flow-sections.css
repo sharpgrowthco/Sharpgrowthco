@@ -451,6 +451,7 @@
   padding: 56px 60px 52px;
   background: var(--sgc-home-flow-white);
   border: 1px solid var(--sgc-home-flow-border);
+  border-left: 4px solid #C6A86A;
   border-radius: 4px;
   box-shadow: 0 14px 42px rgba(44, 38, 32, 0.05);
 }
@@ -460,28 +461,22 @@
   top: 32px;
   left: 48px;
   font-family: 'Playfair Display', serif;
-  font-size: 96px;
+  font-size: 5rem;
   line-height: 1;
-  color: var(--sgc-home-flow-gold);
-  opacity: 0.15;
+  color: #C6A86A;
+  opacity: 1;
   pointer-events: none;
   user-select: none;
 }
 
 .testimonial-card::before {
-  content: '';
-  position: absolute;
-  top: 40px;
-  bottom: 40px;
-  left: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--sgc-home-flow-gold) 0%, var(--sgc-home-flow-gold-light) 50%, transparent 100%);
-  border-radius: 0 2px 2px 0;
+  content: none;
 }
 
 .quote-text {
   position: relative;
   z-index: 1;
+  padding-top: 72px;
   margin-bottom: 36px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 20px;
@@ -522,10 +517,10 @@
 
 .gather-grow-testimonial-logo {
   display: block;
-  width: min(180px, 52vw);
+  width: min(320px, 72vw);
   height: auto;
-  max-height: 58px;
-  object-fit: contain;
+  max-height: 92px;
+  object-fit: cover;
   margin: 9px 0 6px;
   border-radius: 10px;
   filter: drop-shadow(0 8px 18px rgba(44, 38, 32, 0.08));
@@ -621,10 +616,11 @@
   .quote-mark {
     top: 20px;
     left: 24px;
-    font-size: 72px;
+    font-size: 4rem;
   }
 
   .quote-text {
+    padding-top: 58px;
     font-size: 18px;
   }
 
@@ -634,8 +630,8 @@
   }
 
   .gather-grow-testimonial-logo {
-    width: min(168px, 58vw);
-    max-height: 54px;
+    width: min(300px, 78vw);
+    max-height: 86px;
   }
 }
 
@@ -713,18 +709,18 @@
 .testimonial-link-button {
   min-height: 50px;
   padding: 15px 26px;
-  border: 1px solid var(--sgc-home-flow-charcoal);
+  border: 1px solid #C6A86A;
   border-radius: 2px;
-  background: var(--sgc-home-flow-charcoal);
-  color: var(--sgc-home-flow-white);
+  background: #C6A86A;
+  color: #1a1814;
   box-shadow: 0 8px 24px rgba(44, 38, 32, 0.12);
 }
 
 .testimonial-link-button:hover,
 .testimonial-link-button:focus-visible {
-  border-color: var(--sgc-home-flow-gold);
-  background: linear-gradient(135deg, var(--sgc-home-flow-gold-dark) 0%, var(--sgc-home-flow-gold) 100%);
-  color: var(--sgc-home-flow-white);
+  border-color: #C6A86A;
+  background: #C6A86A;
+  color: #1a1814;
   box-shadow: 0 10px 30px rgba(184, 146, 62, 0.25);
 }
 
