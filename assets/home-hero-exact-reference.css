@@ -25,7 +25,7 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero {
   overflow: hidden !important;
   isolation: isolate !important;
   background-color: #120c08 !important;
-  background-image: url("images/sharp-growth-hero-exact-reference-20260603.png") !important;
+  background-image: url("images/sharp-growth-hero-exact-reference-clean-shimmer-loop-20260610.png") !important;
   background-size: 100% 100% !important;
   background-position: center top !important;
   background-repeat: no-repeat !important;
@@ -313,11 +313,13 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
   letter-spacing: -0.025em !important;
   color: transparent !important;
   background: linear-gradient(90deg, #6b4a0e 0%, #b8820e 18%, #e8c040 32%, #fff8a0 44%, #ffe066 50%, #fff8a0 56%, #e8c040 68%, #b8820e 82%, #6b4a0e 100%) !important;
-  background-size: 320% auto !important;
+  background-size: 300% 100% !important;
+  background-repeat: repeat-x !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  animation: sgcExactHeroShine 1.8s linear infinite !important;
+  animation: sgcExactHeroShine 2.4s linear infinite !important;
+  animation-play-state: running !important;
   filter: drop-shadow(0 0 8px rgba(255, 234, 132, 0.18)) !important;
   transform: translateZ(0) !important;
   will-change: background-position, filter !important;
@@ -325,15 +327,11 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
 
 @keyframes sgcExactHeroShine {
   0% {
-    background-position: 220% center;
+    background-position: 200% center;
     filter: drop-shadow(0 0 5px rgba(255, 224, 102, 0.12));
   }
-  48% {
-    background-position: 0% center;
-    filter: drop-shadow(0 0 16px rgba(255, 248, 160, 0.34));
-  }
   100% {
-    background-position: -220% center;
+    background-position: -200% center;
     filter: drop-shadow(0 0 5px rgba(255, 224, 102, 0.12));
   }
 }
@@ -343,5 +341,7 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-phrase {
     left: 6.48% !important;
     top: 53.35% !important;
     font-size: clamp(1.12rem, 5.05vw, 3.9rem) !important;
+    animation: sgcExactHeroShine 2.4s linear infinite !important;
+    animation-play-state: running !important;
   }
 }
