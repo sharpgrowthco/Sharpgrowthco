@@ -3,7 +3,8 @@
   const MENU_ID = 'sgc-mobile-header-menu';
   const TOGGLE_ID = 'sgc-mobile-header-toggle';
   const MOBILE_LOGO_ID = 'sgc-mobile-header-logo';
-  const PRIMARY_LOGO_SRC = '/assets/sharp-growth-co-primary-wide-logo-faded.png';
+  const PRIMARY_LOGO_SRC = '/assets/images/sharp-growth-co-logo-website-header.png';
+  const DESKTOP_HEADER_MIN_HEIGHT = '5.25rem';
   const BACKDROP_CLASS = 'sgc-mobile-menu-backdrop';
   const EXPECTED_LINKS = [
     { label: 'Home', fallbackHref: '/' },
@@ -24,6 +25,19 @@
   };
 
   const findHeader = () => document.querySelector('#root header') || document.querySelector('header');
+
+  const ensureDesktopHeaderBanner = (header) => {
+    if (!header || isMobile()) return;
+    const container = header.querySelector(':scope > .container') || header.firstElementChild;
+    const row = container?.firstElementChild;
+    if (container instanceof HTMLElement) {
+      container.style.setProperty('min-height', DESKTOP_HEADER_MIN_HEIGHT, 'important');
+    }
+    if (row instanceof HTMLElement) {
+      row.style.setProperty('height', DESKTOP_HEADER_MIN_HEIGHT, 'important');
+      row.style.setProperty('min-height', DESKTOP_HEADER_MIN_HEIGHT, 'important');
+    }
+  };
 
   const ensureDesktopLogo = (header) => {
     if (!header) return;
@@ -221,6 +235,7 @@
 
   const scheduleSetup = () => requestAnimationFrame(() => {
     const header = findHeader();
+    ensureDesktopHeaderBanner(header);
     ensureDesktopLogo(header);
     setupMobileMenu();
   });
