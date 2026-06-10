@@ -333,3 +333,22 @@
     right: 1rem !important;
   }
 }
+
+/* 2026-06-10 top strip removal:
+   The empty accessibility notifications viewport must not consume page space,
+   because site-wide section padding can otherwise expose the dark body background
+   above the fixed header. */
+#root > section[aria-label^="Notifications"],
+body > section[aria-label^="Notifications"] {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}

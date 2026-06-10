@@ -3,7 +3,7 @@
   const MENU_ID = 'sgc-mobile-header-menu';
   const TOGGLE_ID = 'sgc-mobile-header-toggle';
   const MOBILE_LOGO_ID = 'sgc-mobile-header-logo';
-  const MOBILE_LOGO_SRC = '/assets/sharp-growth-co-local-alberta-marketing-logo-mobile.png';
+  const PRIMARY_LOGO_SRC = '/assets/sharp-growth-co-primary-wide-logo-faded.png';
   const BACKDROP_CLASS = 'sgc-mobile-menu-backdrop';
   const EXPECTED_LINKS = [
     { label: 'Home', fallbackHref: '/' },
@@ -19,6 +19,38 @@
   const isMobile = () => window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
 
   const findHeader = () => document.querySelector('#root header') || document.querySelector('header');
+
+  const ensureDesktopLogo = (header) => {
+    if (!header) return;
+    const rootHref = new URL('/', window.location.origin).href;
+    const logoLink = Array.from(header.querySelectorAll('a[href]')).find((link) => {
+      const href = link.getAttribute('href') || link.href;
+      return link.id !== MOBILE_LOGO_ID && !link.closest('nav') && (href === '/' || href === rootHref);
+    });
+    if (!logoLink || logoLink.dataset.sgcPrimaryLogoReady === 'true') return;
+
+    logoLink.textContent = '';
+    logoLink.setAttribute('aria-label', 'Sharp Growth Co. home');
+    logoLink.dataset.sgcPrimaryLogoReady = 'true';
+    logoLink.style.display = 'flex';
+    logoLink.style.alignItems = 'center';
+    logoLink.style.textDecoration = 'none';
+
+    const logoImage = document.createElement('img');
+    logoImage.src = PRIMARY_LOGO_SRC;
+    logoImage.alt = 'Sharp Growth Co. Local Alberta Marketing';
+    logoImage.className = 'sgc-primary-header-logo';
+    logoImage.decoding = 'async';
+    logoImage.loading = 'eager';
+    logoImage.style.display = 'block';
+    logoImage.style.width = 'clamp(210px, 20vw, 292px)';
+    logoImage.style.height = 'auto';
+    logoImage.style.maxHeight = '56px';
+    logoImage.style.objectFit = 'contain';
+    logoImage.style.objectPosition = 'left center';
+
+    logoLink.appendChild(logoImage);
+  };
 
   const findExistingNavHref = (header, label) => {
     const wanted = label.toLowerCase();
@@ -79,7 +111,7 @@
     logoLink.setAttribute('aria-label', 'Sharp Growth Co. home');
 
     const logoImage = document.createElement('img');
-    logoImage.src = MOBILE_LOGO_SRC;
+    logoImage.src = PRIMARY_LOGO_SRC;
     logoImage.alt = 'Sharp Growth Co. Local Alberta Marketing';
     logoImage.decoding = 'async';
     logoImage.loading = 'eager';
@@ -175,7 +207,11 @@
     if (!isMobile()) closeMenu(findHeader());
   });
 
-  const scheduleSetup = () => requestAnimationFrame(setupMobileMenu);
+  const scheduleSetup = () => requestAnimationFrame(() => {
+    const header = findHeader();
+    ensureDesktopLogo(header);
+    setupMobileMenu();
+  });
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', scheduleSetup, { once: true });
   } else {
