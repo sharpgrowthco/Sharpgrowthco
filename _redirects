@@ -8,8 +8,6 @@
 /contact     /contact/index.html    200
 /work/       /work/index.html       200
 /work        /work/index.html       200
-/my-work/    /work/index.html       200
-/my-work     /work/index.html       200
 /thank-you/  /thank-you/index.html  200
 /thank-you   /thank-you/index.html  200
 /*           /index.html            200
