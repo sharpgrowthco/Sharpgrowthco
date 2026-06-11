@@ -95,11 +95,11 @@
     if (cta) {
       set(cta, 'min-height', innerWidth <= 767 ? '3.15rem' : '4.25rem');
       set(cta, 'padding', innerWidth <= 767 ? '0 1.2rem' : '0 2.9rem');
-      set(cta, 'border-radius', '0');
-      set(cta, 'border', '1px solid rgba(222,177,91,.48)');
-      set(cta, 'background', 'linear-gradient(135deg,#e0b453 0%,#cb9938 47%,#a87423 100%)');
-      set(cta, 'color', '#fffaf2');
-      set(cta, 'box-shadow', '0 14px 26px rgba(132,86,31,.17), inset 0 1px 0 rgba(255,238,196,.24)');
+      set(cta, 'border-radius', '999px');
+      set(cta, 'border', '1px solid rgba(255,232,182,.76)');
+      set(cta, 'background', 'linear-gradient(115deg,#A87524 0%,#D6A642 26%,#EED591 48%,#FFF1C7 56%,#D8AE55 72%,#A87524 100%)');
+      set(cta, 'color', '#1F1712');
+      set(cta, 'box-shadow', '0 14px 30px rgba(39,24,11,.17), 0 8px 18px rgba(218,171,87,.32), inset 0 1px 0 rgba(255,250,235,.7), inset 0 -1px 0 rgba(116,75,24,.28)');
       set(cta, 'font-family', "'Outfit', 'Raleway', sans-serif");
       set(cta, 'font-size', '.82rem');
       set(cta, 'font-weight', '700');
@@ -192,11 +192,11 @@
       setImportant(inner, 'display', 'inline-flex');
       setImportant(inner, 'align-items', 'center');
       setImportant(inner, 'justify-content', 'center');
-      setImportant(inner, 'border-radius', '0');
-      setImportant(inner, 'border', '1px solid rgba(222,177,91,0.46)');
-      setImportant(inner, 'background', 'linear-gradient(135deg, #dfb556 0%, #c9953a 46%, #a87524 100%)');
-      setImportant(inner, 'box-shadow', '0 16px 30px rgba(92,54,20,0.18), inset 0 1px 0 rgba(255,239,196,0.24)');
-      setImportant(inner, 'color', '#fffaf2');
+      setImportant(inner, 'border-radius', '999px');
+      setImportant(inner, 'border', '1px solid rgba(255,232,182,0.76)');
+      setImportant(inner, 'background', 'linear-gradient(115deg, #A87524 0%, #D6A642 26%, #EED591 48%, #FFF1C7 56%, #D8AE55 72%, #A87524 100%)');
+      setImportant(inner, 'box-shadow', '0 14px 30px rgba(39,24,11,0.17), 0 8px 18px rgba(218,171,87,0.32), inset 0 1px 0 rgba(255,250,235,0.7), inset 0 -1px 0 rgba(116,75,24,0.28)');
+      setImportant(inner, 'color', '#1F1712');
       setImportant(inner, 'font-family', "'Outfit', 'Raleway', sans-serif");
       setImportant(inner, 'font-size', '0.82rem');
       setImportant(inner, 'font-weight', '700');
@@ -284,12 +284,12 @@
       setImportant(button, 'display', 'inline-flex');
       setImportant(button, 'align-items', 'center');
       setImportant(button, 'justify-content', 'center');
-      setImportant(button, 'border-radius', '0');
-      setImportant(button, 'border', '1px solid rgba(218, 171, 76, 0.38)');
-      setImportant(button, 'background', 'linear-gradient(135deg, #ddb24f 0%, #c89539 48%, #a87524 100%)');
-      setImportant(button, 'background-image', 'linear-gradient(135deg, #ddb24f 0%, #c89539 48%, #a87524 100%)');
-      setImportant(button, 'box-shadow', '0 14px 26px rgba(86, 52, 21, 0.18)');
-      setImportant(button, 'color', '#fffaf2');
+      setImportant(button, 'border-radius', '999px');
+      setImportant(button, 'border', '1px solid rgba(255, 232, 182, 0.76)');
+      setImportant(button, 'background', 'linear-gradient(115deg, #A87524 0%, #D6A642 26%, #EED591 48%, #FFF1C7 56%, #D8AE55 72%, #A87524 100%)');
+      setImportant(button, 'background-image', 'linear-gradient(115deg, #A87524 0%, #D6A642 26%, #EED591 48%, #FFF1C7 56%, #D8AE55 72%, #A87524 100%)');
+      setImportant(button, 'box-shadow', '0 14px 30px rgba(39, 24, 11, 0.17), 0 8px 18px rgba(218, 171, 87, 0.32), inset 0 1px 0 rgba(255, 250, 235, 0.7), inset 0 -1px 0 rgba(116, 75, 24, 0.28)');
+      setImportant(button, 'color', '#1F1712');
       setImportant(button, 'cursor', 'pointer');
 
       setImportant(inner, 'width', 'auto');
@@ -303,7 +303,7 @@
       setImportant(inner, 'background', 'transparent');
       setImportant(inner, 'background-image', 'none');
       setImportant(inner, 'box-shadow', 'none');
-      setImportant(inner, 'color', '#fffaf2');
+      setImportant(inner, 'color', '#1F1712');
       setImportant(inner, 'font-family', "'Outfit', 'Raleway', sans-serif");
       setImportant(inner, 'font-size', '0.84rem');
       setImportant(inner, 'font-weight', '700');

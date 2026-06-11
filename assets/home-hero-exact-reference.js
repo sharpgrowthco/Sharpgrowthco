@@ -25,6 +25,35 @@
     return link;
   }
 
+  function luxuryClassesForLabel(label) {
+    var normalizedLabel = (label || '').replace(' — Contact Page', '').replace(/\s+/g, ' ').trim().toLowerCase();
+    if (
+      normalizedLabel === 'book a consultation' ||
+      normalizedLabel === 'work with me' ||
+      normalizedLabel === 'contact me' ||
+      normalizedLabel === 'book a custom growth plan' ||
+      normalizedLabel === 'start your project' ||
+      normalizedLabel === 'start your growth journey' ||
+      normalizedLabel === 'book a call' ||
+      normalizedLabel === 'book a complimentary consultation' ||
+      normalizedLabel === 'apply to work together'
+    ) {
+      return ' sgc-luxury-cta btn-primary-gold';
+    }
+    if (
+      normalizedLabel === 'view services' ||
+      normalizedLabel === 'explore my services' ||
+      normalizedLabel === 'see my services' ||
+      normalizedLabel === 'see full testimonial' ||
+      normalizedLabel === 'see full details' ||
+      normalizedLabel === 'view full packages & pricing' ||
+      normalizedLabel === 'view packages'
+    ) {
+      return ' sgc-luxury-cta btn-secondary-gold-outline';
+    }
+    return '';
+  }
+
   function normalizeHotspots() {
     document.querySelectorAll('.sgc-exact-reference-hotspot').forEach(function (link) {
       var className = link.dataset.sgcExactClass;
@@ -36,7 +65,7 @@
         link.dataset.sgcExactHref = '/contact/';
         link.dataset.sgcExactLabel = 'Work with Me';
       }
-      if (className) link.className = 'sgc-exact-reference-hotspot ' + className;
+      if (className) link.className = 'sgc-exact-reference-hotspot ' + className + luxuryClassesForLabel(label);
       if (label) {
         var visibleLabel = label.replace(' — Contact Page', '');
         link.setAttribute('aria-label', label);

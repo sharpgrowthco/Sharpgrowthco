@@ -1842,3 +1842,346 @@ footer nav a:active,
     transform: translate3d(0, -2px, 0) scale(1.025) !important;
   }
 }
+
+/* 2026-06-11 design-only luxury CTA update.
+   Link destinations, href values, routes, anchors, labels, and form actions are intentionally untouched. */
+:root {
+  --sgc-button-deep-gold: #9f6b1f;
+  --sgc-button-classic-gold: #c8963f;
+  --sgc-button-champagne: #ead09a;
+  --sgc-button-ivory-gold: #fff3cf;
+  --sgc-button-charcoal: #1d1712;
+  --sgc-button-gold-glow: rgba(213, 164, 76, 0.34);
+  --sgc-button-gold-border: rgba(203, 151, 62, 0.88);
+}
+
+@keyframes sgc-contained-gold-shine {
+  0%, 46% {
+    transform: translateX(-145%) skewX(-18deg);
+    opacity: 0;
+  }
+  52% {
+    opacity: 0.72;
+  }
+  68% {
+    transform: translateX(145%) skewX(-18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(145%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+.sgc-luxury-cta.btn-primary-gold,
+a.sgc-luxury-cta.btn-primary-gold,
+button.sgc-luxury-cta.btn-primary-gold,
+input.sgc-luxury-cta.btn-primary-gold,
+main .sgc-luxury-cta.btn-primary-gold,
+#root .sgc-luxury-cta.btn-primary-gold,
+.btn-primary-gold {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto;
+  min-height: 3.22rem !important;
+  padding: 0.92rem 1.72rem !important;
+  border: 1px solid rgba(255, 232, 182, 0.76) !important;
+  border-radius: 999px !important;
+  background-color: var(--sgc-button-classic-gold) !important;
+  background-image:
+    linear-gradient(115deg,
+      var(--sgc-button-deep-gold) 0%,
+      var(--sgc-button-classic-gold) 26%,
+      var(--sgc-button-champagne) 48%,
+      var(--sgc-button-ivory-gold) 56%,
+      var(--sgc-button-classic-gold) 72%,
+      var(--sgc-button-deep-gold) 100%) !important;
+  background-size: 145% 145% !important;
+  color: var(--sgc-button-charcoal) !important;
+  font-family: 'Outfit', system-ui, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.125em !important;
+  line-height: 1.12 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 0 rgba(255, 250, 235, 0.38) !important;
+  box-shadow:
+    0 14px 30px rgba(39, 24, 11, 0.17),
+    0 8px 18px var(--sgc-button-gold-glow),
+    inset 0 1px 0 rgba(255, 250, 235, 0.7),
+    inset 0 -1px 0 rgba(116, 75, 24, 0.28) !important;
+  filter: saturate(1.04) !important;
+  transform: translateY(0) !important;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    filter 220ms ease,
+    border-color 220ms ease,
+    background-position 220ms ease !important;
+  overflow: hidden !important;
+  contain: paint;
+}
+
+.sgc-luxury-cta.btn-primary-gold::before,
+a.sgc-luxury-cta.btn-primary-gold::before,
+button.sgc-luxury-cta.btn-primary-gold::before,
+input.sgc-luxury-cta.btn-primary-gold::before,
+main .sgc-luxury-cta.btn-primary-gold::before,
+#root .sgc-luxury-cta.btn-primary-gold::before,
+.btn-primary-gold::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: -24% auto -24% -38% !important;
+  display: block !important;
+  width: 34% !important;
+  height: 148% !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 252, 238, 0.2) 25%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 246, 218, 0.24) 73%,
+      rgba(255, 255, 255, 0) 100%) !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  transform: translateX(-145%) skewX(-18deg) !important;
+  animation: sgc-contained-gold-shine 2.85s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+  z-index: 0 !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold::after,
+a.sgc-luxury-cta.btn-primary-gold::after,
+button.sgc-luxury-cta.btn-primary-gold::after,
+input.sgc-luxury-cta.btn-primary-gold::after,
+main .sgc-luxury-cta.btn-primary-gold::after,
+#root .sgc-luxury-cta.btn-primary-gold::after,
+.btn-primary-gold::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 1px !important;
+  display: block !important;
+  border-radius: inherit !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 42%) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  transform: none !important;
+  z-index: 0 !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold:hover,
+.sgc-luxury-cta.btn-primary-gold:focus-visible,
+a.sgc-luxury-cta.btn-primary-gold:hover,
+a.sgc-luxury-cta.btn-primary-gold:focus-visible,
+button.sgc-luxury-cta.btn-primary-gold:hover,
+button.sgc-luxury-cta.btn-primary-gold:focus-visible,
+input.sgc-luxury-cta.btn-primary-gold:hover,
+input.sgc-luxury-cta.btn-primary-gold:focus-visible,
+main .sgc-luxury-cta.btn-primary-gold:hover,
+main .sgc-luxury-cta.btn-primary-gold:focus-visible,
+#root .sgc-luxury-cta.btn-primary-gold:hover,
+#root .sgc-luxury-cta.btn-primary-gold:focus-visible,
+.btn-primary-gold:hover,
+.btn-primary-gold:focus-visible {
+  transform: translateY(-2px) !important;
+  filter: saturate(1.1) brightness(1.02) !important;
+  border-color: rgba(255, 240, 204, 0.96) !important;
+  color: var(--sgc-button-charcoal) !important;
+  background-position: 64% 40% !important;
+  box-shadow:
+    0 18px 34px rgba(39, 24, 11, 0.2),
+    0 10px 26px rgba(218, 171, 87, 0.43),
+    0 0 26px rgba(232, 202, 143, 0.22),
+    inset 0 1px 0 rgba(255, 250, 235, 0.78),
+    inset 0 -1px 0 rgba(116, 75, 24, 0.24) !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold:active,
+a.sgc-luxury-cta.btn-primary-gold:active,
+button.sgc-luxury-cta.btn-primary-gold:active,
+input.sgc-luxury-cta.btn-primary-gold:active,
+.btn-primary-gold:active {
+  transform: translateY(-1px) !important;
+}
+
+.sgc-luxury-cta.btn-secondary-gold-outline,
+a.sgc-luxury-cta.btn-secondary-gold-outline,
+button.sgc-luxury-cta.btn-secondary-gold-outline,
+input.sgc-luxury-cta.btn-secondary-gold-outline,
+main .sgc-luxury-cta.btn-secondary-gold-outline,
+#root .sgc-luxury-cta.btn-secondary-gold-outline,
+.btn-secondary-gold-outline {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto;
+  min-height: 3.18rem !important;
+  padding: 0.9rem 1.65rem !important;
+  border: 1px solid var(--sgc-button-gold-border) !important;
+  border-radius: 999px !important;
+  background-color: rgba(255, 250, 241, 0.02) !important;
+  background-image: linear-gradient(135deg, rgba(255, 244, 215, 0.05), rgba(203, 151, 62, 0.02)) !important;
+  color: var(--sgc-button-classic-gold) !important;
+  font-family: 'Outfit', system-ui, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.12 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  box-shadow:
+    0 8px 18px rgba(39, 24, 11, 0.08),
+    inset 0 1px 0 rgba(255, 250, 235, 0.18) !important;
+  filter: none !important;
+  transform: translateY(0) !important;
+  transition:
+    transform 220ms ease,
+    color 220ms ease,
+    background-color 220ms ease,
+    background-image 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease !important;
+  overflow: hidden !important;
+  contain: paint;
+}
+
+.sgc-luxury-cta.btn-secondary-gold-outline::before,
+.sgc-luxury-cta.btn-secondary-gold-outline::after,
+a.sgc-luxury-cta.btn-secondary-gold-outline::before,
+a.sgc-luxury-cta.btn-secondary-gold-outline::after,
+button.sgc-luxury-cta.btn-secondary-gold-outline::before,
+button.sgc-luxury-cta.btn-secondary-gold-outline::after,
+input.sgc-luxury-cta.btn-secondary-gold-outline::before,
+input.sgc-luxury-cta.btn-secondary-gold-outline::after,
+main .sgc-luxury-cta.btn-secondary-gold-outline::before,
+main .sgc-luxury-cta.btn-secondary-gold-outline::after,
+#root .sgc-luxury-cta.btn-secondary-gold-outline::before,
+#root .sgc-luxury-cta.btn-secondary-gold-outline::after,
+.btn-secondary-gold-outline::before,
+.btn-secondary-gold-outline::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+a.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+a.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+button.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+button.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+input.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+input.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+main .sgc-luxury-cta.btn-secondary-gold-outline:hover,
+main .sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+#root .sgc-luxury-cta.btn-secondary-gold-outline:hover,
+#root .sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+.btn-secondary-gold-outline:hover,
+.btn-secondary-gold-outline:focus-visible {
+  transform: translateY(-2px) !important;
+  border-color: rgba(255, 231, 184, 0.94) !important;
+  background-color: var(--sgc-button-classic-gold) !important;
+  background-image:
+    linear-gradient(115deg,
+      var(--sgc-button-deep-gold) 0%,
+      var(--sgc-button-classic-gold) 38%,
+      var(--sgc-button-champagne) 72%,
+      var(--sgc-button-classic-gold) 100%) !important;
+  color: var(--sgc-button-charcoal) !important;
+  box-shadow:
+    0 14px 26px rgba(39, 24, 11, 0.15),
+    0 8px 22px rgba(218, 171, 87, 0.28),
+    inset 0 1px 0 rgba(255, 250, 235, 0.58) !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold:focus-visible,
+.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+.btn-primary-gold:focus-visible,
+.btn-secondary-gold-outline:focus-visible {
+  outline: 2px solid rgba(232, 202, 143, 0.72) !important;
+  outline-offset: 3px !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold > .btn-primary,
+.sgc-luxury-cta.btn-primary-gold > .btn-gold,
+.sgc-luxury-cta.btn-primary-gold > .btn-outline,
+.sgc-luxury-cta.btn-secondary-gold-outline > .btn-primary,
+.sgc-luxury-cta.btn-secondary-gold-outline > .btn-gold,
+.sgc-luxury-cta.btn-secondary-gold-outline > .btn-outline,
+.sgc-luxury-cta.btn-primary-gold > span[class*="btn-"],
+.sgc-luxury-cta.btn-secondary-gold-outline > span[class*="btn-"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+  text-shadow: inherit !important;
+  transform: none !important;
+  transition: none !important;
+  overflow: visible !important;
+}
+
+@media (max-width: 640px) {
+  .sgc-luxury-cta.btn-primary-gold,
+  .sgc-luxury-cta.btn-secondary-gold-outline,
+  a.sgc-luxury-cta.btn-primary-gold,
+  a.sgc-luxury-cta.btn-secondary-gold-outline,
+  button.sgc-luxury-cta.btn-primary-gold,
+  button.sgc-luxury-cta.btn-secondary-gold-outline,
+  input.sgc-luxury-cta.btn-primary-gold,
+  input.sgc-luxury-cta.btn-secondary-gold-outline {
+    width: min(100%, 22rem) !important;
+    min-height: 3.1rem !important;
+    padding: 0.86rem 1.18rem !important;
+    font-size: 0.74rem !important;
+    letter-spacing: 0.095em !important;
+    white-space: normal !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgc-luxury-cta.btn-primary-gold::before,
+  .btn-primary-gold::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+  .sgc-luxury-cta.btn-primary-gold,
+  .sgc-luxury-cta.btn-secondary-gold-outline,
+  .btn-primary-gold,
+  .btn-secondary-gold-outline {
+    transition-duration: 1ms !important;
+  }
+}
