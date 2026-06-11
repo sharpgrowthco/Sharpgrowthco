@@ -52,7 +52,7 @@
   const mainServiceCards = [
     {
       title: 'Social Media Management',
-      image: '/assets/images/social-media-management-alberta-content-strategy-phone.webp',
+      image: '/assets/images/Social_Media___Content_Phone.png',
       alt: 'Social media management content strategy for local Alberta businesses.'
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       title: 'Marketing Strategy',
-      image: '/assets/images/calgary-marketing-consultant-boardroom-strategy-meeting.webp',
+      image: '/assets/images/Marketing_Strategy.png',
       alt: 'Marketing strategy and boardroom planning session for Alberta entrepreneurs and local business growth.'
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       title: 'Branding & Creative Direction',
-      image: '/assets/images/branding-creative-direction-brand-board-visual-identity.webp',
+      image: '/assets/images/Branding___Creative_Direction.png',
       alt: 'Branding and creative direction brand board visual identity for Alberta businesses.'
     }
   ];
@@ -568,7 +568,7 @@
       eyebrow: 'Social Media & Content Creation',
       title: 'Content that builds community and moves people to act.',
       intro: 'A combined strategy, content, and publishing system for businesses that need to look consistent, stay visible, and turn attention into real demand.',
-      image: '/assets/images/social-media-management-alberta-content-strategy-phone.webp',
+      image: '/assets/images/Social_Media___Content_Phone.png',
       alt: 'Phone mockup showing social media management and content creation strategy for Alberta local businesses.',
       visualLabel: 'Phone-first content system',
       points: [
@@ -582,7 +582,7 @@
       eyebrow: 'Marketing Strategy',
       title: 'A clear roadmap for sustainable local growth.',
       intro: 'Strategy turns scattered marketing into focused action. I map your positioning, offers, campaigns, and customer journey so every effort has a purpose.',
-      image: '/assets/images/calgary-marketing-consultant-boardroom-strategy-meeting.webp',
+      image: '/assets/images/Marketing_Strategy.png',
       alt: 'Marketing strategy boardroom planning session for Alberta entrepreneurs and local business growth.',
       visualLabel: 'Strategic growth planning',
       points: [
@@ -596,7 +596,7 @@
       eyebrow: 'Branding & Creative Direction',
       title: 'A cohesive brand presence people remember.',
       intro: 'Your brand should feel intentional everywhere it appears. I shape the visuals, voice, templates, and creative direction that make your business feel polished and recognizable.',
-      image: '/assets/images/branding-creative-direction-brand-board-visual-identity.webp',
+      image: '/assets/images/Branding___Creative_Direction.png',
       alt: 'Brand board creative direction and visual identity system for Alberta businesses.',
       visualLabel: 'Brand board direction',
       points: [
