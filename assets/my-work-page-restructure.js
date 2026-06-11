@@ -94,11 +94,20 @@
     video.loop = true;
     video.autoplay = true;
     video.playsInline = true;
+    video.defaultPlaybackRate = 1;
+    video.playbackRate = 1;
     video.setAttribute('muted', '');
     video.setAttribute('loop', '');
     video.setAttribute('autoplay', '');
     video.setAttribute('playsinline', '');
     video.setAttribute('preload', 'auto');
+    video.addEventListener('loadedmetadata', () => {
+      video.defaultPlaybackRate = 1;
+      video.playbackRate = 1;
+    });
+    video.addEventListener('ratechange', () => {
+      if (Math.abs(video.playbackRate - 1) > 0.01) video.playbackRate = 1;
+    });
     video.addEventListener('ended', () => {
       video.currentTime = 0;
       safelyPlay(video);
@@ -204,6 +213,12 @@
                       <path class="leaf leaf-8" d="M254 103 C284 91 289 66 255 73 C240 76 238 96 254 103Z"/>
                       <path class="leaf leaf-9" d="M225 36 C200 26 198 7 227 12 C240 15 240 31 225 36Z"/>
                       <path class="leaf leaf-10" d="M250 1 C276 -8 281 -30 251 -25 C238 -22 237 -5 250 1Z"/>
+                      <path class="leaf leaf-11" d="M198 531 C162 521 151 490 197 498 C217 502 220 526 198 531Z"/>
+                      <path class="leaf leaf-12" d="M259 496 C298 480 309 448 262 459 C243 463 239 488 259 496Z"/>
+                      <path class="leaf leaf-13" d="M202 347 C169 335 163 306 203 315 C221 319 222 341 202 347Z"/>
+                      <path class="leaf leaf-14" d="M260 292 C294 276 301 248 262 257 C245 261 242 284 260 292Z"/>
+                      <path class="leaf leaf-15" d="M210 112 C181 101 178 76 211 83 C227 87 226 107 210 112Z"/>
+                      <path class="leaf leaf-16" d="M260 67 C291 55 296 29 262 36 C247 39 244 59 260 67Z"/>
                     </g>
                     <g class="botanical-lights">
                       <circle class="light light-1" cx="230" cy="744" r="4"/>
@@ -224,6 +239,17 @@
                   <span class="sparkle s5">✦</span>
                   <span class="sparkle s6">✧</span>
                   <span class="sparkle s7">✦</span>
+                  <span class="sparkle s8">✧</span>
+                  <span class="sparkle s9">✦</span>
+                  <span class="sparkle s10">✧</span>
+                  <span class="sparkle s11">✦</span>
+                  <span class="sparkle s12">✧</span>
+                  <span class="sparkle s13">✦</span>
+                  <span class="sparkle s14">✧</span>
+                  <span class="sparkle s15">✦</span>
+                  <span class="sparkle s16">✧</span>
+                  <span class="sparkle s17">✦</span>
+                  <span class="sparkle s18">✧</span>
                 </div>
                 <div class="sgc-full-story-laptop">
                   <div class="sgc-full-story-browser-bar" aria-hidden="true">

@@ -267,8 +267,8 @@
   width: 1px;
   height: 112%;
   transform: translateX(-50%);
-  background: linear-gradient(to top, transparent 0%, rgba(141, 92, 25, 0.24) 13%, rgba(255, 226, 146, 0.58) 45%, rgba(255, 239, 177, 0.28) 83%, transparent 100%);
-  box-shadow: 0 0 14px rgba(255, 226, 142, 0.36), 0 0 42px rgba(212, 175, 55, 0.2);
+  background: linear-gradient(to top, transparent 0%, rgba(141, 92, 25, 0.32) 13%, rgba(255, 226, 146, 0.72) 45%, rgba(255, 239, 177, 0.34) 83%, transparent 100%);
+  box-shadow: 0 0 18px rgba(255, 226, 142, 0.46), 0 0 54px rgba(212, 175, 55, 0.25);
   opacity: 0.84;
   transform-origin: 50% 100%;
   animation: sgcGoldColumnGrow 4.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
@@ -315,25 +315,33 @@
 .sgc-full-story-visual .botanical-stems path {
   fill: none;
   stroke: url(#sgcGoldStem);
-  stroke-width: 1.55;
+  stroke-width: 2.55;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  opacity: 0.84;
-  filter: drop-shadow(0 0 6px rgba(255, 224, 132, 0.48));
+  opacity: 0.91;
+  filter: drop-shadow(0 0 8px rgba(255, 224, 132, 0.56)) drop-shadow(0 0 16px rgba(212, 175, 55, 0.2));
   animation: sgcBotanicalDraw 4.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .sgc-full-story-visual .botanical-stems .stem-main {
-  stroke-width: 2.15;
-  opacity: 0.92;
+  stroke-width: 3.85;
+  opacity: 0.98;
   animation-duration: 5.15s;
 }
 
+.sgc-full-story-visual .botanical-stems .stem-left-low,
+.sgc-full-story-visual .botanical-stems .stem-right-low,
+.sgc-full-story-visual .botanical-stems .curl-base-left,
+.sgc-full-story-visual .botanical-stems .curl-base-right {
+  stroke-width: 3.15;
+  opacity: 0.96;
+}
+
 .sgc-full-story-visual .botanical-stems .curl {
-  stroke-width: 1.18;
-  opacity: 0.72;
+  stroke-width: 1.95;
+  opacity: 0.82;
 }
 
 .sgc-full-story-visual .stem-left-low,
@@ -355,26 +363,32 @@
 
 .sgc-full-story-visual .botanical-leaves path {
   fill: url(#sgcLeafGold);
-  stroke: rgba(255, 231, 157, 0.78);
-  stroke-width: 1;
+  stroke: rgba(255, 236, 170, 0.92);
+  stroke-width: 1.35;
   stroke-linejoin: round;
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  filter: drop-shadow(0 0 7px rgba(255, 224, 138, 0.42));
-  animation: sgcLeafReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards, sgcLeafShimmer 7s ease-in-out infinite;
+  filter: drop-shadow(0 0 9px rgba(255, 224, 138, 0.56)) drop-shadow(0 0 15px rgba(212, 175, 55, 0.18));
+  animation: sgcLeafReveal 1.55s cubic-bezier(0.18, 1.1, 0.28, 1) forwards, sgcLeafShimmer 6.8s ease-in-out infinite;
 }
 
-.sgc-full-story-visual .leaf-1,
-.sgc-full-story-visual .leaf-2 { animation-delay: 1.55s, 5.2s; }
-.sgc-full-story-visual .leaf-3,
-.sgc-full-story-visual .leaf-4 { animation-delay: 2.05s, 5.8s; }
-.sgc-full-story-visual .leaf-5,
-.sgc-full-story-visual .leaf-6,
-.sgc-full-story-visual .leaf-7 { animation-delay: 2.65s, 6.2s; }
-.sgc-full-story-visual .leaf-8,
-.sgc-full-story-visual .leaf-9,
-.sgc-full-story-visual .leaf-10 { animation-delay: 3.05s, 6.6s; }
+.sgc-full-story-visual .leaf-1 { animation-delay: 1.25s, 4.9s; }
+.sgc-full-story-visual .leaf-2 { animation-delay: 1.55s, 5.05s; }
+.sgc-full-story-visual .leaf-3 { animation-delay: 1.95s, 5.25s; }
+.sgc-full-story-visual .leaf-4 { animation-delay: 2.25s, 5.45s; }
+.sgc-full-story-visual .leaf-5 { animation-delay: 2.75s, 5.75s; }
+.sgc-full-story-visual .leaf-6 { animation-delay: 3.05s, 5.95s; }
+.sgc-full-story-visual .leaf-7 { animation-delay: 2.55s, 6.15s; }
+.sgc-full-story-visual .leaf-8 { animation-delay: 3.35s, 6.35s; }
+.sgc-full-story-visual .leaf-9 { animation-delay: 3.75s, 6.65s; }
+.sgc-full-story-visual .leaf-10 { animation-delay: 4.05s, 6.85s; }
+.sgc-full-story-visual .leaf-11 { animation-delay: 1.75s, 5.15s; }
+.sgc-full-story-visual .leaf-12 { animation-delay: 2.45s, 5.65s; }
+.sgc-full-story-visual .leaf-13 { animation-delay: 3.15s, 6.05s; }
+.sgc-full-story-visual .leaf-14 { animation-delay: 3.55s, 6.45s; }
+.sgc-full-story-visual .leaf-15 { animation-delay: 4.25s, 6.95s; }
+.sgc-full-story-visual .leaf-16 { animation-delay: 4.65s, 7.25s; }
 
 .sgc-full-story-visual .botanical-lights circle {
   fill: rgba(255, 239, 184, 0.95);
@@ -437,20 +451,31 @@
 
 .sgc-full-story-visual .sparkle {
   position: absolute;
-  color: rgba(255, 224, 139, 0.72);
-  font-size: clamp(7px, 1vw, 12px);
+  color: rgba(255, 229, 150, 0.86);
+  font-size: clamp(8px, 1.15vw, 14px);
   opacity: 0;
-  text-shadow: 0 0 13px rgba(255, 230, 139, 0.7), 0 0 26px rgba(212, 175, 55, 0.28);
-  animation: sgcSparkleFloat 6.2s ease-in-out infinite;
+  text-shadow: 0 0 14px rgba(255, 238, 167, 0.82), 0 0 30px rgba(212, 175, 55, 0.38);
+  animation: sgcSparkleFloat 5.8s ease-in-out infinite;
 }
 
-.sgc-full-story-visual .s1 { bottom: 24%; left: 45%; animation-delay: 1.2s; }
-.sgc-full-story-visual .s2 { bottom: 39%; left: 62%; animation-delay: 2.1s; }
-.sgc-full-story-visual .s3 { bottom: 57%; left: 47%; animation-delay: 3s; }
-.sgc-full-story-visual .s4 { bottom: 76%; left: 61%; animation-delay: 3.7s; }
-.sgc-full-story-visual .s5 { bottom: 88%; left: 50%; animation-delay: 4.4s; }
-.sgc-full-story-visual .s6 { bottom: 63%; left: 57%; animation-delay: 5.1s; }
-.sgc-full-story-visual .s7 { bottom: 32%; left: 54%; animation-delay: 5.8s; }
+.sgc-full-story-visual .s1 { bottom: 22%; left: 44%; animation-delay: 0.8s; }
+.sgc-full-story-visual .s2 { bottom: 37%; left: 63%; animation-delay: 1.6s; }
+.sgc-full-story-visual .s3 { bottom: 55%; left: 46%; animation-delay: 2.25s; }
+.sgc-full-story-visual .s4 { bottom: 74%; left: 61%; animation-delay: 3s; }
+.sgc-full-story-visual .s5 { bottom: 86%; left: 50%; animation-delay: 3.75s; }
+.sgc-full-story-visual .s6 { bottom: 62%; left: 57%; animation-delay: 4.4s; }
+.sgc-full-story-visual .s7 { bottom: 30%; left: 54%; animation-delay: 5.05s; }
+.sgc-full-story-visual .s8 { bottom: 18%; left: 58%; animation-delay: 1.25s; transform: scale(0.82); }
+.sgc-full-story-visual .s9 { bottom: 27%; left: 49%; animation-delay: 2.75s; transform: scale(1.08); }
+.sgc-full-story-visual .s10 { bottom: 43%; left: 50%; animation-delay: 3.35s; transform: scale(0.74); }
+.sgc-full-story-visual .s11 { bottom: 49%; left: 65%; animation-delay: 4.85s; transform: scale(1.05); }
+.sgc-full-story-visual .s12 { bottom: 68%; left: 48%; animation-delay: 5.55s; transform: scale(0.84); }
+.sgc-full-story-visual .s13 { bottom: 70%; left: 58%; animation-delay: 6.35s; transform: scale(1.12); }
+.sgc-full-story-visual .s14 { bottom: 81%; left: 55%; animation-delay: 7.15s; transform: scale(0.78); }
+.sgc-full-story-visual .s15 { bottom: 90%; left: 58%; animation-delay: 7.85s; transform: scale(0.96); }
+.sgc-full-story-visual .s16 { bottom: 34%; left: 42%; animation-delay: 6.8s; transform: scale(0.72); }
+.sgc-full-story-visual .s17 { bottom: 58%; left: 53%; animation-delay: 8.55s; transform: scale(0.9); }
+.sgc-full-story-visual .s18 { bottom: 78%; left: 46%; animation-delay: 9.25s; transform: scale(0.82); }
 
 @keyframes sgcGoldColumnGrow {
   0% { transform: translateX(-50%) scaleY(0); opacity: 0; }
@@ -480,8 +505,9 @@
 }
 
 @keyframes sgcLeafReveal {
-  0% { opacity: 0; transform: scale(0.38) rotate(-6deg); }
-  100% { opacity: 0.82; transform: scale(1) rotate(0deg); }
+  0% { opacity: 0; transform: scale(0.08) rotate(-26deg) translateY(9px); }
+  58% { opacity: 0.92; transform: scale(1.14) rotate(4deg) translateY(-2px); }
+  100% { opacity: 0.86; transform: scale(1) rotate(0deg) translateY(0); }
 }
 
 @keyframes sgcLeafShimmer {
@@ -504,9 +530,16 @@
     opacity: 0;
     transform: translateY(12px) scale(0.72) rotate(0deg);
   }
+  20% {
+    opacity: 0.34;
+  }
   45% {
-    opacity: 0.66;
-    transform: translateY(-10px) scale(1) rotate(12deg);
+    opacity: 0.88;
+    transform: translateY(-12px) scale(1.05) rotate(12deg);
+  }
+  68% {
+    opacity: 0.38;
+    transform: translateY(-18px) scale(0.86) rotate(22deg);
   }
 }
 
@@ -931,15 +964,72 @@
   }
 
   .sgc-full-story-visual {
-    min-height: 430px;
+    min-height: 560px;
+    gap: 1.05rem;
+    justify-content: flex-end;
+  }
+
+  .sgc-full-story-visual::before {
+    inset: 0.85rem;
   }
 
   .sgc-full-story-laptop {
+    width: 100%;
     transform: none;
+    border-radius: 14px;
   }
 
   .sgc-full-story-browser-bar div {
     font-size: 0.6rem;
+  }
+
+  .sgc-full-story-project-note {
+    padding: 1.05rem;
+  }
+
+  .sgc-full-story-visual .gold-botanical-svg {
+    left: 51%;
+    bottom: 16px;
+    width: 118%;
+    height: 118%;
+  }
+
+  .sgc-full-story-visual .gold-growth-animation::after,
+  .sgc-full-story-visual .gold-pot {
+    left: 51%;
+  }
+
+  .sgc-full-story-visual .sparkle {
+    font-size: clamp(8px, 2.4vw, 12px);
+  }
+}
+
+@media (max-width: 480px) {
+  .sgc-full-story-copy,
+  .sgc-full-story-visual {
+    padding: 1.6rem 1rem;
+  }
+
+  .sgc-full-story-visual {
+    min-height: 520px;
+  }
+
+  .sgc-full-story-visual .gold-botanical-svg {
+    left: 50%;
+    bottom: 30px;
+    width: 132%;
+    height: 112%;
+  }
+
+  .sgc-full-story-visual .gold-pot {
+    bottom: 0;
+    width: 112px;
+    height: 58px;
+  }
+
+  .sgc-full-story-visual .s15,
+  .sgc-full-story-visual .s18 {
+    display: none;
   }
 }
 
