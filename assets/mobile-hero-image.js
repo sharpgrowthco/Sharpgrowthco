@@ -79,8 +79,11 @@
       set(a, 'letter-spacing', '.02em');
       set(a, 'text-transform', 'none');
     });
-    const title = header.querySelector('a[href="/"] span:first-child');
-    const sub = header.querySelector('a[href="/"] span:last-child');
+    const logoLink = Array.from(header.querySelectorAll('a[href="/"]')).find((candidate) => {
+      return !candidate.closest('nav, [role="navigation"]') && /Sharp\s+Growth\s+Co\./i.test(candidate.textContent || '');
+    });
+    const title = logoLink?.querySelector('span:first-child');
+    const sub = logoLink?.querySelector('span:last-child');
     set(title, 'font-size', 'clamp(1.12rem, 1.6vw, 1.45rem)');
     set(title, 'line-height', '.95');
     set(title, 'color', '#23140d');
@@ -118,7 +121,9 @@
     const header = document.querySelector('header');
     if (!header) return;
 
-    const logo = header.querySelector('a[href="/"]');
+    const logo = Array.from(header.querySelectorAll('a[href="/"]')).find((candidate) => {
+      return !candidate.closest('nav, [role="navigation"]') && /Sharp\s+Growth\s+Co\./i.test(candidate.textContent || '');
+    });
     if (logo) {
       setImportant(logo, 'flex', '0 0 auto');
       setImportant(logo, 'width', 'auto');
@@ -147,6 +152,13 @@
       setImportant(link, 'flex', '0 0 auto');
       setImportant(link, 'min-width', 'max-content');
       setImportant(link, 'line-height', '1');
+      const label = link.querySelector('span') || link;
+      setImportant(label, 'font-family', "'Outfit', sans-serif");
+      setImportant(label, 'font-size', 'clamp(.88rem, 1.05vw, 1.02rem)');
+      setImportant(label, 'font-weight', '800');
+      setImportant(label, 'line-height', '1.08');
+      setImportant(label, 'letter-spacing', '.045em');
+      setImportant(label, 'color', '#2d2118');
     });
 
     header.querySelectorAll('nav a[href="/work/"], nav a[href="/work"], [role="navigation"] a[href="/work/"], [role="navigation"] a[href="/work"]').forEach((link) => {
@@ -210,7 +222,9 @@
     const header = document.querySelector('header');
     if (!header) return;
 
-    const logo = header.querySelector('a[href="/"]');
+    const logo = Array.from(header.querySelectorAll('a[href="/"]')).find((candidate) => {
+      return !candidate.closest('nav, [role="navigation"]') && /Sharp\s+Growth\s+Co\./i.test(candidate.textContent || '');
+    });
     if (logo) {
       setImportant(logo, 'flex', '0 0 auto');
       setImportant(logo, 'width', 'auto');
@@ -248,6 +262,13 @@
       setImportant(link, 'word-break', 'keep-all');
       setImportant(link, 'overflow-wrap', 'normal');
       setImportant(link, 'min-width', 'max-content');
+      const label = link.querySelector('span') || link;
+      setImportant(label, 'font-family', "'Outfit', sans-serif");
+      setImportant(label, 'font-size', 'clamp(.88rem, 1.05vw, 1.02rem)');
+      setImportant(label, 'font-weight', '800');
+      setImportant(label, 'line-height', '1.08');
+      setImportant(label, 'letter-spacing', '.045em');
+      setImportant(label, 'color', '#2d2118');
     });
 
     header.querySelectorAll('button').forEach((button) => {
