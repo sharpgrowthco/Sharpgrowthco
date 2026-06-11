@@ -251,6 +251,13 @@
   }
 }
 
+@media (min-width: 1100px) {
+  #root header [aria-label="Book a consultation with Sharp Growth Co."],
+  header [aria-label="Book a consultation with Sharp Growth Co."] {
+    transform: translateX(clamp(1.5rem, 3.75vw, 3rem)) !important;
+  }
+}
+
 @media (min-width: 769px) {
   .sgc-mobile-brand-logo,
   .sgc-mobile-menu-toggle,
