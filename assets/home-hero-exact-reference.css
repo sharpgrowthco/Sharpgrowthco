@@ -571,3 +571,283 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hot
     pointer-events: none !important;
   }
 }
+
+/* 2026-06-11 — design-only champagne reference pill update for Home hero CTAs.
+   Preserves all existing labels and hrefs; changes only the visible CTA treatment on desktop exact hero and restored mobile hero. */
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.58em !important;
+  min-height: 0 !important;
+  padding: 0 1.72em !important;
+  border: 1px solid rgba(255, 244, 202, 0.92) !important;
+  border-radius: 9999px !important;
+  background-color: #e0ad33 !important;
+  background-image:
+    radial-gradient(120% 125% at 88% 18%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 250, 233, 0.82) 18%, rgba(255, 244, 198, 0.34) 35%, rgba(255, 255, 255, 0) 54%),
+    radial-gradient(115% 115% at 18% 16%, rgba(255, 251, 226, 0.88) 0%, rgba(246, 213, 122, 0.58) 32%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(92deg, #d8a33b 0%, #f3cf69 34%, #e1aa2f 64%, #bc7920 100%) !important;
+  background-size: 100% 100%, 100% 100%, 100% 100% !important;
+  background-position: center center !important;
+  box-shadow:
+    0 18px 30px rgba(95, 64, 25, 0.28),
+    0 8px 16px rgba(214, 165, 62, 0.2),
+    inset 0 2px 1px rgba(255, 255, 255, 0.82),
+    inset 0 -2px 4px rgba(128, 72, 12, 0.18) !important;
+  color: #1c130f !important;
+  -webkit-text-fill-color: #1c130f !important;
+  filter: none !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.17em !important;
+  line-height: 1 !important;
+  text-shadow: 0 1px 0 rgba(255, 246, 222, 0.42) !important;
+  text-transform: uppercase !important;
+  transform: translateZ(0) !important;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 5% 4.5% auto 4.5% !important;
+  height: 46% !important;
+  display: block !important;
+  border: 1px solid rgba(255, 255, 255, 0.26) !important;
+  border-bottom: 0 !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.19) 52%, rgba(255, 255, 255, 0) 100%) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  opacity: 0.9 !important;
+  pointer-events: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button::after {
+  content: '→' !important;
+  display: inline-block !important;
+  margin-left: 0.18em !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #1c130f !important;
+  -webkit-text-fill-color: #1c130f !important;
+  font-size: 1.28em !important;
+  font-weight: 520 !important;
+  letter-spacing: 0 !important;
+  line-height: 0.78 !important;
+  opacity: 1 !important;
+  transform: translateY(-0.02em) !important;
+  animation: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button {
+  font-size: clamp(0.49rem, 0.78vw, 0.86rem) !important;
+  letter-spacing: 0.15em !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button {
+  font-size: clamp(0.5rem, 0.84vw, 0.92rem) !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button:hover,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button:active,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button:focus-visible {
+  background-position: center center !important;
+  box-shadow:
+    0 20px 34px rgba(95, 64, 25, 0.32),
+    0 10px 18px rgba(214, 165, 62, 0.24),
+    inset 0 2px 1px rgba(255, 255, 255, 0.88),
+    inset 0 -2px 4px rgba(128, 72, 12, 0.2) !important;
+  filter: saturate(1.03) brightness(1.015) !important;
+  transform: translate3d(0, -1px, 0) !important;
+}
+
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.sgc-luxury-cta,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero .sgc-luxury-cta,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.btn-primary-gold,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.btn-secondary-gold-outline {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.62rem !important;
+    width: min(100%, 21.5rem) !important;
+    min-height: 4.08rem !important;
+    padding: 0 1.78rem !important;
+    border: 1px solid rgba(255, 244, 202, 0.92) !important;
+    border-radius: 9999px !important;
+    background-color: #e0ad33 !important;
+    background-image:
+      radial-gradient(120% 125% at 88% 18%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 250, 233, 0.82) 18%, rgba(255, 244, 198, 0.34) 35%, rgba(255, 255, 255, 0) 54%),
+      radial-gradient(115% 115% at 18% 16%, rgba(255, 251, 226, 0.88) 0%, rgba(246, 213, 122, 0.58) 32%, rgba(255, 255, 255, 0) 55%),
+      linear-gradient(92deg, #d8a33b 0%, #f3cf69 34%, #e1aa2f 64%, #bc7920 100%) !important;
+    box-shadow:
+      0 18px 30px rgba(18, 10, 6, 0.34),
+      0 8px 16px rgba(214, 165, 62, 0.2),
+      inset 0 2px 1px rgba(255, 255, 255, 0.82),
+      inset 0 -2px 4px rgba(128, 72, 12, 0.18) !important;
+    color: #1c130f !important;
+    -webkit-text-fill-color: #1c130f !important;
+    filter: none !important;
+    font-family: 'Outfit', 'Raleway', sans-serif !important;
+    font-size: 0.86rem !important;
+    font-weight: 760 !important;
+    letter-spacing: 0.17em !important;
+    line-height: 1 !important;
+    overflow: hidden !important;
+    position: relative !important;
+    text-shadow: 0 1px 0 rgba(255, 246, 222, 0.42) !important;
+    text-transform: uppercase !important;
+  }
+
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.sgc-luxury-cta::before,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero .sgc-luxury-cta::before,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.btn-primary-gold::before,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.btn-secondary-gold-outline::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 5% 4.5% auto 4.5% !important;
+    height: 46% !important;
+    display: block !important;
+    border: 1px solid rgba(255, 255, 255, 0.26) !important;
+    border-bottom: 0 !important;
+    border-radius: 9999px !important;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.19) 52%, rgba(255, 255, 255, 0) 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+    opacity: 0.9 !important;
+    pointer-events: none !important;
+  }
+
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.sgc-luxury-cta::after,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero .sgc-luxury-cta::after,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.btn-primary-gold::after,
+  body.sgc-home-exact-reference .sgc-mobile-home-hero a.btn-secondary-gold-outline::after {
+    content: '→' !important;
+    display: inline-block !important;
+    margin-left: 0.18em !important;
+    color: #1c130f !important;
+    -webkit-text-fill-color: #1c130f !important;
+    font-size: 1.24em !important;
+    font-weight: 520 !important;
+    letter-spacing: 0 !important;
+    line-height: 0.78 !important;
+    transform: translateY(-0.02em) !important;
+  }
+}
+
+/* 2026-06-11 — final mobile-only Home hero CTA design override.
+   Matches the requested champagne-gold pill treatment on both mobile hero buttons while preserving existing labels and hrefs. */
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold,
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    position: relative !important;
+    isolation: isolate !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.62rem !important;
+    width: min(100%, 21.5rem) !important;
+    min-height: 4.08rem !important;
+    padding: 0 1.78rem !important;
+    border: 1px solid rgba(255, 244, 202, 0.94) !important;
+    border-radius: 9999px !important;
+    background-color: #e0ad33 !important;
+    background-image:
+      radial-gradient(120% 125% at 88% 18%, rgba(255, 255, 255, 0.96) 0%, rgba(255, 250, 233, 0.82) 18%, rgba(255, 244, 198, 0.34) 35%, rgba(255, 255, 255, 0) 54%),
+      radial-gradient(115% 115% at 18% 16%, rgba(255, 251, 226, 0.9) 0%, rgba(246, 213, 122, 0.58) 32%, rgba(255, 255, 255, 0) 55%),
+      linear-gradient(92deg, #d8a33b 0%, #f3cf69 34%, #e1aa2f 64%, #bc7920 100%) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100% !important;
+    background-position: center center !important;
+    box-shadow:
+      0 18px 30px rgba(18, 10, 6, 0.34),
+      0 8px 16px rgba(214, 165, 62, 0.2),
+      inset 0 2px 1px rgba(255, 255, 255, 0.82),
+      inset 0 -2px 4px rgba(128, 72, 12, 0.18) !important;
+    color: #1c130f !important;
+    -webkit-text-fill-color: #1c130f !important;
+    filter: none !important;
+    font-family: 'Outfit', 'Raleway', sans-serif !important;
+    font-size: 0.86rem !important;
+    font-weight: 760 !important;
+    letter-spacing: 0.17em !important;
+    line-height: 1 !important;
+    overflow: hidden !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 0 rgba(255, 246, 222, 0.42) !important;
+    text-transform: uppercase !important;
+    transform: translateZ(0) !important;
+    white-space: nowrap !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::before,
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::before,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::before,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 5% 4.5% auto 4.5% !important;
+    height: 46% !important;
+    display: block !important;
+    border: 1px solid rgba(255, 255, 255, 0.26) !important;
+    border-bottom: 0 !important;
+    border-radius: 9999px !important;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.19) 52%, rgba(255, 255, 255, 0) 100%) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+    opacity: 0.9 !important;
+    pointer-events: none !important;
+    transform: none !important;
+    animation: none !important;
+    z-index: 0 !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::after,
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::after,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::after,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::after {
+    content: '→' !important;
+    position: relative !important;
+    inset: auto !important;
+    display: inline-block !important;
+    width: auto !important;
+    margin-left: 0.18em !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #1c130f !important;
+    -webkit-text-fill-color: #1c130f !important;
+    font-size: 1.24em !important;
+    font-weight: 520 !important;
+    letter-spacing: 0 !important;
+    line-height: 0.78 !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    transform: translateY(-0.02em) !important;
+    animation: none !important;
+    z-index: 1 !important;
+  }
+}
+
+/* 2026-06-11 — preserve original mobile CTA content; do not add design-generated arrows. */
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::after,
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::after,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::after,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::after {
+    content: none !important;
+    display: none !important;
+  }
+}

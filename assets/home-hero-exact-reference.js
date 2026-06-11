@@ -43,6 +43,20 @@
         link.dataset.sgcExactHref = '/contact/';
         link.dataset.sgcExactLabel = 'Work';
       }
+      if (className === 'sgc-exact-hero-book') {
+        href = '/contact/';
+        label = 'WORK WITH ME';
+        link.dataset.sgcExactHref = '/contact/';
+        link.dataset.sgcExactLabel = 'WORK WITH ME';
+        delete link.dataset.sgcExactTarget;
+      }
+      if (className === 'sgc-exact-hero-services') {
+        href = '/services/';
+        label = 'EXPLORE SERVICES';
+        link.dataset.sgcExactHref = '/services/';
+        link.dataset.sgcExactLabel = 'EXPLORE SERVICES';
+        delete link.dataset.sgcExactTarget;
+      }
       if (className) link.className = 'sgc-exact-reference-hotspot ' + className + luxuryClassesForHotspot(className);
       if (label) {
         var visibleLabel = label.replace(' — Contact Page', '');
@@ -60,6 +74,32 @@
     });
   }
 
+  function normalizeMobileHomeHeroCtas() {
+    if (!isHomePath()) return;
+    document.querySelectorAll('.sgc-mobile-home-hero a').forEach(function (link) {
+      var normalizedText = (link.textContent || '').replace(/[→\u2192]/g, '').replace(/\s+/g, ' ').trim().toUpperCase();
+      if (normalizedText === 'BOOK A CONSULTATION' || normalizedText === 'WORK WITH ME') {
+        link.href = '/contact/';
+        link.setAttribute('aria-label', 'WORK WITH ME');
+        link.textContent = 'WORK WITH ME';
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+      }
+      if (normalizedText === 'VIEW SERVICES' || normalizedText === 'EXPLORE SERVICES') {
+        link.href = '/services/';
+        link.setAttribute('aria-label', 'EXPLORE SERVICES');
+        link.textContent = 'EXPLORE SERVICES';
+        link.removeAttribute('target');
+        link.removeAttribute('rel');
+      }
+    });
+  }
+
+  function normalizeHomeHeroCtas() {
+    normalizeHotspots();
+    normalizeMobileHomeHeroCtas();
+  }
+
   function buildHero() {
     var hero = document.createElement('section');
     hero.className = 'sgc-exact-reference-hero';
@@ -75,8 +115,8 @@
       ['sgc-exact-contact', '/contact/', 'Contact', false],
       ['sgc-exact-header-book', CALENDLY_URL, 'Book a Consultation', true],
       ['sgc-exact-laptop-work', '/contact/', 'Work', false],
-      ['sgc-exact-hero-book', CALENDLY_URL, 'Book a Consultation', true],
-      ['sgc-exact-hero-services', '/services/', 'Explore Services', false]
+      ['sgc-exact-hero-book', '/contact/', 'WORK WITH ME', false],
+      ['sgc-exact-hero-services', '/services/', 'EXPLORE SERVICES', false]
     ];
 
     links.forEach(function (item) {
@@ -108,7 +148,10 @@
   }
 
   function applyExactHero() {
-    if (!isHomePath() || document.querySelector('.sgc-exact-reference-hero')) return;
+    if (!isHomePath() || document.querySelector('.sgc-exact-reference-hero')) {
+      normalizeMobileHomeHeroCtas();
+      return;
+    }
 
     document.body.classList.add('sgc-home-exact-reference');
 
@@ -125,7 +168,7 @@
     } else {
       app.insertBefore(hero, app.firstChild);
     }
-    normalizeHotspots();
+    normalizeHomeHeroCtas();
   }
 
   if (document.readyState === 'loading') {
@@ -138,7 +181,7 @@
   var timer = window.setInterval(function () {
     tries += 1;
     applyExactHero();
-    normalizeHotspots();
+    normalizeHomeHeroCtas();
     if (document.querySelector('.sgc-exact-reference-hero') && tries > 8) {
       window.clearInterval(timer);
     }
@@ -146,13 +189,13 @@
   }, 75);
 
   [250, 750, 1500, 3000, 6000].forEach(function (delay) {
-    window.setTimeout(normalizeHotspots, delay);
+    window.setTimeout(normalizeHomeHeroCtas, delay);
   });
 
   var guardTicks = 0;
   var guardTimer = window.setInterval(function () {
     guardTicks += 1;
-    normalizeHotspots();
+    normalizeHomeHeroCtas();
     if (guardTicks > 80) window.clearInterval(guardTimer);
   }, 250);
 
@@ -165,7 +208,7 @@
     observerScheduled = true;
     window.requestAnimationFrame(function () {
       observerScheduled = false;
-      normalizeHotspots();
+      normalizeHomeHeroCtas();
     });
   });
 
