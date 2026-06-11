@@ -1,5 +1,5 @@
 (() => {
-  const CONTACT_BANNER_COPY = "Tell me about your business, goals, and vision. I personally review every inquiry to ensure we're the right fit before scheduling your complimentary consultation. Helping Alberta businesses elevate their online presence through intentional strategy, refined design, and content that supports meaningful growth.";
+  const CONTACT_BANNER_COPY = "Tell me about your business, goals, and vision. I personally review every inquiry to ensure we're the right fit before scheduling your complementary consultation. Helping Alberta businesses elevate their online presence through intentional strategy, refined design, and content that supports meaningful growth.";
   const CONTACT_BANNER_TAGLINE = 'Boutique Strategy, Personally Tailored for Your Business';
 
   const TEXT_REPLACEMENTS = new Map([
@@ -15,9 +15,9 @@
     ["Monthly / Project Budget", "Estimated Investment Range"],
     ["Tell Me About Your Goals", "Tell Me About Your Brand & Goals"],
     ["What are you hoping to achieve? What's your biggest marketing challenge right now?", "What are you looking to improve, launch, grow, or refine? Share any goals, challenges, or ideas so I can better understand your vision."],
-    ["Free Consultation", "Complimentary Consultation"],
-    ["Book a Free Consultation", "Book a Complimentary Consultation"],
-    ["free consultation", "complimentary consultation"]
+    ["Free Consultation", "Complementary Consultation"],
+    ["Book a Free Consultation", "Complementary Consultation"],
+    ["free consultation", "Complementary Consultation"]
   ]);
 
   function replaceTextNodes(root = document.body) {
@@ -131,4 +131,81 @@
   }, 120);
 
   window.addEventListener('load', () => setTimeout(applyPreview, 250));
+})();
+
+/* 2026-06-11 — Contact consultation label correction.
+   Text-only refinement: routes, hrefs, form actions, and click behavior remain untouched. */
+(() => {
+  const CONSULTATION_TEXT = 'Complementary Consultation';
+  const CONSULTATION_REPLACEMENTS = [
+    ['Book a Complimentary Consultation', CONSULTATION_TEXT],
+    ['Book a Complementary Consultation', CONSULTATION_TEXT],
+    ['Book a Consultation', CONSULTATION_TEXT],
+    ['BOOK A CONSULTATION', CONSULTATION_TEXT],
+    ['Book a Free Consultation', CONSULTATION_TEXT],
+    ['Complimentary Consultation', CONSULTATION_TEXT],
+    ['Free Consultation', CONSULTATION_TEXT],
+    ['complimentary consultation', CONSULTATION_TEXT],
+    ['free consultation', CONSULTATION_TEXT]
+  ];
+
+  function normalizeConsultationLabels() {
+    document.querySelectorAll('a, button, [role="button"]').forEach((element) => {
+      const text = (element.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      const next = CONSULTATION_REPLACEMENTS.reduce((value, [from, to]) => value.split(from).join(to), text);
+      const applyGoldConsultationFit = (target) => {
+        target.style.setProperty('width', '22.5rem', 'important');
+        target.style.setProperty('min-width', '22.5rem', 'important');
+        target.style.setProperty('max-width', 'calc(100vw - 2rem)', 'important');
+        target.style.setProperty('padding-left', '1.25rem', 'important');
+        target.style.setProperty('padding-right', '1.25rem', 'important');
+        target.style.setProperty('font-size', '0.72rem', 'important');
+        target.style.setProperty('letter-spacing', '0.045em', 'important');
+        target.style.setProperty('white-space', 'nowrap', 'important');
+        target.style.setProperty('overflow', 'visible', 'important');
+        target.style.setProperty('text-overflow', 'clip', 'important');
+      };
+      const isHeaderConsultationPill = !element.getAttribute('href')
+        && (element.matches('.hidden, .sgc-mobile-book-cta') || element.classList.contains('sgc-contact-consultation-cta-fit'));
+      if (text === CONSULTATION_TEXT && isHeaderConsultationPill) {
+        element.classList.add('sgc-contact-consultation-cta-fit');
+        applyGoldConsultationFit(element);
+      }
+      if (next !== text && /consultation/i.test(next)) {
+        const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+        const nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach((node) => {
+          let nodeText = node.nodeValue;
+          CONSULTATION_REPLACEMENTS.forEach(([from, to]) => {
+            nodeText = nodeText.split(from).join(to);
+          });
+          if (nodeText !== node.nodeValue) node.nodeValue = nodeText;
+        });
+        element.setAttribute('aria-label', next);
+        const styledTarget = element.matches('.sgc-luxury-cta, .btn-primary-gold')
+          ? element
+          : element.querySelector('.sgc-luxury-cta, .btn-primary-gold') || element;
+        styledTarget.classList.add('sgc-contact-consultation-cta-fit');
+        const shouldFitAsPill = /book\s+a\s+consultation/i.test(text)
+          || element.matches('.hidden, .sgc-mobile-book-cta')
+          || styledTarget.matches('.sgc-luxury-cta, .btn-primary-gold');
+        if (shouldFitAsPill) {
+          [element, styledTarget].forEach(applyGoldConsultationFit);
+        }
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', normalizeConsultationLabels);
+  else normalizeConsultationLabels();
+
+  window.addEventListener('load', () => setTimeout(normalizeConsultationLabels, 320));
+  let consultationAttempts = 0;
+  const consultationTimer = window.setInterval(() => {
+    consultationAttempts += 1;
+    normalizeConsultationLabels();
+    if (consultationAttempts > 32) window.clearInterval(consultationTimer);
+  }, 180);
 })();

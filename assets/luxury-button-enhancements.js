@@ -65,6 +65,23 @@
     delete element.dataset.sgcNestedButtonNeutralized;
   }
 
+  function applyContactConsultationFit(element) {
+    if (!element || element.getAttribute('href')) return;
+    if (elementLabel(element) !== 'complementary consultation') return;
+    if (!element.matches('.hidden, .sgc-mobile-book-cta') && !element.classList.contains('sgc-contact-consultation-cta-fit')) return;
+    element.classList.add('sgc-contact-consultation-cta-fit');
+    element.style.setProperty('width', '22.5rem', 'important');
+    element.style.setProperty('min-width', '22.5rem', 'important');
+    element.style.setProperty('max-width', 'calc(100vw - 2rem)', 'important');
+    element.style.setProperty('padding-left', '1.25rem', 'important');
+    element.style.setProperty('padding-right', '1.25rem', 'important');
+    element.style.setProperty('font-size', '0.72rem', 'important');
+    element.style.setProperty('letter-spacing', '0.045em', 'important');
+    element.style.setProperty('white-space', 'nowrap', 'important');
+    element.style.setProperty('overflow', 'visible', 'important');
+    element.style.setProperty('text-overflow', 'clip', 'important');
+  }
+
   function applyAllDesignOnlyClasses() {
     const candidates = Array.from(document.querySelectorAll(TARGET_SELECTOR));
     const matches = candidates
@@ -91,6 +108,8 @@
         child.dataset.sgcNestedButtonNeutralized = 'true';
       });
     });
+
+    candidates.forEach(applyContactConsultationFit);
   }
 
   if (document.readyState === 'loading') {

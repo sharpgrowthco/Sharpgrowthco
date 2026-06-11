@@ -265,3 +265,83 @@ body:has([data-loc*="Contact.tsx"]) {
     width: 100%;
   }
 }
+
+/* 2026-06-11 — Contact consultation CTA text-fit refinement.
+   Design/text-fit only; no links, form actions, or navigation behavior are changed. */
+.contact-page-preview .sgc-contact-consultation-cta-fit,
+.contact-page-preview a.sgc-luxury-cta[href*="calendly"],
+.contact-page-preview a.sgc-luxury-cta[href*="book"],
+.contact-page-preview a.sgc-luxury-cta[href*="consultation"],
+.contact-page-preview button.sgc-luxury-cta {
+  min-width: min(100%, 20.75rem) !important;
+  max-width: 100% !important;
+  padding-right: clamp(1.08rem, 2.4vw, 1.62rem) !important;
+  padding-left: clamp(1.08rem, 2.4vw, 1.62rem) !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.105em !important;
+}
+
+@media (max-width: 640px) {
+  .contact-page-preview .sgc-contact-consultation-cta-fit,
+  .contact-page-preview a.sgc-luxury-cta[href*="calendly"],
+  .contact-page-preview a.sgc-luxury-cta[href*="book"],
+  .contact-page-preview a.sgc-luxury-cta[href*="consultation"],
+  .contact-page-preview button.sgc-luxury-cta {
+    width: min(100%, 20rem) !important;
+    min-width: 0 !important;
+    padding-right: 0.96rem !important;
+    padding-left: 0.96rem !important;
+    font-size: max(0.72rem, 11.5px) !important;
+    letter-spacing: 0.055em !important;
+    line-height: 1.08 !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* 2026-06-11 — Fallback for Contact-only corrected consultation label on the actual gold pill. */
+.sgc-contact-consultation-cta-fit.sgc-luxury-cta,
+.sgc-contact-consultation-cta-fit.btn-primary-gold {
+  min-width: min(100%, 20.75rem) !important;
+  max-width: 100% !important;
+  padding-right: clamp(1.08rem, 2.4vw, 1.62rem) !important;
+  padding-left: clamp(1.08rem, 2.4vw, 1.62rem) !important;
+  white-space: nowrap !important;
+  letter-spacing: 0.095em !important;
+}
+
+@media (max-width: 640px) {
+  .sgc-contact-consultation-cta-fit.sgc-luxury-cta,
+  .sgc-contact-consultation-cta-fit.btn-primary-gold {
+    width: min(100%, 20rem) !important;
+    min-width: 0 !important;
+    font-size: max(0.72rem, 11.5px) !important;
+    letter-spacing: 0.045em !important;
+    line-height: 1.08 !important;
+  }
+}
+
+/* 2026-06-11 — Final desktop header consultation pill fit: show the full corrected label. */
+.hidden.md\:block.sgc-contact-consultation-cta-fit,
+button.sgc-contact-consultation-cta-fit.hidden,
+a.sgc-contact-consultation-cta-fit.hidden {
+  min-width: 22.25rem !important;
+  width: auto !important;
+  max-width: min(22.25rem, calc(100vw - 2rem)) !important;
+  padding-right: 1.35rem !important;
+  padding-left: 1.35rem !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.055em !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+
+@media (max-width: 767px) {
+  .hidden.md\:block.sgc-contact-consultation-cta-fit,
+  button.sgc-contact-consultation-cta-fit.hidden,
+  a.sgc-contact-consultation-cta-fit.hidden {
+    min-width: 0 !important;
+    width: auto !important;
+    max-width: 100% !important;
+  }
+}

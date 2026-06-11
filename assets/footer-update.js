@@ -1,5 +1,5 @@
 (() => {
-  const VERSION = 'compact-footer-20260602';
+  const VERSION = 'compact-footer-home-pill-20260611';
 
   const footerMarkup = `
     <footer class="site-footer sgc-compact-footer" data-sgc-footer-update="${VERSION}">
@@ -19,7 +19,7 @@
           </ul>
         </nav>
 
-        <a href="/contact/" class="footer-cta sgc-luxury-cta">Start Your Project</a>
+        <a href="/contact/" class="footer-cta sgc-luxury-cta btn-primary-gold">Start Your Project</a>
       </div>
 
       <div class="footer-bottom">
