@@ -82,9 +82,20 @@
     element.style.setProperty('text-overflow', 'clip', 'important');
   }
 
+  function isExactReferenceHomeHeroHotspot(element) {
+    return Boolean(
+      element
+      && element.classList
+      && element.classList.contains('sgc-exact-reference-hotspot')
+      && element.closest
+      && element.closest('.sgc-exact-reference-hero')
+    );
+  }
+
   function applyAllDesignOnlyClasses() {
     const candidates = Array.from(document.querySelectorAll(TARGET_SELECTOR));
     const matches = candidates
+      .filter((element) => !isExactReferenceHomeHeroHotspot(element))
       .map((element) => ({ element, label: elementLabel(element) }))
       .map((item) => ({ ...item, style: styleForLabel(item.label) }))
       .filter((item) => item.style);
