@@ -151,6 +151,31 @@
               </div>
 
               <div class="sgc-full-story-visual" aria-label="Gather and Grow website video preview">
+                <div class="gold-growth-animation" aria-hidden="true">
+                  <div class="gold-pot"></div>
+                  <div class="growth-vine vine-main"></div>
+                  <div class="growth-vine vine-left"></div>
+                  <div class="growth-vine vine-right"></div>
+                  <span class="leaf leaf-1"></span>
+                  <span class="leaf leaf-2"></span>
+                  <span class="leaf leaf-3"></span>
+                  <span class="leaf leaf-4"></span>
+                  <span class="leaf leaf-5"></span>
+                  <span class="leaf leaf-6"></span>
+                  <span class="leaf leaf-7"></span>
+                  <span class="vine-flourish flourish-1"></span>
+                  <span class="vine-flourish flourish-2"></span>
+                  <span class="vine-flourish flourish-3"></span>
+                  <span class="vine-flourish flourish-4"></span>
+                  <span class="gold-orb orb-1"></span>
+                  <span class="gold-orb orb-2"></span>
+                  <span class="gold-orb orb-3"></span>
+                  <span class="gold-orb orb-4"></span>
+                  <span class="sparkle s1">✦</span>
+                  <span class="sparkle s2">✧</span>
+                  <span class="sparkle s3">✦</span>
+                  <span class="sparkle s4">✧</span>
+                </div>
                 <div class="sgc-full-story-laptop">
                   <div class="sgc-full-story-browser-bar" aria-hidden="true">
                     <span></span><span></span><span></span>
