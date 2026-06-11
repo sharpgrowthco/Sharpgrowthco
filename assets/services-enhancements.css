@@ -1628,7 +1628,7 @@ button.sgc-contact-service-option[aria-pressed='true'] {
 }
 
 .sgc-services-visual-social-content .sgc-services-device-frame img {
-  --sgc-services-image-position: 32% center;
+  --sgc-services-image-position: 0% center;
 }
 
 @keyframes sgcServicesImageShimmer {
