@@ -152,54 +152,68 @@
 
               <div class="sgc-full-story-visual" aria-label="Gather and Grow website video preview">
                 <div class="gold-growth-animation" aria-hidden="true">
-                  <svg class="gold-botanical-svg" viewBox="0 0 420 760" preserveAspectRatio="xMidYMax meet" focusable="false">
+                  <svg class="gold-botanical-svg" viewBox="0 0 460 820" preserveAspectRatio="xMidYMax meet" focusable="false">
                     <defs>
                       <linearGradient id="sgcGoldStem" x1="0" x2="0" y1="1" y2="0">
-                        <stop offset="0" stop-color="#6d481d" stop-opacity="0.55"/>
-                        <stop offset="0.46" stop-color="#d4af37" stop-opacity="0.86"/>
-                        <stop offset="1" stop-color="#fff0ad" stop-opacity="0.58"/>
+                        <stop offset="0" stop-color="#8f6428" stop-opacity="0.72"/>
+                        <stop offset="0.38" stop-color="#d4af37" stop-opacity="0.92"/>
+                        <stop offset="0.72" stop-color="#fff0ad" stop-opacity="0.74"/>
+                        <stop offset="1" stop-color="#c8962f" stop-opacity="0.48"/>
                       </linearGradient>
                       <radialGradient id="sgcGoldGlow" cx="50%" cy="50%" r="50%">
-                        <stop offset="0" stop-color="#fff0ad" stop-opacity="0.9"/>
-                        <stop offset="0.36" stop-color="#d4af37" stop-opacity="0.34"/>
+                        <stop offset="0" stop-color="#fff4bd" stop-opacity="0.92"/>
+                        <stop offset="0.33" stop-color="#d4af37" stop-opacity="0.34"/>
                         <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+                      </radialGradient>
+                      <radialGradient id="sgcLeafGold" cx="42%" cy="36%" r="72%">
+                        <stop offset="0" stop-color="#fff1ad" stop-opacity="0.72"/>
+                        <stop offset="0.62" stop-color="#c8952e" stop-opacity="0.42"/>
+                        <stop offset="1" stop-color="#6f4a1d" stop-opacity="0.18"/>
                       </radialGradient>
                     </defs>
                     <g class="botanical-glow">
-                      <circle cx="210" cy="610" r="70"/>
-                      <circle cx="210" cy="378" r="50"/>
-                      <circle cx="210" cy="112" r="38"/>
+                      <circle cx="230" cy="748" r="84"/>
+                      <circle cx="230" cy="562" r="74"/>
+                      <circle cx="230" cy="330" r="58"/>
+                      <circle cx="230" cy="62" r="44"/>
                     </g>
                     <g class="botanical-stems">
-                      <path class="stem stem-main" d="M210 724 C208 650 218 598 207 532 C196 465 212 410 213 348 C214 278 205 222 211 154 C214 116 221 86 213 50"/>
-                      <path class="stem stem-left" d="M209 616 C171 588 151 548 163 509 C176 468 204 456 211 410"/>
-                      <path class="stem stem-right" d="M212 598 C258 570 279 527 260 490 C243 457 217 454 214 406"/>
-                      <path class="stem stem-upper-left" d="M211 260 C174 230 155 188 177 153 C194 126 214 126 214 88"/>
-                      <path class="stem stem-upper-right" d="M214 258 C254 231 277 190 260 154 C246 124 223 125 216 86"/>
-                      <path class="curl curl-lower" d="M207 562 C161 559 150 614 188 620 C216 624 218 590 196 590"/>
-                      <path class="curl curl-mid" d="M214 406 C269 400 286 342 244 342 C214 342 213 374 236 371"/>
-                      <path class="curl curl-top" d="M213 95 C174 82 177 36 207 45 C232 52 222 78 203 72"/>
-                      <path class="curl curl-top-left" d="M211 164 C182 150 176 116 203 114 C223 113 225 139 207 139"/>
-                      <path class="curl curl-top-right" d="M214 162 C247 150 256 118 229 115 C208 113 205 139 224 139"/>
+                      <path class="stem stem-main" pathLength="1" d="M230 788 C226 724 239 671 226 611 C213 552 234 512 230 459 C225 392 217 346 226 283 C235 215 226 158 234 96 C238 64 247 36 238 10"/>
+                      <path class="stem stem-left-low" pathLength="1" d="M229 706 C178 689 151 650 165 613 C179 577 216 574 227 531"/>
+                      <path class="stem stem-right-low" pathLength="1" d="M231 676 C286 655 311 609 289 574 C268 540 237 546 231 497"/>
+                      <path class="stem stem-left-mid" pathLength="1" d="M228 520 C171 500 145 452 169 417 C191 383 225 397 229 346"/>
+                      <path class="stem stem-right-mid" pathLength="1" d="M231 458 C289 439 315 395 292 359 C272 328 239 338 231 292"/>
+                      <path class="stem stem-left-upper" pathLength="1" d="M230 270 C184 249 165 207 190 174 C211 148 232 152 235 110"/>
+                      <path class="stem stem-right-upper" pathLength="1" d="M233 250 C285 230 309 188 285 151 C265 120 240 133 238 83"/>
+                      <path class="curl curl-base-left" pathLength="1" d="M225 696 C175 681 155 739 196 746 C229 752 234 712 202 714"/>
+                      <path class="curl curl-base-right" pathLength="1" d="M232 631 C289 620 309 674 265 685 C232 693 225 652 258 653"/>
+                      <path class="curl curl-card" pathLength="1" d="M228 548 C279 532 291 483 253 478 C223 474 218 515 249 512"/>
+                      <path class="curl curl-laptop-left" pathLength="1" d="M230 332 C178 313 169 263 205 259 C235 255 239 295 211 293"/>
+                      <path class="curl curl-laptop-right" pathLength="1" d="M235 170 C284 155 294 105 255 102 C226 99 222 137 249 137"/>
+                      <path class="curl curl-top-left" pathLength="1" d="M235 88 C194 78 192 30 226 35 C254 39 252 72 221 67"/>
+                      <path class="curl curl-top-right" pathLength="1" d="M238 56 C280 41 287 -1 251 0 C225 1 221 33 247 31"/>
                     </g>
                     <g class="botanical-leaves">
-                      <path d="M163 506 C129 493 123 462 166 473 C182 477 181 498 163 506Z"/>
-                      <path d="M258 492 C296 477 304 446 261 456 C243 460 242 483 258 492Z"/>
-                      <path d="M176 153 C145 142 142 118 179 125 C194 128 193 147 176 153Z"/>
-                      <path d="M258 155 C293 142 296 118 256 125 C241 128 241 148 258 155Z"/>
-                      <path d="M190 626 C157 617 151 591 190 598 C206 601 207 620 190 626Z"/>
-                      <path d="M236 342 C271 330 279 304 238 311 C221 315 220 336 236 342Z"/>
-                      <path d="M205 112 C181 103 179 84 207 90 C219 93 219 108 205 112Z"/>
-                      <path d="M225 112 C250 103 253 84 224 90 C213 93 213 108 225 112Z"/>
+                      <path class="leaf leaf-1" d="M165 612 C130 596 125 564 170 575 C190 580 187 604 165 612Z"/>
+                      <path class="leaf leaf-2" d="M287 574 C326 556 335 522 289 535 C270 540 267 564 287 574Z"/>
+                      <path class="leaf leaf-3" d="M170 417 C135 404 130 373 172 384 C190 389 190 411 170 417Z"/>
+                      <path class="leaf leaf-4" d="M292 359 C329 343 337 312 293 322 C274 326 273 350 292 359Z"/>
+                      <path class="leaf leaf-5" d="M190 174 C158 162 155 134 192 143 C209 147 209 169 190 174Z"/>
+                      <path class="leaf leaf-6" d="M285 151 C319 136 325 108 287 117 C270 121 267 143 285 151Z"/>
+                      <path class="leaf leaf-7" d="M206 260 C176 248 174 224 207 231 C222 234 222 253 206 260Z"/>
+                      <path class="leaf leaf-8" d="M254 103 C284 91 289 66 255 73 C240 76 238 96 254 103Z"/>
+                      <path class="leaf leaf-9" d="M225 36 C200 26 198 7 227 12 C240 15 240 31 225 36Z"/>
+                      <path class="leaf leaf-10" d="M250 1 C276 -8 281 -30 251 -25 C238 -22 237 -5 250 1Z"/>
                     </g>
                     <g class="botanical-lights">
-                      <circle cx="210" cy="610" r="3.5"/>
-                      <circle cx="214" cy="378" r="3"/>
-                      <circle cx="212" cy="82" r="3.2"/>
-                      <circle cx="164" cy="532" r="2.2"/>
-                      <circle cx="270" cy="462" r="2.1"/>
-                      <circle cx="196" cy="126" r="1.8"/>
-                      <circle cx="233" cy="128" r="1.8"/>
+                      <circle class="light light-1" cx="230" cy="744" r="4"/>
+                      <circle class="light light-2" cx="228" cy="558" r="3.2"/>
+                      <circle class="light light-3" cx="232" cy="330" r="2.9"/>
+                      <circle class="light light-4" cx="236" cy="62" r="3.6"/>
+                      <circle class="light light-5" cx="169" cy="608" r="2"/>
+                      <circle class="light light-6" cx="290" cy="358" r="1.9"/>
+                      <circle class="light light-7" cx="254" cy="102" r="2.1"/>
+                      <circle class="light light-8" cx="206" cy="260" r="1.8"/>
                     </g>
                   </svg>
                   <div class="gold-pot"></div>
@@ -207,6 +221,9 @@
                   <span class="sparkle s2">✧</span>
                   <span class="sparkle s3">✦</span>
                   <span class="sparkle s4">✧</span>
+                  <span class="sparkle s5">✦</span>
+                  <span class="sparkle s6">✧</span>
+                  <span class="sparkle s7">✦</span>
                 </div>
                 <div class="sgc-full-story-laptop">
                   <div class="sgc-full-story-browser-bar" aria-hidden="true">
