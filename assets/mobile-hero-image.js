@@ -12,6 +12,14 @@
     if (!heroImage) return;
 
     heroImage.dataset.sgcHomeHero = 'true';
+    if (window.innerWidth <= 767) {
+      const cleanedMobileHero = '/assets/images/alberta-marketing-agency-homepage-hero-laptop-tight-no-button-20260611.webp';
+      const current = heroImage.currentSrc || heroImage.src || '';
+      if (!current.includes('laptop-tight-no-button-20260611')) {
+        heroImage.removeAttribute('srcset');
+        heroImage.src = cleanedMobileHero;
+      }
+    }
     heroImage.style.objectFit = window.innerWidth <= 767 ? 'cover' : '';
     heroImage.style.objectPosition = window.innerWidth <= 767 ? 'left center' : '';
 

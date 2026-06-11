@@ -25,7 +25,7 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero {
   overflow: hidden !important;
   isolation: isolate !important;
   background-color: #120c08 !important;
-  background-image: url("images/sharp-growth-hero-exact-reference-clean-shimmer-loop-20260610.png") !important;
+  background-image: url("images/sharp-growth-hero-tight-clean-live-pill-base-20260611.png") !important;
   background-size: 100% 100% !important;
   background-position: center top !important;
   background-repeat: no-repeat !important;
@@ -77,100 +77,6 @@ body.sgc-home-exact-reference .sgc-exact-hero-services { left: 26.3%; top: 77.5%
     background-size: 100% 100% !important;
     background-position: center top !important;
   }
-}
-
-/* 2026-06-03 — visible Work with Me hero CTA override.
-   The exact-reference hero is a static image, so this targeted overlay replaces the old CTA label while keeping hotspot navigation real. */
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-indent: 0 !important;
-  overflow: hidden !important;
-  color: #fffaf2 !important;
-  background: linear-gradient(135deg, #d7aa4c 0%, #c7953b 48%, #a87524 100%) !important;
-  border: 1px solid rgba(229, 186, 94, 0.62) !important;
-  box-shadow: 0 14px 30px rgba(73, 42, 16, 0.18), inset 0 1px 0 rgba(255, 239, 196, 0.24) !important;
-  font-family: 'Outfit', system-ui, sans-serif !important;
-  font-size: clamp(0.46rem, 0.86vw, 0.88rem) !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.16em !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  text-transform: uppercase !important;
-  text-decoration: none !important;
-  text-shadow: 0 1px 1px rgba(43, 24, 13, 0.26) !important;
-  transform: translateY(0) scale(1) !important;
-  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease !important;
-}
-
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:hover,
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:focus-visible {
-  color: #fffaf2 !important;
-  filter: brightness(1.04) saturate(1.04) !important;
-  box-shadow: 0 18px 34px rgba(73, 42, 16, 0.24), inset 0 1px 0 rgba(255, 239, 196, 0.34) !important;
-  transform: translateY(-2px) scale(1.012) !important;
-}
-
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:active {
-  transform: translateY(-1px) scale(1.002) !important;
-}
-
-body.sgc-home-exact-reference .sgc-exact-home:hover,
-body.sgc-home-exact-reference .sgc-exact-services:hover,
-body.sgc-home-exact-reference .sgc-exact-work:hover,
-body.sgc-home-exact-reference .sgc-exact-about:hover,
-body.sgc-home-exact-reference .sgc-exact-packages:hover,
-body.sgc-home-exact-reference .sgc-exact-contact:hover,
-body.sgc-home-exact-reference .sgc-exact-home:focus-visible,
-body.sgc-home-exact-reference .sgc-exact-services:focus-visible,
-body.sgc-home-exact-reference .sgc-exact-work:focus-visible,
-body.sgc-home-exact-reference .sgc-exact-about:focus-visible,
-body.sgc-home-exact-reference .sgc-exact-packages:focus-visible,
-body.sgc-home-exact-reference .sgc-exact-contact:focus-visible {
-  border-bottom: 3px solid rgba(185, 138, 59, 0.94) !important;
-  transform: translateY(-2px) scale(1.035) !important;
-}
-
-/* 2026-06-03 — matching Home hero button pair.
-   Makes the Work with Me CTA and adjacent Services CTA share the same gold treatment. */
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book,
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-indent: 0 !important;
-  overflow: hidden !important;
-  color: #fffaf2 !important;
-  background: linear-gradient(135deg, #d7aa4c 0%, #c7953b 48%, #a87524 100%) !important;
-  border: 1px solid rgba(229, 186, 94, 0.62) !important;
-  box-shadow: 0 14px 30px rgba(73, 42, 16, 0.18), inset 0 1px 0 rgba(255, 239, 196, 0.24) !important;
-  font-family: 'Outfit', system-ui, sans-serif !important;
-  font-size: clamp(0.46rem, 0.86vw, 0.88rem) !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.16em !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  text-transform: uppercase !important;
-  text-decoration: none !important;
-  text-shadow: 0 1px 1px rgba(43, 24, 13, 0.26) !important;
-  transform: translateY(0) scale(1) !important;
-  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease !important;
-}
-
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:hover,
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:focus-visible,
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:hover,
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:focus-visible {
-  color: #fffaf2 !important;
-  filter: brightness(1.04) saturate(1.04) !important;
-  box-shadow: 0 18px 34px rgba(73, 42, 16, 0.24), inset 0 1px 0 rgba(255, 239, 196, 0.34) !important;
-  transform: translateY(-2px) scale(1.012) !important;
-}
-
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:active,
-body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:active {
-  transform: translateY(-1px) scale(1.002) !important;
 }
 
 /* 2026-06-03 — requested no-underline title interaction for the exact-reference Home hero nav hotspots. */
@@ -417,5 +323,251 @@ body.sgc-home-exact-reference .sgc-exact-hero-shimmer-space {
     max-height: none !important;
     overflow: hidden !important;
     pointer-events: auto !important;
+  }
+}
+
+/* 2026-06-11 final original-button-only fix: the Home hero background image is the only visible CTA design layer. Live CTA anchors remain transparent click/tap targets so no duplicate button visuals can render. */
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-laptop-work {
+  display: block !important;
+  z-index: 40 !important;
+  box-sizing: border-box !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none !important;
+  text-indent: -9999px !important;
+  outline: 0 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+  animation: none !important;
+  overflow: hidden !important;
+  pointer-events: auto !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-laptop-work::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-laptop-work::after {
+  content: none !important;
+  display: none !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  animation: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book:hover,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book:active,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:hover,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:active,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:hover,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:active,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-laptop-work:hover,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-laptop-work:active {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services:focus-visible,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-laptop-work:focus-visible {
+  outline: 2px solid rgba(220, 177, 92, 0.95) !important;
+  outline-offset: 3px !important;
+  border-radius: 999px !important;
+}
+
+/* 2026-06-11 — cleaned-background live CTA layer: old baked rectangular CTAs are removed from the hero image, then only these three real anchors render as lighter champagne-gold rounded pill buttons. The laptop-screen hotspot intentionally stays transparent so no laptop button appears. */
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 45 !important;
+  box-sizing: border-box !important;
+  padding: 0 1.35em !important;
+  border: 1px solid rgba(255, 239, 190, 0.68) !important;
+  border-radius: 9999px !important;
+  background-color: #d9ad54 !important;
+  background-image:
+    linear-gradient(115deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.38) 38%, rgba(255,255,255,0.92) 48%, rgba(255,255,255,0.28) 58%, rgba(255,255,255,0) 100%),
+    linear-gradient(100deg, #bf852f 0%, #ddb258 18%, #f3d783 36%, #fff1b8 49%, #e8c16a 63%, #c78e34 82%, #a66b20 100%) !important;
+  background-size: 240% 100%, 100% 100% !important;
+  background-position: -135% center, center center !important;
+  box-shadow: 0 16px 34px rgba(74, 41, 12, 0.28), inset 0 1px 0 rgba(255,255,255,0.72), inset 0 -1px 0 rgba(101, 58, 11, 0.2) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  cursor: pointer !important;
+  filter: drop-shadow(0 8px 12px rgba(78, 48, 16, 0.18)) !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-size: clamp(0.52rem, 0.98vw, 1.02rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.16em !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-indent: 0 !important;
+  text-shadow: 0 1px 0 rgba(98, 58, 12, 0.32) !important;
+  text-transform: uppercase !important;
+  transform: translateZ(0) !important;
+  transition: transform 180ms ease, filter 180ms ease, box-shadow 180ms ease, background-position 550ms ease !important;
+  white-space: nowrap !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 8% 5% auto 5% !important;
+  height: 42% !important;
+  display: block !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.42), rgba(255,255,255,0.08)) !important;
+  box-shadow: none !important;
+  opacity: 0.72 !important;
+  pointer-events: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-book::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-hero-services::after {
+  content: ' →' !important;
+  display: inline !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-header-book {
+  font-size: clamp(0.5rem, 0.92vw, 0.98rem) !important;
+  letter-spacing: 0.15em !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button:hover,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button:active,
+body.sgc-home-exact-reference .sgc-exact-reference-hotspot.sgc-exact-shiny-hero-button:focus-visible {
+  background-position: 135% center, center center !important;
+  box-shadow: 0 18px 38px rgba(74, 41, 12, 0.34), inset 0 1px 0 rgba(255,255,255,0.82), inset 0 -1px 0 rgba(101, 58, 11, 0.22) !important;
+  filter: drop-shadow(0 10px 15px rgba(78, 48, 16, 0.22)) !important;
+  transform: translate3d(0, -2px, 0) !important;
+}
+
+
+/* 2026-06-11 final live-pill correction: high-specificity override after all old suppression rules. The cleaned desktop image contains no baked CTA plates; these real anchors are the only visible buttons. */
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 65 !important;
+  box-sizing: border-box !important;
+  padding: 0 1.42em !important;
+  border: 1px solid rgba(255, 244, 205, 0.78) !important;
+  border-radius: 9999px !important;
+  background-color: #e0b85e !important;
+  background-image:
+    linear-gradient(112deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.28) 34%, rgba(255,255,255,0.92) 49%, rgba(255,255,255,0.34) 61%, rgba(255,255,255,0) 100%),
+    linear-gradient(100deg, #bd8735 0%, #ddb45c 18%, #f4d98b 38%, #fff0b7 51%, #edc970 64%, #ce963c 82%, #b17827 100%) !important;
+  background-size: 250% 100%, 100% 100% !important;
+  background-position: -145% center, center center !important;
+  box-shadow: 0 14px 28px rgba(69, 41, 16, 0.24), inset 0 1px 0 rgba(255,255,255,0.78), inset 0 -1px 0 rgba(112, 70, 20, 0.2) !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  cursor: pointer !important;
+  filter: drop-shadow(0 7px 11px rgba(74, 47, 18, 0.17)) !important;
+  font-family: 'Outfit', 'Raleway', sans-serif !important;
+  font-size: clamp(0.52rem, 0.96vw, 1rem) !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.155em !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  overflow: hidden !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-indent: 0 !important;
+  text-shadow: 0 1px 0 rgba(102, 63, 18, 0.28) !important;
+  text-transform: uppercase !important;
+  transform: translateZ(0) !important;
+  white-space: nowrap !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button::before {
+  content: '' !important;
+  position: absolute !important;
+  inset: 9% 5.5% auto 5.5% !important;
+  height: 41% !important;
+  display: block !important;
+  border-radius: 9999px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.48), rgba(255,255,255,0.08)) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  opacity: 0.72 !important;
+  pointer-events: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button::after,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button::after {
+  content: ' →' !important;
+  display: inline !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button {
+  font-size: clamp(0.5rem, 0.9vw, 0.96rem) !important;
+  letter-spacing: 0.15em !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-laptop-work {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-indent: -9999px !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-laptop-work::before,
+body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-laptop-work::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-header-book.sgc-exact-shiny-hero-button,
+  body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-book.sgc-exact-shiny-hero-button,
+  body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hotspot.sgc-exact-hero-services.sgc-exact-shiny-hero-button {
+    pointer-events: none !important;
   }
 }

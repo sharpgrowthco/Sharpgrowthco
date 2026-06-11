@@ -2185,3 +2185,538 @@ main .sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
     transition-duration: 1ms !important;
   }
 }
+
+/* 2026-06-11 FINAL single-layer luxury CTA treatment — design-only.
+   Styles only managed listed CTAs. No hrefs, text, routes, anchors, actions, or destinations are changed. */
+@keyframes sgc-final-gold-shine-sweep {
+  0%, 38% {
+    transform: translate3d(-160%, 0, 0) skewX(-18deg);
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.92;
+  }
+  62% {
+    transform: translate3d(245%, 0, 0) skewX(-18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(245%, 0, 0) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+.sgc-luxury-cta.btn-primary-gold,
+a.sgc-luxury-cta.btn-primary-gold,
+button.sgc-luxury-cta.btn-primary-gold,
+input.sgc-luxury-cta.btn-primary-gold,
+[role="button"].sgc-luxury-cta.btn-primary-gold {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.45rem !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-height: 3.25rem !important;
+  padding: 0.92rem 1.82rem !important;
+  border: 1px solid rgba(255, 236, 190, 0.92) !important;
+  border-radius: 999px !important;
+  background-color: #d8aa4b !important;
+  background-image:
+    radial-gradient(circle at 18% 18%, rgba(255, 248, 222, 0.95) 0%, rgba(255, 248, 222, 0.34) 19%, rgba(255, 248, 222, 0) 36%),
+    linear-gradient(120deg,
+      #8f5b16 0%,
+      #b77d24 16%,
+      #d6a64a 31%,
+      #f4dc9a 45%,
+      #fff7d5 53%,
+      #e2b859 64%,
+      #c8912f 78%,
+      #9a641b 100%) !important;
+  background-size: 135% 135%, 155% 155% !important;
+  background-position: 18% 18%, 42% 50% !important;
+  color: #17120e !important;
+  -webkit-text-fill-color: #17120e !important;
+  font-family: 'Outfit', 'Raleway', system-ui, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.125em !important;
+  line-height: 1.12 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+  text-shadow: 0 1px 0 rgba(255, 251, 232, 0.58) !important;
+  box-shadow:
+    0 16px 34px rgba(55, 34, 13, 0.22),
+    0 8px 24px rgba(214, 166, 74, 0.46),
+    0 0 22px rgba(244, 220, 154, 0.24),
+    inset 0 1px 0 rgba(255, 252, 235, 0.92),
+    inset 0 -2px 0 rgba(83, 48, 12, 0.22) !important;
+  filter: saturate(1.12) contrast(1.03) !important;
+  transform: translateY(0) !important;
+  transition: transform 210ms ease, box-shadow 210ms ease, filter 210ms ease, border-color 210ms ease, background-position 210ms ease !important;
+  overflow: hidden !important;
+  contain: paint !important;
+  cursor: pointer !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold::before,
+a.sgc-luxury-cta.btn-primary-gold::before,
+button.sgc-luxury-cta.btn-primary-gold::before,
+[role="button"].sgc-luxury-cta.btn-primary-gold::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -35% !important;
+  bottom: -35% !important;
+  left: -46% !important;
+  width: 32% !important;
+  display: block !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.20) 22%,
+    rgba(255,255,255,0.92) 48%,
+    rgba(255,244,204,0.34) 70%,
+    rgba(255,255,255,0) 100%) !important;
+  box-shadow: 0 0 16px rgba(255, 251, 232, 0.42) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  transform: translate3d(-160%, 0, 0) skewX(-18deg) !important;
+  animation: sgc-final-gold-shine-sweep 2.7s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+  z-index: 1 !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold::after,
+a.sgc-luxury-cta.btn-primary-gold::after,
+button.sgc-luxury-cta.btn-primary-gold::after,
+[role="button"].sgc-luxury-cta.btn-primary-gold::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 1px !important;
+  display: block !important;
+  border-radius: inherit !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.04) 45%, rgba(98, 56, 12, 0.07) 100%) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+  visibility: visible !important;
+  transform: none !important;
+  z-index: 0 !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold:hover,
+.sgc-luxury-cta.btn-primary-gold:focus-visible,
+a.sgc-luxury-cta.btn-primary-gold:hover,
+a.sgc-luxury-cta.btn-primary-gold:focus-visible,
+button.sgc-luxury-cta.btn-primary-gold:hover,
+button.sgc-luxury-cta.btn-primary-gold:focus-visible,
+[role="button"].sgc-luxury-cta.btn-primary-gold:hover,
+[role="button"].sgc-luxury-cta.btn-primary-gold:focus-visible {
+  transform: translateY(-2px) !important;
+  color: #17120e !important;
+  -webkit-text-fill-color: #17120e !important;
+  border-color: rgba(255, 243, 210, 0.98) !important;
+  background-position: 12% 14%, 58% 50% !important;
+  filter: saturate(1.2) brightness(1.04) contrast(1.04) !important;
+  box-shadow:
+    0 20px 40px rgba(55, 34, 13, 0.26),
+    0 11px 30px rgba(214, 166, 74, 0.56),
+    0 0 30px rgba(244, 220, 154, 0.34),
+    inset 0 1px 0 rgba(255, 252, 235, 0.96),
+    inset 0 -2px 0 rgba(83, 48, 12, 0.2) !important;
+}
+
+.sgc-luxury-cta.btn-secondary-gold-outline,
+a.sgc-luxury-cta.btn-secondary-gold-outline,
+button.sgc-luxury-cta.btn-secondary-gold-outline,
+input.sgc-luxury-cta.btn-secondary-gold-outline,
+[role="button"].sgc-luxury-cta.btn-secondary-gold-outline {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  max-width: 100% !important;
+  min-height: 3.2rem !important;
+  padding: 0.9rem 1.74rem !important;
+  border: 1.35px solid rgba(207, 155, 60, 0.94) !important;
+  border-radius: 999px !important;
+  background-color: rgba(255, 250, 239, 0.015) !important;
+  background-image: linear-gradient(135deg, rgba(255, 244, 210, 0.07), rgba(207, 155, 60, 0.025)) !important;
+  color: #c99336 !important;
+  -webkit-text-fill-color: #c99336 !important;
+  font-family: 'Outfit', 'Raleway', system-ui, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.12 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  white-space: normal !important;
+  text-shadow: none !important;
+  box-shadow: 0 8px 20px rgba(55, 34, 13, 0.08), inset 0 1px 0 rgba(255, 250, 235, 0.16) !important;
+  filter: none !important;
+  transform: translateY(0) !important;
+  transition: transform 210ms ease, color 210ms ease, background-color 210ms ease, background-image 210ms ease, border-color 210ms ease, box-shadow 210ms ease !important;
+  overflow: hidden !important;
+  contain: paint !important;
+  cursor: pointer !important;
+}
+
+.sgc-luxury-cta.btn-secondary-gold-outline::before,
+.sgc-luxury-cta.btn-secondary-gold-outline::after,
+a.sgc-luxury-cta.btn-secondary-gold-outline::before,
+a.sgc-luxury-cta.btn-secondary-gold-outline::after,
+button.sgc-luxury-cta.btn-secondary-gold-outline::before,
+button.sgc-luxury-cta.btn-secondary-gold-outline::after,
+[role="button"].sgc-luxury-cta.btn-secondary-gold-outline::before,
+[role="button"].sgc-luxury-cta.btn-secondary-gold-outline::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+a.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+a.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+button.sgc-luxury-cta.btn-secondary-gold-outline:hover,
+button.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible,
+[role="button"].sgc-luxury-cta.btn-secondary-gold-outline:hover,
+[role="button"].sgc-luxury-cta.btn-secondary-gold-outline:focus-visible {
+  transform: translateY(-2px) !important;
+  border-color: rgba(255, 232, 184, 0.98) !important;
+  background-color: #d8aa4b !important;
+  background-image: linear-gradient(120deg, #9a641b 0%, #c8912f 26%, #f4dc9a 62%, #d6a64a 100%) !important;
+  color: #17120e !important;
+  -webkit-text-fill-color: #17120e !important;
+  box-shadow: 0 16px 32px rgba(55, 34, 13, 0.17), 0 8px 24px rgba(214, 166, 74, 0.32), inset 0 1px 0 rgba(255, 252, 235, 0.62) !important;
+}
+
+.sgc-luxury-cta.btn-primary-gold:focus-visible,
+.sgc-luxury-cta.btn-secondary-gold-outline:focus-visible {
+  outline: 2px solid rgba(232, 202, 143, 0.86) !important;
+  outline-offset: 3px !important;
+}
+
+.sgc-luxury-cta .sgc-luxury-cta-nested-neutral,
+.sgc-luxury-cta [data-sgc-nested-button-neutralized="true"],
+.sgc-luxury-cta [class*="btn"],
+.sgc-luxury-cta [class*="button"],
+.sgc-luxury-cta [class*="cta"] {
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+  text-shadow: inherit !important;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+  overflow: visible !important;
+}
+
+.sgc-luxury-cta .sgc-luxury-cta-nested-neutral::before,
+.sgc-luxury-cta .sgc-luxury-cta-nested-neutral::after,
+.sgc-luxury-cta [class*="btn"]::before,
+.sgc-luxury-cta [class*="btn"]::after,
+.sgc-luxury-cta [class*="button"]::before,
+.sgc-luxury-cta [class*="button"]::after,
+.sgc-luxury-cta [class*="cta"]::before,
+.sgc-luxury-cta [class*="cta"]::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .sgc-luxury-cta.btn-primary-gold,
+  .sgc-luxury-cta.btn-secondary-gold-outline,
+  a.sgc-luxury-cta.btn-primary-gold,
+  a.sgc-luxury-cta.btn-secondary-gold-outline,
+  button.sgc-luxury-cta.btn-primary-gold,
+  button.sgc-luxury-cta.btn-secondary-gold-outline,
+  [role="button"].sgc-luxury-cta.btn-primary-gold,
+  [role="button"].sgc-luxury-cta.btn-secondary-gold-outline {
+    width: min(100%, 22rem) !important;
+    min-height: 3.05rem !important;
+    padding: 0.84rem 1.18rem !important;
+    font-size: 0.74rem !important;
+    letter-spacing: 0.09em !important;
+    line-height: 1.16 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sgc-luxury-cta.btn-primary-gold::before {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}
+
+/* 2026-06-11 FINAL site-wide original CTA styling.
+   Design-only: this layer only repaints existing CTA elements classified by
+   luxury-button-enhancements.js. It does not alter hrefs, routes, labels,
+   anchors, form actions, Calendly links, or click behavior. */
+@keyframes sgc-luxury-final-shine-sweep {
+  0%, 37% {
+    transform: translate3d(-165%, 0, 0) skewX(-18deg);
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.96;
+  }
+  63% {
+    transform: translate3d(270%, 0, 0) skewX(-18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(270%, 0, 0) skewX(-18deg);
+    opacity: 0;
+  }
+}
+
+#root a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+#root button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+#root [role="button"].sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+main a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+main button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot) {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  min-height: 3.18rem !important;
+  padding: 0.88rem 1.65rem !important;
+  border: 1px solid rgba(255, 236, 190, 0.96) !important;
+  border-radius: 999px !important;
+  background-color: #d9ad4f !important;
+  background-image:
+    radial-gradient(circle at 18% 14%, rgba(255, 251, 229, 0.98) 0%, rgba(255, 247, 213, 0.40) 18%, rgba(255, 247, 213, 0) 38%),
+    linear-gradient(112deg, #7c4c12 0%, #a86f1d 13%, #ce9b38 27%, #efd184 41%, #fff7d2 50%, #e2b95c 61%, #bf8628 77%, #845216 100%) !important;
+  background-size: 145% 145%, 190% 190% !important;
+  background-position: 20% 16%, 40% 50% !important;
+  color: #17120e !important;
+  -webkit-text-fill-color: #17120e !important;
+  font-family: 'Outfit', 'Raleway', system-ui, sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.125em !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  text-shadow: 0 1px 0 rgba(255, 250, 225, 0.64) !important;
+  box-shadow:
+    0 16px 34px rgba(52, 31, 11, 0.24),
+    0 9px 24px rgba(217, 173, 79, 0.48),
+    0 0 24px rgba(255, 225, 144, 0.28),
+    inset 0 1px 0 rgba(255, 253, 236, 0.96),
+    inset 0 -2px 0 rgba(70, 38, 8, 0.24) !important;
+  filter: saturate(1.14) contrast(1.04) !important;
+  overflow: hidden !important;
+  transform: translate3d(0, 0, 0) !important;
+  transition: transform 210ms ease, box-shadow 210ms ease, filter 210ms ease, border-color 210ms ease, background-position 260ms ease !important;
+}
+
+#root a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::before,
+#root button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::before,
+#root [role="button"].sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::before,
+main a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::before,
+main button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -36% !important;
+  bottom: -36% !important;
+  left: -44% !important;
+  width: 34% !important;
+  display: block !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 18%, rgba(255,255,255,0.98) 46%, rgba(255,242,196,0.54) 65%, rgba(255,255,255,0) 100%) !important;
+  box-shadow: 0 0 18px rgba(255, 250, 226, 0.52) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translate3d(-165%, 0, 0) skewX(-18deg) !important;
+  animation: sgc-luxury-final-shine-sweep 2.75s cubic-bezier(0.22, 1, 0.36, 1) infinite !important;
+  z-index: 1 !important;
+}
+
+#root a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::after,
+#root button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::after,
+#root [role="button"].sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::after,
+main a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::after,
+main button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot)::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 1px !important;
+  display: block !important;
+  border-radius: inherit !important;
+  border: 1px solid rgba(255, 255, 255, 0.24) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.30), rgba(255,255,255,0.05) 45%, rgba(88,48,10,0.08) 100%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+#root a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+#root button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+#root [role="button"].sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+main a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+main button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot) {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  isolation: isolate !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  min-height: 3.18rem !important;
+  padding: 0.88rem 1.65rem !important;
+  border: 1.5px solid rgba(201, 151, 55, 0.98) !important;
+  border-radius: 999px !important;
+  background-color: rgba(255, 250, 241, 0.72) !important;
+  background-image: linear-gradient(135deg, rgba(255, 246, 219, 0.38), rgba(255, 250, 241, 0.08)) !important;
+  color: #a36f22 !important;
+  -webkit-text-fill-color: #a36f22 !important;
+  font-family: 'Outfit', 'Raleway', system-ui, sans-serif !important;
+  font-size: 0.82rem !important;
+  font-weight: 825 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.05 !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  text-shadow: none !important;
+  box-shadow:
+    0 10px 22px rgba(52, 31, 11, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.44) !important;
+  overflow: hidden !important;
+  transform: translate3d(0, 0, 0) !important;
+  transition: transform 210ms ease, color 210ms ease, background-color 210ms ease, background-image 210ms ease, border-color 210ms ease, box-shadow 210ms ease !important;
+}
+
+#root a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::before,
+#root a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::after,
+#root button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::before,
+#root button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::after,
+main a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::before,
+main a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::after,
+main button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::before,
+main button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot)::after {
+  content: none !important;
+  display: none !important;
+}
+
+#root a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):hover,
+#root a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):focus-visible,
+#root button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):hover,
+#root button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):focus-visible,
+main a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):hover,
+main a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):focus-visible,
+main button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):hover,
+main button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot):focus-visible {
+  transform: translate3d(0, -2px, 0) !important;
+  background-position: 14% 12%, 62% 50% !important;
+  border-color: rgba(255, 246, 214, 1) !important;
+  filter: saturate(1.23) brightness(1.04) contrast(1.05) !important;
+  color: #17120e !important;
+  -webkit-text-fill-color: #17120e !important;
+  box-shadow:
+    0 20px 42px rgba(52, 31, 11, 0.29),
+    0 12px 32px rgba(217, 173, 79, 0.58),
+    0 0 30px rgba(255, 225, 144, 0.36),
+    inset 0 1px 0 rgba(255, 253, 236, 1),
+    inset 0 -2px 0 rgba(70, 38, 8, 0.22) !important;
+}
+
+#root a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):hover,
+#root a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):focus-visible,
+#root button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):hover,
+#root button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):focus-visible,
+main a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):hover,
+main a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):focus-visible,
+main button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):hover,
+main button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot):focus-visible {
+  transform: translate3d(0, -2px, 0) !important;
+  border-color: rgba(255, 232, 184, 1) !important;
+  background-color: #d9ad4f !important;
+  background-image: linear-gradient(112deg, #8b5718 0%, #c88f2c 28%, #f0d489 62%, #d9ad4f 100%) !important;
+  color: #17120e !important;
+  -webkit-text-fill-color: #17120e !important;
+  box-shadow:
+    0 16px 32px rgba(52, 31, 11, 0.18),
+    0 8px 24px rgba(217, 173, 79, 0.34),
+    inset 0 1px 0 rgba(255, 253, 236, 0.68) !important;
+}
+
+#root .sgc-luxury-cta.btn-primary-gold > .btn-primary,
+#root .sgc-luxury-cta.btn-primary-gold > .btn-gold,
+#root .sgc-luxury-cta.btn-primary-gold > .btn-outline,
+#root .sgc-luxury-cta.btn-secondary-gold-outline > .btn-primary,
+#root .sgc-luxury-cta.btn-secondary-gold-outline > .btn-gold,
+#root .sgc-luxury-cta.btn-secondary-gold-outline > .btn-outline {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  text-shadow: inherit !important;
+  padding: 0 !important;
+  min-height: 0 !important;
+  transform: none !important;
+}
+
+@media (max-width: 768px) {
+  #root a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+  #root button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+  #root a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+  #root button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+  main a.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+  main button.sgc-luxury-cta.btn-primary-gold:not(.sgc-exact-reference-hotspot),
+  main a.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot),
+  main button.sgc-luxury-cta.btn-secondary-gold-outline:not(.sgc-exact-reference-hotspot) {
+    min-height: 44px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: max(0.8rem, 13px) !important;
+    white-space: normal !important;
+  }
+}

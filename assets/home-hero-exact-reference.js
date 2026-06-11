@@ -25,31 +25,9 @@
     return link;
   }
 
-  function luxuryClassesForLabel(label) {
-    var normalizedLabel = (label || '').replace(' — Contact Page', '').replace(/\s+/g, ' ').trim().toLowerCase();
-    if (
-      normalizedLabel === 'book a consultation' ||
-      normalizedLabel === 'work with me' ||
-      normalizedLabel === 'contact me' ||
-      normalizedLabel === 'book a custom growth plan' ||
-      normalizedLabel === 'start your project' ||
-      normalizedLabel === 'start your growth journey' ||
-      normalizedLabel === 'book a call' ||
-      normalizedLabel === 'book a complimentary consultation' ||
-      normalizedLabel === 'apply to work together'
-    ) {
-      return ' sgc-luxury-cta btn-primary-gold';
-    }
-    if (
-      normalizedLabel === 'view services' ||
-      normalizedLabel === 'explore my services' ||
-      normalizedLabel === 'see my services' ||
-      normalizedLabel === 'see full testimonial' ||
-      normalizedLabel === 'see full details' ||
-      normalizedLabel === 'view full packages & pricing' ||
-      normalizedLabel === 'view packages'
-    ) {
-      return ' sgc-luxury-cta btn-secondary-gold-outline';
+  function luxuryClassesForHotspot(className) {
+    if (className === 'sgc-exact-header-book' || className === 'sgc-exact-hero-book' || className === 'sgc-exact-hero-services') {
+      return ' sgc-exact-shiny-hero-button';
     }
     return '';
   }
@@ -59,13 +37,13 @@
       var className = link.dataset.sgcExactClass;
       var label = link.dataset.sgcExactLabel;
       var href = link.dataset.sgcExactHref;
-      if (className === 'sgc-exact-laptop-work' || className === 'sgc-exact-hero-book') {
+      if (className === 'sgc-exact-laptop-work') {
         href = '/contact/';
-        label = 'Work with Me';
+        label = 'Work';
         link.dataset.sgcExactHref = '/contact/';
-        link.dataset.sgcExactLabel = 'Work with Me';
+        link.dataset.sgcExactLabel = 'Work';
       }
-      if (className) link.className = 'sgc-exact-reference-hotspot ' + className + luxuryClassesForLabel(label);
+      if (className) link.className = 'sgc-exact-reference-hotspot ' + className + luxuryClassesForHotspot(className);
       if (label) {
         var visibleLabel = label.replace(' — Contact Page', '');
         link.setAttribute('aria-label', label);
@@ -96,9 +74,9 @@
       ['sgc-exact-packages', '/packages/', 'Packages', false],
       ['sgc-exact-contact', '/contact/', 'Contact', false],
       ['sgc-exact-header-book', CALENDLY_URL, 'Book a Consultation', true],
-      ['sgc-exact-laptop-work', '/contact/', 'Work with Me', false],
-      ['sgc-exact-hero-book', '/contact/', 'Work with Me', false],
-      ['sgc-exact-hero-services', '/services/', 'View Services', false]
+      ['sgc-exact-laptop-work', '/contact/', 'Work', false],
+      ['sgc-exact-hero-book', CALENDLY_URL, 'Book a Consultation', true],
+      ['sgc-exact-hero-services', '/services/', 'Explore Services', false]
     ];
 
     links.forEach(function (item) {

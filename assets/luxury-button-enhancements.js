@@ -1,5 +1,14 @@
 (() => {
-  const PRIMARY_CTA_TEXT = new Set([
+  'use strict';
+
+  /**
+   * 2026-06-11 design-only button styling.
+   * This script never changes hrefs, routes, anchors, form actions, button text,
+   * targets, rel attributes, or click behavior. It only adds/removes CSS classes
+   * for the exact approved CTA labels and styles only the outermost matching CTA
+   * so nested button visuals cannot render as double buttons.
+   */
+  const PRIMARY_LABELS = new Set([
     'book a consultation',
     'work with me',
     'contact me',
@@ -11,10 +20,10 @@
     'apply to work together'
   ]);
 
-  const SECONDARY_CTA_TEXT = new Set([
+  const SECONDARY_LABELS = new Set([
     'view services',
-    'explore services',
     'explore my services',
+    'explore services',
     'see my services',
     'see full testimonial',
     'see full details',
@@ -22,124 +31,99 @@
     'view packages'
   ]);
 
-  const PRIMARY_INLINE_STYLES = {
-    'border-radius': '999px',
-    'background-color': 'var(--sgc-button-classic-gold)',
-    'background-image': 'linear-gradient(115deg, var(--sgc-button-deep-gold) 0%, var(--sgc-button-classic-gold) 26%, var(--sgc-button-champagne) 48%, var(--sgc-button-ivory-gold) 56%, var(--sgc-button-classic-gold) 72%, var(--sgc-button-deep-gold) 100%)',
-    'color': 'var(--sgc-button-charcoal)',
-    'border': '1px solid rgba(255, 232, 182, 0.76)',
-    'box-shadow': '0 14px 30px rgba(39, 24, 11, 0.17), 0 8px 18px rgba(218, 171, 87, 0.32), inset 0 1px 0 rgba(255, 250, 235, 0.7), inset 0 -1px 0 rgba(116, 75, 24, 0.28)',
-    'overflow': 'hidden'
-  };
+  const TARGET_SELECTOR = 'a, button, input[type="button"], input[type="submit"], [role="button"]';
+  const MANAGED_CLASSES = ['sgc-luxury-cta', 'btn-primary-gold', 'btn-secondary-gold-outline', 'sgc-luxury-cta-nested-neutral'];
 
-  const SECONDARY_INLINE_STYLES = {
-    'border-radius': '999px',
-    'background-color': 'rgba(255, 250, 241, 0.02)',
-    'background-image': 'linear-gradient(135deg, rgba(255, 244, 215, 0.05), rgba(203, 151, 62, 0.02))',
-    'color': 'var(--sgc-button-classic-gold)',
-    'border': '1px solid var(--sgc-button-gold-border)',
-    'box-shadow': '0 8px 18px rgba(39, 24, 11, 0.08), inset 0 1px 0 rgba(255, 250, 235, 0.18)',
-    'overflow': 'hidden'
-  };
-
-  const LEGACY_PRIMARY_TEXT = new Set([
-    'book your call',
-    'get started',
-    'get a website quote',
-    'send message',
-    'submit',
-    'let’s grow',
-    "let's grow"
-  ]);
-
-  const PLAIN_NAV_TEXT = new Set([
-    'home',
-    'services',
-    'my work',
-    'work',
-    'about',
-    'packages',
-    'contact'
-  ]);
-
-  function normalize(text) {
-    return (text || '').replace(/\s+/g, ' ').trim().toLowerCase();
+  function normalizeText(value) {
+    return String(value || '')
+      .replace(/\s+/g, ' ')
+      .replace(/\s*→\s*$/, '')
+      .trim()
+      .toLowerCase();
   }
 
-  function readableLabel(el) {
-    if (!el) return '';
-    return normalize(el.textContent || el.value || el.getAttribute('aria-label') || el.getAttribute('title'));
+  function elementLabel(element) {
+    if (!element) return '';
+    if (element.matches && element.matches('input[type="button"], input[type="submit"]')) {
+      return normalizeText(element.value || element.getAttribute('aria-label') || element.getAttribute('title'));
+    }
+    return normalizeText(element.textContent || element.getAttribute('aria-label') || element.getAttribute('title'));
   }
 
-  function isNavigationLink(el, text) {
-    if (!text || text.includes('book') || text.includes('start your project')) return false;
-    if (!PLAIN_NAV_TEXT.has(text)) return false;
-    return Boolean(el.closest('nav, header, footer, [role="navigation"], .footer, .site-footer'));
+  function styleForLabel(label) {
+    if (PRIMARY_LABELS.has(label)) return 'primary-gold';
+    if (SECONDARY_LABELS.has(label)) return 'secondary-gold-outline';
+    return '';
   }
 
-  function clearButtonStyleClasses(el) {
-    el.classList.remove('btn-primary-gold', 'btn-secondary-gold-outline', 'sgc-button-unclassified');
+  function clearManagedClasses(element) {
+    MANAGED_CLASSES.forEach((className) => element.classList.remove(className));
+    if (element.dataset.sgcButtonStyleManaged === 'true') {
+      delete element.dataset.sgcButtonStyleManaged;
+      delete element.dataset.sgcButtonStyle;
+    }
+    delete element.dataset.sgcNestedButtonNeutralized;
   }
 
-  function applyVisualStyleOverrides(el, styleType) {
-    const styles = styleType === 'secondary' ? SECONDARY_INLINE_STYLES : PRIMARY_INLINE_STYLES;
-    Object.entries(styles).forEach(([property, value]) => {
-      el.style.setProperty(property, value, 'important');
+  function applyAllDesignOnlyClasses() {
+    const candidates = Array.from(document.querySelectorAll(TARGET_SELECTOR));
+    const matches = candidates
+      .map((element) => ({ element, label: elementLabel(element) }))
+      .map((item) => ({ ...item, style: styleForLabel(item.label) }))
+      .filter((item) => item.style);
+
+    candidates.forEach(clearManagedClasses);
+
+    const outerMatches = matches.filter(({ element }) => {
+      return !matches.some((other) => other.element !== element && other.element.contains(element));
     });
-  }
 
-  function classifyButton(el) {
-    const text = readableLabel(el);
-    if (!text || isNavigationLink(el, text)) return null;
+    outerMatches.forEach(({ element, style }) => {
+      element.classList.add('sgc-luxury-cta');
+      element.classList.toggle('btn-primary-gold', style === 'primary-gold');
+      element.classList.toggle('btn-secondary-gold-outline', style === 'secondary-gold-outline');
+      element.dataset.sgcButtonStyleManaged = 'true';
+      element.dataset.sgcButtonStyle = style;
 
-    if (PRIMARY_CTA_TEXT.has(text)) return 'primary';
-    if (SECONDARY_CTA_TEXT.has(text)) return 'secondary';
-
-    const className = (el.className || '').toString().toLowerCase();
-    if (className.includes('btn-outline')) return 'secondary';
-    if (className.includes('btn-primary') || className.includes('btn-gold')) return 'primary';
-    if (LEGACY_PRIMARY_TEXT.has(text)) return 'primary';
-
-    return null;
-  }
-
-  function polishButtons() {
-    document.querySelectorAll('a, button, input[type="submit"]').forEach((el) => {
-      const styleType = classifyButton(el);
-      clearButtonStyleClasses(el);
-      if (!styleType) return;
-
-      el.classList.add('sgc-luxury-cta');
-      el.classList.add(styleType === 'secondary' ? 'btn-secondary-gold-outline' : 'btn-primary-gold');
-      applyVisualStyleOverrides(el, styleType);
-
-      if (!el.getAttribute('aria-label') && normalize(el.textContent || el.value)) {
-        el.setAttribute('aria-label', (el.textContent || el.value).replace(/\s+/g, ' ').trim());
-      }
-    });
-  }
-
-  let queued = false;
-  function schedulePolish() {
-    if (queued) return;
-    queued = true;
-    window.requestAnimationFrame(() => {
-      queued = false;
-      polishButtons();
+      element.querySelectorAll('button, a, [role="button"], [class*="btn"], [class*="button"], [class*="cta"]').forEach((child) => {
+        if (child === element) return;
+        child.classList.add('sgc-luxury-cta-nested-neutral');
+        child.dataset.sgcNestedButtonNeutralized = 'true';
+      });
     });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', schedulePolish, { once: true });
+    document.addEventListener('DOMContentLoaded', applyAllDesignOnlyClasses, { once: true });
   } else {
-    schedulePolish();
+    applyAllDesignOnlyClasses();
   }
-  window.addEventListener('load', schedulePolish);
-  window.addEventListener('popstate', schedulePolish);
-  window.addEventListener('hashchange', schedulePolish);
-  document.addEventListener('click', () => setTimeout(schedulePolish, 80), true);
-  [180, 650, 1500].forEach((delay) => window.setTimeout(schedulePolish, delay));
 
-  const observer = new MutationObserver(schedulePolish);
-  observer.observe(document.documentElement, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'value', 'aria-label'] });
+  window.addEventListener('load', applyAllDesignOnlyClasses, { once: true });
+  [50, 150, 350, 900, 1800, 3200, 5200].forEach((delay) => window.setTimeout(applyAllDesignOnlyClasses, delay));
+
+  let pending = false;
+  const observer = new MutationObserver(() => {
+    if (pending) return;
+    pending = true;
+    window.requestAnimationFrame(() => {
+      pending = false;
+      applyAllDesignOnlyClasses();
+    });
+  });
+
+  if (document.documentElement) {
+    observer.observe(document.documentElement, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+  }
+
+  window.SGCLuxuryButtonEnhancements = Object.freeze({
+    mode: 'design-only-outermost-single-layer',
+    primaryLabels: Array.from(PRIMARY_LABELS),
+    secondaryLabels: Array.from(SECONDARY_LABELS),
+    version: '2026-06-11-single-layer-shiny-gold-mobile'
+  });
 })();
