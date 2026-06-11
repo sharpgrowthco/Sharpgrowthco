@@ -152,25 +152,57 @@
 
               <div class="sgc-full-story-visual" aria-label="Gather and Grow website video preview">
                 <div class="gold-growth-animation" aria-hidden="true">
+                  <svg class="gold-botanical-svg" viewBox="0 0 420 760" preserveAspectRatio="xMidYMax meet" focusable="false">
+                    <defs>
+                      <linearGradient id="sgcGoldStem" x1="0" x2="0" y1="1" y2="0">
+                        <stop offset="0" stop-color="#6d481d" stop-opacity="0.55"/>
+                        <stop offset="0.46" stop-color="#d4af37" stop-opacity="0.86"/>
+                        <stop offset="1" stop-color="#fff0ad" stop-opacity="0.58"/>
+                      </linearGradient>
+                      <radialGradient id="sgcGoldGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0" stop-color="#fff0ad" stop-opacity="0.9"/>
+                        <stop offset="0.36" stop-color="#d4af37" stop-opacity="0.34"/>
+                        <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+                      </radialGradient>
+                    </defs>
+                    <g class="botanical-glow">
+                      <circle cx="210" cy="610" r="70"/>
+                      <circle cx="210" cy="378" r="50"/>
+                      <circle cx="210" cy="112" r="38"/>
+                    </g>
+                    <g class="botanical-stems">
+                      <path class="stem stem-main" d="M210 724 C208 650 218 598 207 532 C196 465 212 410 213 348 C214 278 205 222 211 154 C214 116 221 86 213 50"/>
+                      <path class="stem stem-left" d="M209 616 C171 588 151 548 163 509 C176 468 204 456 211 410"/>
+                      <path class="stem stem-right" d="M212 598 C258 570 279 527 260 490 C243 457 217 454 214 406"/>
+                      <path class="stem stem-upper-left" d="M211 260 C174 230 155 188 177 153 C194 126 214 126 214 88"/>
+                      <path class="stem stem-upper-right" d="M214 258 C254 231 277 190 260 154 C246 124 223 125 216 86"/>
+                      <path class="curl curl-lower" d="M207 562 C161 559 150 614 188 620 C216 624 218 590 196 590"/>
+                      <path class="curl curl-mid" d="M214 406 C269 400 286 342 244 342 C214 342 213 374 236 371"/>
+                      <path class="curl curl-top" d="M213 95 C174 82 177 36 207 45 C232 52 222 78 203 72"/>
+                      <path class="curl curl-top-left" d="M211 164 C182 150 176 116 203 114 C223 113 225 139 207 139"/>
+                      <path class="curl curl-top-right" d="M214 162 C247 150 256 118 229 115 C208 113 205 139 224 139"/>
+                    </g>
+                    <g class="botanical-leaves">
+                      <path d="M163 506 C129 493 123 462 166 473 C182 477 181 498 163 506Z"/>
+                      <path d="M258 492 C296 477 304 446 261 456 C243 460 242 483 258 492Z"/>
+                      <path d="M176 153 C145 142 142 118 179 125 C194 128 193 147 176 153Z"/>
+                      <path d="M258 155 C293 142 296 118 256 125 C241 128 241 148 258 155Z"/>
+                      <path d="M190 626 C157 617 151 591 190 598 C206 601 207 620 190 626Z"/>
+                      <path d="M236 342 C271 330 279 304 238 311 C221 315 220 336 236 342Z"/>
+                      <path d="M205 112 C181 103 179 84 207 90 C219 93 219 108 205 112Z"/>
+                      <path d="M225 112 C250 103 253 84 224 90 C213 93 213 108 225 112Z"/>
+                    </g>
+                    <g class="botanical-lights">
+                      <circle cx="210" cy="610" r="3.5"/>
+                      <circle cx="214" cy="378" r="3"/>
+                      <circle cx="212" cy="82" r="3.2"/>
+                      <circle cx="164" cy="532" r="2.2"/>
+                      <circle cx="270" cy="462" r="2.1"/>
+                      <circle cx="196" cy="126" r="1.8"/>
+                      <circle cx="233" cy="128" r="1.8"/>
+                    </g>
+                  </svg>
                   <div class="gold-pot"></div>
-                  <div class="growth-vine vine-main"></div>
-                  <div class="growth-vine vine-left"></div>
-                  <div class="growth-vine vine-right"></div>
-                  <span class="leaf leaf-1"></span>
-                  <span class="leaf leaf-2"></span>
-                  <span class="leaf leaf-3"></span>
-                  <span class="leaf leaf-4"></span>
-                  <span class="leaf leaf-5"></span>
-                  <span class="leaf leaf-6"></span>
-                  <span class="leaf leaf-7"></span>
-                  <span class="vine-flourish flourish-1"></span>
-                  <span class="vine-flourish flourish-2"></span>
-                  <span class="vine-flourish flourish-3"></span>
-                  <span class="vine-flourish flourish-4"></span>
-                  <span class="gold-orb orb-1"></span>
-                  <span class="gold-orb orb-2"></span>
-                  <span class="gold-orb orb-3"></span>
-                  <span class="gold-orb orb-4"></span>
                   <span class="sparkle s1">✦</span>
                   <span class="sparkle s2">✧</span>
                   <span class="sparkle s3">✦</span>
