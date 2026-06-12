@@ -982,3 +982,13 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hot
     100% { background-position: -200% center; }
   }
 }
+
+/* 2026-06-11 — approved mobile hero image reveal: move the lower content boundary down only; do not alter image scale, crop, object position, CTAs, labels, or hrefs. */
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero .max-w-3xl,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero .max-w-3xl,
+  body.sgc-home-luxury-hero .sgc-mobile-home-hero .max-w-3xl,
+  body:has(.sgc-mobile-home-hero) .sgc-mobile-home-hero .max-w-3xl {
+    margin-top: 3.05rem !important;
+  }
+}
