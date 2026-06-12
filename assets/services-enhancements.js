@@ -569,6 +569,7 @@
       title: 'Content that builds community and moves people to act.',
       intro: 'A combined strategy, content, and publishing system for businesses that need to look consistent, stay visible, and turn attention into real demand.',
       image: '/assets/images/social-media-management-alberta-content-creation-phone-service.webp',
+      mobileImage: '/assets/images/social-media-management-alberta-content-creation-phone-service-mobile.webp',
       alt: 'Phone mockup showing social media management and content creation strategy for Alberta local businesses.',
       visualLabel: 'Phone-first content system',
       points: [
@@ -583,6 +584,7 @@
       title: 'A clear roadmap for sustainable local growth.',
       intro: 'Strategy turns scattered marketing into focused action. I map your positioning, offers, campaigns, and customer journey so every effort has a purpose.',
       image: '/assets/images/marketing-strategy-alberta-business-growth-planning-service.webp',
+      mobileImage: '/assets/images/marketing-strategy-alberta-business-growth-planning-service-mobile.webp',
       alt: 'Marketing strategy boardroom planning session for Alberta entrepreneurs and local business growth.',
       visualLabel: 'Strategic growth planning',
       points: [
@@ -597,6 +599,7 @@
       title: 'A cohesive brand presence people remember.',
       intro: 'Your brand should feel intentional everywhere it appears. I shape the visuals, voice, templates, and creative direction that make your business feel polished and recognizable.',
       image: '/assets/images/branding-creative-direction-alberta-visual-identity-service.webp',
+      mobileImage: '/assets/images/branding-creative-direction-alberta-visual-identity-service-mobile.webp',
       alt: 'Brand board creative direction and visual identity system for Alberta businesses.',
       visualLabel: 'Brand board direction',
       points: [
@@ -685,6 +688,7 @@
 
   function createVisualServiceSection(config, index) {
     const section = document.createElement('section');
+    const visualImage = window.matchMedia('(max-width: 640px)').matches && config.mobileImage ? config.mobileImage : config.image;
     section.className = `sgc-services-visual-section sgc-services-visual-${config.key}`;
     section.id = config.key;
     section.setAttribute('data-sgc-service-anchor', config.key);
@@ -693,7 +697,7 @@
       <div class="sgc-services-visual-inner${reverseClass}">
         <div class="sgc-services-visual-media">
           <div class="sgc-services-device-frame">
-            <img src="${config.image}" alt="${config.alt}" loading="lazy" decoding="async">
+            <img src="${visualImage}" alt="${config.alt}" loading="lazy" decoding="async">
             <span>${config.visualLabel}</span>
           </div>
         </div>
