@@ -852,6 +852,21 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hot
   }
 }
 
+/* 2026-06-11 — mobile CTA bubble artifact fix: remove the inner highlight layer only; anchors, labels, hrefs, and button backgrounds remain intact. */
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::before,
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::before,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-primary-gold::before,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::before {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+  }
+}
+
 /* 2026-06-11 — mobile Home edge-to-edge luxury gradient cleanup: inset text and stop headline clipping. */
 @media (max-width: 768px) {
   body.sgc-home-exact-reference #root .sgc-mobile-home-hero,
