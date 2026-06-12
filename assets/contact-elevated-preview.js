@@ -99,8 +99,8 @@
       return;
     }
     setImportant(button, 'transform', 'translateY(0)');
-    setImportant(button, 'color', 'oklch(0.48 0.018 60)');
-    setImportant(button, '-webkit-text-fill-color', 'oklch(0.48 0.018 60)');
+    setImportant(button, 'color', 'rgb(105, 96, 79)');
+    setImportant(button, '-webkit-text-fill-color', 'rgb(105, 96, 79)');
     setImportant(button, 'border-color', 'rgba(181, 134, 49, 0.20)');
     setImportant(button, 'background', SERVICE_NEUTRAL_BACKGROUND);
     setImportant(button, 'background-color', 'transparent');
