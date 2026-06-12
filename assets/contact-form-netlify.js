@@ -142,11 +142,7 @@
   const buttonIsSelected = (button) => {
     const ariaPressed = button.getAttribute('aria-pressed');
     if (ariaPressed === 'true') return true;
-    if (button.classList.contains('active') || button.classList.contains('selected')) return true;
-    const style = window.getComputedStyle(button);
-    const background = style.backgroundColor || '';
-    const color = style.color || '';
-    return background.includes('80, 61, 40') || background.includes('39, 22, 12') || color.includes('255');
+    return button.classList.contains('selected') || button.classList.contains('sgc-service-pill-gold-selected');
   };
 
   const updateSelectedServices = (form) => {

@@ -14,10 +14,7 @@
     ["I'll send a tailored proposal with scope, timeline, and investment details.", "If the partnership is aligned, I’ll prepare a focused proposal with scope, priorities, timeline, and investment."],
     ["Monthly / Project Budget", "Estimated Investment Range"],
     ["Tell Me About Your Goals", "Tell Me About Your Brand & Goals"],
-    ["What are you hoping to achieve? What's your biggest marketing challenge right now?", "What are you looking to improve, launch, grow, or refine? Share any goals, challenges, or ideas so I can better understand your vision."],
-    ["Free Consultation", "Complementary Consultation"],
-    ["Book a Free Consultation", "Complementary Consultation"],
-    ["free consultation", "Complementary Consultation"]
+    ["What are you hoping to achieve? What's your biggest marketing challenge right now?", "What are you looking to improve, launch, grow, or refine? Share any goals, challenges, or ideas so I can better understand your vision."]
   ]);
 
   function replaceTextNodes(root = document.body) {
@@ -77,6 +74,109 @@
     hero.appendChild(tagline);
   }
 
+  const SERVICE_GOLD_BACKGROUND = 'linear-gradient(135deg, #C79D5B 0%, #E8C988 45%, #F5E3BC 50%, #E8C988 55%, #C79D5B 100%)';
+  const SERVICE_NEUTRAL_BACKGROUND = 'linear-gradient(180deg, rgba(255,253,247,0.94), rgba(246,240,228,0.88))';
+
+  function setImportant(button, property, value) {
+    button.style.setProperty(property, value, 'important');
+  }
+
+  function applyServiceButtonGoldVisual(button) {
+    setImportant(button, 'transform', 'translateY(-3px)');
+    setImportant(button, 'color', '#111111');
+    setImportant(button, '-webkit-text-fill-color', '#111111');
+    setImportant(button, 'border-color', '#C79D5B');
+    setImportant(button, 'background', SERVICE_GOLD_BACKGROUND);
+    setImportant(button, 'background-color', '#E8C988');
+    setImportant(button, 'background-image', SERVICE_GOLD_BACKGROUND);
+    setImportant(button, 'box-shadow', '0 6px 18px rgba(199, 157, 91, 0.45)');
+    setImportant(button, 'text-shadow', 'none');
+  }
+
+  function applyServiceButtonNeutralVisual(button) {
+    if (button.matches(':hover') || button.dataset.sgcServiceHovering === 'true') {
+      applyServiceButtonGoldVisual(button);
+      return;
+    }
+    setImportant(button, 'transform', 'translateY(0)');
+    setImportant(button, 'color', 'oklch(0.48 0.018 60)');
+    setImportant(button, '-webkit-text-fill-color', 'oklch(0.48 0.018 60)');
+    setImportant(button, 'border-color', 'rgba(181, 134, 49, 0.20)');
+    setImportant(button, 'background', SERVICE_NEUTRAL_BACKGROUND);
+    setImportant(button, 'background-color', 'transparent');
+    setImportant(button, 'background-image', SERVICE_NEUTRAL_BACKGROUND);
+    setImportant(button, 'box-shadow', '0 10px 28px rgba(52, 38, 22, 0.055)');
+    setImportant(button, 'text-shadow', 'none');
+  }
+
+  function serviceButtonIsGoldSelected(button) {
+    return button.classList.contains('sgc-service-pill-gold-selected')
+      || button.classList.contains('selected')
+      || button.classList.contains('active')
+      || button.getAttribute('aria-pressed') === 'true';
+  }
+
+  function setServiceButtonGoldSelected(button, selected) {
+    button.classList.toggle('selected', selected);
+    button.classList.toggle('sgc-service-pill-gold-selected', selected);
+    button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+    button.setAttribute('data-sgc-service-visual-state', selected ? 'gold' : 'outline');
+    if (selected || button.matches(':hover') || button.dataset.sgcServiceHovering === 'true') applyServiceButtonGoldVisual(button);
+    else applyServiceButtonNeutralVisual(button);
+  }
+
+  function syncSelectedServicesInput(button) {
+    const form = button.closest('form');
+    if (!form) return;
+    let input = form.querySelector('input[type="hidden"][name="services_interested_in"]');
+    if (!input) {
+      input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'services_interested_in';
+      form.prepend(input);
+    }
+    input.value = Array.from(form.querySelectorAll('.service-pill.selected, .service-pill[aria-pressed="true"]'))
+      .map((pill) => pill.textContent.trim().replace(/\s+/g, ' '))
+      .filter(Boolean)
+      .join(', ');
+  }
+
+  function wireServiceButtonGoldState(button) {
+    button.classList.add('service-pill', 'sgc-service-button-preview');
+    setImportant(button, 'transition', 'all 0.3s ease-in-out');
+    setServiceButtonGoldSelected(button, serviceButtonIsGoldSelected(button));
+    syncSelectedServicesInput(button);
+    if (button.dataset.sgcServiceGoldListener === 'true') return;
+    button.dataset.sgcServiceGoldListener = 'true';
+    const setHoverGold = () => {
+      button.dataset.sgcServiceHovering = 'true';
+      applyServiceButtonGoldVisual(button);
+      window.setTimeout(() => {
+        if (button.dataset.sgcServiceHovering === 'true' || button.matches(':hover')) applyServiceButtonGoldVisual(button);
+      }, 325);
+    };
+    button.addEventListener('mouseenter', setHoverGold);
+    button.addEventListener('mouseover', setHoverGold);
+    button.addEventListener('pointerenter', setHoverGold);
+    button.addEventListener('mouseleave', () => {
+      button.dataset.sgcServiceHovering = 'false';
+      if (!serviceButtonIsGoldSelected(button)) applyServiceButtonNeutralVisual(button);
+    });
+    button.addEventListener('click', () => {
+      if (button.dataset.sgcContactServiceReady === 'true') {
+        const nowSelected = button.classList.contains('selected')
+          || button.classList.contains('sgc-contact-service-selected')
+          || button.getAttribute('aria-pressed') === 'true';
+        setServiceButtonGoldSelected(button, nowSelected);
+        syncSelectedServicesInput(button);
+        return;
+      }
+      const nextSelected = !serviceButtonIsGoldSelected(button);
+      setServiceButtonGoldSelected(button, nextSelected);
+      syncSelectedServicesInput(button);
+    });
+  }
+
   function tuneServicesSection() {
     const heading = findTextElement('Services Interested In');
     if (!heading) return;
@@ -92,7 +192,7 @@
       helper.textContent = 'Select one or more services so I can tailor your next-step recommendation.';
       helper.classList.add('sgc-service-helper-preview');
     }
-    section.querySelectorAll('button').forEach((button) => button.classList.add('sgc-service-button-preview'));
+    section.querySelectorAll('button').forEach(wireServiceButtonGoldState);
   }
 
   function addInvestmentNote() {
@@ -134,17 +234,18 @@
 })();
 
 /* 2026-06-11 — Contact consultation label correction.
-   Text-only refinement: routes, hrefs, form actions, and click behavior remain untouched. */
+   Text-only refinement: routes and form actions remain untouched. */
 (() => {
-  const CONSULTATION_TEXT = 'Complementary Consultation';
+  const CONSULTATION_TEXT = 'Book a Consultation';
   const CONSULTATION_REPLACEMENTS = [
     ['Book a Complimentary Consultation', CONSULTATION_TEXT],
     ['Book a Complementary Consultation', CONSULTATION_TEXT],
-    ['Book a Consultation', CONSULTATION_TEXT],
     ['BOOK A CONSULTATION', CONSULTATION_TEXT],
     ['Book a Free Consultation', CONSULTATION_TEXT],
+    ['Complementary Consultation', CONSULTATION_TEXT],
     ['Complimentary Consultation', CONSULTATION_TEXT],
     ['Free Consultation', CONSULTATION_TEXT],
+    ['complementary consultation', CONSULTATION_TEXT],
     ['complimentary consultation', CONSULTATION_TEXT],
     ['free consultation', CONSULTATION_TEXT]
   ];

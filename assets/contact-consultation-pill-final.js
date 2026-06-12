@@ -5,13 +5,14 @@
    * 2026-06-11 Contact-only CTA correction.
    * - Header/white-banner BOOK A CONSULTATION keeps the same placement rules as the site header
    *   but now uses the same light champagne-gold pill treatment as the other pages.
-   * - Lower direct-contact, Contact form, and footer CTAs are forced to the same shiny gold design.
-   * Existing destinations and form behavior are preserved.
+   * - Lower direct-contact CTA now uses the same BOOK A CONSULTATION label and sizing as the header pill.
+     * - Contact form and footer CTAs keep the same shiny gold design, with the Apply button using a single clean pill layer.
+     * Existing destinations and form behavior are preserved.
    */
   const CALENDLY = 'https://calendly.com/sharpgrowthco';
   const HEADER_TEXT = 'BOOK A CONSULTATION';
   const HEADER_ARIA = 'Book a consultation with Sharp Growth Co.';
-  const LOWER_TEXT = 'COMPLEMENTARY CONSULTATION';
+  const LOWER_TEXT = 'BOOK A CONSULTATION';
   const MATCH_TEXT = /^(book\s+a\s+)?(complimentary|complementary|free)?\s*consultation$/i;
   const HEADER_SELECTOR = 'button.hidden, button.sgc-mobile-book-cta, [role="button"].hidden, [role="button"].sgc-mobile-book-cta';
   const STYLE_ID = 'sgc-contact-consultation-pill-final-styles';
@@ -191,12 +192,16 @@
       }
 
       .sgc-contact-card-consultation-pill {
-        width: min(18.75rem, 100%) !important;
-        min-height: 3rem !important;
+        width: min(100%, 14.65rem) !important;
+        min-width: 0 !important;
+        max-width: 14.65rem !important;
+        height: 3.22rem !important;
+        min-height: 3.22rem !important;
         margin-top: 0.95rem !important;
-        padding: 0.78rem 1.32rem !important;
-        font-size: clamp(0.52rem, 0.56vw, 0.66rem) !important;
-        letter-spacing: 0.13em !important;
+        padding: 0 1.72em !important;
+        font-size: clamp(0.49rem, 0.78vw, 0.86rem) !important;
+        letter-spacing: 0.15em !important;
+        line-height: 1 !important;
       }
 
       .${APPLY_CLASS} {
@@ -205,6 +210,23 @@
         padding: 0.94rem 1.65rem !important;
         font-size: 0.82rem !important;
         letter-spacing: 0.125em !important;
+      }
+
+      .${APPLY_CLASS}::before,
+      .${APPLY_CLASS}.sgc-luxury-cta::before,
+      .${APPLY_CLASS}.btn-primary-gold::before,
+      .${GOLD_CLASS}.${APPLY_CLASS}::before,
+      button.${APPLY_CLASS}::before,
+      a.${APPLY_CLASS}::before {
+        content: none !important;
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        inset: auto !important;
+        border: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        opacity: 0 !important;
       }
 
       .${FOOTER_CLASS} {
@@ -234,10 +256,13 @@
         }
 
         .sgc-contact-card-consultation-pill {
-          width: 100% !important;
-          min-height: 2.9rem !important;
-          padding-inline: 0.95rem !important;
-          font-size: 0.54rem !important;
+          width: min(100%, 14.65rem) !important;
+          min-width: 0 !important;
+          max-width: 14.65rem !important;
+          height: 2.86rem !important;
+          min-height: 2.86rem !important;
+          padding-inline: 1.05rem !important;
+          font-size: 0.62rem !important;
           letter-spacing: 0.105em !important;
         }
 
@@ -367,13 +392,18 @@
     }
     removeExtraPlainLowerConsultationText(card, pill);
     pill.classList.add(GOLD_CLASS, 'sgc-contact-card-consultation-pill');
-    pill.classList.remove('text-base', 'btn-secondary-gold-outline', 'sgc-luxury-cta', 'btn-primary-gold');
+    pill.classList.remove('text-base', 'btn-secondary-gold-outline', 'sgc-luxury-cta', 'btn-primary-gold', 'sgc-contact-consultation-cta-fit', HEADER_GOLD_CLASS, HEADER_REPLACEMENT_CLASS);
     applyInlineGold(pill);
+    setImportant(pill, 'width', 'min(100%, 14.65rem)');
+    setImportant(pill, 'min-width', '0');
+    setImportant(pill, 'max-width', '14.65rem');
+    setImportant(pill, 'margin-left', '0');
+    setImportant(pill, 'margin-right', 'auto');
     pill.textContent = LOWER_TEXT;
     pill.setAttribute('href', CALENDLY);
     pill.setAttribute('target', '_blank');
     pill.setAttribute('rel', 'noopener noreferrer');
-    pill.setAttribute('aria-label', 'Book a complementary consultation with Sharp Growth Co.');
+    pill.setAttribute('aria-label', 'Book a consultation with Sharp Growth Co.');
   }
 
   function applyMainApplyButton() {
@@ -385,6 +415,10 @@
         element.classList.add(GOLD_CLASS, APPLY_CLASS);
         applyInlineGold(element);
         setImportant(element, 'border-radius', '9999px');
+        setImportant(element, 'background', 'linear-gradient(92deg, #c8871f 0%, #f1c95c 34%, #d99d28 68%, #a96b18 100%)');
+        setImportant(element, 'background-color', '#dba239');
+        setImportant(element, 'background-image', 'linear-gradient(92deg, #c8871f 0%, #f1c95c 34%, #d99d28 68%, #a96b18 100%)');
+        setImportant(element, 'box-shadow', '0 16px 28px rgba(95, 64, 25, 0.24), 0 6px 14px rgba(214, 165, 62, 0.18)');
       });
   }
 
@@ -439,7 +473,7 @@
   }
 
   window.SGCContactConsultationPillFinal = Object.freeze({
-    version: '2026-06-11-reference-light-gold-contact-ctas',
+    version: '2026-06-11-design-only-contact-button-state-hotfix',
     headerText: HEADER_TEXT,
     lowerText: LOWER_TEXT
   });

@@ -52,7 +52,7 @@
   const mainServiceCards = [
     {
       title: 'Social Media Management',
-      image: '/assets/images/Social_Media___Content_Phone.png',
+      image: '/assets/images/social-media-management-alberta-content-creation-phone-service.webp',
       alt: 'Social media management content strategy for local Alberta businesses.'
     },
     {
@@ -62,7 +62,7 @@
     },
     {
       title: 'Marketing Strategy',
-      image: '/assets/images/Marketing_Strategy.png',
+      image: '/assets/images/marketing-strategy-alberta-business-growth-planning-service.webp',
       alt: 'Marketing strategy and boardroom planning session for Alberta entrepreneurs and local business growth.'
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       title: 'Branding & Creative Direction',
-      image: '/assets/images/Branding___Creative_Direction.png',
+      image: '/assets/images/branding-creative-direction-alberta-visual-identity-service.webp',
       alt: 'Branding and creative direction brand board visual identity for Alberta businesses.'
     }
   ];
@@ -568,7 +568,7 @@
       eyebrow: 'Social Media & Content Creation',
       title: 'Content that builds community and moves people to act.',
       intro: 'A combined strategy, content, and publishing system for businesses that need to look consistent, stay visible, and turn attention into real demand.',
-      image: '/assets/images/Social_Media___Content_Phone.png',
+      image: '/assets/images/social-media-management-alberta-content-creation-phone-service.webp',
       alt: 'Phone mockup showing social media management and content creation strategy for Alberta local businesses.',
       visualLabel: 'Phone-first content system',
       points: [
@@ -582,7 +582,7 @@
       eyebrow: 'Marketing Strategy',
       title: 'A clear roadmap for sustainable local growth.',
       intro: 'Strategy turns scattered marketing into focused action. I map your positioning, offers, campaigns, and customer journey so every effort has a purpose.',
-      image: '/assets/images/Marketing_Strategy.png',
+      image: '/assets/images/marketing-strategy-alberta-business-growth-planning-service.webp',
       alt: 'Marketing strategy boardroom planning session for Alberta entrepreneurs and local business growth.',
       visualLabel: 'Strategic growth planning',
       points: [
@@ -596,7 +596,7 @@
       eyebrow: 'Branding & Creative Direction',
       title: 'A cohesive brand presence people remember.',
       intro: 'Your brand should feel intentional everywhere it appears. I shape the visuals, voice, templates, and creative direction that make your business feel polished and recognizable.',
-      image: '/assets/images/Branding___Creative_Direction.png',
+      image: '/assets/images/branding-creative-direction-alberta-visual-identity-service.webp',
       alt: 'Brand board creative direction and visual identity system for Alberta businesses.',
       visualLabel: 'Brand board direction',
       points: [
@@ -915,16 +915,14 @@
 
     form.classList.add('sgc-contact-form-restored');
     buttons.forEach((button) => {
-      button.classList.add('sgc-contact-service-option');
+      button.classList.add('sgc-contact-service-option', 'service-pill');
       if (!button.hasAttribute('aria-pressed')) button.setAttribute('aria-pressed', 'false');
       if (button.dataset.sgcContactServiceReady === 'true') return;
       button.dataset.sgcContactServiceReady = 'true';
       button.addEventListener('click', () => {
-        const shouldSelect = !button.classList.contains('sgc-contact-service-selected');
-        window.requestAnimationFrame(() => {
-          setContactButtonSelected(button, shouldSelect);
-          updateContactServiceState(form);
-        });
+        const shouldSelect = !button.classList.contains('selected');
+        setContactButtonSelected(button, shouldSelect);
+        updateContactServiceState(form);
       });
     });
     updateContactServiceState(form);
