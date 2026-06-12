@@ -25,7 +25,7 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero {
   overflow: hidden !important;
   isolation: isolate !important;
   background-color: #120c08 !important;
-  background-image: url("images/sharp-growth-hero-tight-clean-live-pill-base-20260611.png") !important;
+  background-image: url("images/alberta-marketing-agency-homepage-hero-laptop-growth-dashboard.webp") !important;
   background-size: 100% 100% !important;
   background-position: center top !important;
   background-repeat: no-repeat !important;
@@ -849,5 +849,121 @@ body.sgc-home-exact-reference .sgc-exact-reference-hero .sgc-exact-reference-hot
   body.sgc-home-exact-reference main .sgc-mobile-home-hero a.sgc-luxury-cta.btn-secondary-gold-outline::after {
     content: none !important;
     display: none !important;
+  }
+}
+
+/* 2026-06-11 — mobile Home edge-to-edge luxury gradient cleanup: inset text and stop headline clipping. */
+@media (max-width: 768px) {
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero,
+  body.sgc-home-exact-reference #root .min-h-screen > section[data-sgc-replaced-by-exact-reference="true"] {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    overflow-x: hidden !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero .container,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero .container {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero .max-w-3xl,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero .max-w-3xl {
+    position: relative !important;
+    isolation: isolate !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: clamp(2.72rem, 7.8vw, 3.55rem) 1.34rem 2.18rem 1.34rem !important;
+    background: linear-gradient(160deg, #4E3A22 0%, #241910 45%, #100B06 100%) !important;
+    background-color: #100B06 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero .max-w-3xl::before,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero .max-w-3xl::before {
+    content: '' !important;
+    display: block !important;
+    position: absolute !important;
+    inset: -40% !important;
+    background: linear-gradient(115deg,
+      transparent 30%,
+      rgba(214, 178, 110, 0.10) 42%,
+      rgba(255, 235, 190, 0.20) 50%,
+      rgba(214, 178, 110, 0.10) 58%,
+      transparent 70%) !important;
+    animation: silkSweep 7s ease-in-out infinite !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero .max-w-3xl::after,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero .max-w-3xl::after {
+    content: '' !important;
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: radial-gradient(ellipse 120% 90% at 50% 110%, rgba(0,0,0,0.55) 0%, transparent 60%) !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+  }
+
+  @keyframes silkSweep {
+    0% { transform: translateX(35%); }
+    55% { transform: translateX(-35%); }
+    100% { transform: translateX(35%); }
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero .max-w-3xl > *,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero .max-w-3xl > * {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero h1,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero h1 {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0 0.12em 0.36em 0 !important;
+    overflow: visible !important;
+    line-height: 1.1 !important;
+    font-size: clamp(3.05rem, 13.05vw, 4.35rem) !important;
+  }
+
+  body.sgc-home-exact-reference #root .sgc-mobile-home-hero h1 em,
+  body.sgc-home-exact-reference main .sgc-mobile-home-hero h1 em {
+    padding-bottom: 0.18em !important;
+    margin-bottom: 0 !important;
+    overflow: visible !important;
+    line-height: 1.15 !important;
+  }
+
+  .shimmer-gold {
+    background: linear-gradient(270deg, #C79D5B 0%, #F5E3B3 25%, #FFF7DC 50%, #F5E3B3 75%, #C79D5B 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmerRTL 3s linear infinite;
+    font-style: italic;
+  }
+
+  @keyframes shimmerRTL {
+    0% { background-position: 200% center; }
+    100% { background-position: -200% center; }
   }
 }

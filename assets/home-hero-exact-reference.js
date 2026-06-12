@@ -95,9 +95,37 @@
     });
   }
 
+  function wrapMobileHeroShimmerPhrase() {
+    if (!isHomePath()) return;
+    document.querySelectorAll('.sgc-mobile-home-hero h1').forEach(function (heading) {
+      if (heading.querySelector('.shimmer-gold')) return;
+      var walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+      var node;
+      while ((node = walker.nextNode())) {
+        var text = node.nodeValue || '';
+        var phraseIndex = text.indexOf('impossible to ignore.');
+        if (phraseIndex === -1) continue;
+
+        var before = text.slice(0, phraseIndex);
+        var after = text.slice(phraseIndex + 'impossible to ignore.'.length);
+        var phrase = document.createElement('span');
+        phrase.className = 'shimmer-gold';
+        phrase.textContent = 'impossible to ignore.';
+
+        var fragment = document.createDocumentFragment();
+        if (before) fragment.appendChild(document.createTextNode(before));
+        fragment.appendChild(phrase);
+        if (after) fragment.appendChild(document.createTextNode(after));
+        node.parentNode.replaceChild(fragment, node);
+        return;
+      }
+    });
+  }
+
   function normalizeHomeHeroCtas() {
     normalizeHotspots();
     normalizeMobileHomeHeroCtas();
+    wrapMobileHeroShimmerPhrase();
   }
 
   function buildHero() {
