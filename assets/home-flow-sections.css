@@ -585,6 +585,13 @@
 }
 
 @media (max-width: 768px) {
+  body.sgc-home-client-success-active.sgc-home-client-success-active #root header.sgc-mobile-menu-ready .sgc-mobile-brand-logo,
+  body.sgc-home-client-success-active.sgc-home-client-success-active header.sgc-mobile-menu-ready .sgc-mobile-brand-logo {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
   .metrics-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

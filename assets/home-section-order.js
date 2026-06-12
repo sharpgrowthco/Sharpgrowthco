@@ -3,6 +3,11 @@
 
   const VERSION = 'home-centre-logo-alignment-20260602';
   const CALENDLY = 'https://calendly.com/sharpgrowthco';
+  const MOBILE_MAX_WIDTH = 768;
+  const CLIENT_SUCCESS_ACTIVE_CLASS = 'sgc-home-client-success-active';
+  const CLIENT_SUCCESS_HEADER_CLEARANCE = 76;
+  let clientSuccessLogoRaf = 0;
+  let clientSuccessLogoGuardReady = false;
 
   function normalize(text) {
     return (text || '').replace(/\s+/g, ' ').trim();
@@ -15,6 +20,37 @@
   function isHomePage() {
     const path = window.location.pathname.replace(/\/+$/, '') || '/';
     return path === '/';
+  }
+
+  function isMobileViewport() {
+    return window.matchMedia(`(max-width: ${MOBILE_MAX_WIDTH}px)`).matches;
+  }
+
+  function syncClientSuccessHeaderLogo() {
+    clientSuccessLogoRaf = 0;
+    if (!document.body) return;
+
+    const testimonialSection = document.querySelector('.sgc-home-testimonial-section');
+    if (!isHomePage() || !isMobileViewport() || !testimonialSection) {
+      document.body.classList.remove(CLIENT_SUCCESS_ACTIVE_CLASS);
+      return;
+    }
+
+    const rect = testimonialSection.getBoundingClientRect();
+    const isUnderMobileHeader = rect.top <= CLIENT_SUCCESS_HEADER_CLEARANCE && rect.bottom >= 0;
+    document.body.classList.toggle(CLIENT_SUCCESS_ACTIVE_CLASS, isUnderMobileHeader);
+  }
+
+  function scheduleClientSuccessHeaderLogoSync() {
+    if (clientSuccessLogoRaf) return;
+    clientSuccessLogoRaf = window.requestAnimationFrame(syncClientSuccessHeaderLogo);
+  }
+
+  function ensureClientSuccessHeaderLogoGuard() {
+    if (clientSuccessLogoGuardReady) return;
+    clientSuccessLogoGuardReady = true;
+    window.addEventListener('scroll', scheduleClientSuccessHeaderLogoSync, { passive: true });
+    window.addEventListener('resize', scheduleClientSuccessHeaderLogoSync);
   }
 
   function allSections() {
@@ -273,6 +309,8 @@
     const whatSection = getOrReplaceWhatIOfferSection();
     const servicesSection = findServicesSection();
     const testimonialSection = getOrReplaceTestimonialSection();
+    ensureClientSuccessHeaderLogoGuard();
+    scheduleClientSuccessHeaderLogoSync();
     const whoSection = findWhoSection();
     const pricingSection = findPricingSection();
     const faqSection = findFaqSection();
